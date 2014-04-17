@@ -1,0 +1,74 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+/* -------------------------- header and footer ------------------------- */
+
+.header {
+
+    position: fixed;
+    background-color: #76D7B3;
+    z-index: 1;
+    height: 5rem;
+    width: 100%;
+
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+
+}
+
+#static {
+
+    position: static;
+
+}
+
+.footer {
+
+    height: 5rem;
+    background-color: white;
+    border-top: 1px solid rgba(0,0,0,0.2);
+
+}
+
+/* -------------------------- pages#index ------------------------- */
+
+.intro {
+
+    min-height: 30rem;
+
+}
+
+#who_are_we {
+
+    background-color: #76D7B3;
+
+}
+
+
+#professionals {
+
+    background-color: white;
+
+}
+
+#nonprofits {
+
+    background-color: #D93855;
+
+}
+
+#companies {
+
+    background-color: #white;
+
+}
