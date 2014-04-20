@@ -12,19 +12,86 @@
  *= require_tree .
  */
 
+/* ----------------------- across the whole document ---------------------- */
+
+body {
+
+        font-family: Helvetica;
+        box-sizing:border-box;
+        -moz-box-sizing:border-box; /* Firefox */
+       
+
+        
+    }
+
+.background {
+
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background:url('background.jpg') no-repeat center center;
+
+    }
+
+
 /* -------------------------- header and footer ------------------------- */
+
 
 .header {
 
+    color: white;
     position: fixed;
     background-color: #76D7B3;
     z-index: 1;
     height: 5rem;
     width: 100%;
 
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-
 }
+
+       .header .logo {
+
+            position: absolute;
+            margin-top: 0.5rem;
+            margin-left: 2rem;
+            font-size: 4rem;
+
+
+        }
+
+        .header .login {
+
+            position: absolute;
+            right: 2rem;
+            margin-top: 0.5rem;
+
+        }
+
+                .header .login li {
+
+                    display: inline-block;
+                    margin-left: 1rem;
+                    font-size: 1rem;
+
+                }
+
+        .header .nav {
+
+            position: absolute;
+            right: 2rem;
+            margin-top: 2rem;
+            margin-right: 10rem;
+
+        }
+
+                .header .nav li {
+
+                    display: inline-block;
+                    margin-left: 1rem;
+                    font-size: 1.5rem;
+
+                }
+
 
 #static {
 
@@ -32,11 +99,15 @@
 
 }
 
+
+
+
+
 .footer {
 
+    color: white;
     height: 5rem;
-    background-color: white;
-    border-top: 1px solid rgba(0,0,0,0.2);
+    background-color: #474747;
 
 }
 
@@ -44,31 +115,125 @@
 
 .intro {
 
+    position: relative;
     min-height: 30rem;
+    background-color: #FFFDFD;
+    color: black;
+
+}
+
+.divider {
+
+    height: 5rem;
+    background:none;
 
 }
 
 #who_are_we {
 
+    color: white;
+    font-size: 1.5rem;
+    line-height: 2rem;
     background-color: #76D7B3;
-
 }
+    
+    #who_are_we div {
 
+        position: relative;
+        top: 5rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+
+    }
+    
 
 #professionals {
 
-    background-color: white;
+    /*color: black;*/
+    font-size: 1.5rem;
+    line-height: 2rem;
+    /*background-color: rgba(255,255,255,0.8);*/
+    /*border: 1px solid white;*/
 
 }
+
+    #professionals div {
+
+        position: relative;
+        top: 5rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+
+    }
 
 #nonprofits {
 
-    background-color: #D93855;
+    /*color: white;*/
+    font-size: 1.5rem;
+    line-height: 2rem;
+    /*background-color: #EED480;*/
 
 }
 
+    #nonprofits div {
+
+        position: relative;
+        top: 5rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+
+
+    }
+
 #companies {
 
-    background-color: #white;
+    /*color: black;*/
+    font-size: 1.5rem;
+    line-height: 2rem;
+    /*background-color: white;*/
+
+}
+
+    #companies div {
+
+        position: relative;
+        top: 5rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+
+    }
+
+
+/* -------------------------- projects#index ------------------------- */
+
+
+.projects_search {
+
+    position: fixed;
+    top: 5rem;
+    height:40rem;
+    width: 15%;
+    background-color: white;
+    z-index: 1;
+
+}
+
+.projects_show {
+
+    position: relative;
+    background-color: none;
+    width: 85%;
+    min-height: 40rem;
+    margin-left: 15%;
+    overflow: hidden;
+}
+
+.project_card {
+
+    float: left;
+    height:20rem;
+    width: 33.1%;
+    background: white;
+    border: 1px solid gray;
 
 }
