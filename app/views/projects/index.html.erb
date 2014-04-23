@@ -1,12 +1,37 @@
 <%= render 'shared/header' %>
+<%= render 'shared/background' %>
 
-<div class="projects_search"></div>
+<div class="projects_search">
+
+    <ul class="search_bar">Find a project
+
+        <li>Category</li>
+        <li>Cause</li>
+        <li>Location</li>
+
+    </ul>
+
+</div>
 
 <div class="projects_show">
 
     <% 20.times do %>
 
-        <div class="project_card"></div>
+        <div class="project_card">
+
+            <div class="project_header">
+                <h1>Make a Web App for Toronto Feral Cat Project</h1>
+            </div>
+            <div class="project_details">
+
+                <h3>Project details</h3>
+                <p>We are looking for a volunteer to build a web app to automate the registration process for the monthly workhop we are running. Currently, our volunteers are manually copying...</p>
+   
+                <h3>Length: 4 weeks</h3>
+
+            </div>
+
+        </div>
 
     <% end %>
 
