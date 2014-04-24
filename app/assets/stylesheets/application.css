@@ -44,7 +44,7 @@ body {
     position: fixed;
     background-color: #76D7B3;
     z-index: 1;
-    height: 5rem;
+    height: 6rem;
     width: 100%;
 
 }
@@ -54,10 +54,14 @@ body {
             position: absolute;
             margin-top: 0.5rem;
             margin-left: 2rem;
-            font-size: 4rem;
-
-
+            
         }
+
+            .header .logo img {
+
+                height: 4.5rem;
+
+            }
 
         .header .login {
 
@@ -98,12 +102,78 @@ body {
                 }
 
 
+
+
+.alt_header {
+
+    color: #888888;
+    position: fixed;
+    background-color: white;
+    z-index: 1;
+    height: 4rem;
+    width: 100%;
+    box-shadow: 1px 1px 5px #888888;
+
+}
+
+       .alt_header .logo {
+
+            position: absolute;
+            margin-top: 0.5rem;
+            margin-left: 2rem;
+            
+        }
+
+            .alt_header .logo img {
+
+                height: 3rem;
+
+            }
+
+        .alt_header .login {
+
+            position: absolute;
+            right: 2rem;
+            margin-top: 0.5rem;
+
+        }
+
+                .alt_header .login li {
+
+                    display: inline-block;
+                    margin-left: 1rem;
+                    font-size: 1rem;
+                }
+
+        .alt_header .nav {
+
+            position: absolute;
+            right: 2rem;
+            margin-top: 2rem;
+            margin-right: 10rem;
+
+        }
+
+                .alt_header .nav li {
+
+                    display: inline-block;
+                    margin-left: 1rem;
+                    font-size: 1rem
+                }
+
+                .alt_header .nav a {
+
+                    color: #888888;
+                    text-decoration: none;
+
+                }
+
+
 #static {
 
     position: static;
 
 }
-
 
 
 
