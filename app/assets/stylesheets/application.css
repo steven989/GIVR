@@ -46,7 +46,7 @@ body {
     z-index: 1;
     height: 6rem;
     width: 100%;
-
+    z-index:2;
 }
 
        .header .logo {
@@ -91,8 +91,16 @@ body {
 
                     display: inline-block;
                     margin-left: 1rem;
-                    font-size: 1.5rem
+                    font-size: 1rem;
+                    padding-bottom: 0.25rem;
+                    padding-right: 0.25rem;
+                    padding-left: 0.25rem;
                 }
+
+                    .header .nav li:hover {
+
+                        border-bottom: 2px solid white;
+                    }
 
                 .header .nav a {
 
@@ -113,7 +121,7 @@ body {
     height: 4rem;
     width: 100%;
     box-shadow: 1px 1px 5px #888888;
-
+    z-index: 2;
 }
 
        .alt_header .logo {
@@ -145,6 +153,7 @@ body {
                     font-size: 1rem;
                 }
 
+
         .alt_header .nav {
 
             position: absolute;
@@ -158,8 +167,16 @@ body {
 
                     display: inline-block;
                     margin-left: 1rem;
-                    font-size: 1rem
+                    font-size: 1rem;
+                    padding-bottom: 0.25rem;
+                    padding-right: 0.25rem;
+                    padding-left: 0.25rem;
                 }
+
+                    .alt_header .nav li:hover {
+
+                        border-bottom: 2px solid #76D7B3;
+                    }
 
                 .alt_header .nav a {
 
@@ -285,8 +302,9 @@ body {
 .projects_search {
 
     position: fixed;
-    padding-top: 2rem;
-    top: 5rem;
+    padding-top: 3rem;
+    padding-left: 2rem;
+    top: 4rem;
     height:40rem;
     width: 15%;
     background-color: white;
@@ -296,35 +314,42 @@ body {
 
     .projects_search .search_bar {
 
-        color: white;
+        font-size:1rem;
+        color: #888888;
+        font-weight: bold;
         display: block;
         position: relative;
-        min-height: 20rem;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        padding-top: 1rem;
-        padding-left: 1rem;
-        background-color: #76D7B3;
-        border: 2px solid white;
-
+        min-height: 30rem;
+    
     }
+
 
         .projects_search .search_bar li {
 
+            font-size: 1rem;
+            font-weight: normal;
             display: block;
-            margin-top: 1rem;
-            margin-left: 1rem;
-            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
 
 
         }
+
+        .projects_search .search_bar li:hover {
+
+            background-color: #76D7B3;
+            color: white;
+        }
+
 
 .projects_show {
 
     position: relative;
     background-color: white;
-    padding-top:2rem;
-    padding-left: 2rem;
+    padding-top:3rem;
+    padding-left: 3rem;
     width: 85%;
     min-height: 40rem;
     margin-left: 15%;
@@ -336,20 +361,23 @@ body {
 
     color: gray;
     float: left;
-    height:100%;
-    width: 29%;
+    height:20rem;
+    width: 20rem;
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
     padding: 0.5rem;
-    background-color: white;
-    border: 1px solid gray;
+    background-color: #EEEEEE;
+    /*background-color: #F1F1F1;*/
 
 }
+
+
     .project_card .project_header {
 
-        /*background-color: #76D7B3;*/
-        font-size: 2rem;
+        /*color: #FFDD4B;*/
+        font-size: 1.5rem;
         width: 100%;
+
 
 
     }
@@ -360,5 +388,18 @@ body {
         margin-top: 1rem;
         line-height: 1.3rem;
 
+
+    }
+
+    .project_card:hover {
+
+        background-color: #76D7B3;
+        color: white;
+
+    }
+
+    .project_card:hover .project_details {
+
+        color: white;
 
     }
