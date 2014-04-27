@@ -46,7 +46,7 @@ body {
     z-index: 1;
     height: 6rem;
     width: 100%;
-    z-index:2;
+    z-index:3;
 }
 
        .header .logo {
@@ -116,12 +116,14 @@ body {
 
     color: #888888;
     position: fixed;
+    top: 0;
     background-color: white;
     z-index: 1;
     height: 4rem;
     width: 100%;
     box-shadow: 1px 1px 5px #888888;
     z-index: 2;
+
 }
 
        .alt_header .logo {
@@ -189,6 +191,7 @@ body {
 #static {
 
     position: static;
+    height: 4rem;
 
 }
 
