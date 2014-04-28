@@ -19,12 +19,8 @@ body {
         font-family: "Raleway", serif;
         box-sizing:border-box;
         -moz-box-sizing:border-box; /* Firefox */
-       
-
-        
+    
     }
-
-
 
 /* -------------------------- header and footer ------------------------- */
 
@@ -45,7 +41,7 @@ body {
        .header .logo {
 
             position: absolute;
-            margin-top: 0.5rem;
+            margin-top: 1rem;
             margin-left: 2rem;
             
         }
