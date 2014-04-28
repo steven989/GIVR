@@ -1,12 +1,12 @@
 
-var headerHeight // taking a snapshot of the height of the header as an anchor
 
 navigationUnderline();  // will add underline to the navigation link that's currently active
 
 $('document').ready(function() {
     
     $(document).on('scroll', scrollCheck);
-    headerHeight = $('#visible_blue').outerHeight(false);    // taking a snapshot of the height of the header as an anchor
+
+    window.headerHeight = $('#visible_blue').outerHeight(false);    // taking a snapshot of the height of the header as an anchor
 
     // $(document).on('load',function(){alert("I've been loaded!")})
 
