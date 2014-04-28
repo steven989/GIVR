@@ -8,12 +8,11 @@ $('document').ready(function() {
 
     window.headerHeight = $('#visible_blue').outerHeight(false);    // taking a snapshot of the height of the header as an anchor
 
-    // $(document).on('load',function(){alert("I've been loaded!")})
+    $('.search_bar .clickable').each(function(){
 
+        $(this).on('click',slideUpDown)
 
-    // navigationUnderline();
-
-    // $('.projects_search').on('click',function(){alert("I've been clicked!")});
+        });
 
     });
 
@@ -52,4 +51,15 @@ function navigationUnderline() {
     var linksToHighlightWhiteHeader = $('.alt_header .nav').find('li').filter(function(){return $(this).find('a').attr('href') == $(location).attr('pathname')});
 
     linksToHighlightWhiteHeader.css({"border-bottom": "2px solid #76D7B3"});
+}
+
+// this code is to enable the exanding of the search items in the "find a project" bar
+
+function slideUpDown(event) {
+
+    var list = $(this).parent().children().eq(1)
+
+    if (list.css('display')=="none") {list.slideDown()}
+        else {list.slideUp()}
+
 }
