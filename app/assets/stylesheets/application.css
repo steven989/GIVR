@@ -326,6 +326,18 @@ body {
 
         }
 
+
+        .projects_search .search_bar .lis {
+
+            display: none;
+
+        }
+
+        .projects_search .search_bar #show_by_default {
+
+            display: block;
+        }
+
         .projects_search .search_bar .lis li {
 
             font-size: 1rem;
@@ -334,13 +346,15 @@ body {
             padding-top: 0.5rem;
             padding-bottom: 0.5rem;
             padding-left: 2rem;
-            /*display: none;*/
+            border-bottom: 2px solid white;
+
         }
 
-        .projects_search .search_bar .lis li:first {
-            display: block;
-        }
+            .projects_search .search_bar .lis li:hover {
 
+                border-bottom: 2px solid #76D7B3;
+
+            }
 
         .projects_search .search_bar .clickable:hover {
 
@@ -348,11 +362,12 @@ body {
             color: white;
         }
 
-        .projects_search .search_bar .category_search .category_lis {
-
-            /*background-color: white;*/
-
+        .projects_search .search_bar .clickable_clicked {
+            
+            background-color: #76D7B3;
+            color: white;
         }
+
 
 
 .projects_show {

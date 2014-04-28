@@ -10,7 +10,9 @@ $('document').ready(function() {
 
     $('.search_bar .clickable').each(function(){
 
-        $(this).on('click',slideUpDown)
+        $(this).on('click',highlightButton);
+        $(this).on('click',slideUpDown);
+        
 
         });
 
@@ -55,11 +57,22 @@ function navigationUnderline() {
 
 // this code is to enable the exanding of the search items in the "find a project" bar
 
-function slideUpDown(event) {
+function slideUpDown() {
 
     var list = $(this).parent().children().eq(1)
 
     if (list.css('display')=="none") {list.slideDown()}
         else {list.slideUp()}
+
+}
+
+// this code is so that when a search group button is clicked, it is always highlighted even without mouseover
+
+function highlightButton() {
+
+    var list = $(this).parent().children().eq(1)
+
+    if (list.css('display')=="none") {$(this).addClass('clickable_clicked')} 
+        else {$(this).removeClass('clickable_clicked')}
 
 }
