@@ -24,15 +24,6 @@ body {
         
     }
 
-.background {
-
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    z-index: -1;
-    background:url('background.jpg') no-repeat center center;
-
-    }
 
 
 /* -------------------------- header and footer ------------------------- */
@@ -44,9 +35,11 @@ body {
     position: fixed;
     background-color: #76D7B3;
     z-index: 1;
-    height: 6rem;
+    height: 4.5rem;
     width: 100%;
     z-index:3;
+    overflow: hidden;
+
 }
 
        .header .logo {
@@ -59,7 +52,7 @@ body {
 
             .header .logo img {
 
-                height: 4.5rem;
+                height: 3rem;
 
             }
 
@@ -129,14 +122,14 @@ body {
        .alt_header .logo {
 
             position: absolute;
-            margin-top: 0.5rem;
-            margin-left: 2rem;
+            margin-top: 0.0rem;
+            margin-left: 3rem;
             
         }
 
             .alt_header .logo img {
 
-                height: 3rem;
+                height: 4rem;
 
             }
 

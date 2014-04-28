@@ -16,28 +16,13 @@ function scrollCheck() {
     var transitionLength = 200;
 
     if (scrollPosition > threshold) { 
-        // $('#moving_piece').animate({height: "4rem"},transitionLength)
-        $('#moving_piece').fadeOut(transitionLength)
+        // $('#visible_white').fadeIn(); 
+        $('#visible_blue').fadeOut(transitionLength);
     }
     else 
         {  
-            // $('#moving_piece').animate({height: "6rem"},transitionLength)
-            $('#moving_piece').fadeIn(); 
-
+            // $('#visible_white').fadeOut(transitionLength);
+            $('#visible_blue').fadeIn(); 
     }    
 }
 
-
-function shrinkHeader(transitionLength) {
-
-    $('#moving_piece').animate({height: "4rem"},transitionLength)
-    $('#moving_piece').fadeOut(transitionLength)
-
-}
-
-function growHeader(transitionLength) {
-
-    // $('#moving_piece').animate({height: "6rem"},transitionLength)
-    $('#moving_piece').fadeIn(transitionLength)
-
-}
