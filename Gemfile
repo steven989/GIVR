@@ -32,6 +32,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -43,3 +44,17 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+
+# Custom gems
+
+# 1) Manage user login
+
+gem 'sorcery'
+
+# 2) Prettify database pull in console
+
+gem 'hirb'
+
+
