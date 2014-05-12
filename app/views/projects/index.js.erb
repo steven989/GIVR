@@ -1,0 +1,7 @@
+<% if params[:page].nil? %>
+  $('#projects').html("<%= j(rendor @projects) %>");
+<% else %>
+  $('#projects').append("<%= j(render @projects) %>");
+<% end %>
+
+$('.pagination').replaceWith('<%= j paginate(@projects) %>');
