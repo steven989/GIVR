@@ -8,12 +8,15 @@ class Ability
         if user.is? 'professional'
             can :read, Project
             can :manage, User, id: user.id
+            can :create, User
         elsif user.is? 'npo'
             can :manage, Project, user_id: user.id
             can :manage, User, id: user.id
-            can :read, Project
+            can :create, User
+
         else
             can :read, Project
+            can :create, User
         end 
 
 
