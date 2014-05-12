@@ -13,8 +13,12 @@
 
         <li><%= link_to 'PROJECTS', projects_path %></li>
 
-        <li><%= link_to 'SIGN IN', 'tbd' %></li>
-
+        <% if current_user %>
+            <li><%= link_to 'MY PROFILE', user_path(current_user) %></li>
+            <li><%= link_to 'SIGN OUT', session_path('current'), method: 'delete' %></li>
+        <% else %>
+            <li><%= link_to 'SIGN IN', new_session_path %></li>
+        <% end %>
 
         </ul>
 

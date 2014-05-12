@@ -4,8 +4,8 @@ gem 'faker'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# use Postgres SQL as the database for Active Record
+gem 'pg'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.2'
@@ -33,6 +33,7 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -44,3 +45,19 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+
+
+# Custom gems
+
+# 1) Manage user login
+
+gem 'sorcery'
+
+# 2) Prettify database pull in console
+
+gem 'hirb'
+
+# 3) Role-based authorization
+
+gem 'cancancan'

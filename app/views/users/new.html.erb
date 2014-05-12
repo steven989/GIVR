@@ -1,0 +1,36 @@
+
+<div class="login_box">
+
+<%= form_for @user do |f| %>
+    
+    <p>
+        <%= f.label 'email', 'Email address:' %>
+        <%= f.text_field 'email' %>
+    </p>
+
+    <p>
+        <%= f.label 'password', 'Password:' %>
+        <%= f.password_field 'password' %>
+    </p>
+
+    <p>
+        <%= f.label 'password_confirmation', 'Retype password:' %>
+        <%= f.password_field 'password_confirmation' %>
+    </p>
+
+    <p>I am a:
+        <%= f.radio_button :role, 'professional' %>
+        <%= f.label :role_volunteer, 'Professional' %>
+        <%= f.radio_button :role, 'npo' %>
+        <%= f.label :role_npo, 'Non-Profit Organization' %>
+    </p>
+
+    <p>
+        <%= f.submit 'Sign up' %>
+    </p>
+
+
+<% end %>
+
+
+</div>
