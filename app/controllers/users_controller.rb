@@ -17,10 +17,16 @@ class UsersController < ApplicationController
 
     end 
 
+    def profile
+
+        
+
+    end 
+
     private
 
     def users_params
-        params.require(:user).permit(:email,:password,:password_confirmation)
+        params.require(:user).permit(:email,:password,:password_confirmation,:role)
     end 
 
 end

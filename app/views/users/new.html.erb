@@ -18,6 +18,13 @@
         <%= f.password_field 'password_confirmation' %>
     </p>
 
+    <p>I am a:
+        <%= f.radio_button :role, 'professional' %>
+        <%= f.label :role_volunteer, 'Professional' %>
+        <%= f.radio_button :role, 'npo' %>
+        <%= f.label :role_npo, 'Non-Profit Organization' %>
+    </p>
+
     <p>
         <%= f.submit 'Sign up' %>
     </p>

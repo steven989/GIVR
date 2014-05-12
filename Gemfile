@@ -57,4 +57,6 @@ gem 'sorcery'
 
 gem 'hirb'
 
+# 3) Role-based authorization
 
+gem 'cancancan'
