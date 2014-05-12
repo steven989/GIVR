@@ -1,0 +1,37 @@
+
+<div>
+<p>
+    Hi <%= @user.email %>, you are registered as a 
+
+    <% if @user.role == 'npo' %>
+    non-profit
+    <% elsif @user.role == 'professional' %>
+    professional
+    <% end %>
+    . In this page, you can view your your applications and past projects.
+
+</p>
+</div>
+
+<div class="profile_view_nav">
+    <ul>
+        
+        <li>
+            <%= link_to user_projects_path, class: 'profile_view_button', data: {view: 'applications'} do %>
+            <div>Applications</div>
+            <% end %>
+        </li>
+        <li>
+            <%= link_to user_projects_path, class: 'profile_view_button', data: {view: 'projects'} do %>
+            <div id='profile_view_button'>Projects</div>
+            <% end %>
+        </li>
+    </ul>
+
+</div>
+
+<div class="profile_view">
+
+
+
+</div>

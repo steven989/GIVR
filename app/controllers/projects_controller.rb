@@ -39,6 +39,10 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
+  def user_index
+    
+  end 
+
   private
   def projects_params
     params.require(:project).permit(:name, :description)

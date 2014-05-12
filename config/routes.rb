@@ -6,6 +6,10 @@ Givr::Application.routes.draw do
 
   resources :users, only: [:show, :new, :create]
 
+  get 'user/profile' => 'users#profile', as: 'user_profile'
+
+  get 'user/projects' => 'projects#user_index', as: 'user_projects'
+
   resources :sessions, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
