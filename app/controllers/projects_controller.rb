@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
+    @projects = @projects.order(created_at: :desc).page(params[:page])
   end
 
   def show
