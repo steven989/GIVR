@@ -12,21 +12,30 @@ $(function() {
     });
   }
 
+  $('.project_link').on('click', function() {
+    event.preventDefault();
+    // console.log($(this).attr('href'));
+    
+    $('.projects_detail').removeClass('hidden');
+
+    $.ajax({
+      url: $(this).attr('href'),
+      type: 'GET',
+      dataType: 'script',
+      data: { view: $(this).data('view')}
+    });
+  });
 
   // buttons on the user profile page
   
   $('.profile_view_button').on('click',function(){
-
       event.preventDefault();
   
-
-      $.ajax({
-          url: $(this).attr('href'),
-          type: 'GET',
-          dataType: 'script',
-          data: { view: $(this).data('view')}
-      });
-
+    $.ajax({
+        url: $(this).attr('href'),
+        type: 'GET',
+        dataType: 'script',
+        data: { view: $(this).data('view')}
+    });
   });
-
 });
