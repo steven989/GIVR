@@ -17,15 +17,24 @@
     <ul>
         
         <li>
-            <%= link_to user_projects_path, class: 'profile_view_button', data: {view: 'applications'} do %>
-            <div>Applications</div>
+            <%= link_to user_applications_path(status: 'apply'), class: 'profile_view_button' do %>
+            <div id='profile_view_button'>Applications</div>
             <% end %>
         </li>
         <li>
-            <%= link_to user_projects_path, class: 'profile_view_button', data: {view: 'projects'} do %>
+            <%= link_to user_projects_path, class: 'profile_view_button' do %>
             <div id='profile_view_button'>Projects</div>
             <% end %>
         </li>
+
+        <% if @user.role == 'professional' %>
+            <li>
+                <%= link_to user_applications_path(status: 'shortlist'), class: 'profile_view_button' do %>
+                <div id='profile_view_button'>Shortlisted projects</div>
+                <% end %>
+            </li>
+        <% end %>
+
     </ul>
 
 </div>

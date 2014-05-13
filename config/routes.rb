@@ -6,6 +6,8 @@ Givr::Application.routes.draw do
     resources :applications, only: [:create, :destroy]
   end 
 
+  get 'user/applications' => 'applications#user_index', as: 'user_applications'
+
   resources :users, only: [:show, :new, :create]
 
   get 'user/profile' => 'users#profile', as: 'user_profile'

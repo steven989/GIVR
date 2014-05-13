@@ -53,24 +53,12 @@ class ProjectsController < ApplicationController
 
   def user_index
 
-    if params[:view] == 'applications'   
-
-      if current_user.role == 'npo'
-        @applications = 'not empty'
-      elsif current_user.role == 'professional'
-        @applications = 'not empty'
-      end
-
-    elsif params[:view] == 'projects'
-
-      if current_user.role == 'npo'
-        @projects = current_user.submitted_projects
-      elsif current_user.role == 'professional'
-        @projects = current_user.projects
-      end
+    if current_user.role == 'npo'
+      @projects = current_user.submitted_projects
+    elsif current_user.role == 'professional'
+      @projects = current_user.completed_projects
+    end
       
-    end 
-
     respond_to do |format|
 
       format.js 
