@@ -60,6 +60,8 @@
   <%= render @projects %>
 </div>
 
-<div class="projects_detail hidden"></div>
+<div class="projects_detail hidden">
+  <%= link_to "close", projects_url %>
+</div>
 
 <div class="pagination"><%= paginate @projects %></div>

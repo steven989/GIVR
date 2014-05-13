@@ -12,6 +12,8 @@ $(function() {
     });
   }
 
+// Show individual products inside a div on the page
+
   $('.project_link').on('click', function() {
     event.preventDefault();
     // console.log($(this).attr('href'));
