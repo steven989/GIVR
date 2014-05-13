@@ -1,5 +1,7 @@
 class ApplicationsController < ApplicationController
 
+    authorize_resource
+
     def create
 
         @project = Project.find_by(id: params[:project_id])
