@@ -1,9 +1,7 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.all
-
-    @projects = @projects.order(created_at: :desc).page(params[:page])
+    @projects = Project.all.order(created_at: :desc).page(params[:page])
 
     respond_to do |format|
       format.js
