@@ -1,4 +1,4 @@
 
 <%= render @project %>
-<%= link_to 'Apply', project_applications_path(@project, todo: 'apply'), data: {todo: 'apply'}, method: 'POST' %>
-<%= link_to 'Shortlist', project_applications_path(@project, todo: 'shortlist'), data: {todo: 'shortlist'}, method: 'POST' %>
+<%= link_to 'Apply', project_applications_path(@project, todo: 'apply'), class: 'do_project', data: {todo: 'apply'}, method: 'POST' %>
+<%= link_to 'Shortlist', project_applications_path(@project, todo: 'shortlist'), class: 'do_project', data: {todo: 'shortlist'}, method: 'POST' %>

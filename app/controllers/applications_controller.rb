@@ -25,10 +25,14 @@ class ApplicationsController < ApplicationController
 
         end
 
-        if @application.save
-            redirect_to projects_path, notice: success_message
-        else 
-            redirect_to projects_path, notice: fail_message
+        respond_to do |format|
+
+            if @application.save
+                format.json {render json: {message: success_message}}
+            else
+                format.json {render json: {message: fail_message}}
+            end 
+
         end 
 
     end 
