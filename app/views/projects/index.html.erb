@@ -3,53 +3,61 @@
 
 <div class="projects_search">
 
-    <ul class="search_bar">FIND A PROJECT
+  <ul class="search_bar">FIND A PROJECT
 
-        <li><div class="clickable clickable_clicked" id="add-new"><%= link_to "Add New", '/projects/new' %></div></li>
-        <li>
-            <ul><div class="clickable clickable_clicked" id="category_search">CATEGORY</div>
-                <div class="lis" id="show_by_default">
-                    <li>Marketing</li>
-                    <li>Finance</li>
-                    <li>Database</li>
-                    <li>Web</li>
-                    <li>External research</li>
-                    <li>Internal research</li>
-                    <li>Fundraising</li>
-                    <li>Event organization</li>
-                    <li>Legal</li>
-                </div>
-            </ul>
-        </li>
-        <li>
-            <ul><div class="clickable" id="cause_search">CAUSE</div>
-                <div class="lis">
-                    <li>Animal</li>
-                    <li>Social</li>
-                    <li>Arts/Cultural</li>
-                    <li>Religious</li>
-                    <li>Political</li>
-                </div>
-            </ul>
-        </li>
-        <li>        
-            <ul><div class="clickable" id="location_search">LOCATION</div>
-                <div class="lis">
-                    <li>Downtown Toronto</li>
-                    <li>Etobicoke</li>
-                    <li>Mississauga</li>
-                    <li>North York</li>
-                    <li>Scarborough</li>
-                    <li>Hamilton</li>
-                    <li>Ajax</li>
-                </div>
-            </ul>
-        </li>
+    <li>
+      <div class="clickable clickable_clicked" id="add-new"><%= link_to "Add New", '/projects/new' %></div>
+    </li>
 
-    </ul>
+    <li>
+      <ul>
+        <div class="clickable clickable_clicked" id="category_search">CATEGORY</div>
+        <div class="lis" id="show_by_default">
+          <li>Marketing</li>
+          <li>Finance</li>
+          <li>Database</li>
+          <li>Web</li>
+          <li>External research</li>
+          <li>Internal research</li>
+          <li>Fundraising</li>
+          <li>Event organization</li>
+          <li>Legal</li>
+        </div>
+      </ul>
+    </li>
+    
+    <li>
+      <ul>
+        <div class="clickable" id="cause_search">CAUSE</div>
+        <div class="lis">
+          <li>Animal</li>
+          <li>Social</li>
+          <li>Arts/Cultural</li>
+          <li>Religious</li>
+          <li>Political</li>
+        </div>
+      </ul>
+    </li>
 
+    <li>        
+      <ul>
+        <div class="clickable" id="location_search">LOCATION</div>
+        <div class="lis">
+          <li>Downtown Toronto</li>
+          <li>Etobicoke</li>
+          <li>Mississauga</li>
+          <li>North York</li>
+          <li>Scarborough</li>
+          <li>Hamilton</li>
+          <li>Ajax</li>
+        </div>
+      </ul>
+    </li>
+  </ul>
 </div>
 
 <div class="projects_show">
   <%= render @projects %>
 </div>
+
+<div class="pagination"><%= paginate @projects %></div>

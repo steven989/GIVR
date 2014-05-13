@@ -5,7 +5,13 @@ class ProjectsController < ApplicationController
 
   def index
 
-    @projects = Project.all
+    @projects = Project.all.order(created_at: :desc).page(params[:page])
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
+
   end
 
   def show

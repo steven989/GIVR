@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'faker'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
@@ -61,3 +61,11 @@ gem 'hirb'
 # 3) Role-based authorization
 
 gem 'cancancan'
+
+# 4) Generate database seeds
+
+gem 'faker'
+
+# 5) Paginate with Kaminari
+
+gem 'kaminari'
