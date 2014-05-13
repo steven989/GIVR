@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
-  has_many :projects
+  has_many :submitted_projects, foreign_key: 'user_id', class_name: 'Project'
+  has_many :projects, through: :applications
 
   authenticates_with_sorcery!
 

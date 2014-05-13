@@ -1,0 +1,10 @@
+
+<% if @projects %>  
+
+$('.profile_view').html("<%= j(render partial: 'projects/project', collection: @projects) %>")
+
+<% elsif @applications %>
+
+$('.profile_view').html("placeholder text until application model is created")
+
+<% end %>

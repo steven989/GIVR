@@ -9,6 +9,7 @@
 25.times do
   Project.create(
     title: Faker::Company.bs,
-    description: "#{Faker::Company.bs} from #{Faker::Company.catch_phrase} #{Faker::Company.suffix}"
+    description: "#{Faker::Company.bs} from #{Faker::Company.catch_phrase} #{Faker::Company.suffix}",
+    user_id: 1
   )
 end

@@ -1,8 +1,10 @@
 class ProjectsController < ApplicationController
 
-  before_filter authorize_resource
+  authorize_resource
+  skip_authorize_resource only: :user_index
 
   def index
+
     @projects = Project.all
   end
 
@@ -40,7 +42,31 @@ class ProjectsController < ApplicationController
   end
 
   def user_index
-    
+
+    if params[:view] == 'applications'   
+
+      if current_user.role == 'npo'
+        @applications = 'not empty'
+      elsif current_user.role == 'professional'
+        @applications = 'not empty'
+      end
+
+    elsif params[:view] == 'projects'
+
+      if current_user.role == 'npo'
+        @projects = current_user.submitted_projects
+      elsif current_user.role == 'professional'
+        @projects = current_user.projects
+      end
+      
+    end 
+
+    respond_to do |format|
+
+      format.js 
+
+    end
+
   end 
 
   private
