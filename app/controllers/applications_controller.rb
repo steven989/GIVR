@@ -9,13 +9,13 @@ class ApplicationsController < ApplicationController
 
         if params[:todo] == 'apply'
 
-            @project.applications.new(user_id: current_user.id, status: params[:todo])
+            @application = @project.applications.new(user_id: current_user.id, statuses: params[:todo])
             success_message = 'Application successful!'
             fail_message = 'Application could not be completed.'
 
         elsif params[:todo] == 'shortlist'
 
-            @project.applications.new(user_id: current_user.id, status: params[:todo])
+            @application = @project.applications.new(user_id: current_user.id, statuses: params[:todo])
             success_message = 'Project successfully shortlisted!'
             fail_message = 'Project could not be shortlisted.'
 
@@ -25,7 +25,7 @@ class ApplicationsController < ApplicationController
 
         end
 
-        if @project.save
+        if @application.save
             redirect_to projects_path, notice: success_message
         else 
             redirect_to projects_path, notice: fail_message
@@ -44,7 +44,7 @@ class ApplicationsController < ApplicationController
       if @role == 'npo'
         @applications = current_user.project_applications
       elsif @role == 'professional'
-        @applications = current_user.applications.where(status: 'apply')
+        @applications = current_user.applications.where(status: params[:status])
       end
 
       respond_to do |format|

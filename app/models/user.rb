@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
     self.role == role
   end 
 
+
   def project_applications   #used to see a list of applications to the projects the user has created
 
         self.submitted_projects.inject([]) { |applications, project|
@@ -24,9 +25,9 @@ class User < ActiveRecord::Base
 
   end 
 
-  def projects
+  def completed_projects
 
-    self.projects.where()
+    self.projects.where("status like 'completed'")
 
   end 
 

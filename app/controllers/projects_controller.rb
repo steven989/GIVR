@@ -52,7 +52,7 @@ class ProjectsController < ApplicationController
     if current_user.role == 'npo'
       @projects = current_user.submitted_projects
     elsif current_user.role == 'professional'
-      @projects = current_user.projects
+      @projects = current_user.completed_projects
     end
       
     respond_to do |format|
