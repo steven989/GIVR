@@ -2,7 +2,9 @@ Givr::Application.routes.draw do
 
   root to: 'pages#index'
 
-  resources :projects
+  resources :projects do
+    resources :applications, only: [:create, :destroy]
+  end 
 
   resources :users, only: [:show, :new, :create]
 
