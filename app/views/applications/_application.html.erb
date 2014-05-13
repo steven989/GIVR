@@ -1,0 +1,20 @@
+
+
+<% if role == 'npo' %>
+
+<div class="show_application">
+    <p>User: <%= application.user.email %></p>
+    <p>Application status: <%= application.status %></p>
+    <p>Application date: <%= application.created_at %></p>
+</div>
+
+<% elsif role == 'professional' %>
+
+<div class="show_application">
+    <p>Project: <%= application.project.title %></p>
+    <p>Organization: <%= application.project.user.email %></p>
+    <p>Application status: <%= application.status %></p>
+    <p>Application date: <%= application.created_at %></p>
+</div>
+
+<% end %>
