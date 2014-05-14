@@ -1,16 +1,26 @@
 class ProjectsController < ApplicationController
 
+  authorize_resource
+  skip_authorize_resource only: :user_index
+
   def index
+
     @projects = Project.all.order(created_at: :desc).page(params[:page])
 
     respond_to do |format|
       format.js
       format.html
     end
+
   end
 
   def show
     @project = Project.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
@@ -40,6 +50,22 @@ class ProjectsController < ApplicationController
     @project.destroy
     redirect_to projects_path
   end
+
+  def user_index
+
+    if current_user.role == 'npo'
+      @projects = current_user.submitted_projects
+    elsif current_user.role == 'professional'
+      @projects = current_user.completed_projects
+    end
+      
+    respond_to do |format|
+
+      format.js 
+
+    end
+
+  end 
 
   private
   def projects_params

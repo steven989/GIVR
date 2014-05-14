@@ -6,14 +6,26 @@ class Ability
         user ||= User.new
 
         if user.is? 'professional'
+
             can :read, Project
+            can :manage, Application, user_id: user.id
+            cannot :project_creator_update, Application
             can :manage, User, id: user.id
+            can :create, User
+
         elsif user.is? 'npo'
+            
             can :manage, Project, user_id: user.id
+            can :read, Application 
+            can :project_creator_update, Application do |application|
+                application.project.user.id == user.id
+            end 
             can :manage, User, id: user.id
-            can :read, Project
+            can :create, User
+
         else
             can :read, Project
+            can :create, User
         end 
 
 

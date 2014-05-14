@@ -2,11 +2,21 @@ Givr::Application.routes.draw do
 
   root to: 'pages#index'
 
-  resources :projects
+  resources :projects do
+    resources :applications, only: [:create, :update, :destroy]
+  end 
+
+  get 'user/applications' => 'applications#user_index', as: 'user_applications'
+
+  put 'projects/:project_id/applications/:id/creator' => 'applications#project_creator_update', as: 'creator_update'
 
   resources :users, only: [:show, :new, :create]
 
-  resources :sessions, only: [:new, :create, :destroy]
+  get 'user/profile' => 'users#profile', as: 'user_profile'
+
+  get 'user/projects' => 'projects#user_index', as: 'user_projects'
+
+  resources :sessions, only: [:create, :destroy]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

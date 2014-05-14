@@ -429,3 +429,18 @@ body {
         color: white;
 
     }
+
+/* POPUP DIV CSS */
+
+.projects_detail {
+    position: absolute;
+    z-index: 20;
+    left: 50px;
+    top: 50px;
+    height: 400px;
+    width: 400px;
+}
+
+.hidden {
+    visibility: hidden;
+}
