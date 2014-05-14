@@ -33,6 +33,22 @@
                 <div id='profile_view_button'>Shortlisted projects</div>
                 <% end %>
             </li>
+
+            <li>
+                <% if !@user.resume.file.exists? %>
+                    <%= form_for @user, url: user_upload_resume_path(userid: @user.id, resume_action: 'upload'), data: {userid: @user.id} , method: 'patch', html: {multipart: true} do |f| %>
+                        <%= f.file_field :resume %>
+                        <%= f.submit 'Upload resume' %>
+                    <% end %>
+                <% else %>
+                    
+                    <p>You have already uploaded your resume:</p>
+                    <p><%= link_to 'Download resume', @user.resume_url %>
+                    <p><%= link_to 'Remove resume', user_upload_resume_path(userid: @user.id, resume_action: 'remove' ), method: 'patch' %> </p>
+
+                <% end %>
+            </li>
+
         <% end %>
 
     </ul>

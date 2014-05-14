@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :projects, through: :applications
   has_many :applications, through: :submitted_projects
 
+  mount_uploader :resume, ResumeUploader
 
   authenticates_with_sorcery!
 

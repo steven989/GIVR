@@ -17,6 +17,21 @@ class UsersController < ApplicationController
 
     end 
 
+
+    def upload_resume
+
+        @user = User.find_by(id: params[:userid])
+        
+        if params[:resume_action] == 'upload'
+            @user.update_attribute(:resume, params[:user][:resume])
+        elsif params[:resume_action] == 'remove'
+            @user.remove_resume!
+            @user.save            
+        end
+
+        redirect_to user_profile_path
+    end 
+
     def profile
 
         @user = current_user
