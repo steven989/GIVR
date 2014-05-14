@@ -4,12 +4,13 @@
 
 <div class="show_application">
     <p>User: <%= application.user.email %></p>
+    <p>Project: <%= application.project.title %></p>
     <p>Application status: <%= application.status %></p>
     <p>Application date: <%= application.created_at %></p>
     <% if application.status == 'apply' %>
-    <p><%= link_to 'Approve', project_application_path(application.project, application), method: 'PUT', data: {todo: 'approve'}, class: 'approve_button' %></p>
+    <p><%= link_to 'Approve', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'approve'}, class: 'approve_button' %></p>
     <% elsif application.status == 'approve' %>
-    <p><%= link_to 'Unapprove', project_application_path(application.project, application), method: 'PUT', data: {todo: 'unapprove'}, class: 'approve_button' %></p>        
+    <p><%= link_to 'Unapprove', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'unapprove'}, class: 'approve_button' %></p>        
     <% end %>
 
 </div>
@@ -21,6 +22,8 @@
     <p>Organization: <%= application.project.user.email %></p>
     <p>Application status: <%= application.status %></p>
     <p>Application date: <%= application.created_at %></p>
+
+
 </div>
 
 <% end %>

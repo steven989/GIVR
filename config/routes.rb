@@ -8,6 +8,8 @@ Givr::Application.routes.draw do
 
   get 'user/applications' => 'applications#user_index', as: 'user_applications'
 
+  put 'projects/:project_id/applications/:id/creator' => 'applications#project_creator_update', as: 'creator_update'
+
   resources :users, only: [:show, :new, :create]
 
   get 'user/profile' => 'users#profile', as: 'user_profile'

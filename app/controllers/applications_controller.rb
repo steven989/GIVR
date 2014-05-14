@@ -39,6 +39,11 @@ class ApplicationsController < ApplicationController
 
     def update
 
+
+    end 
+
+    def project_creator_update
+
         @application = Application.find_by(id: params[:id])
 
         if params[:todo] == 'approve'
@@ -70,7 +75,11 @@ class ApplicationsController < ApplicationController
       if @role == 'npo'
         @applications = current_user.applications.order('created_at ASC').where("status not like 'shortlist'")
       elsif @role == 'professional'
-        @applications = current_user.made_applications.where(status: params[:status])
+        if params[:status] == 'apply'
+        @applications = current_user.made_applications.order('created_at ASC').where("status in ('apply','approve')")
+        elsif params[:status] == 'shortlist'
+        @applications = current_user.made_applications.order('created_at ASC').where("status in ('shortlist')")
+        end
       end
 
       respond_to do |format|
