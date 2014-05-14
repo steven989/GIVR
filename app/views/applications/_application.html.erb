@@ -12,6 +12,7 @@
     <% elsif application.status == 'approve' %>
     <p><%= link_to 'Unapprove', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'unapprove'}, class: 'approve_button' %></p>        
     <% end %>
+    <p><%= link_to 'Resume', application.user.resume_url %></p>
 
 </div>
 

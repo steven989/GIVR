@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
     def upload_resume
 
-        @user = User.find_by(id: params[:userid])
+        @user = current_user
         
         if params[:resume_action] == 'upload'
             @user.update_attribute(:resume, params[:user][:resume])
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
     private
 
     def users_params
-        params.require(:user).permit(:email,:password,:password_confirmation,:role)
+        params.require(:user).permit(:email,:password,:password_confirmation,:role,:resume)
     end 
 
 end
