@@ -13,6 +13,28 @@ $(function() {
   }
 
 
+  // approve projects from the user profile. This is set up as a named function because we need to pass this function as a callback to itself
+
+  function approveApplication(){
+
+          $('.approve_button').on('click',function(){
+    
+
+            event.stopImmediatePropagation(); //not sure why preventDefault does not work here
+
+            $.ajax({
+              url: $(this).attr('href'),
+              type: 'PUT',
+              dataType: 'script',
+              data: {todo: $(this).data('todo')}
+            }).always(approveApplication);
+
+           return false  //not sure why preventDefault does not work here
+
+          });
+  }
+
+
   // show project, application and shortlist buttons on the user profile page for both professional and npos
   
   $('.profile_view_button').on('click',function(){
@@ -24,8 +46,12 @@ $(function() {
           url: $(this).attr('href'),
           type: 'GET',
           dataType: 'script'
-      });
+      }).always(approveApplication)
+
+      
+
   });
+
 
   // apply and shortlist button on the project show page
 

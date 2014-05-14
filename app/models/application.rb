@@ -1,4 +1,4 @@
-class Application < ActiveRecord::Base
+ class Application < ActiveRecord::Base
 
     belongs_to :user
     belongs_to :project

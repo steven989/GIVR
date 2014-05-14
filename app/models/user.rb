@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
 
   has_many :submitted_projects, foreign_key: 'user_id', class_name: 'Project'
-  has_many :applications
+  has_many :made_applications, foreign_key: 'user_id', class_name: 'Application'
   has_many :projects, through: :applications
+  has_many :applications, through: :submitted_projects
+
 
   authenticates_with_sorcery!
 
@@ -15,15 +17,6 @@ class User < ActiveRecord::Base
     self.role == role
   end 
 
-
-  def project_applications   #used to see a list of applications to the projects the user has created
-
-        self.submitted_projects.inject([]) { |applications, project|
-            applications.push(project.applications.where("status not like 'shortlist'")) 
-            applications
-        }.flatten
-
-  end 
 
   def completed_projects
 

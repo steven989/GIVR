@@ -37,6 +37,28 @@ class ApplicationsController < ApplicationController
 
     end 
 
+    def update
+
+        @application = Application.find_by(id: params[:id])
+
+        if params[:todo] == 'approve'
+            @application.statuses= params[:todo]
+        elsif params[:todo] == 'unapprove'
+            @application.statuses= 'apply'
+        end 
+
+        @applications = current_user.applications.order('created_at ASC').where("status not like 'shortlist'")
+        @role = current_user.role
+
+        respond_to do |format|
+
+            format.html {redirect_to user_profile_path}
+            format.js 
+
+        end
+
+    end 
+
     def destroy
         
     end
@@ -46,9 +68,9 @@ class ApplicationsController < ApplicationController
         @role = current_user.role
 
       if @role == 'npo'
-        @applications = current_user.project_applications
+        @applications = current_user.applications.order('created_at ASC').where("status not like 'shortlist'")
       elsif @role == 'professional'
-        @applications = current_user.applications.where(status: params[:status])
+        @applications = current_user.made_applications.where(status: params[:status])
       end
 
       respond_to do |format|
