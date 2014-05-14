@@ -29,6 +29,13 @@ class ApplicationsController < ApplicationController
         respond_to do |format|
 
             if @application.save
+                puts '--------------------------------------'
+                puts @project.inspect
+                puts '--------------------------------------'
+
+                if params[:todo] == 'apply'
+                    UserMailer.applied_to_project(@project.user).deliver
+                end
                 format.json {render json: {message: success_message}}
             else
                 format.json {render json: {message: fail_message}}
