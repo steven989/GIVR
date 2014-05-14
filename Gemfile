@@ -69,3 +69,8 @@ gem 'faker'
 # 5) Paginate with Kaminari
 
 gem 'kaminari'
+
+# 6) Resume upload
+
+gem 'carrierwave'
+
