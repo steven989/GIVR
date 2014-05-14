@@ -1,5 +1,5 @@
-<%= link_to project_path(project.id) do %>
-
+<%= link_to project_path(project.id), class:"project_link" do %>
+  <div class="project_popup">
     <div class="project_card">
       
       <div class="project_header">
@@ -15,7 +15,6 @@
 
         <h3>Length: 4 weeks</h3>
       </div>
-
     </div>
-
+  </div>
 <% end %>

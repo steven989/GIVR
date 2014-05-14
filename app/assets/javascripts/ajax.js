@@ -12,6 +12,21 @@ $(function() {
     });
   }
 
+// Show individual products inside a div on the page
+
+  $('.project_link').on('click', function() {
+    event.preventDefault();
+    // console.log($(this).attr('href'));
+    
+    $('.projects_detail').removeClass('hidden');
+
+    $.ajax({
+      url: $(this).attr('href'),
+      type: 'GET',
+      dataType: 'script',
+      data: { view: $(this).data('view')}
+    });
+  });
 
   // approve projects from the user profile. This is set up as a named function because we need to pass this function as a callback to itself
 
@@ -38,7 +53,6 @@ $(function() {
   // show project, application and shortlist buttons on the user profile page for both professional and npos
   
   $('.profile_view_button').on('click',function(){
-
       event.preventDefault();
   
 
