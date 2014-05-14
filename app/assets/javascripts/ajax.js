@@ -12,7 +12,6 @@ $(function() {
     });
   }
 
-});
 
 
 // Show individual products inside a div on the page
@@ -28,7 +27,23 @@ $(function() {
       type: 'GET',
       dataType: 'script',
       data: { view: $(this).data('view')}
-    });
+    }).always(function(){
+        // apply and shortlist button on the project show page
+
+        $('.do_project').on('click',function(){
+
+          event.stopImmediatePropagation(); //not sure why preventDefault does not work here
+
+          $.ajax({
+            url: $(this).attr('href'),
+            type: 'POST',
+            dataType: 'JSON'
+          }).always(function(data){alert(data.message)});
+
+          return false  //not sure why preventDefault does not work here
+
+        })}
+    );
   });
 
   // approve projects from the user profile. This is set up as a named function because we need to pass this function as a callback to itself
@@ -70,21 +85,6 @@ $(function() {
   });
 
 
-  // apply and shortlist button on the project show page
-
-  $('.do_project').on('click',function(){
-
-    event.stopImmediatePropagation(); //not sure why preventDefault does not work here
-
-    $.ajax({
-      url: $(this).attr('href'),
-      type: 'POST',
-      dataType: 'JSON'
-    }).always(function(data){alert(data.message)});
-
-    return false  //not sure why preventDefault does not work here
-
-  });
 
 
 });

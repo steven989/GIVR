@@ -5,6 +5,7 @@ class ApplicationsController < ApplicationController
 
     def create
 
+
         @project = Project.find_by(id: params[:project_id])
 
         if params[:todo] == 'apply'
