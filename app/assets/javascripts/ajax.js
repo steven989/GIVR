@@ -12,7 +12,9 @@ $(function() {
     });
   }
 
-// Show individual projects inside a div on the index page instead of redirecting to a show page
+
+// Show individual products inside a div on the page
+
 
   $('.project_link').on('click', function() {
     event.preventDefault();
@@ -25,7 +27,23 @@ $(function() {
       type: 'GET',
       dataType: 'script',
       data: { view: $(this).data('view')}
-    });
+    }).always(function(){
+        // apply and shortlist button on the project show page
+
+        $('.do_project').on('click',function(){
+
+          event.stopImmediatePropagation(); //not sure why preventDefault does not work here
+
+          $.ajax({
+            url: $(this).attr('href'),
+            type: 'POST',
+            dataType: 'JSON'
+          }).always(function(data){alert(data.message)});
+
+          return false  //not sure why preventDefault does not work here
+
+        })}
+    );
   });
 
 
@@ -60,21 +78,6 @@ $(function() {
   triggerApproval();
 
 
-  // apply and shortlist button on the project show page
-
-  $('.do_project').on('click',function(){
-
-    event.stopImmediatePropagation(); //not sure why preventDefault does not work here
-
-    $.ajax({
-      url: $(this).attr('href'),
-      type: 'POST',
-      dataType: 'JSON'
-    }).always(function(data){alert(data.message)});
-
-    return false  //not sure why preventDefault does not work here
-
-  });
 
 
 });
