@@ -52,15 +52,22 @@ class ApplicationsController < ApplicationController
             @application.statuses= 'apply'
         end 
 
-        @applications = current_user.applications.order('created_at ASC').where("status not like 'shortlist'")
+    
         @role = current_user.role
 
         respond_to do |format|
 
             format.html {redirect_to user_profile_path}
-            format.js 
+            format.json {   self.formats = ['html']
+
+                            render json: { 
+                                replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role})
+                                    } 
+                        }
 
         end
+
+
 
     end 
 

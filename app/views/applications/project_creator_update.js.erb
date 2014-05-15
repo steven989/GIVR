@@ -1,3 +1,3 @@
 
-$('.profile_view').html("<%= j(render partial: 'applications/application', collection: @applications, locals: {role: @role}) %>")
+replaceWith = "<%= j(render partial: 'applications/application', object: @application, locals: {role: @role}) %>")
 

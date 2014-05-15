@@ -17,21 +17,20 @@
     <ul>
         
         <li>
-            <%= link_to user_applications_path(status: 'apply'), class: 'profile_view_button' do %>
-            <div id='profile_view_button'>Applications</div>
-            <% end %>
+
+            <div class='profile_view_button' id='applications'>Applications</div>
+
         </li>
         <li>
-            <%= link_to user_projects_path, class: 'profile_view_button' do %>
-            <div id='profile_view_button'>Projects</div>
-            <% end %>
+            <div class='profile_view_button' id='projects'>Projects</div>
+            
         </li>
 
         <% if @user.role == 'professional' %>
             <li>
-                <%= link_to user_applications_path(status: 'shortlist'), class: 'profile_view_button' do %>
-                <div id='profile_view_button'>Shortlisted projects</div>
-                <% end %>
+                
+                <div class='profile_view_button' id='shortlist'>Shortlisted projects</div>
+                
             </li>
 
             <li>
@@ -57,6 +56,19 @@
 
 <div class="profile_view">
 
+<div class="profile_view_content" id='projects'>
+    <p>Projects</p>
+    <%= render partial: 'projects/project', collection: @projects %>
+</div>
 
+<div class="profile_view_content" id='applications'>
+    <p>Applications</p>
+    <%= render partial: 'applications/application', collection: @applications, locals: {role: @role} %>
+</div>
+
+<div class="profile_view_content" id='shortlist'>
+    <p>Shortlist</p>
+    <%= render partial: 'applications/application', collection: @shortlists, locals: {role: @role} %>
+</div>
 
 </div>

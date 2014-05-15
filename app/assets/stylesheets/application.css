@@ -444,3 +444,12 @@ body {
 .hidden {
     visibility: hidden;
 }
+
+
+/* -------------------------- user#profile ------------------------- */
+
+.profile_view_content {
+    
+    display: none;
+
+}
