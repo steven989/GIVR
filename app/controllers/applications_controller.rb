@@ -75,28 +75,5 @@ class ApplicationsController < ApplicationController
         
     end
 
-    def user_index
-
-        @role = current_user.role
-
-      if @role == 'npo'
-        @applications = current_user.applications.order('created_at ASC').where("status not like 'shortlist'")
-      elsif @role == 'professional'
-        if params[:status] == 'apply'
-        @applications = current_user.made_applications.order('created_at ASC').where("status in ('apply','approve')")
-        elsif params[:status] == 'shortlist'
-        @applications = current_user.made_applications.order('created_at ASC').where("status in ('shortlist')")
-        end
-      end
-
-      respond_to do |format|
-
-          format.js 
-
-      end
-
-
-    end 
-
 
 end

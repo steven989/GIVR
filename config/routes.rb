@@ -6,8 +6,6 @@ Givr::Application.routes.draw do
     resources :applications, only: [:create, :update, :destroy]
   end 
 
-  get 'user/applications' => 'applications#user_index', as: 'user_applications'
-
   put 'projects/:project_id/applications/:id/creator' => 'applications#project_creator_update', as: 'creator_update'
 
   resources :users, only: [:show, :new, :create]
@@ -16,7 +14,6 @@ Givr::Application.routes.draw do
 
   get 'user/profile' => 'users#profile', as: 'user_profile'
 
-  get 'user/projects' => 'projects#user_index', as: 'user_projects'
 
   resources :sessions, only: [:create, :destroy]
 
