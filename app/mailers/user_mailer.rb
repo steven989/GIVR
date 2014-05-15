@@ -14,6 +14,8 @@ class UserMailer < ActionMailer::Base
   end
 
   def project_approved(user)
-
+    @user = user
+    @url = "http://givr.com"
+    mail(to: @user.email, subject: 'Your Givr project has been approved!')
   end
 end

@@ -1,49 +1,45 @@
 class ApplicationsController < ApplicationController
 
-    authorize_resource
-    skip_authorize_resource only: :user_index
+  authorize_resource
+  skip_authorize_resource only: :user_index
 
-    def create
+  def create
 
 
-        @project = Project.find_by(id: params[:project_id])
+    @project = Project.find_by(id: params[:project_id])
 
+    if params[:todo] == 'apply'
+
+      @application = @project.applications.new(user_id: current_user.id, statuses: params[:todo])
+      success_message = 'Application successful!'
+      fail_message = 'Application could not be completed.'
+
+    elsif params[:todo] == 'shortlist'
+
+      @application = @project.applications.new(user_id: current_user.id, statuses: params[:todo])
+      success_message = 'Project successfully shortlisted!'
+      fail_message = 'Project could not be shortlisted.'
+
+    else
+
+      redirect_to projects_path, notice: 'Uh oh, something went wrong.'
+
+    end
+
+    respond_to do |format|
+
+      if @application.save
+            
         if params[:todo] == 'apply'
-
-            @application = @project.applications.new(user_id: current_user.id, statuses: params[:todo])
-            success_message = 'Application successful!'
-            fail_message = 'Application could not be completed.'
-
-        elsif params[:todo] == 'shortlist'
-
-            @application = @project.applications.new(user_id: current_user.id, statuses: params[:todo])
-            success_message = 'Project successfully shortlisted!'
-            fail_message = 'Project could not be shortlisted.'
-
-        else
-
-            redirect_to projects_path, notice: 'Uh oh, something went wrong.'
-
+          UserMailer.applied_to_project(@project.user).deliver
         end
-
-        respond_to do |format|
-
-            if @application.save
-                puts '--------------------------------------'
-                puts @project.inspect
-                puts '--------------------------------------'
-
-                if params[:todo] == 'apply'
-                    UserMailer.applied_to_project(@project.user).deliver
-                end
-                format.json {render json: {message: success_message}}
-            else
-                format.json {render json: {message: fail_message}}
-            end 
-
-        end 
-
+            
+          format.json {render json: {message: success_message}}
+      else
+        format.json {render json: {message: fail_message}}
+      end 
     end 
+  end 
 
     def update
 
@@ -56,6 +52,7 @@ class ApplicationsController < ApplicationController
 
         if params[:todo] == 'approve'
             @application.statuses= params[:todo]
+            UserMailer.project_approved(@application.user).deliver
         elsif params[:todo] == 'unapprove'
             @application.statuses= 'apply'
         end 

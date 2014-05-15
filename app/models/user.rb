@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
   has_many :projects, through: :applications
   has_many :applications, through: :submitted_projects
 
-
   authenticates_with_sorcery!
 
   validates :password, confirmation: true
@@ -19,9 +18,7 @@ class User < ActiveRecord::Base
 
 
   def completed_projects
-
     self.projects.where("status like 'completed'")
-
   end 
 
 end
