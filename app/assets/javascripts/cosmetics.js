@@ -1,6 +1,6 @@
 
 
-navigationUnderline();  // will add underline to the navigation link that's currently active
+
 
 $('document').ready(function() {
     
@@ -15,6 +15,10 @@ $('document').ready(function() {
         
 
         });
+
+    navigationUnderline();  // will add underline to the navigation link that's currently active
+
+    profile_toggle();
 
     });
 
@@ -74,5 +78,32 @@ function highlightButton() {
 
     if (list.css('display')=="none") {$(this).addClass('clickable_clicked')} 
         else {$(this).removeClass('clickable_clicked')}
+
+}
+
+
+// this code is for the user profile page, the toggle between application, project and shortlist 
+
+function profile_toggle() {
+
+    $('.profile_view_button').on('click',function(){
+
+        _this = $(this)
+
+        $('.profile_view_content').each(function(){
+
+            if (_this.attr('id') === $(this).attr('id')) {
+
+                $(this).show()
+
+            } else { 
+
+                $(this).hide()          
+
+            };
+
+        });
+
+    });
 
 }

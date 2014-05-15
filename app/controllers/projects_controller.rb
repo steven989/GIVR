@@ -51,21 +51,6 @@ class ProjectsController < ApplicationController
     redirect_to projects_path
   end
 
-  def user_index
-
-    if current_user.role == 'npo'
-      @projects = current_user.submitted_projects
-    elsif current_user.role == 'professional'
-      @projects = current_user.completed_projects
-    end
-      
-    respond_to do |format|
-
-      format.js 
-
-    end
-
-  end 
 
   private
   def projects_params

@@ -13,8 +13,8 @@ $(function() {
   }
 
 
-
 // Show individual products inside a div on the page
+
 
   $('.project_link').on('click', function() {
     event.preventDefault();
@@ -46,43 +46,36 @@ $(function() {
     );
   });
 
-  // approve projects from the user profile. This is set up as a named function because we need to pass this function as a callback to itself
 
-  function approveApplication(){
+  // approve projects from the user profile. 
 
-          $('.approve_button').on('click',function(){
-    
+  function triggerApproval() {
 
-            event.stopImmediatePropagation(); //not sure why preventDefault does not work here
+  $('.approve_button').on('click',function(){
 
-            $.ajax({
-              url: $(this).attr('href'),
-              type: 'PUT',
-              dataType: 'script',
-              data: {todo: $(this).data('todo')}
-            }).always(approveApplication);
+    event.stopImmediatePropagation(); //not sure why preventDefault does not work here
 
-           return false  //not sure why preventDefault does not work here
+    var _this = $(this);
 
-          });
-  }
+    $.ajax({
+      url: $(this).attr('href'),
+      type: 'PUT',
+      dataType: 'json',
+      data: {todo: $(this).data('todo')}
+    }).done(function(data){
 
+      _this.parent().parent().html(data.replaceWith);
+      triggerApproval();
 
-  // show project, application and shortlist buttons on the user profile page for both professional and npos
-  
-  $('.profile_view_button').on('click',function(){
-      event.preventDefault();
-  
+    });
 
-      $.ajax({
-          url: $(this).attr('href'),
-          type: 'GET',
-          dataType: 'script'
-      }).always(approveApplication)
-
-      
+   return false  //not sure why preventDefault does not work here
 
   });
+  
+  }
+
+  triggerApproval();
 
 
 

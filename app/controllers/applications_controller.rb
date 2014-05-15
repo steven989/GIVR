@@ -57,44 +57,28 @@ class ApplicationsController < ApplicationController
             @application.statuses= 'apply'
         end 
 
-        @applications = current_user.applications.order('created_at ASC').where("status not like 'shortlist'")
+    
         @role = current_user.role
 
         respond_to do |format|
 
             format.html {redirect_to user_profile_path}
-            format.js 
+            format.json {   self.formats = ['html']
+
+                            render json: { 
+                                replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role})
+                                    } 
+                        }
 
         end
+
+
 
     end 
 
     def destroy
         
     end
-
-    def user_index
-
-        @role = current_user.role
-
-      if @role == 'npo'
-        @applications = current_user.applications.order('created_at ASC').where("status not like 'shortlist'")
-      elsif @role == 'professional'
-        if params[:status] == 'apply'
-        @applications = current_user.made_applications.order('created_at ASC').where("status in ('apply','approve')")
-        elsif params[:status] == 'shortlist'
-        @applications = current_user.made_applications.order('created_at ASC').where("status in ('shortlist')")
-        end
-      end
-
-      respond_to do |format|
-
-          format.js 
-
-      end
-
-
-    end 
 
 
 end
