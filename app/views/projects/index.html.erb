@@ -13,15 +13,14 @@
       <ul>
         <div class="clickable clickable_clicked" id="category_search">CATEGORY</div>
         <div class="lis" id="show_by_default">
-          <li>Marketing</li>
-          <li>Finance</li>
-          <li>Database</li>
-          <li>Web</li>
-          <li>External research</li>
-          <li>Internal research</li>
-          <li>Fundraising</li>
-          <li>Event organization</li>
-          <li>Legal</li>
+          
+          <% @categories.each do |category| %>
+          
+            <%= link_to filter_projects_path do %>
+              <li class="filter_button filter_on" data-filterid=<%= category.id %> data-filtertype ="category" data-on=1><%= category.category %></li>
+            <% end %>
+          <% end %>
+
         </div>
       </ul>
     </li>
@@ -30,11 +29,12 @@
       <ul>
         <div class="clickable" id="cause_search">CAUSE</div>
         <div class="lis">
-          <li>Animal</li>
-          <li>Social</li>
-          <li>Arts/Cultural</li>
-          <li>Religious</li>
-          <li>Political</li>
+          <% @causes.each do |cause| %>
+          
+            <%= link_to filter_projects_path do %>
+              <li class="filter_button filter_on" data-filterid=<%= cause.id %> data-filtertype = "cause" data-on=1><%= cause.cause %></li>
+            <% end %>
+          <% end %>
         </div>
       </ul>
     </li>
@@ -43,13 +43,13 @@
       <ul>
         <div class="clickable" id="location_search">LOCATION</div>
         <div class="lis">
-          <li>Downtown Toronto</li>
-          <li>Etobicoke</li>
-          <li>Mississauga</li>
-          <li>North York</li>
-          <li>Scarborough</li>
-          <li>Hamilton</li>
-          <li>Ajax</li>
+
+          <% @locations.each do |location| %>
+            <%= link_to filter_projects_path do %>
+              <li class="filter_button filter_on" data-filterid=<%= location.id %> data-filtertype = "location" data-on=1 ><%= location.location %></li>
+            <% end %>
+          <% end %>
+
         </div>
       </ul>
     </li>

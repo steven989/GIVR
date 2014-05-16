@@ -13,7 +13,6 @@ $('document').ready(function() {
         $(this).on('click',highlightButton);
         $(this).on('click',slideUpDown);
         
-
         });
 
     navigationUnderline();  // will add underline to the navigation link that's currently active
@@ -107,3 +106,24 @@ function profile_toggle() {
     });
 
 }
+
+
+// this code is to highlight the categories, causes and locations that are filtered on and unhighlight those that are not on
+
+function putHighlightOnProjectFilter(_this) {
+
+    if (_this.data('on') == 0) {
+
+        _this.removeClass('filter_on')
+
+    } else if (_this.data('on') == 1) {
+
+        _this.addClass('filter_on')
+
+
+    }
+
+
+}
+
+

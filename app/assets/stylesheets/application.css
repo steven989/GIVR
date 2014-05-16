@@ -338,6 +338,13 @@ body {
             display: block;
         }
 
+        .projects_search .search_bar .lis a {
+
+            color: #888888;
+            text-decoration: none;
+
+        }    
+
         .projects_search .search_bar .lis li {
 
             font-size: 1rem;
@@ -347,6 +354,12 @@ body {
             padding-bottom: 0.5rem;
             padding-left: 2rem;
             border-bottom: 2px solid white;
+
+        }
+
+        .projects_search .search_bar .lis .filter_on {
+            
+            background-color: #F1F1F1;
 
         }
 
