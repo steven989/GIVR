@@ -454,14 +454,31 @@ body {
     right: 0;
     margin: auto;
     z-index: 20;
+    box-shadow: 1px 1px 3px #888888;
     height: 400px;
     width: 400px;
 }
 
-.hidden {
-    visibility: hidden;
-}
+    .projects_detail .project_card {
+        background-color: #76D7B3;
+        color: white;
+    }
 
+        .projects_detail .project_card .project_details {
+            color: white;
+        }
+
+    .projects_detail .do_project {
+        display: inline-block;
+        background-color: #EEEEEE;
+        height: 40px:
+        width: 50px;
+        padding: 5px;
+        margin: 1.5rem;
+        text-decoration: none;
+        color: black;
+        border-radius: 5px;
+    }
 
 /* -------------------------- user#profile ------------------------- */
 

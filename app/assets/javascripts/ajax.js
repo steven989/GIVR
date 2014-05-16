@@ -5,7 +5,7 @@ $(function() {
   triggerApproval();
   filterProjects();
   showProject();
-  applyToProjects();
+  buttonsInsideShowProject();
 
 
 });
@@ -106,18 +106,20 @@ $(function() {
   // Show individual products inside a div on the page
 
   function showProject() {
+    $('.projects_detail').hide();
 
     $('.project_link').on('click', function() {
       event.preventDefault();
 
-      $('.projects_detail').removeClass('hidden');
+      $('.projects_detail').fadeIn('fast');
+
 
       $.ajax({
         url: $(this).attr('href'),
         type: 'GET',
         dataType: 'script',
         data: { view: $(this).data('view')}
-      }).always(applyToProjects);
+      }).always(buttonsInsideShowProject);
     });
 
   }
@@ -125,7 +127,7 @@ $(function() {
 
   // apply and shortlist button on the project show page
 
-  function applyToProjects(){
+  function buttonsInsideShowProject(){
 
             $('.do_project').on('click',function(){
 
@@ -140,5 +142,10 @@ $(function() {
               return false  //not sure why preventDefault does not work here
 
             });
+
+
+          $('#close_project').on('click', function() {
+            $('.projects_detail').fadeOut('fast');
+          })
 
       }
