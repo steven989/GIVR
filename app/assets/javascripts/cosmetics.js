@@ -8,12 +8,35 @@ $('document').ready(function() {
 
     window.headerHeight = $('#visible_blue').outerHeight(false);    // taking a snapshot of the height of the header as an anchor
 
-    $('.search_bar .clickable').each(function(){
+    $('.search_bar .clickable').each(function(){    // search bar 
 
         $(this).on('click',highlightButton);
         $(this).on('click',slideUpDown);
         
         });
+
+    // $('.profile_view_nav .profile_view_button').each(function(){    // profile nav bar
+
+    //         $(this).on('click',function(){
+
+    //             var all_buttons = $('.profile_view_nav .profile_view_button')
+    //             var _this = $(this)
+
+
+    //                 all_buttons.each(function(){
+
+    //                     if ($(this).text() == _this.text() || _this.attr('class').indexOf('clicked') >= 0) {
+
+    //                         highlightButton(_this);
+
+    //                     };
+
+    //                 });
+
+    //         });
+        
+    //     });
+
 
     navigationUnderline();  // will add underline to the navigation link that's currently active
 
@@ -73,10 +96,12 @@ function slideUpDown() {
 
 function highlightButton() {
 
-    var list = $(this).parent().children().eq(1)
 
-    if (list.css('display')=="none") {$(this).addClass('clickable_clicked')} 
-        else {$(this).removeClass('clickable_clicked')}
+    var notClicked = $(this).attr('class').indexOf('clicked') < 0
+
+    if (notClicked) {$(this).addClass('clicked')} 
+        else {$(this).removeClass('clicked')}
+
 
 }
 

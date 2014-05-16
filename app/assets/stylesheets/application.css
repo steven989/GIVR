@@ -375,7 +375,7 @@ body {
             color: white;
         }
 
-        .projects_search .search_bar .clickable_clicked {
+        .projects_search .search_bar .clicked {
             
             background-color: #76D7B3;
             color: white;
@@ -470,3 +470,92 @@ body {
     display: none;
 
 }
+
+.greeting_message {
+
+    position: relative;
+    background-color: white;
+    padding-top:3rem;
+    padding-left: 3rem;
+    width: 85%;
+    margin-left: 15%;
+    overflow: hidden;
+
+
+}
+
+
+.profile_view_nav {
+
+    position: fixed;
+    padding-top: 3rem;
+    padding-left: 2rem;
+    top: 4rem;
+    height:40rem;
+    width: 15%;
+    background-color: white;
+    z-index: 1;
+    overflow: scroll;
+
+}
+
+    .profile_view_nav .profile_view_nav_buttons {
+
+        font-size:1rem;
+        color: #888888;
+        font-weight: bold;
+        display: block;
+        position: relative;
+        min-height: 30rem;
+    
+    }
+
+
+        .profile_view_nav .profile_view_nav_buttons .profile_view_button {
+
+            font-size: 1rem;
+            font-weight: normal;
+            display: block;
+            margin-top: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            padding-left: 1rem;
+
+        }
+
+
+            .profile_view_nav .profile_view_nav_buttons .profile_view_button:hover {
+
+                    background-color: #76D7B3;
+                    color: white;
+            }
+
+
+            .profile_view_nav .profile_view_nav_buttons .clicked {
+                
+                background-color: #76D7B3;
+                color: white;
+
+            }
+
+
+.profile_view {
+
+    position: relative;
+    background-color: white;
+    padding-top:3rem;
+    padding-left: 3rem;
+    width: 85%;
+    min-height: 40rem;
+    margin-left: 15%;
+    overflow: hidden;
+
+}
+
+    .profile_view .show_application {
+
+        margin-top: 1.5rem;
+        line-height: 1.5rem;
+
+    }
+

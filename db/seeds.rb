@@ -29,8 +29,8 @@ Cause.create(
 )
 
 Cause.create(
-    cause: 'Animal services',
-    description: 'Projects involving animals'
+    cause: 'Professional associations',
+    description: 'Projects involving industry/professional associations'
 )
 
 Cause.create(

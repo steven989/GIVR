@@ -6,12 +6,8 @@
   <ul class="search_bar">FIND A PROJECT
 
     <li>
-      <div class="clickable clickable_clicked" id="add-new"><%= link_to "Add New", '/projects/new' %></div>
-    </li>
-
-    <li>
       <ul>
-        <div class="clickable clickable_clicked" id="category_search">CATEGORY</div>
+        <div class="clickable clicked" id="category_search">CATEGORY</div>
         <div class="lis" id="show_by_default">
           
           <% @categories.each do |category| %>
