@@ -10,7 +10,7 @@ Givr::Application.routes.draw do
 
   put 'projects/:project_id/applications/:id/creator' => 'applications#project_creator_update', as: 'creator_update'
 
-  resources :users, only: [:show, :new, :create]
+  resources :users, only: [:show, :new, :create, :update]
 
   patch 'user/upload_resume' => 'users#upload_resume'
 

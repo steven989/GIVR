@@ -9,14 +9,35 @@ class UsersController < ApplicationController
         @user = User.new(users_params)
 
         if @user.save
+            # Tell the UserMailer to send a welcome email after save.
+
+            UserMailer.welcome_email(@user).deliver
+
             auto_login(@user)
             redirect_to projects_path
         else 
             render :new
         end 
-
     end 
 
+    def update
+        @user = User.find_by(id: params[:id])
+
+        @user.categories.delete_all
+
+        params[:user][:category_ids].each do |category_id|
+            @user.categories << Category.find_by(id:category_id) unless category_id == ""
+        end
+
+        params[:user][:location_ids].each do |location_id|
+            @user.locations << Location.find_by(id:location_id) unless location_id == ""
+        end
+        
+        params[:user][:cause_ids].each do |cause_id|
+            @user.causes << Cause.find_by(id:cause_id) unless cause_id == ""
+        end
+
+    end
 
     def upload_resume
 

@@ -24,9 +24,7 @@ class User < ActiveRecord::Base
 
 
   def completed_projects
-
     self.projects.where("status like 'completed'")
-
   end 
 
 end
