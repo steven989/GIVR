@@ -43,32 +43,31 @@ class ApplicationsController < ApplicationController
 
     def update
 
-
     end 
 
     def project_creator_update
 
-        @application = Application.find_by(id: params[:id])
+      @application = Application.find_by(id: params[:id])
 
-        if params[:todo] == 'approve'
-            @application.statuses= params[:todo]
-            UserMailer.project_approved(@application.user).deliver
-        elsif params[:todo] == 'unapprove'
-            @application.statuses= 'apply'
-        end 
+      if params[:todo] == 'approve'
+          @application.statuses= params[:todo]
+          UserMailer.project_approved(@application.user).deliver
+      elsif params[:todo] == 'unapprove'
+          @application.statuses= 'apply'
+      end 
 
     
-        @role = current_user.role
+      @role = current_user.role
 
-        respond_to do |format|
+      respond_to do |format|
 
-            format.html {redirect_to user_profile_path}
-            format.json {   self.formats = ['html']
+        format.html {redirect_to user_profile_path}
+        format.json {   self.formats = ['html']
 
-                            render json: { 
-                                replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role})
-                                    } 
-                        }
+              render json: { 
+                  replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role})
+                      } 
+          }
 
         end
 
