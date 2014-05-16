@@ -34,21 +34,16 @@
             </li>
 
             <li>
-                <% if !@user.resume.file.exists? %>
-                    <%= form_for @user, url: user_upload_resume_path(resume_action: 'upload'), data: {userid: @user.id} , method: 'patch', html: {multipart: true} do |f| %>
-                        <%= f.file_field :resume %>
-                        <%= f.submit 'Upload resume' %>
-                    <% end %>
-                <% else %>
-                    
-                    <p>You have already uploaded your resume:</p>
-                    <p><%= link_to 'Download resume', @user.resume_url %>
-                    <p><%= link_to 'Remove resume', user_upload_resume_path(resume_action: 'remove' ), method: 'patch' %> </p>
 
-                <% end %>
             </li>
 
         <% end %>
+
+        <li>
+          
+          <div class='profile_view_button' id='settings'>Settings</div>
+
+        </li>
 
     </ul>
 
@@ -66,38 +61,58 @@
       <%= render partial: 'applications/application', collection: @applications, locals: {role: @role} %>
   </div>
 
-  <div class="profile_view_content" id='shortlist'>
-      <p>Shortlist</p>
-      <%= render partial: 'applications/application', collection: @shortlists, locals: {role: @role} %>
-  </div>
+  <% if @user.role == 'professional' %>
+
+    <div class="profile_view_content" id='shortlist'>
+        <p>Shortlist</p>
+        <%= render partial: 'applications/application', collection: @shortlists, locals: {role: @role} %>
+    </div>
+
+  <% end %>
 
   <div class="profile_view_content" id='settings'>
     <p>Settings</p>
-    
-    <p>Category</p>
-    <%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category) %>
-     
-    <p>Cause</p>
-    <%= collection_check_boxes(:user, :cause_ids, Cause.all, :id, :cause) %>
 
-    <p>Location</p>
-    <%= collection_check_boxes(:user, :location_ids, Location.all, :id, :location) %>
+    <% if @user.role == 'professional' %>
+    
+      <div class='project_view_filter_setting'>
+
+        <%= form_for @user do |f| %>
+          <p>Category</p>
+          <%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category) %>
+           
+          <p>Cause</p>
+          <%= collection_check_boxes(:user, :cause_ids, Cause.all, :id, :cause) %>
+
+          <p>Location</p>
+          <%= collection_check_boxes(:user, :location_ids, Location.all, :id, :location) %>
+          <%= f.submit %>
+        <% end %>
+
+      </div>
+
+          <% if !@user.resume.file.exists? %>
+          <%= form_for @user, url: user_upload_resume_path(resume_action: 'upload'), data: {userid: @user.id} , method: 'patch', html: {multipart: true} do |f| %>
+              <%= f.file_field :resume %>
+              <%= f.submit 'Upload resume' %>
+          <% end %>
+      <% else %>
+          
+          <p>You have already uploaded your resume:</p>
+          <p><%= link_to 'Download resume', @user.resume_url %>
+          <p><%= link_to 'Remove resume', user_upload_resume_path(resume_action: 'remove' ), method: 'patch' %> </p>
+
+      <% end %>
+
+    <% end %>
+
   </div>
 </div>
 
-    <p>Settings</p>
-  
-  <%= form_for @user do |f| %>
-    <p>Category</p>
-    <%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category) %>
-     
-    <p>Cause</p>
-    <%= collection_check_boxes(:user, :cause_ids, Cause.all, :id, :cause) %>
+<div>
 
-    <p>Location</p>
-    <%= collection_check_boxes(:user, :location_ids, Location.all, :id, :location) %>
-    <%= f.submit %>
-  <% end %>
+
+
 
 
 
