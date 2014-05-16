@@ -16,8 +16,23 @@
           
           <% @categories.each do |category| %>
           
+            <% if current_user %>
+
+              <% if current_user.categories.include?(category) %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+              <% else %>
+                <% filter_option = "" %>
+                <% data_on_option = 0 %>
+              <% end %>
+
+            <% else %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+            <% end %>
+
             <%= link_to filter_projects_path do %>
-              <li class="filter_button filter_on" data-filterid=<%= category.id %> data-filtertype ="category" data-on=1><%= category.category %></li>
+              <li class="filter_button <%= filter_option %>" data-filterid=<%= category.id %> data-filtertype ="category" data-on=<%= data_on_option %>><%= category.category %></li>
             <% end %>
           <% end %>
 
@@ -31,8 +46,23 @@
         <div class="lis">
           <% @causes.each do |cause| %>
           
+            <% if current_user %>
+
+              <% if current_user.causes.include?(cause) %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+              <% else %>
+                <% filter_option = "" %>
+                <% data_on_option = 0 %>
+              <% end %>
+
+            <% else %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+            <% end %>
+
             <%= link_to filter_projects_path do %>
-              <li class="filter_button filter_on" data-filterid=<%= cause.id %> data-filtertype = "cause" data-on=1><%= cause.cause %></li>
+              <li class="filter_button <%= filter_option %>" data-filterid=<%= cause.id %> data-filtertype = "cause" data-on=<%= data_on_option %>><%= cause.cause %></li>
             <% end %>
           <% end %>
         </div>
@@ -45,8 +75,24 @@
         <div class="lis">
 
           <% @locations.each do |location| %>
+
+            <% if current_user %>
+
+              <% if current_user.locations.include?(location) %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+              <% else %>
+                <% filter_option = "" %>
+                <% data_on_option = 0 %>
+              <% end %>
+
+            <% else %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+            <% end %>
+
             <%= link_to filter_projects_path do %>
-              <li class="filter_button filter_on" data-filterid=<%= location.id %> data-filtertype = "location" data-on=1 ><%= location.location %></li>
+              <li class="filter_button <%= filter_option %>" data-filterid=<%= location.id %> data-filtertype = "location" data-on=<%= data_on_option %> ><%= location.location %></li>
             <% end %>
           <% end %>
 
@@ -64,4 +110,4 @@
   <%= link_to "close", projects_url %>
 </div>
 
-<div class="pagination"><%= paginate @projects %></div>
+<div class="pagination_wrapper"><%= paginate @projects %></div>

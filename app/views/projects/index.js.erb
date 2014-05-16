@@ -4,4 +4,4 @@
   $('.projects_show').append("<%= j render(@projects) %>");
 <% end %>
 
-$('.pagination').replaceWith('<%= j paginate(@projects) %>');
+$('.pagination_wrapper').html('<%= j paginate(@projects) %>');

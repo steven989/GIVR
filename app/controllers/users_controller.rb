@@ -24,6 +24,8 @@ class UsersController < ApplicationController
         @user = User.find_by(id: params[:id])
 
         @user.categories.delete_all
+        @user.locations.delete_all
+        @user.causes.delete_all
 
         params[:user][:category_ids].each do |category_id|
             @user.categories << Category.find_by(id:category_id) unless category_id == ""
@@ -36,6 +38,8 @@ class UsersController < ApplicationController
         params[:user][:cause_ids].each do |cause_id|
             @user.causes << Cause.find_by(id:cause_id) unless cause_id == ""
         end
+
+        redirect_to user_profile_path, notice: 'Your preferences have been saved!'
 
     end
 
