@@ -108,11 +108,13 @@ $(function() {
   // Show individual products inside a div on the page
 
   function showProject() {
+    $('.projects_detail').hide();
 
     $('.project_link').on('click', function() {
       event.preventDefault();
 
-      $('.projects_detail').removeClass('hidden');
+      $('.projects_detail').fadeIn('fast');
+
 
       $.ajax({
         url: $(this).attr('href'),
@@ -136,6 +138,11 @@ $(function() {
 
           })}
           );
+
+      $('#close_project').on('click', function() {
+        $('.projects_detail').fadeOut('fast');
+      });
+
     });
 
   }
