@@ -145,6 +145,7 @@ $(function() {
 
 
           $('#close_project').on('click', function() {
+            event.preventDefault();
             $('.projects_detail').fadeOut('fast');
           })
 
