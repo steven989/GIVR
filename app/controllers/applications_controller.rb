@@ -45,6 +45,32 @@ class ApplicationsController < ApplicationController
 
     end 
 
+    def applicant_update
+
+      @application = Application.find_by(id: params[:id])
+
+      if params[:todo] == 'engage'
+
+          @application.statuses= params[:todo]
+
+      end 
+
+      @role = current_user.role
+
+      respond_to do |format|
+
+        format.html {redirect_to user_profile_path}
+        format.json {   self.formats = ['html']
+
+              render json: { 
+                  replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role})
+                      } 
+          }
+
+        end
+
+    end
+
     def project_creator_update
 
       @application = Application.find_by(id: params[:id])
