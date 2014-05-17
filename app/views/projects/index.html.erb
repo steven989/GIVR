@@ -13,15 +13,18 @@
           <% @categories.each do |category| %>
           
             <% if current_user %>
-
-              <% if current_user.categories.include?(category) %>
+              <% if current_user.role == 'professional' %>
+                <% if current_user.categories.include?(category) %>
+                    <% filter_option = "filter_on" %>
+                    <% data_on_option = 1 %>
+                <% else %>
+                  <% filter_option = "" %>
+                  <% data_on_option = 0 %>
+                <% end %>
+              <% elsif current_user.role == 'npo' %>
                 <% filter_option = "filter_on" %>
-                <% data_on_option = 1 %>
-              <% else %>
-                <% filter_option = "" %>
-                <% data_on_option = 0 %>
+                <% data_on_option = 1 %>    
               <% end %>
-
             <% else %>
                 <% filter_option = "filter_on" %>
                 <% data_on_option = 1 %>
@@ -43,15 +46,18 @@
           <% @causes.each do |cause| %>
           
             <% if current_user %>
-
-              <% if current_user.causes.include?(cause) %>
+              <% if current_user.role == 'professional' %>
+                <% if current_user.causes.include?(cause) %>
+                  <% filter_option = "filter_on" %>
+                  <% data_on_option = 1 %>  
+                <% else %>
+                  <% filter_option = "" %>
+                  <% data_on_option = 0 %>
+                <% end %>
+              <% elsif current_user.role == 'npo' %>
                 <% filter_option = "filter_on" %>
-                <% data_on_option = 1 %>
-              <% else %>
-                <% filter_option = "" %>
-                <% data_on_option = 0 %>
+                <% data_on_option = 1 %>  
               <% end %>
-
             <% else %>
                 <% filter_option = "filter_on" %>
                 <% data_on_option = 1 %>
@@ -73,15 +79,18 @@
           <% @locations.each do |location| %>
 
             <% if current_user %>
-
-              <% if current_user.locations.include?(location) %>
+              <% if current_user.role == 'professional' %>
+                <% if current_user.locations.include?(location) %>
+                  <% filter_option = "filter_on" %>
+                  <% data_on_option = 1 %>
+                <% else %>
+                  <% filter_option = "" %>
+                  <% data_on_option = 0 %>
+                <% end %>
+              <% elsif current_user.role == 'npo' %>
                 <% filter_option = "filter_on" %>
-                <% data_on_option = 1 %>
-              <% else %>
-                <% filter_option = "" %>
-                <% data_on_option = 0 %>
+                <% data_on_option = 1 %>  
               <% end %>
-
             <% else %>
                 <% filter_option = "filter_on" %>
                 <% data_on_option = 1 %>
