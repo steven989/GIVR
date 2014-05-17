@@ -5,8 +5,7 @@ class OauthsController < ApplicationController
   end
 
   def callback
-    puts '---------------------------------------------------'
-    puts '---------------------------------------------------'
+
     provider = params[:provider]
     if @user = login_from(provider)
         puts "logged in user"

@@ -3,29 +3,21 @@ Givr::Application.routes.draw do
   get "oauths/oauth"
   get "oauths/callback"
   root to: 'pages#index'
-
   resources :projects do
     resources :applications, only: [:create, :update, :destroy]
   end 
-
   post 'projects/filter' => 'projects#index', as: 'filter_projects'
-
   put 'projects/:project_id/applications/:id/creator' => 'applications#project_creator_update', as: 'creator_update'
-
   put 'projects/:project_id/applications/:id/applicant' => 'applications#applicant_update', as: 'applicant_update'
-
   resources :users, only: [:show, :new, :create, :update]
-
   patch 'user/upload_resume' => 'users#upload_resume'
-
   get 'user/profile' => 'users#profile', as: 'user_profile'
-
+  patch 'user/update_role' => 'users#update_role', as: 'update_role'
+  post 'oauth/callback' => 'oauths#callback'
   get 'oauth/callback' => 'oauths#callback'
-
   get 'oauths/:provider' => 'oauths#oauth', as: 'auth_at_provider'
-
-
   resources :sessions, only: [:create, :destroy]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
