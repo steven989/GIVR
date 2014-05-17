@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
     def upload_resume
         @user = current_user
-        if params[:resume_action] == 'upload'
+        if params[:resume_action] && params[:user] == 'upload'
             @user.update_attribute(:resume, params[:user][:resume])
         elsif params[:resume_action] == 'remove'
             @user.remove_resume!
