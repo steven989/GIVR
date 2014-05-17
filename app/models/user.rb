@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :made_applications, foreign_key: 'user_id', class_name: 'Application'
   has_many :projects, through: :applications
   has_many :applications, through: :submitted_projects
+  has_many :authentications, dependent: :destroy
 
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :causes
@@ -11,7 +12,13 @@ class User < ActiveRecord::Base
 
   mount_uploader :resume, ResumeUploader
 
-  authenticates_with_sorcery!
+  authenticates_with_sorcery! do |config|
+
+    config.authentications_class = Authentication
+
+  end
+
+  accepts_nested_attributes_for :authentications
 
   validates :password, confirmation: true
   validates :password_confirmation, presence: true

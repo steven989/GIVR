@@ -49,6 +49,9 @@ GEM
       i18n (~> 0.5)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    figaro (0.7.0)
+      bundler (~> 1.0)
+      rails (>= 3, < 5)
     hike (1.2.3)
     hirb (0.7.1)
     i18n (0.6.9)
@@ -141,10 +144,12 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   faker
+  figaro
   hirb
   jbuilder (~> 1.2)
   jquery-rails
   kaminari
+  oauth2
   pg
   rails (= 4.0.4)
   sass-rails (~> 4.0.2)

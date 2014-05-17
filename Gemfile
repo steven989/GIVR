@@ -74,3 +74,10 @@ gem 'kaminari'
 
 gem 'carrierwave'
 
+# 7) Hide secret keys
+
+gem 'figaro'
+
+#8) Sign up and log in using Facebook and Linkedin
+
+gem 'oauth2'

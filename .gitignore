@@ -16,5 +16,7 @@
 /tmp
 
 # Ignore the resume upload folder
-
 public/uploads
+
+# Ignore application configuration
+/config/application.yml

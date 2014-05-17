@@ -1,5 +1,7 @@
 Givr::Application.routes.draw do
 
+  get "oauths/oauth"
+  get "oauths/callback"
   root to: 'pages#index'
 
   resources :projects do
@@ -18,7 +20,9 @@ Givr::Application.routes.draw do
 
   get 'user/profile' => 'users#profile', as: 'user_profile'
 
+  get 'oauth/callback' => 'oauths#callback'
 
+  get 'oauths/:provider' => 'oauths#oauth', as: 'auth_at_provider'
 
 
   resources :sessions, only: [:create, :destroy]
