@@ -29,11 +29,9 @@ class ApplicationsController < ApplicationController
     respond_to do |format|
 
       if @application.save
-            
         if params[:todo] == 'apply'
           UserMailer.applied_to_project(@project.user).deliver
         end
-            
           format.json {render json: {message: success_message}}
       else
         format.json {render json: {message: fail_message}}
@@ -48,25 +46,20 @@ class ApplicationsController < ApplicationController
     def applicant_update
 
       @application = Application.find_by(id: params[:id])
-
       if params[:todo] == 'engage'
-
           @application.statuses= params[:todo]
-
+      elsif params[:todo] == 'apply'
+          @application.statuses= params[:todo]
+          UserMailer.applied_to_project(@application.project.user).deliver
       end 
-
       @role = current_user.role
-
       respond_to do |format|
-
         format.html {redirect_to user_profile_path}
         format.json {   self.formats = ['html']
-
               render json: { 
                   replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role})
                       } 
           }
-
         end
 
     end
@@ -74,19 +67,14 @@ class ApplicationsController < ApplicationController
     def project_creator_update
 
       @application = Application.find_by(id: params[:id])
-
       if params[:todo] == 'approve'
           @application.statuses= params[:todo]
           UserMailer.project_approved(@application.user).deliver
       elsif params[:todo] == 'unapprove'
           @application.statuses= 'apply'
       end 
-
-    
       @role = current_user.role
-
       respond_to do |format|
-
         format.html {redirect_to user_profile_path}
         format.json {   self.formats = ['html']
 
@@ -94,7 +82,6 @@ class ApplicationsController < ApplicationController
                   replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role})
                       } 
           }
-
         end
 
 

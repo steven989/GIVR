@@ -1,5 +1,4 @@
 
-
 <% if role == 'npo' %>
 
 <div class="show_application">
@@ -27,12 +26,11 @@
     <p class='application_date'>Application date: <%= application.created_at %></p>
 
     <% if application.status == 'shortlist' %>
-
-        <%= link_to 'Apply', project_applications_path(application.project, todo: 'apply'), class: 'do_project', data: {todo: 'apply'}, method: 'POST' %>
-
+        <p class='action_button'><%= link_to 'Apply', applicant_update_path(application.project, application), class: 'applicant_button', data: {todo: 'apply'}, method: 'PUT' %>
+        </p>
 
     <% elsif application.status == 'approve' %>
-        <p class='action_button'><%= link_to 'Engage', applicant_update_path(application.project, application), method: 'PUT', data: {todo: 'engage'}, class: 'approve_button' %></p>
+        <p class='action_button'><%= link_to 'Engage', applicant_update_path(application.project, application), method: 'PUT', data: {todo: 'engage'}, class: 'applicant_button' %></p>
     <% end %>
 
 </div>
