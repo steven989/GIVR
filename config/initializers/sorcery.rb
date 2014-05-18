@@ -87,7 +87,7 @@ Rails.application.config.sorcery.configure do |config|
   config.linkedin.key = Figaro.env.linkedin_app_id
   config.linkedin.secret = Figaro.env.linkedin_secret_key
   config.linkedin.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=linkedin"
-  config.linkedin.user_info_fields = ['email']
+  config.linkedin.user_info_fields = ['email-address']
   config.linkedin.user_info_mapping = {:email => "email"}
   config.linkedin.access_permissions = ['r_basicprofile', 'r_emailaddress']
   #
