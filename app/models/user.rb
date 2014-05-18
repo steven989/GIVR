@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  authenticates_with_sorcery!
 
   has_many :submitted_projects, foreign_key: 'user_id', class_name: 'Project'
   has_many :made_applications, foreign_key: 'user_id', class_name: 'Application'
