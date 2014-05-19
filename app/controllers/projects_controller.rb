@@ -6,42 +6,22 @@ class ProjectsController < ApplicationController
   def index
 
     if params[:_json] #this is for the filtering
-
       filter_conditions = Hash.new { |this_hash, nonexistent_key| this_hash[nonexistent_key] = [] }  #this is the code to actually allow us to use << to assign into the arrays that are default value of the non-existent hash key
-
-      params[:_json].each do |filter|
-        
+      params[:_json].each do |filter|        
         filter_type = filter['filtertype'].to_sym
         filter_id = filter['filterid']
-
       filter_conditions[filter_type] << filter_id
-
-      end
-
+    end
       @projects = Project.where("category_id in (?) AND cause_id in (?) AND location_id in (?)", filter_conditions[:category], filter_conditions[:cause], filter_conditions[:location]).order(created_at: :desc).page(params[:page])
-
     else 
-
-      if current_user
-
-        user_categories = current_user.categories.inject([]) { |array,category| array.push(category.id) }
-        user_causes = current_user.causes.inject([]) { |array,cause| array.push(cause.id) }
-        user_locations = current_user.locations.inject([]) { |array,location| array.push(location.id) }
-
-          if (user_categories.length == 0 && user_causes.length == 0 && user_locations.length == 0) || current_user.role == 'npo'
-            @projects = Project.all.order(created_at: :desc).page(params[:page])
-          else 
-            @projects = Project.where("category_id in (?) AND cause_id in (?) AND location_id in (?)", user_categories, user_causes, user_locations).order(created_at: :desc).page(params[:page])
-          end
-
-
-      else
-
+      if current_user #this section basically identifies if any of the filter is empty from the user profile, and if empty take ALL the values
+        @user_categories = current_user.categories.inject([]) { |array,category| array.push(category.id) }.blank? ? Category.all.map {|category| category.id} : current_user.categories.inject([]) { |array,category| array.push(category.id) } 
+        @user_causes = current_user.causes.inject([]) { |array,cause| array.push(cause.id) }.blank? ? Cause.all.map {|cause| cause.id} : current_user.causes.inject([]) { |array,cause| array.push(cause.id) }
+        @user_locations = current_user.locations.inject([]) { |array,location| array.push(location.id) }.blank? ? Location.all.map {|location| location.id} : current_user.locations.inject([]) { |array,location| array.push(location.id) }
+        @projects = Project.where("category_id in (?) AND cause_id in (?) AND location_id in (?)", @user_categories, @user_causes, @user_locations).order(created_at: :desc).page(params[:page])
+     else
         @projects = Project.all.order(created_at: :desc).page(params[:page])
-
       end
-
-
     end
 
     @categories = Category.all.order(category: :asc)
@@ -52,7 +32,6 @@ class ProjectsController < ApplicationController
       format.js
       format.html
     end
-
   end
 
   def show
