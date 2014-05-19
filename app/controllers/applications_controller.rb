@@ -5,29 +5,20 @@ class ApplicationsController < ApplicationController
 
   def create
 
-
     @project = Project.find_by(id: params[:project_id])
-
     if params[:todo] == 'apply'
-
       @application = @project.applications.new(user_id: current_user.id, statuses: params[:todo])
       success_message = 'Application successful!'
       fail_message = 'Application could not be completed.'
-
     elsif params[:todo] == 'shortlist'
-
       @application = @project.applications.new(user_id: current_user.id, statuses: params[:todo])
       success_message = 'Project successfully shortlisted!'
       fail_message = 'Project could not be shortlisted.'
-
     else
-
       redirect_to projects_path, notice: 'Uh oh, something went wrong.'
-
     end
 
     respond_to do |format|
-
       if @application.save
         if params[:todo] == 'apply'
           UserMailer.applied_to_project(@project.user).deliver
@@ -75,7 +66,6 @@ class ApplicationsController < ApplicationController
       elsif params[:todo] == 'complete'
           @application.statuses= params[:todo]
       end
-
       @role = current_user.role
       respond_to do |format|
         format.html {redirect_to user_profile_path}

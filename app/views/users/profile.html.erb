@@ -37,6 +37,9 @@
   <div class="profile_view_nav">
       <ul class="profile_view_nav_buttons">   
           <li>
+              <div class='profile_view_button' id='summary'>Summary</div>
+          </li>
+          <li>
               <div class='profile_view_button' id='applications'>Applications</div>
           </li>
           <li>
@@ -69,9 +72,21 @@
 
   <div class="profile_view">
 
+    <div class="profile_view_content" id='summary'>
+      <% if @user.role == 'professional' %>
+      <div class="points">
+        <p><%= "You have completed #{pluralize(@number_ccompleted_applications, 'project')} to date and earned #{pluralize(@points, 'point')}." %></p>
+      </div>
+      <% end %>
+    </div>
+
     <div class="profile_view_content" id='projects'>
         <h1>Projects</h1>
-        <%= render partial: 'projects/project', collection: @projects %>
+        <% if @user.role == 'npo' %>
+          <%= render partial: 'projects/project', collection: @projects %>
+        <% elsif @user.role == 'professional' %>
+          <%= render partial: 'applications/application', collection: @completed_applications, locals: {role: @role} %>
+        <% end %>
     </div>
 
     <div class="profile_view_content" id='applications'>

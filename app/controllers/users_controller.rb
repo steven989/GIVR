@@ -65,8 +65,11 @@ class UsersController < ApplicationController
             @applications = current_user.applications.order('created_at ASC').where("status not like 'shortlist'")
         elsif @role == 'professional'
             @projects = current_user.completed_projects
-            @applications = current_user.made_applications.order('created_at ASC').where("status in ('apply','approve')")
+            @applications = current_user.made_applications.order('created_at ASC').where("status in ('apply','approve', 'engage')")
             @shortlists = current_user.made_applications.order('created_at ASC').where("status in ('shortlist')")
+            @completed_applications = current_user.made_applications.order('created_at ASC').where("status in ('complete')")
+            @number_ccompleted_applications = @completed_applications.length
+            @points = current_user.points
         end
     end 
 
