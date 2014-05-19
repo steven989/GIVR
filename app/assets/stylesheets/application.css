@@ -496,9 +496,15 @@ body {
 
 /* -------------------------- user#profile ------------------------- */
 
-.profile_view_content {
+.profile_view .profile_view_content {
     
     display: none;
+
+}
+
+.profile_view #summary {
+    
+    display: initial;
 
 }
 
