@@ -72,12 +72,14 @@ class ApplicationsController < ApplicationController
           UserMailer.project_approved(@application.user).deliver
       elsif params[:todo] == 'unapprove'
           @application.statuses= 'apply'
-      end 
+      elsif params[:todo] == 'complete'
+          @application.statuses= params[:todo]
+      end
+
       @role = current_user.role
       respond_to do |format|
         format.html {redirect_to user_profile_path}
         format.json {   self.formats = ['html']
-
               render json: { 
                   replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role})
                       } 

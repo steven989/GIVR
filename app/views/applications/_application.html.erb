@@ -11,6 +11,8 @@
         <p class='action_button'><%= link_to 'Approve', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'approve'}, class: 'user_action_button' %></p>
     <% elsif application.status == 'approve' %>
         <p class='action_button'><%= link_to 'Unapprove', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'unapprove'}, class: 'user_action_button' %></p>        
+    <% elsif application.status == 'engage' %>
+        <p class='action_button'><%= link_to 'Complete', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'complete'}, class: 'user_action_button' %></p>        
     <% end %>
 
     <p><%= link_to 'Resume', application.user.resume_url %></p>
