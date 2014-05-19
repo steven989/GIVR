@@ -129,6 +129,8 @@ $(function() {
 
   function buttonsInsideShowProject(){
 
+    FB.XFBML.parse();
+
             $('.do_project').on('click',function(){
 
               event.stopImmediatePropagation(); //not sure why preventDefault does not work here

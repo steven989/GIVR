@@ -474,11 +474,23 @@ body {
         height: 40px:
         width: 50px;
         padding: 5px;
-        margin: 1.5rem;
+        margin: 1.2rem;
         text-decoration: none;
         color: black;
         border-radius: 5px;
     }
+
+    .projects_detail .fb-share-button {
+        display: inline-block;
+        height: 40px:
+        width: 50px;
+        padding: 5px;
+        margin: 1.2rem;
+        text-decoration: none;
+        color: black;
+        border-radius: 5px;
+
+}
 
 /* -------------------------- user#profile ------------------------- */
 
