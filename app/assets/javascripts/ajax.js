@@ -106,7 +106,6 @@ $(function() {
   // Show individual products inside a div on the page
 
   function showProject() {
-    $('.projects_detail').hide();
 
     $('.project_link').on('click', function() {
       event.preventDefault();

@@ -446,6 +446,8 @@ body {
 /* POPUP DIV CSS */
 
 .projects_detail {
+
+    display: none;
     background-color: #76D7B3;
     position: fixed;
     top: 0;
