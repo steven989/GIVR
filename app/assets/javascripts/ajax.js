@@ -129,7 +129,11 @@ $(function() {
 
   function buttonsInsideShowProject(){
 
-    FB.XFBML.parse();
+    try {
+      FB.XFBML.parse();
+    } catch (e) {
+      console.log(e);
+    }
 
             $('.do_project').on('click',function(){
 
