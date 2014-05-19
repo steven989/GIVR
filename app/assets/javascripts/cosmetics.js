@@ -15,27 +15,28 @@ $('document').ready(function() {
         
         });
 
-    // $('.profile_view_nav .profile_view_button').each(function(){    // profile nav bar
-
-    //         $(this).on('click',function(){
-
-    //             var all_buttons = $('.profile_view_nav .profile_view_button')
-    //             var _this = $(this)
+    $('.profile_view_nav .profile_view_button').each(function(){    // profile nav bar
 
 
-    //                 all_buttons.each(function(){
+            $(this).on('click',function(){
 
-    //                     if ($(this).text() == _this.text() || _this.attr('class').indexOf('clicked') >= 0) {
+                var all_buttons = $('.profile_view_nav .profile_view_button')
+                var _this = $(this)
 
-    //                         highlightButton(_this);
 
-    //                     };
+                    all_buttons.each(function(){
 
-    //                 });
+                        if ($(this).text() == _this.text() || $(this).attr('class').indexOf('clicked') >= 0) {
 
-    //         });
+                            highlightButton($(this));
+
+                        };
+
+                    });
+
+            });
         
-    //     });
+        });
 
 
     navigationUnderline();  // will add underline to the navigation link that's currently active
@@ -94,13 +95,19 @@ function slideUpDown() {
 
 // this code is so that when a search group button is clicked, it is always highlighted even without mouseover
 
-function highlightButton() {
+function highlightButton(_this) {
+
+    if ($(this).attr('class') == undefined) {
+        context = _this
+    } else { 
+        context = $(this)
+    }
 
 
-    var notClicked = $(this).attr('class').indexOf('clicked') < 0
+    var notClicked = context.attr('class').indexOf('clicked') < 0
 
-    if (notClicked) {$(this).addClass('clicked')} 
-        else {$(this).removeClass('clicked')}
+    if (notClicked) {context.addClass('clicked')} 
+        else {context.removeClass('clicked')}
 
 
 }
