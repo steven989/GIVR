@@ -50,10 +50,14 @@ class ProjectsController < ApplicationController
   def create
     @project = Project.new(projects_params)
 
-    if @projects.save
-      redirect_to projects_url
-    else
-      render :new
+    respond_to do |format|
+      if @project.save
+        format.js { render :js => 'alert("Your project was saved!")'}
+        format.html
+      else
+        format.js
+        format.html
+      end
     end
   end
 
@@ -74,6 +78,6 @@ class ProjectsController < ApplicationController
 
   private
   def projects_params
-    params.require(:project).permit(:name, :description)
+    params.require(:project).permit(:title, :description)
   end
 end

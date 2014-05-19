@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   belongs_to :cause
   belongs_to :location
   
+  validates :title, presence: true
+  validates :description, presence: true
 
-  validates :description, :title, presence: true
 end

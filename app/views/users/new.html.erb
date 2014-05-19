@@ -4,7 +4,9 @@
 <p>Sign up:</p>
 
 <%= form_for @user do |f| %>
-    
+    <div class='error_messages'>
+        <%= @user.errors.full_messages.first if @user.errors.any? %>
+    </div>
     <p>
         <%= f.label 'email', 'Email address:' %>
         <%= f.text_field 'email' %>

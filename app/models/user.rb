@@ -20,11 +20,15 @@ class User < ActiveRecord::Base
   end
 
   accepts_nested_attributes_for :authentications
-
+  
+  validates :email, presence: true
+  validates :email, uniqueness: true
+  validates :email, format: /@/
+  
+  validates :password, presence: true
+  validates :password, length: 6..20
   validates :password, confirmation: true
   validates :password_confirmation, presence: true
-  validates :email, uniqueness: true
-
 
   def is?(role)
     self.role == role
@@ -34,7 +38,4 @@ class User < ActiveRecord::Base
   def completed_projects
     self.projects.where("status like 'completed'")
   end 
-
-  
-
 end
