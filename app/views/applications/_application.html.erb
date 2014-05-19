@@ -8,9 +8,9 @@
     <p class='application_date'>Application date: <%= application.created_at %></p>
     
     <% if application.status == 'apply' %>
-        <p class='action_button'><%= link_to 'Approve', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'approve'}, class: 'approve_button' %></p>
+        <p class='action_button'><%= link_to 'Approve', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'approve'}, class: 'user_action_button' %></p>
     <% elsif application.status == 'approve' %>
-        <p class='action_button'><%= link_to 'Unapprove', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'unapprove'}, class: 'approve_button' %></p>        
+        <p class='action_button'><%= link_to 'Unapprove', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'unapprove'}, class: 'user_action_button' %></p>        
     <% end %>
 
     <p><%= link_to 'Resume', application.user.resume_url %></p>
@@ -26,11 +26,11 @@
     <p class='application_date'>Application date: <%= application.created_at %></p>
 
     <% if application.status == 'shortlist' %>
-        <p class='action_button'><%= link_to 'Apply', applicant_update_path(application.project, application), class: 'applicant_button', data: {todo: 'apply'}, method: 'PUT' %>
+        <p class='action_button'><%= link_to 'Apply', applicant_update_path(application.project, application), class: 'user_action_button', data: {todo: 'apply'}, method: 'PUT' %>
         </p>
 
     <% elsif application.status == 'approve' %>
-        <p class='action_button'><%= link_to 'Engage', applicant_update_path(application.project, application), method: 'PUT', data: {todo: 'engage'}, class: 'applicant_button' %></p>
+        <p class='action_button'><%= link_to 'Engage', applicant_update_path(application.project, application), method: 'PUT', data: {todo: 'engage'}, class: 'user_action_button' %></p>
     <% end %>
 
 </div>

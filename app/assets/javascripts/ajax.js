@@ -35,7 +35,7 @@ $(function() {
 
   function triggerApproval() {
 
-    $('.applicant_button').on('click',function(){
+    $('.user_action_button').on('click',function(){
 
     event.stopImmediatePropagation(); //not sure why preventDefault does not work here
 
