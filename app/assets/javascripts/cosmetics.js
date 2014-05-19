@@ -4,6 +4,7 @@
 
 $('document').ready(function() {
     
+
     $(document).on('scroll', scrollCheck);
 
     window.headerHeight = $('#visible_blue').outerHeight(false);    // taking a snapshot of the height of the header as an anchor
