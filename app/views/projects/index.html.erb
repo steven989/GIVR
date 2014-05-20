@@ -14,7 +14,7 @@
           
             <% if current_user %>
               <% if current_user.role == 'professional' %>
-                <% if current_user.categories.include?(category) %>
+                <% if @user_categories.include?(category.id) %>
                     <% filter_option = "filter_on" %>
                     <% data_on_option = 1 %>
                 <% else %>
@@ -47,7 +47,7 @@
           
             <% if current_user %>
               <% if current_user.role == 'professional' %>
-                <% if current_user.causes.include?(cause) %>
+                <% if @user_causes.include?(cause.id) %>
                   <% filter_option = "filter_on" %>
                   <% data_on_option = 1 %>  
                 <% else %>
@@ -80,7 +80,7 @@
 
             <% if current_user %>
               <% if current_user.role == 'professional' %>
-                <% if current_user.locations.include?(location) %>
+                <% if @user_locations.include?(location.id) %>
                   <% filter_option = "filter_on" %>
                   <% data_on_option = 1 %>
                 <% else %>
@@ -112,7 +112,7 @@
 </div>
 
 <div class="projects_detail">
-  <a class="project" id="close_project">Close</a>
+  
 </div>
 
 <div class="pagination_wrapper"><%= paginate @projects %></div>

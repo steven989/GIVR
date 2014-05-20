@@ -1,0 +1,35 @@
+<h1>Reset password now</h1>
+
+<%= form_for @user, url: password_reset_path(@user), method: 'PUT' do |f| %>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+            <ul>
+            <%= @user.errors.full_message.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+            </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= f.label :email %><br />
+        <%= @user.email %>
+    </div>
+
+    <div class="field">
+        <%= f.label :password %><br />
+        <%= f.password_field :password %>
+    </div>
+
+    <div class="field">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation %><br />
+        <%= hidden_field_tag :token, @token %>
+    </div>
+
+    <div class="action">
+        <%= f.submit 'Reset password now' %>
+    </div>
+
+<% end %>

@@ -1,5 +1,8 @@
 Givr::Application.routes.draw do
 
+  get "password_resets/create"
+  get "password_resets/edit"
+  get "password_resets/update"
   get "oauths/oauth"
   get "oauths/callback"
   root to: 'pages#index'
@@ -17,6 +20,7 @@ Givr::Application.routes.draw do
   get 'oauth/callback' => 'oauths#callback'
   get 'oauths/:provider' => 'oauths#oauth', as: 'auth_at_provider'
   resources :sessions, only: [:create, :destroy]
+  resources :password_resets, only: [:create, :edit, :update]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

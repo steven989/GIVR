@@ -4,7 +4,6 @@
 <% if @user.role.nil? %>
 
 <div class="without_role">
-
   <div class="user_form">
     <%= form_for @user, url: update_role_path do |f| %>
       <p>I am a:
@@ -18,13 +17,11 @@
       </p>
     <% end %>
   </div>
-
 </div>
 
 <% else %>
 
 <div class="with_role">
-
   <div class="greeting_message">
   <p>
       Hi <%= @user.email %>, you are registered as a 
@@ -35,34 +32,24 @@
       professional
       <% end %>
       . In this page, you can view your your applications and past projects.
-
   </p>
   </div>
-
   <div class="profile_view_nav">
-      <ul class="profile_view_nav_buttons">
-          
+      <ul class="profile_view_nav_buttons">   
           <li>
-
-              <div class='profile_view_button' id='applications'>Applications</div>
-
+              <div class='profile_view_button clicked' id='summary'>Summary</div>
           </li>
           <li>
-              <div class='profile_view_button' id='projects'>Projects</div>
-              
+              <div class='profile_view_button' id='applications'>Applications</div>
+          </li>
+          <li>
+              <div class='profile_view_button' id='projects'>Projects</div>              
           </li>
 
           <% if @user.role == 'professional' %>
-              <li>
-                  
-                  <div class='profile_view_button' id='shortlist'>Shortlisted projects</div>
-                  
+              <li>                  
+                  <div class='profile_view_button' id='shortlist'>Shortlisted projects</div>                  
               </li>
-
-              <li>
-
-              </li>
-
           <% end %>
 
           <% if @user.role == 'npo' %>
@@ -83,18 +70,30 @@
 
   </div>
 
-  <div class="profile_view">
+    <div class="profile_view">
+
+    <div class="profile_view_content" id='summary'>
+      <% if @user.role == 'professional' %>
+      <div class="points">
+        <p><%= "You have completed #{pluralize(@number_ccompleted_applications, 'project')} to date and earned #{pluralize(@points, 'point')}." %></p>
+      </div>
+      <% end %>
+    </div>
 
     <div class="profile_view_content" id='projects'>
         <h1>Projects</h1>
-        <%= render partial: 'projects/project', collection: @projects %>
+        <% if @user.role == 'npo' %>
+          <%= render partial: 'projects/project', collection: @projects %>
+        <% elsif @user.role == 'professional' %>
+          <%= render partial: 'applications/application', collection: @completed_applications, locals: {role: @role} %>
+        <% end %>
     </div>
 
     <div class="profile_view_content" id='applications'>
         <h1>Applications</h1>
         <%= render partial: 'applications/application', collection: @applications, locals: {role: @role} %>
     </div>
-
+    
     <% if @user.role == 'professional' %>
 
       <div class="profile_view_content" id='shortlist'>
@@ -108,7 +107,7 @@
       <h1>Settings</h1>
 
       <% if @user.role == 'professional' %>
-      
+
         <div class='project_view_filter_setting'>
 
           <%= form_for @user do |f| %>
@@ -124,25 +123,9 @@
           <% end %>
 
         </div>
-            
-            <% if @user.resume.file.nil? %>
-              <%= form_for @user, url: user_upload_resume_path(resume_action: 'upload'), data: {userid: @user.id} , method: 'patch', html: {multipart: true} do |f| %>
-                  <%= f.file_field :resume %>
-                  <%= f.submit 'Upload resume' %>
-              <% end %>
-            <% else %>
-              <% if !@user.resume.file.exists? %>
-                <%= form_for @user, url: user_upload_resume_path(resume_action: 'upload'), data: {userid: @user.id} , method: 'patch', html: {multipart: true} do |f| %>
-                    <%= f.file_field :resume %>
-                    <%= f.submit 'Upload resume' %>
-                <% end %>
-              <% else %>
-                <p>You have already uploaded your resume:</p>
-                <p><%= link_to 'Download resume', @user.resume_url %>
-                <p><%= link_to 'Remove resume', user_upload_resume_path(resume_action: 'remove' ), method: 'patch' %> </p>
-              <% end %>
-            <% end %>
-
+      <div class="resume_upload_container">
+      <%= render partial: 'resume_upload', locals: {user: @user} %>
+      </div>
       <% end %>
 
     </div>

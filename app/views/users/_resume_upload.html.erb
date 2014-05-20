@@ -1,0 +1,16 @@
+<!-- This is the additional logic layer that wraps around the actual upload -->
+<% if user.resume.file.nil? %>
+  <div class="resume_upload">
+    <%= render partial: 'raw_resume_upload', locals: {user: user} %>
+  </div>
+<% else %>
+  <% if !user.resume.file.exists? %>
+    <div class="resume_upload">
+      <%= render partial: 'raw_resume_upload', locals: {user: user} %>
+    </div>
+  <% else %>
+    <p>You have already uploaded your resume:</p>
+    <p><%= link_to 'Download resume', user.resume_url(:query => {"response-content-disposition" => "attachment"}) %>
+    <p><%= link_to 'Remove resume', user_upload_resume_path(resume_action: 'remove' ), method: 'patch', class: 'remove_resume' %> </p>
+  <% end %>
+<% end %>

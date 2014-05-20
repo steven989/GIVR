@@ -46,8 +46,6 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-
-
 # Custom gems
 
 # 1) Manage user login
@@ -81,3 +79,7 @@ gem 'figaro'
 #8) Sign up and log in using Facebook and Linkedin
 
 gem 'oauth2'
+
+#9) SimpleForm 
+
+gem 'simple_form'

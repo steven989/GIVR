@@ -4,7 +4,9 @@
 <p>Sign up:</p>
 
 <%= form_for @user do |f| %>
-    
+    <div class='error_messages'>
+        <%= @user.errors.full_messages.first if @user.errors.any? %>
+    </div>
     <p>
         <%= f.label 'email', 'Email address:' %>
         <%= f.text_field 'email' %>
@@ -26,12 +28,6 @@
         <%= f.radio_button :role, 'npo' %>
         <%= f.label :role_npo, 'Non-Profit Organization' %>
     </p>
-
-    <p>
-        Resume: <%= f.file_field :resume %>
-
-    </p>
-
     <p>
         <%= f.submit 'Sign up' %>
     </p>
@@ -58,6 +54,9 @@
     </p>
 
 <% end %>
+
+<p>Forgot password?</p>
+<%= render 'forgot_password_form' %>
 
 <p>Or <%= link_to 'Log in with Facebook', auth_at_provider_path(provider: :facebook) %> </p>
 
