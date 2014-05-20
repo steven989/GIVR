@@ -50,11 +50,22 @@ class UsersController < ApplicationController
         @user = current_user
         if params[:user] && params[:resume_action] == 'upload'
             @user.update_attribute(:resume, params[:user][:resume])
+            message = 'Resume successfully uploaded'
         elsif params[:resume_action] == 'remove'
             @user.remove_resume!
-            @user.save            
+            @user.save
+            message = 'Resume successfully removed'       
         end
-        redirect_to user_profile_path
+
+        respond_to do |format|
+            format.html {redirect_to user_profile_path, notice: message}
+            format.json {   self.formats = ['html']
+              render json: { 
+                  replaceWith: render_to_string(partial: 'users/resume_upload', layout: false, locals: {user: @user})
+                      } 
+          }
+        end
+        
     end 
 
     def profile
