@@ -55,7 +55,7 @@
           <% if @user.role == 'npo' %>
 
               <li>
-                <div class="profile_view_button" id="add-new"><%= link_to "Add new project", '/projects/new' %></div>
+                <div class="profile_view_button" id="add-new">Add new project</div>
               </li>
 
           <% end %>
@@ -69,66 +69,66 @@
       </ul>
 
   </div>
-
-    <div class="profile_view">
-
-    <div class="profile_view_content" id='summary'>
-      <% if @user.role == 'professional' %>
-      <div class="points">
-        <p><%= "You have completed #{pluralize(@number_ccompleted_applications, 'project')} to date and earned #{pluralize(@points, 'point')}." %></p>
-      </div>
-      <% end %>
-    </div>
-
-    <div class="profile_view_content" id='projects'>
-        <h1>Projects</h1>
-        <% if @user.role == 'npo' %>
-          <%= render partial: 'projects/project', collection: @projects %>
-        <% elsif @user.role == 'professional' %>
-          <%= render partial: 'applications/application', collection: @completed_applications, locals: {role: @role} %>
-        <% end %>
-    </div>
-
-    <div class="profile_view_content" id='applications'>
-        <h1>Applications</h1>
-        <%= render partial: 'applications/application', collection: @applications, locals: {role: @role} %>
-    </div>
-    
-    <% if @user.role == 'professional' %>
-
-      <div class="profile_view_content" id='shortlist'>
-          <h1>Shortlist</h1>
-          <%= render partial: 'applications/application', collection: @shortlists, locals: {role: @role} %>
-      </div>
-
-    <% end %>
-
-    <div class="profile_view_content" id='settings'>
-      <h1>Settings</h1>
-
-      <% if @user.role == 'professional' %>
-
-        <div class='project_view_filter_setting'>
-
-          <%= form_for @user do |f| %>
-            <p>Category</p>
-            <%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category) %>
-             
-            <p>Cause</p>
-            <%= collection_check_boxes(:user, :cause_ids, Cause.all, :id, :cause) %>
-
-            <p>Location</p>
-            <%= collection_check_boxes(:user, :location_ids, Location.all, :id, :location) %>
-            <%= f.submit %>
-          <% end %>
-
+  <div class="profile_view">
+      <div class="profile_view_content" id='summary'>
+        <% if @user.role == 'professional' %>
+        <div class="points">
+          <p><%= "You have completed #{pluralize(@number_ccompleted_applications, 'project')} to date and earned #{pluralize(@points, 'point')}." %></p>
         </div>
-      <div class="resume_upload_container">
-      <%= render partial: 'resume_upload', locals: {user: @user} %>
+        <% end %>
       </div>
+
+      <div class="profile_view_content" id='projects'>
+          <h1>Projects</h1>
+          <% if @user.role == 'npo' %>
+            <%= render partial: 'projects/project', collection: @projects %>
+          <% elsif @user.role == 'professional' %>
+            <%= render partial: 'applications/application', collection: @completed_applications, locals: {role: @role} %>
+          <% end %>
+      </div>
+
+      <div class="profile_view_content" id='applications'>
+          <h1>Applications</h1>
+          <%= render partial: 'applications/application', collection: @applications, locals: {role: @role} %>
+      </div>
+      
+      <% if @user.role == 'professional' %>
+        <div class="profile_view_content" id='shortlist'>
+            <h1>Shortlist</h1>
+            <%= render partial: 'applications/application', collection: @shortlists, locals: {role: @role} %>
+        </div>
+      <% end %>
+      
+      <% if @user.role == 'npo' %>
+        <% @project = Project.new %>
+        <div class="profile_view_content" id="add-new">
+          <h3>New Project</h3>
+          <%= render 'projects/form' %>
+        </div>
       <% end %>
 
-    </div>
+      <div class="profile_view_content" id='settings'>
+        <h1>Settings</h1>
+        <% if @user.role == 'professional' %>
+          <div class='project_view_filter_setting'>
+            <%= form_for @user do |f| %>
+              <p>Category</p>
+              <%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category) %>
+               
+              <p>Cause</p>
+              <%= collection_check_boxes(:user, :cause_ids, Cause.all, :id, :cause) %>
+
+              <p>Location</p>
+              <%= collection_check_boxes(:user, :location_ids, Location.all, :id, :location) %>
+              <%= f.submit %>
+            <% end %>
+          </div>
+          <div class="resume_upload_container">
+          <%= render partial: 'resume_upload', locals: {user: @user} %>
+          </div>
+        <% end %>
+      </div>
+
   </div>
 
   <div>
