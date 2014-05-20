@@ -5,15 +5,21 @@
 
 
   <div class="field">
-    <%= f.label :title %>
+    <%= f.label :title, 'Project name' %>
     <br>
     <%= f.text_field :title %>
   </div>
   
   <div class="fields">
-    <%= f.label :description %>
+    <%= f.label :description, 'Project description' %>
     <br>
     <%= f.text_area :description %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :number_of_positions, 'Number of positions' %>
+    <br>
+    <%= f.text_field :number_of_positions %>
   </div>
 
   <div class="actions">

@@ -37,6 +37,7 @@ $(function() {
       data: {todo: $(this).data('todo')}
     }).done(function(data){
       _this.parent().parent().html(data.replaceWith);
+      $('#error_messages').html(data.alertMessage);
       triggerApproval();
     });
    return false  //not sure why preventDefault does not work here

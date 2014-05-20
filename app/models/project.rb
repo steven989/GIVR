@@ -10,11 +10,20 @@ class Project < ActiveRecord::Base
   
   validates :title, presence: true
   validates :description, presence: true
+  validates :number_of_positions, presence: true
+
 
 
   def statuses= (status_value)
-    self.statuses.new(status: status_value).save    # add a record to the status table to keep a running tab of statuses
-    self.update_attribute(:status, status_value)     # change the status on the main table as well
+    if status_value
+      self.statuses.new(status: status_value).save    # add a record to the status table to keep a running tab of statuses
+      self.update_attribute(:status, status_value)     # change the status on the main table as well
+    end
   end 
+
+  def attempt_close
+    self.statuses= 'filled' if self.applications.where("status in ('engage','complete')").length >= self.number_of_positions
+  end
+
 
 end
