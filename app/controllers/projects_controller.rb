@@ -49,6 +49,7 @@ class ProjectsController < ApplicationController
 
   def create
 
+    params[:project][:statuses] = 'active'
     @project = Project.new(projects_params)
 
     respond_to do |format|
@@ -80,6 +81,6 @@ class ProjectsController < ApplicationController
 
   private
   def projects_params
-    params.require(:project).permit(:title, :description)
+    params.require(:project).permit(:title,:description,:statuses)
   end
 end
