@@ -2,9 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$font-stack: "Raleway", serif;
-$primary-color: #76D7B3;
+// Variables:
 
+$font-stack: "Raleway", serif;
+
+$primary-color: #76D7B3;
+$text-color: #888888;
+$box-shadow-color: #888888;
 
 /* ----------------------- across the whole document ---------------------- */
 
@@ -20,159 +24,139 @@ body {
 
 
 .header {
-
     color: white;
     position: fixed;
     background-color: $primary-color;
     z-index: 1;
     height: 4.5rem;
     width: 100%;
-    z-index:3;
+    z-index: 3;
     overflow: hidden;
+  
+  .logo {
+    position: absolute;
+    margin-top: 1rem;
+    margin-left: 2rem;
+  
+    img {
+      height: 3rem;
+    }
+  
+  }
+
+  .login {
+
+    position: absolute;
+    right: 2rem;
+    margin-top: 0.5rem;
+  
+    li {
+      display: inline-block;
+      margin-left: 1rem;
+      font-size: 1rem;
+    }
+
+  }
+
+  .nav {
+    position: absolute;
+    right: 2rem;
+    margin-top: 2rem;
+    margin-right: 5rem;
+
+    li {
+      display: inline-block;
+      margin-left: 1rem;
+      font-size: 1rem;
+      padding-bottom: 0.25rem;
+      padding-right: 0.25rem;
+      padding-left: 0.25rem;
+
+      &:hover {
+        border-bottom: 2px solid white;
+
+      }
+    
+    a {
+      color: white;
+      text-decoration: none;
+
+    }
+    
+    }
+
+  }
 
 }
-
-       .header .logo {
-
-            position: absolute;
-            margin-top: 1rem;
-            margin-left: 2rem;
-            
-        }
-
-            .header .logo img {
-
-                height: 3rem;
-
-            }
-
-        .header .login {
-
-            position: absolute;
-            right: 2rem;
-            margin-top: 0.5rem;
-
-        }
-
-                .header .login li {
-
-                    display: inline-block;
-                    margin-left: 1rem;
-                    font-size: 1rem;
-                }
-
-        .header .nav {
-
-            position: absolute;
-            right: 2rem;
-            margin-top: 2rem;
-            margin-right: 5rem;
-
-        }
-
-                .header .nav li {
-
-                    display: inline-block;
-                    margin-left: 1rem;
-                    font-size: 1rem;
-                    padding-bottom: 0.25rem;
-                    padding-right: 0.25rem;
-                    padding-left: 0.25rem;
-                }
-
-                    .header .nav li:hover {
-
-                        border-bottom: 2px solid white;
-                    }
-
-                .header .nav a {
-
-                    color: white;
-                    text-decoration: none;
-
-                }
 
 
 .alt_header {
 
-    color: #888888;
-    position: fixed;
-    top: 0;
-    background-color: white;
-    z-index: 1;
-    height: 4rem;
-    width: 100%;
-    box-shadow: 1px 1px 5px #888888;
-    z-index: 2;
+  color: $text-color;
+  position: fixed;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+  height: 4rem;
+  width: 100%;
+  box-shadow: 1px 1px 5px $box-shadow-color;
+  z-index: 2;
 
+  .logo {
+    position: absolute;
+    margin-top: 0.0rem;
+    margin-left: 3rem;
+
+    img {
+      height: 4rem;
+
+    }
+  }
+
+  .login {
+    position: absolute;
+    right: 2rem;
+    margin-top: 0.5rem;
+
+    li {
+      display: inline-block;
+      margin-left: 1rem;
+      font-size: 1rem;
+
+    }
+  }
+
+  .nav {
+    position: absolute;
+    right: 2rem;
+    margin-top: 2rem;
+    margin-right: 5rem;
+
+    li {
+      display: inline-block;
+      margin-left: 1rem;
+      font-size: 1rem;
+      padding-bottom: 0.25rem;
+      padding-right: 0.25rem;
+      padding-left: 0.25rem;
+
+      &:hover {
+        border-bottom: 2px solid $primary-color;
+
+      }
+    }
+
+    a {
+      color: $text-color;
+      text-decoration: none;
+
+    }
+  }
 }
 
-       .alt_header .logo {
-
-            position: absolute;
-            margin-top: 0.0rem;
-            margin-left: 3rem;
-            
-        }
-
-            .alt_header .logo img {
-
-                height: 4rem;
-
-            }
-
-        .alt_header .login {
-
-            position: absolute;
-            right: 2rem;
-            margin-top: 0.5rem;
-
-        }
-
-                .alt_header .login li {
-
-                    display: inline-block;
-                    margin-left: 1rem;
-                    font-size: 1rem;
-                }
-
-
-        .alt_header .nav {
-
-            position: absolute;
-            right: 2rem;
-            margin-top: 2rem;
-            margin-right: 5rem;
-
-        }
-
-                .alt_header .nav li {
-
-                    display: inline-block;
-                    margin-left: 1rem;
-                    font-size: 1rem;
-                    padding-bottom: 0.25rem;
-                    padding-right: 0.25rem;
-                    padding-left: 0.25rem;
-                }
-
-                    .alt_header .nav li:hover {
-
-                        border-bottom: 2px solid $primary-color;
-                    }
-
-                .alt_header .nav a {
-
-                    color: #888888;
-                    text-decoration: none;
-
-                }
-
-
 #static {
-
-    position: static;
-    height: 4rem;
+  position: static;
+  height: 4rem;
 
 }
 
@@ -180,202 +164,171 @@ body {
 
 
 .footer {
-
-    color: white;
-    height: 5rem;
-    background-color: #474747;
+  color: white;
+  height: 5rem;
+  background-color: #474747;
 
 }
 
 /* -------------------------- pages#index ------------------------- */
 
 .intro {
-
-    position: relative;
-    min-height: 40rem;
-    background-color: #FFFDFD;
-    color: black;
+  position: relative;
+  min-height: 40rem;
+  background-color: #FFFDFD;
+  color: black;
 
 }
 
 .divider {
-
-    height: 0rem;
-    background:none;
+  height: 0rem;
+  background:none;
 
 }
 
 #who_are_we {
 
-    color: white;
-    font-size: 1.5rem;
-    line-height: 2rem;
-    background-color: $primary-color;
+  color: white;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  background-color: $primary-color;
+    
+  div {
+    position: relative;
+    top: 5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+
+  }
 }
-    
-    #who_are_we div {
-
-        position: relative;
-        top: 5rem;
-        margin-left: 2rem;
-        margin-right: 2rem;
-
-    }
-    
 
 #professionals {
+  /*color: black;*/
+  font-size: 1.5rem;
+  line-height: 2rem;
+  /*background-color: rgba(255,255,255,0.8);*/
+  /*border: 1px solid white;*/
 
-    /*color: black;*/
-    font-size: 1.5rem;
-    line-height: 2rem;
-    /*background-color: rgba(255,255,255,0.8);*/
-    /*border: 1px solid white;*/
+  div {
+    position: relative;
+    top: 5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 
+  }
 }
-
-    #professionals div {
-
-        position: relative;
-        top: 5rem;
-        margin-left: 2rem;
-        margin-right: 2rem;
-
-    }
 
 #nonprofits {
+  /*color: white;*/
+  font-size: 1.5rem;
+  line-height: 2rem;
+  background-color: #AEE5D1;
 
-    /*color: white;*/
-    font-size: 1.5rem;
-    line-height: 2rem;
-    background-color: #AEE5D1;
+  div {
+    position: relative;
+    top: 5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 
+  }
 }
-
-    #nonprofits div {
-
-        position: relative;
-        top: 5rem;
-        margin-left: 2rem;
-        margin-right: 2rem;
-
-
-    }
 
 #companies {
 
-    /*color: black;*/
-    font-size: 1.5rem;
-    line-height: 2rem;
-    /*background-color: white;*/
+  /*color: black;*/
+  font-size: 1.5rem;
+  line-height: 2rem;
+  /*background-color: white;*/
 
+  div {
+    position: relative;
+    top: 5rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+  }
 }
-
-    #companies div {
-
-        position: relative;
-        top: 5rem;
-        margin-left: 2rem;
-        margin-right: 2rem;
-
-    }
-
 
 /* -------------------------- projects#index ------------------------- */
 
-
 .projects_search {
+  position: fixed;
+  padding-top: 3rem;
+  padding-left: 2rem;
+  top: 4rem;
+  height: 40rem;
+  width: 15%;
+  background-color: white;
+  z-index: 1;
+  overflow: scroll;
+  color: $text-color;
+  
+  .search_bar {
+    font-size: 1rem;  
+    font-weight: bold;
+    display: block;
+    position: relative;
+    min-height: 30rem;
 
-    position: fixed;
-    padding-top: 3rem;
-    padding-left: 2rem;
-    top: 4rem;
-    height:40rem;
-    width: 15%;
-    background-color: white;
-    z-index: 1;
-    overflow: scroll;
+    .clickable {
+      font-size: 1rem;
+      font-weight: normal;
+      display: block;
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-left: 0.5rem;
 
-}
+      &:hover {
+        background-color: $primary-color;
+        color: white;
 
-    .projects_search .search_bar {
-
-        font-size:1rem;
-        color: #888888;
-        font-weight: bold;
-        display: block;
-        position: relative;
-        min-height: 30rem;
-    
+      }
     }
 
-        .projects_search .search_bar .clickable {
+    .clicked {
+      background-color: $primary-color;
+      color: white;
 
-            font-size: 1rem;
-            font-weight: normal;
-            display: block;
-            margin-top: 1rem;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            padding-left: 1rem;
+    }
 
-        }
+     .lis {
+      display: none;
 
+      a {
+        color: $text-color;
+        text-decoration: none;
 
-        .projects_search .search_bar .lis {
+      }
 
-            display: none;
+      li {
+        font-size: 1rem;
+        font-weight: normal;
+        display: block;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        padding-left: 2rem;
+        border-bottom: 2px solid white;
 
-        }
+       
 
-        .projects_search .search_bar #show_by_default {
-
-            display: block;
-        }
-
-        .projects_search .search_bar .lis a {
-
-            color: #888888;
-            text-decoration: none;
-
-        }    
-
-        .projects_search .search_bar .lis li {
-
-            font-size: 1rem;
-            font-weight: normal;
-            display: block;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            padding-left: 2rem;
-            border-bottom: 2px solid white;
+       &:hover {
+          border-bottom: 2px solid $primary-color;
 
         }
+      }
 
-        .projects_search .search_bar .lis .filter_on {
-            
-            background-color: #F1F1F1;
+      .filter_on {
+        background-color: #F1F1F1;
 
-        }
+      }
+    }
 
-            .projects_search .search_bar .lis li:hover {
+    #show_by_default {
+      display: block;
 
-                border-bottom: 2px solid $primary-color;
-
-            }
-
-        .projects_search .search_bar .clickable:hover {
-
-            background-color: $primary-color;
-            color: white;
-        }
-
-        .projects_search .search_bar .clicked {
-            
-            background-color: $primary-color;
-            color: white;
-        }
-
-
+    }
+  }
+}
 
 .projects_show {
 
@@ -391,182 +344,200 @@ body {
 }
 
 .project_card {
+  color: gray;
+  float: left;
+  height:20rem;
+  width: 20rem;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background-color: #EEEEEE;
+  
+  .project_header {
+    font-size: 1.5rem;
+    width: 100%
+  }
 
+  .project_details {
     color: gray;
-    float: left;
-    height:20rem;
-    width: 20rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
-    background-color: #EEEEEE;
-    /*background-color: #F1F1F1;*/
+    margin-top: 1rem;
+    line-height: 1.3 rem;
 
+  }
+
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+
+    .project_details {
+      color: white;
+
+    }
+  }
 }
-
-
-    .project_card .project_header {
-
-        /*color: #FFDD4B;*/
-        font-size: 1.5rem;
-        width: 100%;
-
-
-
-    }
-
-    .project_card .project_details {
-
-        color: gray;
-        margin-top: 1rem;
-        line-height: 1.3rem;
-
-
-    }
-
-    .project_card:hover {
-
-        background-color: $primary-color;
-        color: white;
-
-    }
-
-    .project_card:hover .project_details {
-
-        color: white;
-
-    }
 
 /* POPUP DIV CSS */
 
 .projects_detail {
+  display: none;
+  background-color: $primary-color;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 20;
+  box-shadow: 1px 1px 3px $box-shadow-color;
+  height: 400px;
+  width: 400px;
+
+  .project_card {
     background-color: $primary-color;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    z-index: 20;
-    box-shadow: 1px 1px 3px #888888;
-    height: 400px;
-    width: 400px;
-}
+    color: white;
 
-    .projects_detail .project_card {
-        background-color: $primary-color;
+    .project_details {
         color: white;
-    }
+      }
+    }  
 
-        .projects_detail .project_card .project_details {
-            color: white;
-        }
+  .do_project {
+    display: inline-block;
+    background-color: #EEEEEE;
+    height: 40px;
+    width: 50px;
+    padding: 5px;
+    margin: 1.5rem;
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+  }
 
-    .projects_detail .do_project {
-        display: inline-block;
-        background-color: #EEEEEE;
-        height: 40px;
-        width: 50px;
-        padding: 5px;
-        margin: 1.5rem;
-        text-decoration: none;
-        color: black;
-        border-radius: 5px;
-    }
+  .fb-share-button {
+    display: inline-block;
+    height: 40px;
+    width: 50px;
+    padding: 5px;
+    margin: 1.2rem;
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+  }
+}
 
 /* -------------------------- user#profile ------------------------- */
 
-.profile_view_content {
-    
+.profile_view {
+  position: relative;
+  background-color: white;
+  padding-top:3rem;
+  padding-left: 3rem;
+  width: 85%;
+  min-height: 40rem;
+  margin-left: 15%;
+  overflow: hidden;
+
+  .profile_view_content {
     display: none;
 
+  }
+
+  #summary {
+    display: initial;
+
+  }
+
+  .show_application {
+    margin-top: 1.5rem;
+    line-height: 1.5rem;
+
+  }
 }
+
 
 .greeting_message {
-
-    position: relative;
-    background-color: white;
-    padding-top:3rem;
-    padding-left: 3rem;
-    width: 85%;
-    margin-left: 15%;
-    overflow: hidden;
-
+  position: relative;
+  background-color: white;
+  padding-top:3rem;
+  padding-left: 3rem;
+  width: 85%;
+  margin-left: 15%;
+  overflow: hidden;
 
 }
-
 
 .profile_view_nav {
+  position: fixed;
+  padding-top: 3rem;
+  padding-left: 2rem;
+  top: 4rem;
+  height:40rem;
+  width: 15%;
+  background-color: white;
+  z-index: 1;
+  overflow: scroll;
 
-    position: fixed;
-    padding-top: 3rem;
-    padding-left: 2rem;
-    top: 4rem;
-    height:40rem;
-    width: 15%;
-    background-color: white;
-    z-index: 1;
-    overflow: scroll;
+  .profile_view_nav_buttons {
+    font-size: 1rem;
+    color: $text-color;
+    font-weight: bold;
+    display: block;
+    position: relative;
+    min-height: 30rem;
 
-}
+    .profile_view_button {
+      font-size: 1rem;
+      font-weight: normal;
+      display: block;
+      margin-top: 1rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-left: 1rem;
 
-    .profile_view_nav .profile_view_nav_buttons {
+      &:hover {
+        background-color: $primary-color;
+        color: white;
 
-        font-size:1rem;
-        color: #888888;
-        font-weight: bold;
-        display: block;
-        position: relative;
-        min-height: 30rem;
-    
+      }
     }
 
+    .clicked {
+      @extend .profile_view_button:hover;
 
-        .profile_view_nav .profile_view_nav_buttons .profile_view_button {
-
-            font-size: 1rem;
-            font-weight: normal;
-            display: block;
-            margin-top: 1rem;
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-            padding-left: 1rem;
-
-        }
-
-
-            .profile_view_nav .profile_view_nav_buttons .profile_view_button:hover {
-
-                    background-color: $primary-color;
-                    color: white;
-            }
-
-
-            .profile_view_nav .profile_view_nav_buttons .clicked {
-                
-                background-color: $primary-color;
-                color: white;
-
-            }
-
+    }
+  }    
+}
 
 .profile_view {
 
-    position: relative;
-    background-color: white;
-    padding-top:3rem;
-    padding-left: 3rem;
-    width: 85%;
-    min-height: 40rem;
-    margin-left: 15%;
-    overflow: hidden;
+  position: relative;
+  background-color: white;
+  padding-top:3rem;
+  padding-left: 3rem;
+  width: 85%;
+  min-height: 40rem;
+  margin-left: 15%;
+  overflow: hidden;
 
+  .show_application {
+    margin-top: 1.5rem;
+    line-height: 1.5rem;
+
+  }    
 }
 
-    .profile_view .show_application {
+.resume_upload {
+  .dropzone {
+    display: block;
+    background-color: #D8D8D8;
+    width: 20rem;
+    height: 3rem;
+    text-align: center;
+    border: 0.2rem dashed $box-shadow-color;
 
-        margin-top: 1.5rem;
-        line-height: 1.5rem;
+  }
 
-    }
-
+  .draghover {
+    border: 0.2rem dashed #7ABDAF;
+  }
+}
