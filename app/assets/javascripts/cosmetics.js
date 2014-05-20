@@ -113,6 +113,8 @@ function configureDropzone() {
       uploadMultiple: false,
       maxFiles: 1,
       forceFallback: false,
+      acceptedFiles: 'application/pdf,application/doc,application/docx',
+      addRemoveLinks: true,
 
       init: function() {
         var submitButton = $("#resume_upload")
