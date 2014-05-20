@@ -48,6 +48,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
+
     @project = Project.new(projects_params)
 
     respond_to do |format|
@@ -55,8 +56,9 @@ class ProjectsController < ApplicationController
         format.js { render :js => 'alert("Your project was saved!")'}
         format.html
       else
-        format.js
-        format.html
+
+        format.js 
+        format.html {render :new}
       end
     end
   end
