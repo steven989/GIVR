@@ -48,13 +48,24 @@ class UsersController < ApplicationController
 
     def upload_resume
         @user = current_user
-        if params[:resume_action] && params[:user] == 'upload'
+        if params[:user] && params[:resume_action] == 'upload'
             @user.update_attribute(:resume, params[:user][:resume])
+            message = 'Resume successfully uploaded'
         elsif params[:resume_action] == 'remove'
             @user.remove_resume!
-            @user.save            
+            @user.save
+            message = 'Resume successfully removed'       
         end
-        redirect_to user_profile_path
+
+        respond_to do |format|
+            format.html {redirect_to user_profile_path, notice: message}
+            format.json {   self.formats = ['html']
+              render json: { 
+                  replaceWith: render_to_string(partial: 'users/resume_upload', layout: false, locals: {user: @user})
+                      } 
+          }
+        end
+        
     end 
 
     def profile
@@ -65,8 +76,11 @@ class UsersController < ApplicationController
             @applications = current_user.applications.order('created_at ASC').where("status not like 'shortlist'")
         elsif @role == 'professional'
             @projects = current_user.completed_projects
-            @applications = current_user.made_applications.order('created_at ASC').where("status in ('apply','approve')")
+            @applications = current_user.made_applications.order('created_at ASC').where("status in ('apply','approve', 'engage')")
             @shortlists = current_user.made_applications.order('created_at ASC').where("status in ('shortlist')")
+            @completed_applications = current_user.made_applications.order('created_at ASC').where("status in ('complete')")
+            @number_ccompleted_applications = @completed_applications.length
+            @points = current_user.points
         end
     end 
 

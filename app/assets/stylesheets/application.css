@@ -496,9 +496,15 @@ body {
 
 /* -------------------------- user#profile ------------------------- */
 
-.profile_view_content {
+.profile_view .profile_view_content {
     
     display: none;
+
+}
+
+.profile_view #summary {
+    
+    display: initial;
 
 }
 
@@ -590,3 +596,15 @@ body {
 
     }
 
+.resume_upload .dropzone {
+    display: block;
+    background-color: #D8D8D8;
+    width: 20rem;
+    height: 3rem;
+    text-align: center;
+    border: 0.2rem dashed #888888;
+}
+
+    .resume_upload .draghover {
+        border: 0.2rem dashed #7ABDAF;
+    }

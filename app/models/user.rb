@@ -36,6 +36,17 @@ class User < ActiveRecord::Base
 
 
   def completed_projects
-    self.projects.where("status like 'completed'")
+    self.projects.where("status like 'complete'")
+  end 
+
+  def points
+    points_per_application = self.made_applications.map { |application|
+        # put the calcuation here to translate application into points
+        application.status == 'complete' ? 3000 : 0
+    }
+
+    points_per_application.inject(0) {|total_points, points_per_application|
+      total_points+=points_per_application
+    }
   end 
 end
