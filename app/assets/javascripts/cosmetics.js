@@ -113,7 +113,7 @@ function configureDropzone() {
       uploadMultiple: false,
       maxFiles: 1,
       forceFallback: false,
-      acceptedFiles: 'application/pdf,application/doc,application/docx',
+      acceptedFiles: 'application/pdf,.doc,.docx',
       addRemoveLinks: true,
 
       init: function() {
