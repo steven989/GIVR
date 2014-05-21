@@ -40,7 +40,9 @@
               <div class='profile_view_button' id='summary'>Summary</div>
           </li>
           <li>
-              <div class='profile_view_button' id='applications'>Applications</div>
+              <div class='profile_view_button' id='applications' data-readapp = '<%= read_applications_path %>'>Applications
+                <div class="notification_count <%= "hidden" if @notification_count == 0 %>"><%= @notification_count %></div>
+              </div>
           </li>
           <li>
               <div class='profile_view_button' id='projects'>Projects</div>              

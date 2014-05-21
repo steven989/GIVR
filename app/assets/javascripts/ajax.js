@@ -156,4 +156,13 @@ $(window).on('beforeunload',function(){     // navigating away from a page
     $('#close_project').on('click',endView);
   }
 
+  // send a message to the server to turn all the application into "read"
+
+  function projectApplicationRead() {
+    $.ajax({
+      url: $(this).data('readapp'),
+      type: 'PATCH',
+      dataType: 'JSON'
+    });
+  }
 

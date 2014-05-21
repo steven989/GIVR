@@ -1,7 +1,7 @@
 
 <% if role == 'npo' %>
 
-<div class="show_application">
+<div class="show_application <%= "unread" if application.notification_view_flag == 'npo' %>" >
     <p class='user'>User: <%= application.user.email %></p>
     <p class='project'>Project: <%= application.project.title %></p>
     <p class='application_status'>Application status: <%= application.status %></p>
@@ -21,7 +21,7 @@
 
 <% elsif role == 'professional' %>
 
-<div class="show_application">
+<div class="show_application <%= "unread" if application.notification_view_flag == 'professional' %>" >
     <p class='project'>Project: <%= application.project.title %></p>
     <p class='organization'>Organization: <%= application.project.user.email %></p>
     <p class='application_status'>Application status: <%= application.status %></p>

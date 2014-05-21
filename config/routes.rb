@@ -17,6 +17,7 @@ Givr::Application.routes.draw do
   patch 'user/upload_logo' => 'users#upload_logo'
   get 'user/profile' => 'users#profile', as: 'user_profile'
   patch 'user/update_role' => 'users#update_role', as: 'update_role'
+  patch 'applications/read_applications' => 'applications#read', as: 'read_applications'
   post 'oauth/callback' => 'oauths#callback'
   get 'oauth/callback' => 'oauths#callback'
   get 'oauths/:provider' => 'oauths#oauth', as: 'auth_at_provider'

@@ -1,3 +1,15 @@
+<!-- this block is related to the notification -->
+   <% if current_user %> 
+      <%   if current_user.role == 'npo' %>
+         <% @applications = current_user.applications.order('created_at ASC').where("applications.status not like 'shortlist'") %>
+         <%    @notification_count = @applications.where("notification_view_flag like 'npo'").length %>
+        <% elsif current_user.role == 'professional' %>
+            <% @applications = current_user.made_applications.order('created_at ASC').where("applications.status in ('apply','approve', 'engage')") %>
+           <%  @notification_count = @applications.where("notification_view_flag like 'professional'").length %>
+        <% end %>
+    <% end %>
+<!-- this is the actual view -->
+
 <div class="alt_header" id="visible_white">
     <div class="logo">
         <%= link_to image_tag("Logo/Logo_short.png"), root_path %>
@@ -14,7 +26,10 @@
         <li><%= link_to 'PROJECTS', projects_path %></li>
 
         <% if current_user %>
-            <li><%= link_to 'MY PROFILE', user_profile_path %></li>
+            <li>
+                <%= link_to 'MY PROFILE', user_profile_path %>
+                <div class="notification_count <%= "hidden" if @notification_count == 0 %>"><%= @notification_count %></div>
+            </li>
             <li><%= link_to 'SIGN OUT', session_path('current'), method: 'delete' %></li>
         <% else %>
             <li><%= link_to 'SIGN IN', new_user_path %></li>

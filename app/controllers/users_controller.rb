@@ -35,7 +35,6 @@ class UsersController < ApplicationController
             @user.causes << Cause.find_by(id:cause_id) unless cause_id == ""
         end
         redirect_to user_profile_path, notice: 'Your preferences have been saved!'
-
     end
 
     def update_role

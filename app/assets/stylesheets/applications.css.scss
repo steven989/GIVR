@@ -20,6 +20,23 @@ body {
     
     }
 
+.hidden {
+  display: none;
+}
+
+
+.notification_count {
+  position: absolute;
+  right: -0.75rem;
+  top: -0.75rem;
+  height: 1rem;
+  width: 1rem;
+  text-align: center;
+  color: white;
+  background-color: #CE3E3E;
+  border-radius: 100%;
+  }
+
 /* -------------------------- header and footer ------------------------- */
 
 
@@ -65,6 +82,7 @@ body {
     margin-right: 5rem;
 
     li {
+      position: relative;
       display: inline-block;
       margin-left: 1rem;
       font-size: 1rem;
@@ -133,6 +151,7 @@ body {
     margin-right: 5rem;
 
     li {
+      position: relative;
       display: inline-block;
       margin-left: 1rem;
       font-size: 1rem;
@@ -454,6 +473,10 @@ body {
   .profile_view_content {
     display: none;
 
+
+    .unread {
+      background-color: $text-color;
+    }
   }
 
   #summary {
@@ -489,7 +512,7 @@ body {
   width: 15%;
   background-color: white;
   z-index: 1;
-  overflow: scroll;
+  overflow: visible;
 
   .profile_view_nav_buttons {
     font-size: 1rem;
@@ -499,7 +522,9 @@ body {
     position: relative;
     min-height: 30rem;
 
+
     .profile_view_button {
+      position: relative;
       font-size: 1rem;
       font-weight: normal;
       display: block;
@@ -511,6 +536,8 @@ body {
       &:hover {
         background-color: $primary-color;
         color: white;
+        
+
 
       }
     }

@@ -72,22 +72,25 @@ function highlightButton() {
 // this code is for the user profile page, the toggle among the profile sections (summary, applications, etc.)
 
 function profile_toggle() {
-
-    $('.profile_view_button').on('click',execute_profile_toggle);
+    $('.profile_view_button').on('click',function(){
+        execute_profile_toggle.call($(this));
+        if ($(this).attr('id') == 'applications') {projectApplicationRead.call($(this))};
+    });
 }
 
+    // this function is extracted out of the function above because we need to call this function elsewhere (when we first load the page, we need to call this function to highlight the correct nav button using url fragment)
 
-function execute_profile_toggle(){                          // this function is extracted out of the function above because we need to call this function elsewhere (when we first load the page, we need to call this function to highlight the correct nav button using url fragment)
-        var _this = $(this)
-        window.location.hash=$(this).attr('id')
-        $('.profile_view_content').each(function(){
-            if (_this.attr('id') === $(this).attr('id')) {
-                $(this).show()
-            } else { 
-                $(this).hide()          
-            };
-        });
-    }
+    function execute_profile_toggle(){                          
+            var _this = $(this)
+            window.location.hash=$(this).attr('id')
+            $('.profile_view_content').each(function(){
+                if (_this.attr('id') === $(this).attr('id')) {
+                    $(this).show()
+                } else { 
+                    $(this).hide()          
+                };
+            });
+        }
 
 // this code is to jump to the correct section when we first land on the profile page
 
@@ -116,7 +119,7 @@ function putHighlightOnProjectFilter(_this) {
     }
 }
 
-// this code customizes the parameters for the dropzone drag and drop resume upload
+// this code customizes the parameters for the dropzone drag and drop resume and logo upload
 
 function configureDropzone() {
 
@@ -215,7 +218,6 @@ function configureDropzone() {
 
       }
     };
-
 }
 
 
