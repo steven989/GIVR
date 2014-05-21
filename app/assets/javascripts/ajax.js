@@ -34,7 +34,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // approve projects from the user profile. 
 
   function triggerApproval() {
-    $('.user_action_button').on('click',function(){
+    $('.user_action_button').off('click').on('click',function(){
     event.stopImmediatePropagation(); //not sure why preventDefault does not work here
     var _this = $(this);
     $.ajax({
@@ -55,7 +55,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   function filterProjects() {
 
-    $('.filter_button').on('click',function(){
+    $('.filter_button').off('click').on('click',function(){
       event.preventDefault();
       $(this).data('on', 1 - $(this).data('on'));  // a data attribute of 1 represent checked, while a 0 represents unchecked. This is a toggle
       var allCheckedButtonsObject = $('.filter_button').filter(function(){
@@ -80,7 +80,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // Show individual products inside a div on the page
 
   function showProject() {
-    $('.project_link').on('click', function() {
+    $('.project_link').off('click').on('click', function() {
       event.preventDefault();
       $('.projects_detail').fadeIn('fast');
       $.ajax({
@@ -90,7 +90,6 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         data: { view: $(this).data('view'), browser_info: browser_info}
       }).always(function(){
         buttonsInsideShowProject();
-        closeButtonListenerToAssignViewClose();
       });
     });
   }
@@ -104,7 +103,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
     } catch (e) {
       console.log(e);
     }
-            $('.do_project').on('click',function(){
+            $('.do_project').off('click').on('click',function(){
               event.stopImmediatePropagation(); //not sure why preventDefault does not work here
               $.ajax({
                 url: $(this).attr('href'),
@@ -113,9 +112,10 @@ $(window).on('beforeunload',function(){     // navigating away from a page
               }).always(function(data){alert(data.message)});
               return false  //not sure why preventDefault does not work here
             });
-          $('#close_project').on('click', function() {
+          $('#close_project').off('click').on('click', function() {
             event.preventDefault();
             $('.projects_detail').fadeOut('fast');
+            endView();
           })
 
       }
@@ -124,7 +124,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   function removeResume() {
 
-    $('.remove_resume').on('click',function(){
+    $('.remove_resume').off('click').on('click',function(){
       event.stopImmediatePropagation(); //not sure why preventDefault does not work here
       $.ajax({
         url: $(this).attr('href'),
