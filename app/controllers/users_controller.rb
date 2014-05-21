@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
 
+    before_filter :require_login
+    skip_before_filter :require_login, only: [:new, :create]
+
     def new
         @user = User.new
     end 
@@ -89,5 +92,9 @@ class UsersController < ApplicationController
     def users_params
         params.require(:user).permit(:email,:password,:password_confirmation,:role,:resume)
     end 
+
+    def require_login
+        redirect_to new_user_path if !logged_in?
+    end
 
 end
