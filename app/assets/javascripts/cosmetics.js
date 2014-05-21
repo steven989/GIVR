@@ -13,13 +13,14 @@ $('document').ready(function() {
                 var _this = $(this)
                     all_buttons.each(function(){
                         if ($(this).text() == _this.text() || $(this).attr('class').indexOf('clicked') >= 0) {
-                            highlightButton($(this));
+                            highlightButton.call($(this));
                         };
                     });
             });
         });
     navigationUnderline();  // will add underline to the navigation link that's currently active
     profile_toggle();
+    if (window.location.href.indexOf('profile')>-1) jumpToTheRightProfileSection(); // will jump to the profile section indicated by the url fragment
 });
 
 
@@ -61,24 +62,24 @@ function slideUpDown() {
 
 // this code is so that when a search group button is clicked, it is always highlighted even without mouseover
 
-function highlightButton(_this) {
-    if ($(this).attr('class') == undefined) {
-        context = _this
-    } else { 
-        context = $(this)
-    }
-    var notClicked = context.attr('class').indexOf('clicked') < 0
-    if (notClicked) {context.addClass('clicked')} 
-        else {context.removeClass('clicked')}
+function highlightButton() {
+    var notClicked = $(this).attr('class').indexOf('clicked') < 0
+    if (notClicked) {$(this).addClass('clicked')} 
+        else {$(this).removeClass('clicked')}
 }
 
 
-// this code is for the user profile page, the toggle between application, project and shortlist 
+// this code is for the user profile page, the toggle among the profile sections (summary, applications, etc.)
 
 function profile_toggle() {
 
-    $('.profile_view_button').on('click',function(){
-        _this = $(this)
+    $('.profile_view_button').on('click',execute_profile_toggle);
+}
+
+
+function execute_profile_toggle(){                          // this function is extracted out of the function above because we need to call this function elsewhere (when we first load the page, we need to call this function to highlight the correct nav button using url fragment)
+        var _this = $(this)
+        window.location.hash=$(this).attr('id')
         $('.profile_view_content').each(function(){
             if (_this.attr('id') === $(this).attr('id')) {
                 $(this).show()
@@ -86,9 +87,24 @@ function profile_toggle() {
                 $(this).hide()          
             };
         });
-    });
-}
+    }
 
+// this code is to jump to the correct section when we first land on the profile page
+
+function jumpToTheRightProfileSection(){
+    var raw_hash = window.location.hash.substring(1); // get the fragment from the url
+    var arrayOfExistingButtonIds = $.map($('.profile_view_nav .profile_view_button'),function(element,index){return element.id});   // this converts an array of the buttons into an array of the IDs of the buttons; used to check of the fragment in the url actually matches one of the buttons
+    var section_id;
+    if (arrayOfExistingButtonIds.indexOf(raw_hash) >= 0) {
+        section_id = raw_hash
+    } else {
+        section_id = 'summary'
+    }
+    var content_context = $('.profile_view_content').filter(function(){return $(this).attr('id') == section_id}); // find the content div whose id matches the fragment
+    execute_profile_toggle.call(content_context);
+    var button_context = $('.profile_view_nav .profile_view_button').filter(function(){return $(this).attr('id') == section_id}); // find the button whose id matches the fragment
+    highlightButton.call(button_context);
+}
 
 // this code is to highlight the categories, causes and locations that are filtered on and unhighlight those that are not on
 
