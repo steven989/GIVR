@@ -15,7 +15,7 @@
     end 
 
     def professional_cannot_apply_twice_to_same_project
-        if self.project.applications.map {|application| application.user_id}.include? self.user_id
+        if self.project.applications.where("applications.status not in ('shortlist')").map {|application| application.user_id}.include? self.user_id
           self.errors[:base] << "You've already applied to this project."
         end
     end
