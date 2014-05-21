@@ -83,6 +83,8 @@ Location.create(
     user_id: 1,
     category_id: (1..3).to_a.sample,
     cause_id: (1..5).to_a.sample,
-    location_id: (1..5).to_a.sample
+    location_id: (1..5).to_a.sample,
+    statuses: 'active',
+    number_of_positions: (1..3).to_a.sample
   )
 end
