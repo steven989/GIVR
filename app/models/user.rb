@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :locations
 
   mount_uploader :resume, ResumeUploader
+  mount_uploader :logo, LogoUploader
 
   authenticates_with_sorcery! do |config|
 

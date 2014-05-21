@@ -53,23 +53,43 @@ class UsersController < ApplicationController
         @user = current_user
         if params[:user] && params[:resume_action] == 'upload'
             @user.update_attribute(:resume, params[:user][:resume])
-            message = 'Resume successfully uploaded'
+            message = "Resume could not be saved. #{@user.errors.full_messages.join(" ")}" if @user.errors.any?
         elsif params[:resume_action] == 'remove'
             @user.remove_resume!
-            @user.save
-            message = 'Resume successfully removed'       
+            @user.save  
         end
 
         respond_to do |format|
             format.html {redirect_to user_profile_path, notice: message}
             format.json {   self.formats = ['html']
               render json: { 
-                  replaceWith: render_to_string(partial: 'users/resume_upload', layout: false, locals: {user: @user})
+                  replaceWith: render_to_string(partial: 'users/resume_upload', layout: false, locals: {user: @user}),
+                  message: message
                       } 
           }
         end
-        
     end 
+
+    def upload_logo
+        @user = current_user
+        if params[:user] && params[:logo_action] == 'upload'
+            @user.update_attribute(:logo, params[:user][:logo])
+            message = "Logo could not be saved. #{@user.errors.full_messages.join(" ")}" if @user.errors.any?
+        elsif params[:logo_action] == 'remove'
+            @user.remove_logo!
+            @user.save  
+        end
+
+        respond_to do |format|
+            format.html {redirect_to user_profile_path, notice: message}
+            format.json {   self.formats = ['html']
+              render json: { 
+                  replaceWith: render_to_string(partial: 'users/logo_upload', layout: false, locals: {user: @user}),
+                  message: message
+                      } 
+          }
+        end
+    end
 
     def profile
         @user = current_user

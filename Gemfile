@@ -83,3 +83,7 @@ gem 'oauth2'
 #9) SimpleForm 
 
 gem 'simple_form'
+
+#10) For using ImageMagick to work with logo uploads
+
+gem 'rmagick', :require => 'RMagick'

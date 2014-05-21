@@ -138,7 +138,7 @@ function configureDropzone() {
 
         submitButton.hide(); 
 
-        submitButton.on("click", function() {
+        submitButton.off("click").on("click", function() {
           event.preventDefault();
           myDropzone.processQueue(); // Tell Dropzone to process all queued files.
         });
@@ -151,16 +151,66 @@ function configureDropzone() {
 
         // this is the hover effect
         this.on('dragover', function(){
-            $('.resume_upload .dropzone').addClass('draghover')
+            $('.upload .dropzone').addClass('draghover');
         });
 
         this.on('dragleave', function(){
-            $('.resume_upload .dropzone').removeClass('draghover')
+            $('.upload .dropzone').removeClass('draghover');
         }); 
 
         this.on('success',function(file, response){
-            $('.resume_upload_container').html(response.replaceWith)
-            removeResume(); //this calls the function to assign an AJAX listner to the remove resume button 
+            $('.upload_container').html(response.replaceWith);
+            $('.error_messages').html(response.message);
+
+            removeUpload(); //this calls the function to assign an AJAX listner to the remove resume button 
+        });
+
+      }
+    };
+
+    Dropzone.options.profileLogoUpload = {
+      // The params used to work with the server
+      paramName: 'user[logo]',
+      // Prevents Dropzone from uploading dropped files immediately
+      autoProcessQueue: true,
+      // Only one file at at ime
+      uploadMultiple: false,
+      maxFiles: 1,
+      forceFallback: false,
+      acceptedFiles: 'image/jpg,image/jpeg,image/gif,image/png',
+      addRemoveLinks: true,
+
+      init: function() {
+        var submitButton = $("#logo_upload")
+            myDropzone = this; // closure
+
+        submitButton.hide(); 
+
+        submitButton.off("click").on("click", function() {
+          event.preventDefault();
+          myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+        });
+
+        // // show the submit button only when files are dropped here:
+        // this.on("addedfile", function() {
+        //   // Show submit button here and/or inform user to click it.
+        //   submitButton.show();
+        // });
+
+        // this is the hover effect
+        this.on('dragover', function(){
+            $('.upload .dropzone').addClass('draghover');
+        });
+
+        this.on('dragleave', function(){
+            $('.upload .dropzone').removeClass('draghover');
+        }); 
+
+        this.on('success',function(file, response){
+            $('.upload_container').html(response.replaceWith);
+            $('.error_messages').html(response.message);
+
+            removeUpload(); //this calls the function to assign an AJAX listner to the remove resume button 
         });
 
       }

@@ -125,10 +125,15 @@
               <%= f.submit %>
             <% end %>
           </div>
-          <div class="resume_upload_container">
-          <%= render partial: 'resume_upload', locals: {user: @user} %>
+          <div class="upload_container">
+            <%= render partial: 'resume_upload', locals: {user: @user} %>
+          </div>
+        <% elsif @user.role == 'npo' %>
+          <div class="upload_container">
+            <%= render partial: 'logo_upload', locals: {user: @user} %>
           </div>
         <% end %>
+
       </div>
 
   </div>

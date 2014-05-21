@@ -9,7 +9,7 @@ $(function() {                  // document ready
   filterProjects();
   showProject();
   buttonsInsideShowProject();
-  removeResume();
+  removeUpload();
 });
 
 $(window).on('beforeunload',function(){     // navigating away from a page
@@ -120,18 +120,18 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
       }
 
-  //Button to remove uploaded resume
+  //Button to remove uploaded resume or logo
 
-  function removeResume() {
+  function removeUpload() {
 
-    $('.remove_resume').off('click').on('click',function(){
+    $('.remove_upload').off('click').on('click',function(){
       event.stopImmediatePropagation(); //not sure why preventDefault does not work here
       $.ajax({
         url: $(this).attr('href'),
         type: 'PATCH',
         dataType: 'JSON'
       }).done(function(data){
-        $('.resume_upload_container').html(data.replaceWith);
+        $('.upload_container').html(data.replaceWith);
         Dropzone.discover(); // this will rerun the Dropzone discover function to find all the forms to replace with Dropzone drag & drop
       });
       return false  //not sure why preventDefault does not work here

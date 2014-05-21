@@ -1,0 +1,19 @@
+<!-- This is the additional logic layer that wraps around the actual upload -->
+<div class='error_messages'></div>
+<% if user.logo.file.nil? %>
+  <div class="upload">
+    <span>Upload your logo below:</span>
+    <%= render partial: 'raw_upload', locals: {user: user} %>
+  </div>
+<% else %>
+  <% if !user.logo.file.exists? %>
+    <div class="upload">
+      <span>Upload your logo below:</span>
+      <%= render partial: 'raw_upload', locals: {user: user} %>
+    </div>
+  <% else %>
+    <p>Your logo:</p>
+    <p><%= image_tag user.logo_url if user.logo? %></p>
+    <p><%= link_to 'Remove logo', user_upload_logo_path(logo_action: 'remove' ), method: 'patch', class: 'remove_upload' %> </p>
+  <% end %>
+<% end %>

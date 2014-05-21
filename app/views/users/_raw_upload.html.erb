@@ -1,0 +1,16 @@
+<!-- This form is the actual upload field. This supports Dropzone upload. -->
+<% if user.role == 'professional' %>
+    <%= form_for user, url: user_upload_resume_path(resume_action: 'upload'), method: 'patch', html: {multipart: true, class: 'dropzone', id: 'profile-resume-upload'} do |f| %>
+    <div class='fallback'>
+      <%= f.file_field :resume %>
+    </div>
+      <%= f.submit 'Upload resume', id: 'resume_upload' %>
+    <% end %>
+<% elsif user.role == 'npo' %>
+    <%= form_for user, url: user_upload_logo_path(logo_action: 'upload'), method: 'patch', html: {multipart: true, class: 'dropzone', id: 'profile-logo-upload'} do |f| %>
+    <div class='fallback'>
+      <%= f.file_field :logo %>
+    </div>
+      <%= f.submit 'Upload logo', id: 'logo_upload' %>
+    <% end %>
+<% end %>

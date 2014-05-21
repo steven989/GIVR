@@ -1,7 +1,0 @@
-<!-- This form is the actual upload field. This supports Dropzone upload. -->
-<%= form_for user, url: user_upload_resume_path(resume_action: 'upload'), method: 'patch', html: {multipart: true, class: 'dropzone', id: 'profile-resume-upload'} do |f| %>
-<div class='fallback'>
-  <%= f.file_field :resume %>
-</div>
-  <%= f.submit 'Upload resume', id: 'resume_upload' %>
-<% end %>

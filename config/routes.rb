@@ -14,6 +14,7 @@ Givr::Application.routes.draw do
   put 'projects/:project_id/applications/:id/applicant' => 'applications#applicant_update', as: 'applicant_update'
   resources :users, only: [:show, :new, :create, :update]
   patch 'user/upload_resume' => 'users#upload_resume'
+  patch 'user/upload_logo' => 'users#upload_logo'
   get 'user/profile' => 'users#profile', as: 'user_profile'
   patch 'user/update_role' => 'users#update_role', as: 'update_role'
   post 'oauth/callback' => 'oauths#callback'
