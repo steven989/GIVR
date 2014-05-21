@@ -81,8 +81,12 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   function showProject() {
     $('.project_link').off('click').on('click', function() {
+      
       event.preventDefault();
-      $('.projects_detail').fadeIn('fast');
+      
+      $('.projects_overlay').fadeIn('fast');
+      $('.projects_detail').slideDown('slow');
+
       $.ajax({
         url: $(this).attr('href'),
         type: 'GET',
@@ -112,9 +116,17 @@ $(window).on('beforeunload',function(){     // navigating away from a page
               }).always(function(data){alert(data.message)});
               return false  //not sure why preventDefault does not work here
             });
+
+          $('.projects_overlay').on('click', function() {
+            $('.projects_detail').fadeOut('fast');
+            $(this).fadeOut('fast');
+            endView();
+          })
+
           $('#close_project').off('click').on('click', function() {
             event.preventDefault();
             $('.projects_detail').fadeOut('fast');
+            $('.projects_overlay').fadeOut('fast');
             endView();
           })
 
