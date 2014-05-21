@@ -28,7 +28,7 @@ class ApplicationsController < ApplicationController
         end
           format.json {render json: {message: success_message}}
       else
-        fail_message += " #{@application.errors.full_messages.join(',').capitalize}"
+        fail_message += " #{@application.errors.full_messages.join(' ')}"
         format.json {render json: {message: fail_message}}
       end 
     end 
@@ -46,6 +46,7 @@ class ApplicationsController < ApplicationController
           @application.project.attempt_close
       elsif params[:todo] == 'apply'
           @application.cannot_apply_to_filled_projects  #call the custom validation
+          @application.professional_cannot_apply_twice_to_same_project #call the custom validation
           unless @application.errors.any? 
             @application.statuses= params[:todo]
             UserMailer.applied_to_project(@application.project.user).deliver
@@ -57,7 +58,7 @@ class ApplicationsController < ApplicationController
         format.json {   self.formats = ['html']
               render json: { 
                   replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role}),
-                  alertMessage: @application.errors.full_messages.join('. ')
+                  alertMessage: @application.errors.full_messages.join(' ')
                       } 
           }
         end

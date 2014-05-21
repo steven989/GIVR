@@ -404,13 +404,27 @@ body {
   .do_project {
     display: inline-block;
     background-color: #EEEEEE;
-    height: 40px;
-    width: 50px;
+    height: 1rem;
+    width: 4rem;
     padding: 5px;
-    margin: 1.5rem;
+    margin: 1rem;
     text-decoration: none;
     color: black;
     border-radius: 5px;
+    text-align: center;
+  }
+
+  #close_project {
+    display: inline-block;
+    background-color: #EEEEEE;
+    height: 1rem;
+    width: 4rem;
+    padding: 5px;
+    margin: 1rem;
+    text-decoration: none;
+    color: black;
+    border-radius: 5px;
+    text-align: center;
   }
 
   .fb-share-button {
