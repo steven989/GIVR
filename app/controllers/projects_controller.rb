@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
   def show
     user_id = current_user ? current_user.id : nil
     @project = Project.find(params[:id])
-    @view = @project.views.new(user_id: user_id, view_start_time: Time.now, browser: params[:browser_info])
+    @view = @project.views.new(user_id: user_id, view_start_time: Time.now, browser: params[:browser_info], ip_address: request.remote_ip)
     @view.save # this is to track the project views
 
     respond_to do |format|
