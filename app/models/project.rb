@@ -7,6 +7,7 @@ class Project < ActiveRecord::Base
   belongs_to :cause
   belongs_to :location
   has_many :statuses, foreign_key: 'project_id', class_name: 'ProjectStatuses'
+  has_many :views, foreign_key: 'project_id', class_name: 'ProjectView'
   
   validates :title, presence: true
   validates :description, presence: true

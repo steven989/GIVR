@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :projects, through: :applications
   has_many :applications, through: :submitted_projects
   has_many :authentications, dependent: :destroy
+  has_many :projectviews, foreign_key: 'user_id', class_name: 'ProjectView'
 
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :causes

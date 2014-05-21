@@ -1,5 +1,9 @@
 
-$(function() {
+// high level triggers
+
+var browser_info = navigator.appVersion;
+
+$(function() {                  // document ready
   infiniteScroll();
   triggerApproval();
   filterProjects();
@@ -8,6 +12,9 @@ $(function() {
   removeResume();
 });
 
+$(window).on('beforeunload',function(){     // navigating away from a page
+  endView();  // indicate the end of a particular project if user navigates away
+});
 
 
   // infinite scroll on the projects page
@@ -80,8 +87,11 @@ $(function() {
         url: $(this).attr('href'),
         type: 'GET',
         dataType: 'script',
-        data: { view: $(this).data('view')}
-      }).always(buttonsInsideShowProject);
+        data: { view: $(this).data('view'), browser_info: browser_info}
+      }).always(function(){
+        buttonsInsideShowProject();
+        closeButtonListenerToAssignViewClose();
+      });
     });
   }
 
@@ -127,3 +137,23 @@ $(function() {
       return false  //not sure why preventDefault does not work here
     });
   }
+
+  // function to record the ending of viewing a particular project. This is the AJAX action, and should be called either on leaving a project view page or leaving a page
+
+  function endView() {
+    if($('#view_closed').is(":visible")) {
+      $.ajax({
+        url: $('#view_closed').data('viewpath'),
+        type: 'PATCH',
+        dataType: 'JSON'
+      });
+    };
+  }
+
+  // assign listeners to the close button to send close view request
+
+  function closeButtonListenerToAssignViewClose() {
+    $('#close_project').on('click',endView);
+  }
+
+

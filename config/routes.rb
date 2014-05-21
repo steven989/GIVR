@@ -21,6 +21,7 @@ Givr::Application.routes.draw do
   get 'oauths/:provider' => 'oauths#oauth', as: 'auth_at_provider'
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, only: [:create, :edit, :update]
+  resources :project_views, only: [:update]
 
 
   # The priority is based upon order of creation: first created -> highest priority.
