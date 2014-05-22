@@ -14,11 +14,9 @@ $box-shadow-color: #888888;
 /* ----------------------- across the whole document ---------------------- */
 
 body {
-
-        font-family: $font-stack;
-        box-sizing:border-box;
-        -moz-box-sizing:border-box; /* Firefox */
-    
+  font-family: $font-stack;
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
     }
 
 .hidden {
@@ -42,14 +40,14 @@ body {
 
 
 .header {
-    color: white;
-    position: fixed;
-    background-color: $primary-color;
-    z-index: 1;
-    height: 4.5rem;
-    width: 100%;
-    z-index: 3;
-    overflow: hidden;
+  color: white;
+  position: fixed;
+  background-color: $primary-color;
+  z-index: 1;
+  height: 4.5rem;
+  width: 100%;
+  z-index: 3;
+  overflow: hidden;
   
   .logo {
     position: absolute;
@@ -63,7 +61,6 @@ body {
   }
 
   .login {
-
     position: absolute;
     right: 2rem;
     margin-top: 0.5rem;
@@ -110,7 +107,6 @@ body {
 
 
 .alt_header {
-
   color: $text-color;
   position: fixed;
   top: 0;
@@ -207,7 +203,6 @@ body {
 }
 
 #who_are_we {
-
   color: white;
   font-size: 1.5rem;
   line-height: 2rem;
@@ -254,7 +249,6 @@ body {
 }
 
 #companies {
-
   /*color: black;*/
   font-size: 1.5rem;
   line-height: 2rem;
@@ -421,12 +415,14 @@ body {
   right: 0;
   margin: auto;
   z-index: 20;
-  box-shadow: 1px 1px 3px $box-shadow-color;
-  height: 410px;
-  width: 400px;
-  border-bottom: 3px solid $accent-color;
-  border-right: 3px solid $accent-color;
-
+  // border: 2px solid $accent-color;
+  border-radius: 2px;
+  // border-left: 1px solid $accent-color;
+  // border-top: 1px solid $accent-color;
+  // border-bottom: 3px solid $accent-color;
+  // border-right: 3px solid $accent-color;
+  box-shadow: 2px 2px $accent-color;
+  
   .project_card {
     background-color: $primary-color;
     color: white;
@@ -439,18 +435,20 @@ body {
   .do_project {
     display: inline-block;
     background-color: #EEEEEE;
-    top: 40px;
     height: 1rem;
     width: 4rem;
-    padding: 7px;
-    margin-left: 0.5rem;
+    padding: 6px;
+    margin-left: 1rem;
+    margin-top: 2rem;
     text-decoration: none;
     color: black;
     border-radius: 2px;
     text-align: center;
+    vertical-align: bottom;
 
     &:hover {
       background-color: $box-shadow-color;
+      color: white;
     }
   }
 
@@ -463,9 +461,9 @@ body {
     height: 1rem;
     width: 4rem;
     padding: 10px;
-    margin-left: 1rem;
+    margin-left: 2.5rem;
     text-decoration: none;
-    color: black;
+    color: $box-shadow-color;
   }
 }
 

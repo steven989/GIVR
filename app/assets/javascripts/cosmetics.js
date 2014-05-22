@@ -236,11 +236,6 @@ function animateProjects() {
     var width       = $(this).find('.project_card')[0].getBoundingClientRect().width
     var height      = $(this).find('.project_card')[0].getBoundingClientRect().height
 
-    console.log(top_pos);
-    console.log(left_pos);
-    console.log(width);
-    console.log(height);
-
     $('.projects_detail').css({
         'position': 'fixed',
         'left': left_pos,
@@ -260,7 +255,7 @@ function animateProjects() {
         top: 0,
         bottom: 0,
         duration: 1000,
-        padding: 25,
+        padding: 20,
         lineHeight: 22,
         effect: 'show'
     };
