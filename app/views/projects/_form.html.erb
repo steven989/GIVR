@@ -22,6 +22,16 @@
     <%= f.text_field :number_of_positions %>
   </div>
 
+  <div class="fields">
+    <%= f.label :category, "Category" %>
+    <%= options_from_collection_for_select(Category.all, :id, :category) %>
+    <%= collection_select(:project, :category_id, Category.all, :id, :category) %>
+    
+    <%= f.label :location, "Location" %>
+    <%= options_from_collection_for_select(Location.all, :id, :location) %>
+    <%= collection_select(:project, :location_id, Location.all, :id, :location) %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
