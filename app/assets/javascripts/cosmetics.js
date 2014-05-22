@@ -251,8 +251,8 @@ function animateProjects() {
     });
 
     var properties = {
-        marginLeft: 30%,
-        marginTop: 30%,
+        marginLeft: '30%',
+        marginTop: '30%',
         left: 0,
         right: 0,
         top: 0,
