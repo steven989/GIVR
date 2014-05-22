@@ -1,5 +1,5 @@
 <h1 class='overall_title'>Number of views for the last <%= pluralize(@num_weeks_show,'week') %>: </h1>
 <% @project_view.each do |key, value| %>
-<h1 class='chart_title'><%= Project.find_by(id: key[0].to_i).title %>: </h1>
-<%= column_chart value %>
+<h1 class='chart_title'><%= Project.find_by(id: key.to_i).title %>: </h1>
+<%= area_chart value, library: {vAxis: {format: '0'}}, max: (@y_max+(@y_max/2).ceil), colors: ['#76D7B3'], discrete: true, class: 'dash_charts' %>
 <% end %>

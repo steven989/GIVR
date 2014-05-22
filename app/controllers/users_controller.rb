@@ -111,19 +111,22 @@ class UsersController < ApplicationController
 
             #1) Find projects by their total views in the last four weeks
             
-            num_proj_show = params[:num_proj].nil? ? 3 : params[:num_proj]
-            @num_weeks_show = params[:num_weeks].nil? ? 4 : params[:num_weeks] 
-            array_of_top_project_ids = ProjectView.find_by_sql(["SELECT project_id, count(*) as views FROM project_views where user_id = ? AND view_start_time>=?::date GROUP BY project_id ORDER BY views DESC", current_user.id, (Time.now - (@num_weeks_show*7.days)).at_beginning_of_week]).take(num_proj_show).map {|project| [project.project_id]}
+            num_proj_show =  3 
+            @num_weeks_show =  4
+            array_of_top_project_ids = ProjectView.find_by_sql(["SELECT project_id, count(*) as views FROM project_views where user_id = ? AND view_start_time>=?::date GROUP BY project_id ORDER BY views DESC", current_user.id, (Time.now - (@num_weeks_show*7.days)).at_beginning_of_week]).take(num_proj_show).map {|project| [project.project_id,project.views]}
             
             #2) Turn into a hash in the form of {project_id => [[week1, view], [week2,view]]}
             @project_view = Hash.new { |this_hash, nonexistent_key| this_hash[nonexistent_key] = [] }  #this is the code to actually allow us to use << to assign into the arrays that are default value of the non-existent hash nonexistent_key
             array_of_dates = @num_weeks_show.times.map {|subtract| Time.now - (subtract*7.days)}.reverse
 
-            array_of_top_project_ids.each { |project_id|
+            array_of_top_project_ids.each { |project_id,views|
                 array_of_dates.each { |date|
                     @project_view[project_id] << [(date.at_beginning_of_week.strftime('%Y-%m-%d').to_s)+' to '+((date.at_beginning_of_week+6.days).strftime('%Y-%m-%d').to_s),ProjectView.find_by_sql(["SELECT count(a.*) as views FROM project_views a WHERE a.project_id = ? AND a.view_start_time between date_trunc('week', ?::date)::date and (date_trunc('week', ?::date)::date + '6 days'::interval)::date",project_id,date.to_date,date.to_date]).map {|week| week.views}[0]]
                 }
             }
+
+            @y_max = array_of_top_project_ids[0][1]
+
     end 
 
 
