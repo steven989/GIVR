@@ -4,24 +4,17 @@
   <title>Givr</title>
 
   <%= stylesheet_link_tag    "reset", media: "all", "data-turbolinks-track" => true %>
-
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <%= favicon_link_tag "Logo/favicon.ico" %>
-
 <script type="text/javascript" src = "http://code.jquery.com/jquery-1.11.0.js"></script>
-
 <script src="//use.edgefonts.net/quicksand;josefin-sans;forum.js"></script>
-
 <link href='http://fonts.googleapis.com/css?family=Arimo|Raleway' rel='stylesheet' type='text/css'>
-
   <%= csrf_meta_tags %>
 </head>
 <body>
-
 <div id="fb-root"></div>
 <script>
-
   (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -29,12 +22,9 @@
     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=279057202268450&version=v2.0";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
-
-
 </script>
 
 <%= yield %>
-
 
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>

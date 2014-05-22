@@ -49,41 +49,35 @@ end
 # Custom gems
 
 # 1) Manage user login
-
 gem 'sorcery'
 
 # 2) Prettify database pull in console
-
 gem 'hirb'
 
 # 3) Role-based authorization
-
 gem 'cancancan'
 
 # 4) Generate database seeds
-
 gem 'faker'
 
 # 5) Paginate with Kaminari
-
 gem 'kaminari'
 
 # 6) Resume upload
-
 gem 'carrierwave'
 
 # 7) Hide secret keys
-
 gem 'figaro'
 
 #8) Sign up and log in using Facebook and Linkedin
-
 gem 'oauth2'
 
 #9) SimpleForm 
-
 gem 'simple_form'
 
 #10) For using ImageMagick to work with logo uploads
-
 gem 'rmagick', :require => 'RMagick'
+
+#11) For building JavaScript charts 
+
+gem 'chartkick'
