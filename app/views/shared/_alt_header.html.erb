@@ -1,4 +1,4 @@
-<!-- this block is related to the notification -->
+<!-- this block is related to the notification. Put in here because current_user doesn't work for some reason in the Application controller (not project application, but the Rails application) -->
    <% if current_user %> 
       <%   if current_user.role == 'npo' %>
          <% @applications = current_user.applications.order('created_at ASC').where("applications.status not like 'shortlist'") %>
@@ -8,23 +8,18 @@
            <%  @notification_count = @applications.where("notification_view_flag like 'professional'").length %>
         <% end %>
     <% end %>
-<!-- this is the actual view -->
 
+<!-- this is the actual view -->
 <div class="alt_header" id="visible_white">
     <div class="logo">
         <%= link_to image_tag("Logo/Logo_short.png"), root_path %>
     </div>
 
     <div class="nav">
-
         <ul>
-
         <li><%= link_to 'HOME', root_path %></li>
-
         <li><%= link_to 'HOW IT WORKS', 'tbd' %></li>
-
         <li><%= link_to 'PROJECTS', projects_path %></li>
-
         <% if current_user %>
             <li>
                 <%= link_to 'MY PROFILE', user_profile_path %>
@@ -35,17 +30,7 @@
             <li><%= link_to 'SIGN IN', new_user_path %></li>
         <% end %>
         </ul>
-
     </div>
-<!-- 
-    <div class="login">
-        <ul>
 
-        <li>Sign up</li>
-
-        <li>Log in</li>
-
-        </ul>
-    </div> -->
 
 </div>

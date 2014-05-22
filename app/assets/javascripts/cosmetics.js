@@ -74,7 +74,10 @@ function highlightButton() {
 function profile_toggle() {
     $('.profile_view_button').on('click',function(){
         execute_profile_toggle.call($(this));
-        if ($(this).attr('id') == 'applications') {projectApplicationRead.call($(this))};
+        if ($(this).attr('id') == 'applications') {
+            projectApplicationRead.call($(this));
+            hideNotification();
+        };
     });
 }
 
@@ -117,6 +120,12 @@ function putHighlightOnProjectFilter(_this) {
     } else if (_this.data('on') == 1) {
         _this.addClass('filter_on')
     }
+}
+
+// this code is to hide the notification once user clicks on the Applications tab in the profile
+
+function hideNotification() {
+    $('.notification_count').fadeOut(600);
 }
 
 // this code customizes the parameters for the dropzone drag and drop resume and logo upload
