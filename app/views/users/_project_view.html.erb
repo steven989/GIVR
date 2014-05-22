@@ -1,0 +1,5 @@
+<h1 class='overall_title'>Number of views for the last <%= pluralize(@num_weeks_show,'week') %>: </h1>
+<% @project_view.each do |key, value| %>
+<h1 class='chart_title'><%= Project.find_by(id: key[0].to_i).title %>: </h1>
+<%= column_chart value %>
+<% end %>

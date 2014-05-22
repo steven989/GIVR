@@ -75,14 +75,12 @@
       <div class="profile_view_content" id='summary'>
         <% if @user.role == 'professional' %>
         <div class="points">
-          <p><%= "You have completed #{pluralize(@number_ccompleted_applications, 'project')} to date and earned #{pluralize(@points, 'point')}." %></p>
+          <p><%= "You have completed #{pluralize(@number_completed_applications, 'project')} to date and earned #{pluralize(@points, 'point')}." %></p>
         </div>
         <% elsif @user.role == 'npo' %>
-          <h1>Average views per project for the past weeks:</h1>
-          <%= column_chart @average_view_per_project_by_week %>
-          <h1>Average time (seconds) for each project view:</h1>
-          <%= column_chart @average_view_time_by_week %>
-          <!-- ProjectView.group(:project_id).count -->
+          <div class='project_view_container'>
+            <%= render 'project_view' %>
+          </div>
         <% end %>
       </div>
 
