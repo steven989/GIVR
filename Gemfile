@@ -83,3 +83,8 @@ gem 'chartkick'
 
 #12) To interface with Amazon S3
 gem 'fog', "~> 1.3.1"
+
+
+group :production do
+  gem "rails_12factor"
+end
