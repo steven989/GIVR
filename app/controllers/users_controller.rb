@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         if @user.save
             # Tell the UserMailer to send a welcome email after save.
 
-            UserMailer.welcome_email(@user).deliver
+            # UserMailer.welcome_email(@user).deliver
             auto_login(@user)
             redirect_to projects_path
         else 
