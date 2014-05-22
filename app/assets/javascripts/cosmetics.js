@@ -245,15 +245,17 @@ function animateProjects() {
         'position': 'fixed',
         'left': left_pos,
         'top': top_pos,
-        'width': 400,
-        'height': 400,
+        'width': width,
+        'height': height,
         'margin': 0
     });
 
     var properties = {
-        marginLeft: '30%',
-        marginTop: '30%',
-        left: 0,
+        marginLeft: -$('.projects_detail').width()/2,
+        marginTop: 250,
+        width: 400,
+        height: 400,
+        left: '50%',
         right: 0,
         top: 0,
         bottom: 0,
