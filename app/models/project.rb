@@ -8,6 +8,11 @@ class Project < ActiveRecord::Base
   belongs_to :location
   has_many :statuses, foreign_key: 'project_id', class_name: 'ProjectStatuses'
   has_many :views, foreign_key: 'project_id', class_name: 'ProjectView'
+
+  accepts_nested_attributes_for :category, :cause, :location
+
+  validates :category, presence: true
+  validates :location, presence: true
   
   validates :title, presence: true
   validates :description, presence: true
