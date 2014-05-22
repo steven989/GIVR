@@ -229,4 +229,44 @@ function configureDropzone() {
     };
 }
 
+function animateProjects() {
 
+    var top_pos     = $(this).find('.project_card')[0].getBoundingClientRect().top
+    var left_pos    = $(this).find('.project_card')[0].getBoundingClientRect().left
+    var width       = $(this).find('.project_card')[0].getBoundingClientRect().width
+    var height      = $(this).find('.project_card')[0].getBoundingClientRect().height
+
+    console.log(top_pos);
+    console.log(left_pos);
+    console.log(width);
+    console.log(height);
+
+    $('.projects_detail').css({
+        'position': 'fixed',
+        'left': left_pos,
+        'top': top_pos,
+        'width': 400,
+        'height': 400,
+        'margin': 0
+    });
+
+    var properties = {
+        marginLeft: '30%',
+        marginTop: '30%',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        duration: 1000,
+        padding: 25,
+        lineHeight: 22,
+        effect: 'show'
+    };
+
+    $('.projects_overlay').fadeIn('fast');
+    
+    // $('.projects_detail').show();
+    $('.projects_detail').animate(properties);
+
+//     console.log(top_pos);
+}

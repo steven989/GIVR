@@ -51,12 +51,12 @@ class ProjectsController < ApplicationController
   end
 
   def create
-
     @project = Project.new(projects_params)
 
     respond_to do |format|
       if @project.save
         @project.statuses= 'active'
+        @project.update_attribute(:user_id,current_user.id)
         format.js { render :js => 'alert("Your project was saved!")'}
         format.html
       else
@@ -83,6 +83,6 @@ class ProjectsController < ApplicationController
 
   private
   def projects_params
-    params.require(:project).permit(:title,:description,:number_of_positions)
+    params.require(:project).permit(:title,:description,:number_of_positions, :category_id, :location_id)
   end
 end

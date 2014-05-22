@@ -27,7 +27,7 @@ class ApplicationsController < ApplicationController
             @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just applied, we want the pop up to show up on npo's screen)
          end
         if params[:todo] == 'apply'
-          UserMailer.applied_to_project(@project.user).deliver
+          # UserMailer.applied_to_project(@project.user).deliver
         end
           format.json {render json: {message: success_message}}
       else
@@ -54,7 +54,7 @@ class ApplicationsController < ApplicationController
           unless @application.errors.any? 
             @application.statuses= params[:todo]
             @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just applied, we want the pop up to show up on npo's screen)
-            UserMailer.applied_to_project(@application.project.user).deliver
+            # UserMailer.applied_to_project(@application.project.user).deliver
           end
       end 
       @role = current_user.role
