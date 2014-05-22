@@ -84,10 +84,8 @@ Rails.application.config.sorcery.configure do |config|
   # - user info fields go to https://developer.linkedin.com/documents/profile-fields
   # - access permissions go to https://developer.linkedin.com/documents/authentication#granting
   #
-  config.linkedin.key = Figaro.env.linkedin_app_id
-  config.linkedin.secret = Figaro.env.linkedin_secret_key
-  # config.linkedin.user_token = Figaro.env.linkedin_oauth_user_token
-  # config.linkedin.user_secret = Figaro.env.linkedin_oauth_user_secret
+  config.linkedin.key = ENV['LINKEDIN_APP_ID']
+  config.linkedin.secret = ENV['LINKEDIN_SECRET_KEY']
   config.linkedin.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=linkedin"
   config.linkedin.user_info_fields = ['email-address', 'id'] #['first-name', 'last-name']
   config.linkedin.user_info_mapping =  {email: 'emailAddress'} #{first_name: "firstName", last_name: "lastName"}
@@ -111,8 +109,8 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
   # config.twitter.user_info_mapping = {:email => "screen_name"}
   #
-  config.facebook.key = Figaro.env.facebook_app_id
-  config.facebook.secret = Figaro.env.facebook_app_secret
+  config.facebook.key = ENV['FACEBOOK_APP_ID']
+  config.facebook.secret = ENV['FACEBOOK_APP_SECRET']
   config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
   config.facebook.user_info_mapping = {:email => "email"}
   config.facebook.access_permissions = ["email"]
