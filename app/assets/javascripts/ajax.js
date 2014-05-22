@@ -84,9 +84,6 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       
       event.preventDefault();
       
-      $('.projects_overlay').fadeIn('fast');
-      $('.projects_detail').slideDown('slow');
-
       $.ajax({
         url: $(this).attr('href'),
         type: 'GET',
@@ -94,7 +91,10 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         data: { view: $(this).data('view'), browser_info: browser_info}
       }).always(function(){
         buttonsInsideShowProject();
-      });
+      });      
+      
+      animateProjects.call($(this))
+      
     });
   }
 

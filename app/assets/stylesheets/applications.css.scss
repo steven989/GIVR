@@ -7,6 +7,7 @@
 $font-stack: "Raleway", serif;
 
 $primary-color: #76D7B3;
+$accent-color: #3D9977;
 $text-color: #888888;
 $box-shadow-color: #888888;
 
@@ -331,15 +332,14 @@ body {
 }
 
 .projects_show {
-
-    position: relative;
-    background-color: white;
-    padding-top:3rem;
-    padding-left: 3rem;
-    width: 85%;
-    min-height: 40rem;
-    margin-left: 15%;
-    overflow: hidden;
+  position: relative;
+  background-color: white;
+  padding-top:3rem;
+  padding-left: 3rem;
+  width: 85%;
+  min-height: 40rem;
+  margin-left: 15%;
+  overflow: hidden;
 
 }
 
@@ -403,8 +403,10 @@ body {
   margin: auto;
   z-index: 20;
   box-shadow: 1px 1px 3px $box-shadow-color;
-  height: 400px;
+  height: 410px;
   width: 400px;
+  border-bottom: 3px solid $accent-color;
+  border-right: 3px solid $accent-color;
 
   .project_card {
     background-color: $primary-color;
@@ -418,38 +420,33 @@ body {
   .do_project {
     display: inline-block;
     background-color: #EEEEEE;
+    top: 40px;
     height: 1rem;
     width: 4rem;
-    padding: 5px;
-    margin: 1rem;
+    padding: 7px;
+    margin-left: 0.5rem;
     text-decoration: none;
     color: black;
-    border-radius: 5px;
+    border-radius: 2px;
     text-align: center;
+
+    &:hover {
+      background-color: $box-shadow-color;
+    }
   }
 
   #close_project {
-    display: inline-block;
-    background-color: #EEEEEE;
-    height: 1rem;
-    width: 4rem;
-    padding: 5px;
-    margin: 1rem;
-    text-decoration: none;
-    color: black;
-    border-radius: 5px;
-    text-align: center;
+    @extend .do_project;
   }
 
-  .fb-share-button {
+  .fb-like {
     display: inline-block;
-    height: 40px;
-    width: 50px;
-    padding: 5px;
-    margin: 1.2rem;
+    height: 1rem;
+    width: 4rem;
+    padding: 10px;
+    margin-left: 1rem;
     text-decoration: none;
     color: black;
-    border-radius: 5px;
   }
 }
 
