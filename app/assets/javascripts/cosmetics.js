@@ -190,8 +190,8 @@ function animateProjects() {
     });
 
     var properties = {
-        marginLeft: 600,
-        marginTop: 250,
+        marginLeft: 450,
+        marginTop: 200,
         left: 0,
         right: 0,
         top: 0,
