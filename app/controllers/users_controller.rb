@@ -104,10 +104,24 @@ class UsersController < ApplicationController
             @number_ccompleted_applications = @completed_applications.length
             @points = current_user.points
         end
-    # a series of variables for displaying charts
+    # a series of variables for displaying charts. Output are in the form of array of arrays
         #npos
         @average_view_per_project_by_week = ProjectView.find_by_sql(["SELECT a.week_num, avg(a.views) as avg_views FROM (SELECT date_trunc('week', a.view_start_time)::date || ' to ' || (date_trunc('week', a.view_start_time)::date + '6 days'::interval)::date as week_num, a.project_id, count(a.*) as views FROM project_views a LEFT JOIN projects b ON a.project_id = b.id WHERE b.user_id = ? GROUP BY week_num, project_id) a GROUP BY a.week_num ORDER BY substring(a.week_num from 1 for 10)::date ASC",current_user.id]).map {|week| [week.week_num, week.avg_views.round(2)]}
         @average_view_time_by_week = ProjectView.find_by_sql(["SELECT date_trunc('week', a.view_start_time)::date || ' to ' || (date_trunc('week', a.view_start_time)::date + '6 days'::interval)::date as week_num,avg(a.view_end_time - a.view_start_time) as view_time FROM project_views a LEFT JOIN projects b on a.project_id = b.id WHERE b.user_id = ? GROUP BY week_num ORDER BY substring((date_trunc('week', a.view_start_time)::date || ' to ' || (date_trunc('week', a.view_start_time)::date + '6 days'::interval)::date) from 1 for 10)::date ASC",current_user.id]).map {|week| [week.week_num, (Time.parse(week.view_time).hour*3600 + Time.parse(week.view_time).min*60 + Time.parse(week.view_time).sec)]}
+        
+        arrayOfDates = 4.times.map {|subtract| Time.now - (subtract*7.days)}
+
+        project_views = Hash.new([])
+        User.first.submitted_projects.each { |project|
+            project_views['hi'].push(2)
+        }
+
+            # arrayOfDates.map {|date| 
+            #     [project.id, (date.at_beginning_of_week.strftime('%Y-%m-%d').to_s)+' to '+((date.at_beginning_of_week+6.days).strftime('%Y-%m-%d').to_s), 2]
+            #     # ProjectView.find_by_sql(["SELECT date_trunc('week', a.view_start_time)::date || ' to ' || (date_trunc('week', a.view_start_time)::date + '6 days'::interval)::date as week_num, count(a.*) as views FROM project_views a WHERE a.project_id = ? AND a.view_start_time between date_trunc('week', ?::date)::date and (date_trunc('week', ?::date)::date + '6 days'::interval)::date GROUP BY week_num",project.id,date.to_date,date.to_date]).map {|week| [project.id,(date.at_beginning_of_week.strftime('%Y-%m-%d').to_s)+' to '+((date.at_beginning_of_week+6.days).strftime('%Y-%m-%d').to_s), week.views]}
+            # }
+
+       
     end 
 
     private
