@@ -129,7 +129,7 @@ class UsersController < ApplicationController
             
             num_proj_show =  3 
             @num_weeks_show =  4
-            array_of_top_project_ids = ProjectView.find_by_sql(["SELECT project_id, count(*) as views FROM project_views where user_id = ? AND view_start_time>=?::date GROUP BY project_id ORDER BY views DESC", current_user.id, (Time.now - (@num_weeks_show*7.days)).at_beginning_of_week]).take(num_proj_show).map {|project| [project.project_id,project.views]}
+            array_of_top_project_ids = ProjectView.find_by_sql(["SELECT a.project_id, count(*) as views FROM project_views a LEFT JOIN projects b on a.project_id = b.id where b.user_id = ? AND view_start_time>=?::date GROUP BY project_id ORDER BY views DESC", current_user.id, (Time.now - (@num_weeks_show*7.days)).at_beginning_of_week]).take(num_proj_show).map {|project| [project.project_id,project.views]}
             
             if array_of_top_project_ids.length > 0
             #2) Turn into a hash in the form of {project_id => [[week1, view], [week2,view]]}

@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   skip_authorize_resource only: :user_index
 
   def index
-
+    @user = User.new #this is because we are pulling the login form in this view as well
     if params[:_json] #this is for the filtering
       filter_conditions = Hash.new { |this_hash, nonexistent_key| this_hash[nonexistent_key] = [] }  #this is the code to actually allow us to use << to assign into the arrays that are default value of the non-existent hash key
       params[:_json].each do |filter|        

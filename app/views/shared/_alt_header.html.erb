@@ -23,11 +23,13 @@
         <% if current_user %>
             <li>
                 <%= link_to 'MY PROFILE', user_profile_path %>
-                <div class="notification_count <%= "hidden" if @notification_count == 0 %>"><%= @notification_count %></div>
+                <div class="notification_count <%= "hidden" if @notification_count.nil? || @notification_count == 0 %>"><%= @notification_count %></div>
             </li>
             <li><%= link_to 'SIGN OUT', session_path('current'), method: 'delete' %></li>
         <% else %>
-            <li><%= link_to 'SIGN IN', new_user_path %></li>
+            <li><%= link_to 'SIGN IN', new_user_path, class: 'nav_sign_in' %>
+                <%= render 'users/login_form' %>
+            </li>
         <% end %>
         </ul>
     </div>

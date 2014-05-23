@@ -1,0 +1,54 @@
+<div class="login_box hidden">
+    <div class="login_nav_bar">
+        <div class="horizontal_tab noTextSelectCursor clicked" id='login'>LOG IN</div>
+        <div class="horizontal_tab noTextSelectCursor" id= 'signup'>SIGN UP</div>
+    </div>
+    <div class="form" id='login'>
+        <%= form_tag '/sessions' do %>
+        <p>
+            <%= text_field_tag 'email', nil,placeholder: 'email', class: 'text_field' %>
+        </p>
+        <p>
+            <%= password_field_tag 'password', nil, placeholder: 'password', class: 'text_field' %>
+        </p>
+        <p>
+            <%= submit_tag 'Log in', class: 'button' %>
+        </p>
+        <% end %>
+        <div class="forgot_password">
+            <p>Forgot password?</p>
+            <%= render 'users/forgot_password_form' %>
+        </div>
+        <%= link_to 'Log in with Facebook', auth_at_provider_path(provider: :facebook), class: 'button', id: 'facebook' %>
+        <%= link_to 'Log in with LinkedIn', auth_at_provider_path(provider: :linkedin), class: 'button', id: 'linkedin' %>
+    </div>
+    <div class="form" id='signup'>
+        <%= form_for @user do |f| %>
+        <div class='error_messages'>
+            <%= @user.errors.full_messages.first if @user.errors.any? %>
+        </div>
+        <p>
+            <%= f.text_field 'email', placeholder: 'email', class: 'text_field' %>
+        </p>
+        <p>
+            <%= f.password_field 'password', placeholder: 'password', class: 'text_field' %>
+        </p>
+        <p>
+            <%= f.password_field 'password_confirmation', placeholder: 'confirm password', class: 'text_field' %>
+        </p>
+        <div class="i_am_a">
+        I am a:
+            <p><%= f.radio_button :role, 'professional' %>
+            <%= f.label :role_volunteer, 'Professional' %></p>
+            <p><%= f.radio_button :role, 'npo' %>
+            <%= f.label :role_npo, 'Non-Profit Organization' %></p>
+        
+        </div>
+        <p>
+            <%= f.submit 'Sign up', class: 'button' %>
+        </p>
+        <%= link_to 'Sign up with Facebook', auth_at_provider_path(provider: :facebook), class: 'button', id: 'facebook' %>
+        <%= link_to 'Sign up with LinkedIn', auth_at_provider_path(provider: :linkedin), class: 'button', id: 'linkedin' %>
+        <% end %>
+    </div>
+</div>
