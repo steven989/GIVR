@@ -74,6 +74,7 @@ function highlightButton() {
 function profile_toggle() {
     $('.profile_view_button').on('click',function(){
         execute_profile_toggle.call($(this));
+        window.scrollTo(0,0);
         if ($(this).attr('id') == 'applications') {
             projectApplicationRead.call($(this));
             hideNotification();
