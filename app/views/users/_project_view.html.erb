@@ -3,7 +3,7 @@
     <% @project_view.each do |key, value| %>
     <div class='chart' >
     <h1 class='chart_title'><%= Project.find_by(id: key.to_i).title %>: </h1>
-    <%= area_chart value, library: {vAxis: {format: '0', title: 'Views'}, hAxis: {title: 'Week'}, width: 800}, max: (@y_max+(@y_max/2).ceil), colors: ['#76D7B3'], discrete: true, class: 'dash_charts' %>
+    <%= area_chart value, library: {vAxis: {format: '0', title: 'Views'}, hAxis: {title: 'Week'}, width: 800, height: 300}, max: (@y_max+(@y_max/2).ceil), colors: ['#76D7B3'], discrete: true, class: 'dash_charts' %>
     </div>
     <% end %>
 <% else %>

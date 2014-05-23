@@ -602,8 +602,12 @@ body {
     /*margin-top: rem;*/
     display: none;
 
+    .show_application{
+      width: 50%;
+    }
+
     .unread {
-      background-color: $text-color;
+      background-color: $primary-color;
     }
   }
 
