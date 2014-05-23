@@ -1,6 +1,7 @@
 
 $('document').ready(function() {
     configureDropzone();
+    window.scrollTo(0,0);
     $(document).on('scroll', scrollCheck);
     window.headerHeight = $('#visible_blue').outerHeight(false);    // taking a snapshot of the height of the header as an anchor
     $('.search_bar .clickable').each(function(){    // search bar 
