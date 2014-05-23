@@ -21,20 +21,39 @@ class UsersController < ApplicationController
     end 
 
     def update
-        @user = User.find_by(id: params[:id])
-        @user.categories.delete_all
-        @user.locations.delete_all
-        @user.causes.delete_all
-        params[:user][:category_ids].each do |category_id|
-            @user.categories << Category.find_by(id:category_id) unless category_id == ""
+        puts '---------------------------------------------------'
+        puts params.inspect
+        puts '---------------------------------------------------'
+        @user = current_user
+        if @user.role == 'professional'
+            if @user.update_attributes(professional_params)
+                message = 'Information successfully updated.'                
+            else 
+                message = 'Information could not be updated.'+@user.errors.full_messages.join(" ")                
+            end
+
+            @user.categories.delete_all
+            @user.locations.delete_all
+            @user.causes.delete_all
+            params[:user][:category_ids].each do |category_id|
+                @user.categories << Category.find_by(id:category_id) unless category_id == ""
+            end
+            params[:user][:location_ids].each do |location_id|
+                @user.locations << Location.find_by(id:location_id) unless location_id == ""
+            end
+            params[:user][:cause_ids].each do |cause_id|
+                @user.causes << Cause.find_by(id:cause_id) unless cause_id == ""
+            end
+
+        elsif @user.role == 'npo'
+            if @user.update_attributes(npo_params)
+                message = 'Information successfully updated.'                
+            else
+                message = 'Information could not be updated.'+@user.errors.full_messages.join(" ")                
+            end
         end
-        params[:user][:location_ids].each do |location_id|
-            @user.locations << Location.find_by(id:location_id) unless location_id == ""
-        end
-        params[:user][:cause_ids].each do |cause_id|
-            @user.causes << Cause.find_by(id:cause_id) unless cause_id == ""
-        end
-        redirect_to user_profile_path, notice: 'Your preferences have been saved!'
+
+        redirect_to user_profile_path+'#settings', notice: message
     end
 
     def update_role
@@ -106,7 +125,7 @@ class UsersController < ApplicationController
         end
     # a series of variables for displaying charts. Output are in the form of array of arrays
         #npos
-
+        if current_user.role == 'npo'
         #chart showing the top five projects and their total views in the last four weeks
 
             #1) Find projects by their total views in the last four weeks
@@ -115,6 +134,7 @@ class UsersController < ApplicationController
             @num_weeks_show =  4
             array_of_top_project_ids = ProjectView.find_by_sql(["SELECT project_id, count(*) as views FROM project_views where user_id = ? AND view_start_time>=?::date GROUP BY project_id ORDER BY views DESC", current_user.id, (Time.now - (@num_weeks_show*7.days)).at_beginning_of_week]).take(num_proj_show).map {|project| [project.project_id,project.views]}
             
+            if array_of_top_project_ids.length > 0
             #2) Turn into a hash in the form of {project_id => [[week1, view], [week2,view]]}
             @project_view = Hash.new { |this_hash, nonexistent_key| this_hash[nonexistent_key] = [] }  #this is the code to actually allow us to use << to assign into the arrays that are default value of the non-existent hash nonexistent_key
             array_of_dates = @num_weeks_show.times.map {|subtract| Time.now - (subtract*7.days)}.reverse
@@ -126,6 +146,9 @@ class UsersController < ApplicationController
             }
 
             @y_max = array_of_top_project_ids[0][1]
+            end
+
+        end
 
     end 
 
@@ -135,6 +158,14 @@ class UsersController < ApplicationController
     def users_params
         params.require(:user).permit(:email,:password,:password_confirmation,:role,:resume)
     end 
+
+    def professional_params
+        params.require(:user).permit(:email,:contact_first_name,:contact_last_name,:phone,:years_of_experience,:website)
+    end
+
+    def npo_params
+        params.require(:user).permit(:email,:org_name,:mission,:contact_first_name,:contact_last_name,:organization_size,:address,:city,:postal_code,:phone,:extension,:fax,:website, :cause_id)
+    end
 
     def require_login
         redirect_to new_user_path if !logged_in?

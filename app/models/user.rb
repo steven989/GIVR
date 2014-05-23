@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   has_and_belongs_to_many :causes
   has_and_belongs_to_many :locations
 
+  belongs_to :cause
+
   mount_uploader :resume, ResumeUploader
   mount_uploader :logo, LogoUploader
 
@@ -23,14 +25,14 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :authentications
   
-  validates :email, presence: true
-  validates :email, uniqueness: true
-  validates :email, format: /@/
+  validates :email, presence: true, on: :create
+  validates :email, uniqueness: true, on: :create
+  validates :email, format: /@/, on: :create
   
-  validates :password, presence: true
-  validates :password, length: 6..20
-  validates :password, confirmation: true
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, on: :create
+  validates :password, length: 6..20, on: :create
+  validates :password, confirmation: true, on: :create
+  validates :password_confirmation, presence: true, on: :create
 
   def is?(role)
     self.role == role
