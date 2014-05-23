@@ -528,7 +528,7 @@ body {
         display: block;
         width: 96%;
         height: 1.5rem;
-        margin: 2px auto;
+        margin: 0.75rem auto;
         border: 1px solid $primary-color;
       }
 
@@ -546,13 +546,17 @@ body {
       }
 
       #facebook {
+        margin-top: 1rem;
         background-color: #3B5998;  
         border: 1px solid #3B5998;
+        text-align: center;
       }
 
       #linkedin {
+        margin-top: 0.5rem;
         background-color: #007bb6;
         border: 1px solid #007bb6;
+        text-align: center;
       }
 
   }
@@ -568,20 +572,39 @@ body {
 .profile_view {
   position: relative;
   background-color: white;
-  padding-top:3rem;
-  padding-left: 3rem;
+  padding:3rem;
   width: 85%;
-  min-height: 40rem;
-  margin-left: 15%;
+  min-height: 10rem;
+  margin-left: 15rem;
   overflow: hidden;
 
-  .profile_view_content {
-    display: none;
+  .chart {
+    margin-top: 1rem;
+    padding: 1rem;
+    width: 75%;
+    border: 2px solid $light-gray;
 
+    .chart_title {
+      margin-bottom: 1rem;
+    }
+  }
+
+  .profile_view_content {
+    /*margin-top: rem;*/
+    display: none;
 
     .unread {
       background-color: $text-color;
     }
+  }
+
+
+  .greeting_message {
+    position: relative;
+    background-color: white;
+    width: 85%;
+    overflow: hidden;
+
   }
 
   #summary {
@@ -597,16 +620,6 @@ body {
 }
 
 
-.greeting_message {
-  position: relative;
-  background-color: white;
-  padding-top:3rem;
-  padding-left: 3rem;
-  width: 85%;
-  margin-left: 15%;
-  overflow: hidden;
-
-}
 
 .profile_view_nav {
   position: fixed;
@@ -654,36 +667,56 @@ body {
   }    
 }
 
-.profile_view {
-
-  position: relative;
-  background-color: white;
-  padding-top:3rem;
-  padding-left: 3rem;
-  width: 85%;
-  min-height: 40rem;
-  margin-left: 15%;
-  overflow: hidden;
-
-  .show_application {
-    margin-top: 1.5rem;
-    line-height: 1.5rem;
-
-  }    
-}
-
 .upload {
+  padding-top: 1rem;
   .dropzone {
+    position: relative;
     display: block;
     background-color: #D8D8D8;
-    width: 20rem;
+    width: 39rem;
     height: 3rem;
+    padding-top: 2rem;
+    left: 3rem;
     text-align: center;
-    border: 0.2rem dashed $box-shadow-color;
+    border: 1px dashed $box-shadow-color;
 
   }
 
   .draghover {
     border: 0.2rem dashed #7ABDAF;
   }
+}
+
+
+.proto_form{
+  left: 2.5rem;
+  position: relative;
+  width: 40rem;
+  clear: both;
+
+
+    .text_field, .text_area{
+      display: block;
+      width: 96%;
+      height: 1.5rem;
+      margin: 10px auto;
+      border: 1px solid $box-shadow-color;
+    }
+
+    .text_area {
+      height: 5rem;
+    }
+
+    .button {
+      display: block;
+      color: white;
+      text-decoration: none;
+      width: 96%;
+      height: 1.5rem;
+      margin: 2px auto;
+      background-color: $primary-color;
+      border: 1px solid $primary-color;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
 }
