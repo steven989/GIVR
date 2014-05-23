@@ -16,7 +16,10 @@ class Project < ActiveRecord::Base
   
   validates :title, presence: true
   validates :description, presence: true
+  validates :deliverable, presence: true
+  validates :overseer, presence: true
   validates :number_of_positions, presence: true
+  validates :number_of_positions, numericality: { only_integer: true}
 
 
 

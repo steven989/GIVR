@@ -35,7 +35,7 @@
     </p>
   </div>
   <div class="profile_view_nav">
-      <ul class="profile_view_nav_buttons">   
+      <ul class="profile_view_nav_buttons noTextSelectCursor">   
           <li>
               <div class='profile_view_button' id='summary'>Summary</div>
           </li>
@@ -75,14 +75,12 @@
       <div class="profile_view_content" id='summary'>
         <% if @user.role == 'professional' %>
         <div class="points">
-          <p><%= "You have completed #{pluralize(@number_ccompleted_applications, 'project')} to date and earned #{pluralize(@points, 'point')}." %></p>
+          <p><%= "You have completed #{pluralize(@number_completed_applications, 'project')} to date and earned #{pluralize(@points, 'point')}." %></p>
         </div>
         <% elsif @user.role == 'npo' %>
-          <h1>Average views per project for the past weeks:</h1>
-          <%= column_chart @average_view_per_project_by_week %>
-          <h1>Average time (seconds) for each project view:</h1>
-          <%= column_chart @average_view_time_by_week %>
-          <!-- ProjectView.group(:project_id).count -->
+          <div class='project_view_container'>
+            <%= render 'project_view' %>
+          </div>
         <% end %>
       </div>
 
@@ -122,21 +120,91 @@
         <% if @user.role == 'professional' %>
           <div class='project_view_filter_setting'>
             <%= form_for @user do |f| %>
-              <p>Category</p>
+
+              <p><%= f.label :contact_first_name, "First name:" %>
+              <%= f.text_field :contact_first_name %></p>
+
+              <p><%= f.label :contact_last_name, "Last name:" %>
+              <%= f.text_field :contact_last_name %></p>
+
+              <p><%= f.label :email, "Email:" %>
+              <%= f.text_field :email %></p>
+
+              <p><%= f.label :phone, "Preferred contact phone number:" %>
+              <%= f.text_field :phone %></p>
+              
+              <p><%= f.label :years_of_experience, "Years of experience:" %>
+              <%= f.text_field :years_of_experience %></p>
+
+              <p>Your skills categories:</p>
               <%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category) %>
                
-              <p>Cause</p>
+              <p>Your causes:</p>
               <%= collection_check_boxes(:user, :cause_ids, Cause.all, :id, :cause) %>
 
-              <p>Location</p>
+              <p>Your preferred locations:</p>
               <%= collection_check_boxes(:user, :location_ids, Location.all, :id, :location) %>
-              <%= f.submit %>
+
+              <p><%= f.label :website, "Website" %>
+              <%= f.text_field :website %></p>
+
+              <%= f.submit 'Update my information' %>
             <% end %>
           </div>
           <div class="upload_container">
             <%= render partial: 'resume_upload', locals: {user: @user} %>
           </div>
         <% elsif @user.role == 'npo' %>
+          
+          <%= form_for @user do |f| %>
+
+              <p><%= f.label :email, "Email:" %>
+              <%= f.text_field :email %></p>
+
+              <p><%= f.label :org_name, "Organization name:" %>
+              <%= f.text_field :org_name %></p>
+
+              <p><%= f.label :cause_id, "Cause:" %>
+              <%= options_from_collection_for_select(Cause.all, :id, :cause) %>
+              <%= collection_select(:user, :cause_id, Cause.all, :id, :cause) %></p>
+
+              <p><%= f.label :org_name, "Mission:" %>
+              <%= f.text_area :org_name %></p>
+
+              <p><%= f.label :organization_size, "Number of full-time staff/volunteer:" %>
+              <%= f.text_field :organization_size %></p>
+
+              <p><%= f.label :address, "Address:" %>
+              <%= f.text_field :address %></p>
+
+              <p><%= f.label :city, "City:" %>
+              <%= f.text_field :city %></p>
+
+              <p><%= f.label :postal_code, "Postal code:" %>
+              <%= f.text_field :postal_code %></p>
+
+              <p><%= f.label :contact_first_name, "Contact person first name:" %>
+              <%= f.text_field :contact_first_name %></p>
+
+              <p><%= f.label :contact_last_name, "Contact person last name:" %>
+              <%= f.text_field :contact_last_name %></p>     
+
+              <p><%= f.label :website, "Website:" %>
+              <%= f.text_field :website %></p>
+
+              <p><%= f.label :phone, "Phone:" %>
+              <%= f.text_field :phone %></p>
+
+              <p><%= f.label :extension, "Extension:" %>
+              <%= f.text_field :extension %></p>
+
+              <p><%= f.label :fax, "Fax:" %>
+              <%= f.text_field :fax %></p>
+
+              <p><%= f.submit 'Update my information' %></p>
+
+            <% end %>
+
           <div class="upload_container">
             <%= render partial: 'logo_upload', locals: {user: @user} %>
           </div>

@@ -23,6 +23,11 @@ Category.create(
     description: 'Projects involving marketing strategy and execution'
 )
 
+Category.create(
+    category: 'Legal',
+    description: 'Projects involving legal help'
+)
+
 Cause.create(
     cause: 'Animal services',
     description: 'Projects involving animals'
@@ -53,7 +58,6 @@ Location.create(
     description: 'Financial district and around'
 )
 
-
 Location.create(
     location: 'Scarborough',
     description: 'East of DVP'
@@ -81,10 +85,15 @@ Location.create(
     title: Faker::Company.bs,
     description: "#{Faker::Company.bs} from #{Faker::Company.catch_phrase} #{Faker::Company.suffix}",
     user_id: 1,
-    category_id: (1..3).to_a.sample,
+    category_id: (1..4).to_a.sample,
     cause_id: (1..5).to_a.sample,
     location_id: (1..5).to_a.sample,
     statuses: 'active',
-    number_of_positions: (1..3).to_a.sample
+    number_of_positions: (1..3).to_a.sample,
+    deliverable: "#{Faker::Company.bs}",
+    overseer: "#{Faker::Name.first_name} #{Faker::Name.last_name} #{Faker::Name.suffix}",
+    why_we_need_this: "#{Faker::Company.bs}",
+    perks: "#{Faker::Company.bs}",
+    requirements: "#{Faker::Company.bs}"
   )
 end

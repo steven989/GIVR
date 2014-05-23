@@ -17,16 +17,50 @@
   </div>
 
   <div class="fields">
+    <%= f.label :why_we_need_this, 'Why do you need this:' %>
+    <br>
+    <%= f.text_area :why_we_need_this %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :deliverable, 'Project deliverables' %>
+    <br>
+    <%= f.text_area :deliverable %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :overseer, 'Name of the project manager' %>
+    <br>
+    <%= f.text_field :overseer %>
+  </div>
+
+  <div class="fields">
     <%= f.label :number_of_positions, 'Number of positions' %>
     <br>
     <%= f.text_field :number_of_positions %>
   </div>
 
   <div class="fields">
+    <%= f.label :perks, 'Perks for volunteers' %>
+    <br>
+    <%= f.text_area :perks %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :requirements, 'Volunteer requirements' %>
+    <br>
+    <%= f.text_area :requirements %>
+  </div>
+
+  <div class="fields">
     <%= f.label :category, "Category" %>
     <%= options_from_collection_for_select(Category.all, :id, :category) %>
     <%= collection_select(:project, :category_id, Category.all, :id, :category) %>
-    
+
+    <%= f.label :cause, "Cause" %>
+    <%= options_from_collection_for_select(Cause.all, :id, :cause) %>
+    <%= collection_select(:project, :cause_id, Cause.all, :id, :cause, { selected: current_user.cause_id}) %>
+     
     <%= f.label :location, "Location" %>
     <%= options_from_collection_for_select(Location.all, :id, :location) %>
     <%= collection_select(:project, :location_id, Location.all, :id, :location) %>

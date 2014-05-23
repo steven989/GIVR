@@ -1,15 +1,39 @@
 
 $('document').ready(function() {
     configureDropzone();
+    window.scrollTo(0,0);
     $(document).on('scroll', scrollCheck);
     window.headerHeight = $('#visible_blue').outerHeight(false);    // taking a snapshot of the height of the header as an anchor
     $('.search_bar .clickable').each(function(){    // search bar 
         $(this).on('click',highlightButton);
         $(this).on('click',slideUpDown);
         });
-    $('.profile_view_nav .profile_view_button').each(function(){    // profile nav bar
+    buttonHighlightToggle($('.profile_view_nav .profile_view_button'));
+    buttonHighlightToggle($('.login_box .horizontal_tab'));
+    navigationUnderline();  // will add underline to the navigation link that's currently active
+    profile_toggle();
+    signin_toggle();
+    signinVisibilityToggle();
+    if (window.location.href.indexOf('profile')>-1) jumpToTheRightProfileSection(); // will jump to the profile section indicated by the url fragment
+});
+
+// toggle between showing the sign in form and not showing the sign in form
+
+function signinVisibilityToggle(){
+    $('.nav_sign_in').on('click',function(){
+    $(this).addClass('signin_clicked')
+    event.preventDefault();
+    hideShowThings.call($('.login_box'));     
+    });
+}
+
+// Button toggle; can be applied to many buttons
+
+function buttonHighlightToggle(buttons) {   // this takes a jquery array of clickable objects you want to turn into buttons
+    buttons.each(function(){    // profile nav bar
             $(this).on('click',function(){
-                var all_buttons = $('.profile_view_nav .profile_view_button')
+                if ($(this).attr('class').indexOf('clicked') >= 0) {return false}
+                var all_buttons = buttons
                 var _this = $(this)
                     all_buttons.each(function(){
                         if ($(this).text() == _this.text() || $(this).attr('class').indexOf('clicked') >= 0) {
@@ -18,12 +42,7 @@ $('document').ready(function() {
                     });
             });
         });
-    navigationUnderline();  // will add underline to the navigation link that's currently active
-    profile_toggle();
-    if (window.location.href.indexOf('profile')>-1) jumpToTheRightProfileSection(); // will jump to the profile section indicated by the url fragment
-});
-
-
+}
 // this is to set the header transition from blue to white
 // the approach is to use javascript to set the height of the blue div so that upon every scroll action the height is decreased a little 
 
@@ -74,6 +93,7 @@ function highlightButton() {
 function profile_toggle() {
     $('.profile_view_button').on('click',function(){
         execute_profile_toggle.call($(this));
+        window.scrollTo(0,0);
         if ($(this).attr('id') == 'applications') {
             projectApplicationRead.call($(this));
             hideNotification();
@@ -229,12 +249,17 @@ function configureDropzone() {
     };
 }
 
+// This is used to animate the show project details div when we click on it on the marekt place
+
 function animateProjects() {
 
     var top_pos     = $(this).find('.project_card')[0].getBoundingClientRect().top
     var left_pos    = $(this).find('.project_card')[0].getBoundingClientRect().left
     var width       = $(this).find('.project_card')[0].getBoundingClientRect().width
     var height      = $(this).find('.project_card')[0].getBoundingClientRect().height
+
+    var targetWidth = 600
+    var targetHeight= 400
 
     $('.projects_detail').css({
         'position': 'fixed',
@@ -246,24 +271,53 @@ function animateProjects() {
     });
 
     var properties = {
-        marginLeft: -$('.projects_detail').width()/2,
-        marginTop: 250,
-        width: 400,
-        height: 400,
+        marginLeft: -targetWidth/2,
+        marginTop: -targetHeight/2,
+        width: targetWidth,
+        height: targetHeight,
         left: '50%',
-        right: 0,
-        top: 0,
-        bottom: 0,
-        duration: 1000,
+        top: '50%',
         padding: 20,
-        lineHeight: 22,
         effect: 'show'
     };
 
-    $('.projects_overlay').fadeIn('fast');
+    
     
     // $('.projects_detail').show();
     $('.projects_detail').animate(properties);
+    $('.projects_overlay').show();
 
 //     console.log(top_pos);
 }
+
+
+// a generic function to hide and show things
+
+function hideShowThings(){
+    var notHidden = $(this).attr('class').indexOf('hidden') < 0
+    if (notHidden) {$(this).addClass('hidden')} 
+        else {$(this).removeClass('hidden')}
+}
+
+// this code is for the sign up / login page tab toggle
+
+function signin_toggle() {
+    $('.login_box .horizontal_tab').on('click',function(){
+        execute_signin_toggle.call($(this));
+    });
+}
+
+    // called by the sign up / login page tab toggle; 
+
+    function execute_signin_toggle(){                          
+            var _this = $(this)
+            $('.login_box .form').each(function(){
+                if (_this.attr('id') === $(this).attr('id')) {
+                    $(this).show()
+                } else { 
+                    $(this).hide()          
+                };
+            });
+        }
+
+//
