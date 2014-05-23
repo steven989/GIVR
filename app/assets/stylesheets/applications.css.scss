@@ -414,7 +414,7 @@ body {
 
 .projects_detail {
   display: none;
-  background-color: $primary-color;
+  background-color: white;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -423,24 +423,32 @@ body {
   margin: auto;
   z-index: 20;
   // border: 2px solid $accent-color;
+  // border: 3px solid $primary-color;
   border-radius: 2px;
   // border-left: 1px solid $accent-color;
   // border-top: 1px solid $accent-color;
   // border-bottom: 3px solid $accent-color;
   // border-right: 3px solid $accent-color;
-  box-shadow: 2px 2px $accent-color;
+  // box-shadow: 2px 2px $accent-color;
   
   .project_card {
-    background-color: $primary-color;
-    color: white;
+    width: 80%;
+    background-color: white;
+    color: black;
+
+    .project_header {
+      border-bottom: 2px solid $primary-color;
+    }
 
     .project_details {
-        color: white;
+        color: $box-shadow-color;
+        overflow-y: scroll;
+        width: 120%;
       }
     }  
 
   .do_project {
-    display: inline-block;
+    display: inline;
     background-color: #EEEEEE;
     height: 1rem;
     width: 4rem;
@@ -454,7 +462,7 @@ body {
     vertical-align: bottom;
 
     &:hover {
-      background-color: $box-shadow-color;
+      background-color: $primary-color;
       color: white;
     }
   }
@@ -468,7 +476,8 @@ body {
     height: 1rem;
     width: 4rem;
     padding: 10px;
-    margin-left: 2.5rem;
+    margin-left: 9rem;
+    margin-top: 0.5rem;
     text-decoration: none;
     color: $box-shadow-color;
   }

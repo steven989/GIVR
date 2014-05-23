@@ -1,0 +1,64 @@
+<div class="project_popup" data-projectid="<%= project.id %>">
+    <div class="project_card">
+      
+      <div class="project_header">
+          <h1><%= project.title %></h1>
+      </div>
+
+        <br>
+      <div class="project_details">
+        <h3>Project Details:</h3>
+          <br>
+
+        <p>
+          <%= project.description %>
+        </p>
+
+        <br>
+
+        <p>
+          Project Owner: <%= project.user.org_name %>
+        </p>
+
+        <br>
+
+        <p>
+          Why We Need This: <%= project.why_we_need_this %>
+        </p>        
+        
+        <p>
+          Deliverables: <%= project.deliverable %>
+        </p>
+        
+        <p>
+          Requirements: <%= project.requirements %>
+        </p>
+
+        <p>
+          Project Perks: <%= project.perks %>
+        </p>        
+        
+        <p>
+          Number of Positions: <%= project.number_of_positions %>
+        </p>
+
+        <br>
+
+        <p>
+          Category: <%= project.category.category %>
+        </p>
+
+        <p>
+          Cause: <%= project.cause.cause %>
+        </p>
+
+        <p>
+          Location: <%= project.location.location %>
+        </p>
+        
+        <br>
+
+        <h2>Length: 4 weeks</h2>
+      </div>
+    </div>
+  </div>
