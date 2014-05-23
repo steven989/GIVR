@@ -22,6 +22,9 @@ Givr::Application.configure do
   # Disable Rails's static asset server (Apache or nginx will already do this).
   config.serve_static_assets = false
 
+  # Don't care if the mailer can't send.
+  config.action_mailer.raise_delivery_errors = false
+
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
@@ -77,4 +80,17 @@ Givr::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # Configure to deliver email using Gmail
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'gmail.com',
+  user_name:            ENV["EMAIL"],
+  password:             ENV["PASSWORD"],
+  authentication:       'plain',
+  enable_starttls_auto: true  }
+
 end
