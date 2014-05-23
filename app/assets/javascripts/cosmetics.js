@@ -237,6 +237,8 @@ function animateProjects() {
     var left_pos    = $(this).find('.project_card')[0].getBoundingClientRect().left
     var width       = $(this).find('.project_card')[0].getBoundingClientRect().width
     var height      = $(this).find('.project_card')[0].getBoundingClientRect().height
+    var targetWidth = 600
+    var targetHeight= 400
 
     console.log(top_pos);
     console.log(left_pos);
@@ -253,22 +255,21 @@ function animateProjects() {
     });
 
     var properties = {
-        marginLeft: '30%',
-        marginTop: '30%',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        duration: 1000,
-        padding: 25,
-        lineHeight: 22,
+        marginLeft: -targetWidth/2,
+        marginTop: -targetHeight/2,
+        width: targetWidth,
+        height: targetHeight,
+        left: '50%',
+        top: '50%',
+        padding: 20,
         effect: 'show'
     };
 
-    $('.projects_overlay').fadeIn('fast');
+    
     
     // $('.projects_detail').show();
     $('.projects_detail').animate(properties);
+    $('.projects_overlay').show();
 
 //     console.log(top_pos);
 }
