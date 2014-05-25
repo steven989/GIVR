@@ -3,13 +3,13 @@
 <% if user.resume.file.nil? %>
   <div class="upload">
     <span>Upload your resume below:</span>
-    <%= render partial: 'raw_upload', locals: {user: user} %>
+    <%= render partial: 'users/raw_upload', locals: {user: user} %>
   </div>
 <% else %>
   <% if !user.resume.file.exists? %>
     <div class="upload">
       <span>Upload your resume below:</span>
-      <%= render partial: 'raw_upload', locals: {user: user} %>
+      <%= render partial: 'users/raw_upload', locals: {user: user} %>
     </div>
   <% else %>
     <p>Your resume:</p>

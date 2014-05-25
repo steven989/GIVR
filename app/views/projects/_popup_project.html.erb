@@ -1,6 +1,5 @@
 <div class="project_popup" data-projectid="<%= project.id %>">
     <div class="project_card">
-      
       <div class="project_header">
           <h1><%= project.title %></h1>
       </div>
@@ -60,5 +59,11 @@
 
         <h2>Length: 4 weeks</h2>
       </div>
+    </div>
+    <div class="proto_form">
+      <%= form_tag do %>
+        <%= text_area_tag 'message', nil, class: 'text_area', placeholder: 'Put a blurb here on why you want to apply to the project.' %>
+      <% end %>
+      <%= render partial: 'users/resume_upload', locals: {user: @user=current_user} %>
     </div>
   </div>

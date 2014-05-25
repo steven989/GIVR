@@ -91,6 +91,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         dataType: 'script',
         data: { view: $(this).data('view'), browser_info: browser_info}
       }).always(function(){
+        Dropzone.discover();
         buttonsInsideShowProject();
         animateProjects.call(_this);
       });        
