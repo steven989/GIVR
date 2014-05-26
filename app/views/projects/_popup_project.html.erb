@@ -1,5 +1,5 @@
 <div class="project_popup" data-projectid="<%= project.id %>">
-    <div class="project_card">
+    <div class="project_card_in_popup" data-shown=1>
       <div class="project_header">
           <h1><%= project.title %></h1>
       </div>
@@ -59,11 +59,37 @@
 
         <h2>Length: 4 weeks</h2>
       </div>
+      <% if current_user %> 
+        <% if current_user.role == 'professional' %>
+          <div class="load_application show_project_buttons">Apply</div>
+        <% end %> 
+      <% else %>
+        <div class="load_application show_project_buttons">Apply</div>
+      <% end %>
+      <% if current_user %> 
+        <% if current_user.role == 'professional' %>
+          <%= link_to 'Shortlist', project_applications_path(@project, todo: 'shortlist'), class: 'do_project show_project_buttons', data: {todo: 'shortlist'}, method: 'POST'  %>
+        <% end %>
+      <% else %> 
+          <%= link_to 'Shortlist', project_applications_path(@project, todo: 'shortlist'), class: 'do_project show_project_buttons', data: {todo: 'shortlist'}, method: 'POST'  %>
+      <% end %>
+      <%= link_to 'Close', projects_path, id: 'close_project' %>
+      <span id='view_closed' data-viewpath='<%= j project_view_path(@view) %>'></span>
+      <div class='fb-like' data-href='<%= @project %>' data-width='50' data-layout='button_count' data-action='like' data-show-faces='false' data-share='false'>
+      </div>
     </div>
     <div class="proto_form">
+      <div class="project_header">
+          <h1>Apply to <%= project.title %></h1>
+      </div>
       <%= form_tag do %>
+        <%= label_tag "Add a message to #{project.user.org_name}:" %>
         <%= text_area_tag 'message', nil, class: 'text_area', placeholder: 'Put a blurb here on why you want to apply to the project.' %>
       <% end %>
-      <%= render partial: 'users/resume_upload', locals: {user: @user=current_user} %>
+      <% if current_user %>
+        <%= render partial: 'users/resume_upload', locals: {user: @user=current_user} %>
+      <% end %>
+      <%= link_to 'Submit application', project_applications_path(@project, todo: 'apply'), class: 'do_project show_project_buttons', data: {todo: 'apply'}, method: 'POST'  %>
+      <div class="load_application show_project_buttons">Back to project</div>
     </div>
   </div>

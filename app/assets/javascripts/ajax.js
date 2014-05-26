@@ -93,6 +93,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       }).always(function(){
         Dropzone.discover();
         buttonsInsideShowProject();
+        toggleApplicationForm();
         animateProjects.call(_this);
       });        
     });

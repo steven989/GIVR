@@ -416,42 +416,26 @@ body {
   display: none;
   background-color: white;
   position: fixed;
-  top: 0;
-  bottom: 0;
   left: 0;
+  top: 0;
   right: 0;
+  bottom: 0;
   margin: auto;
+  width: 75%;
+  height: 30rem;
   z-index: 20;
-  // border: 2px solid $accent-color;
-  // border: 3px solid $primary-color;
-  border-radius: 2px;
-  // border-left: 1px solid $accent-color;
-  // border-top: 1px solid $accent-color;
-  // border-bottom: 3px solid $accent-color;
-  // border-right: 3px solid $accent-color;
-  // box-shadow: 2px 2px $accent-color;
-  
-  .project_card {
-    width: 80%;
-    background-color: white;
-    color: black;
+  overflow: hidden;
 
-    .project_header {
-      border-bottom: 2px solid $primary-color;
+  .project_header {
+      border-bottom: 1px solid $primary-color;
+      height: 3rem;
     }
 
-    .project_details {
-        color: $box-shadow-color;
-        overflow-y: scroll;
-        width: 120%;
-      }
-    }  
-
-  .do_project {
-    display: inline;
+  .show_project_buttons {
+    display: inline-block;
     background-color: #EEEEEE;
     height: 1rem;
-    width: 4rem;
+    min-width: 6rem;
     padding: 6px;
     margin-left: 1rem;
     margin-top: 2rem;
@@ -467,20 +451,51 @@ body {
     }
   }
 
-  #close_project {
-    @extend .do_project;
+  .project_card_in_popup {
+    position: relative;
+    width: 95%;
+    margin: 2rem auto;
+    background-color: white;
+    color: black;
+    z-index: 2;
+
+    .project_details {
+        color: black;
+        overflow-y: scroll;
+        width: 100%;
+        height: 18rem;
+      }
+
+
+      #close_project {
+        @extend .show_project_buttons;
+      }
+
+      .fb-like {
+        display: inline-block;
+        height: 1rem;
+        width: 4rem;
+        padding: 10px;
+        margin-left: 9rem;
+        margin-top: 0.5rem;
+        text-decoration: none;
+        color: $box-shadow-color;
+      } 
+
+  }  
+  
+  .proto_form {
+    position: relative;
+    top: 2rem;
+    left: 2.5%;
+    width: 95%;
+
+      form {
+        margin-top: 2rem;
+      }
+
   }
 
-  .fb-like {
-    display: inline-block;
-    height: 1rem;
-    width: 4rem;
-    padding: 10px;
-    margin-left: 9rem;
-    margin-top: 0.5rem;
-    text-decoration: none;
-    color: $box-shadow-color;
-  }
 }
 
 /* ----------------- user#new (sign up and log in form) -------------------- */

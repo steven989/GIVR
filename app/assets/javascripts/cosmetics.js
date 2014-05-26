@@ -253,39 +253,39 @@ function configureDropzone() {
 
 function animateProjects() {
 
-    var top_pos     = $(this).find('.project_card')[0].getBoundingClientRect().top
-    var left_pos    = $(this).find('.project_card')[0].getBoundingClientRect().left
-    var width       = $(this).find('.project_card')[0].getBoundingClientRect().width
-    var height      = $(this).find('.project_card')[0].getBoundingClientRect().height
+    // var top_pos     = $(this).find('.project_card')[0].getBoundingClientRect().top
+    // var left_pos    = $(this).find('.project_card')[0].getBoundingClientRect().left
+    // var width       = $(this).find('.project_card')[0].getBoundingClientRect().width
+    // var height      = $(this).find('.project_card')[0].getBoundingClientRect().height
 
-    var targetWidth = 600
-    var targetHeight= 400
+    // var targetWidth = 800
+    // var targetHeight= 600  
 
-    $('.projects_detail').css({
-        'position': 'fixed',
-        'left': left_pos,
-        'top': top_pos,
-        'width': width,
-        'height': height,
-        'margin': 0
-    });
+    // $('.projects_detail').css({
+    //     'position': 'fixed',
+    //     'left': left_pos,
+    //     'top': top_pos,
+    //     'width': width,
+    //     'height': height,
+    //     'margin': 0
+    // });
 
-    var properties = {
-        marginLeft: -targetWidth/2,
-        marginTop: -targetHeight/2,
-        width: targetWidth,
-        height: targetHeight,
-        left: '50%',
-        top: '50%',
-        padding: 20,
-        effect: 'show'
-    };
+    // var properties = {
+    //     marginLeft: -targetWidth/2,
+    //     marginTop: -targetHeight/2,
+    //     width: targetWidth,
+    //     height: targetHeight,
+    //     left: '50%',
+    //     top: '50%',
+    //     effect: 'show'
+    // };
 
     
     
     // $('.projects_detail').show();
-    $('.projects_detail').animate(properties);
     $('.projects_overlay').show();
+    $('.projects_detail').show();
+    
 
 //     console.log(top_pos);
 }
@@ -320,4 +320,18 @@ function signin_toggle() {
             });
         }
 
-//
+// function to reveal the application form in the show project pop up
+
+function toggleApplicationForm() {
+    $('.load_application').off('click').on('click', function(){
+        if ($('.project_card_in_popup').data('shown') == 1){
+                $('.project_card_in_popup').animate({top: '-=30rem'}, 300);
+                $('.proto_form').animate({top: '-=30rem'}, 300);
+                $('.project_card_in_popup').data('shown',0);
+        } else {
+                $('.project_card_in_popup').animate({top: '+=30rem'}, 300);
+                $('.proto_form').animate({top: '+=30rem'}, 300);
+                $('.project_card_in_popup').data('shown',1);
+        };
+    });
+}
