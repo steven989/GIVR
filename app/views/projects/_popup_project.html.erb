@@ -1,10 +1,7 @@
-<!-- @already_applied = if current_user; current_user.made_applications.where("applications.status not in ('shortlist')").map {|application| application.project}.include?(project) ? 1 : nil; else nil end -->
-
-<!-- @already_shortlisted = if current_user; current_user.made_applications.where("applications.status in ('shortlist')").map {|application| application.project}.include?(project) ? 1 : nil; else nil end  -->
-
-<% @already_applied = Application.where("status not like 'shortlist' AND project_id = ? and user_id = ?",project.id,current_user.id).take %>
-
-<% @already_shortlisted = Application.where("status like 'shortlist' AND project_id = ? and user_id = ?",project.id,current_user.id).take %>
+<% if current_user %>
+  <% @already_applied = Application.where("status not like 'shortlist' AND project_id = ? and user_id = ?",project.id,current_user.id).take %>
+  <% @already_shortlisted = Application.where("status like 'shortlist' AND project_id = ? and user_id = ?",project.id,current_user.id).take %>
+<% end %>
 
 <% @available_positions = [(project.number_of_positions - project.applications.where("status in ('engage','complete')").length),0].max %>
 
@@ -108,7 +105,7 @@
           </div>
         <% end %>
       <% end %>
-      <div class="noTextSelectCursor <%= "do_project" unless @already_applied || current_user.resume_quick_look.nil? %> show_project_buttons<%= "_disabled" if @already_applied || current_user.resume_quick_look.nil? %>" id="application_submit" href="<%= @already_shortlisted ? applicant_update_path(@already_shortlisted.project, @already_shortlisted, todo: 'apply') : project_applications_path(@project, todo: 'apply') %>" data-method="<%= @already_shortlisted ? "PUT" : "POST" %>">Submit</div>
+      <div class="noTextSelectCursor <%= "do_project" unless @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %> show_project_buttons<%= "_disabled" if @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %>" id="application_submit" href="<%= @already_shortlisted ? applicant_update_path(@already_shortlisted.project, @already_shortlisted, todo: 'apply') : project_applications_path(@project, todo: 'apply') %>" data-method="<%= @already_shortlisted ? "PUT" : "POST" %>">Submit</div>
       <div class="noTextSelectCursor load_application show_project_buttons">Back to project</div>
     </div>
   </div>

@@ -14,7 +14,7 @@ $('document').ready(function() {
     profile_toggle();
     signin_toggle();
     signinVisibilityToggle();
-    if (window.location.href.indexOf('profile')>-1) jumpToTheRightProfileSection(); // will jump to the profile section indicated by the url fragment
+    urlCommands();
 });
 
 // toggle between showing the sign in form and not showing the sign in form
@@ -25,6 +25,14 @@ function signinVisibilityToggle(){
     event.preventDefault();
     hideShowThings.call($('.login_box'));     
     });
+}
+
+// function to deal with all url-fragment-based commands 
+
+function urlCommands(){
+    var raw_hash = window.location.hash.substring(1) // get the url fragment
+    if (window.location.href.indexOf('profile')>-1) {jumpToTheRightProfileSection(raw_hash)};  // will jump to the profile section indicated by the url fragment
+    if ($('.login_box').length>0 && raw_hash.indexOf('showLogin')>-1) {hideShowThings.call($('.login_box'))}; // if the login box exists on the page ()
 }
 
 // Button toggle; can be applied to many buttons
@@ -117,8 +125,7 @@ function profile_toggle() {
 
 // this code is to jump to the correct section when we first land on the profile page
 
-function jumpToTheRightProfileSection(){
-    var raw_hash = window.location.hash.substring(1); // get the fragment from the url
+function jumpToTheRightProfileSection(raw_hash){
     var arrayOfExistingButtonIds = $.map($('.profile_view_nav .profile_view_button'),function(element,index){return element.id});   // this converts an array of the buttons into an array of the IDs of the buttons; used to check of the fragment in the url actually matches one of the buttons
     var section_id;
     if (arrayOfExistingButtonIds.indexOf(raw_hash) >= 0) {
@@ -167,29 +174,23 @@ function configureDropzone() {
       init: function() {
         var submitButton = $("#resume_upload")
             myDropzone = this; // closure
-
         submitButton.hide(); 
-
         submitButton.off("click").on("click", function() {
           event.preventDefault();
           myDropzone.processQueue(); // Tell Dropzone to process all queued files.
         });
-
         // // show the submit button only when files are dropped here:
         // this.on("addedfile", function() {
         //   // Show submit button here and/or inform user to click it.
         //   submitButton.show();
         // });
-
         // this is the hover effect
         this.on('dragover', function(){
             $('.upload .dropzone').addClass('draghover');
         });
-
         this.on('dragleave', function(){
             $('.upload .dropzone').removeClass('draghover');
         }); 
-
         this.on('success',function(file, response){
             $('.upload_container').html(response.replaceWith);
             $('.error_messages').html(response.message);
@@ -199,7 +200,6 @@ function configureDropzone() {
             makeSubmitButtonAvailable(); // this makes the submit button available again
             };
         });
-
       }
     };
 
@@ -218,23 +218,18 @@ function configureDropzone() {
       init: function() {
         var submitButton = $("#logo_upload")
             myDropzone = this; // closure
-
         submitButton.hide(); 
-
         submitButton.off("click").on("click", function() {
           event.preventDefault();
           myDropzone.processQueue(); // Tell Dropzone to process all queued files.
         });
-
         // this is the hover effect
         this.on('dragover', function(){
             $('.upload .dropzone').addClass('draghover');
         });
-
         this.on('dragleave', function(){
             $('.upload .dropzone').removeClass('draghover');
         }); 
-
         this.on('success',function(file, response){
             $('.upload_container').html(response.replaceWith);
             $('.error_messages').html(response.message);
