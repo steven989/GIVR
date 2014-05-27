@@ -29,4 +29,9 @@
           self.errors[:base] << "You've already shortlisted to this project."
         end     
     end
+
+    def must_include_message
+        self.errors.add(:message, "cannot be blank.") if self.message.blank? || self.message.nil? || self.message.scan(/\S/).length == 0
+    end
+
 end

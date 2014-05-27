@@ -114,6 +114,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
               $.ajax({
                 url: $(this).attr('href'),
                 type: $(this).data('method'),
+                data: {'message': $('form textarea').val()},
                 dataType: 'JSON'
               }).done(function(data){
                 if (data.successFlag == 1) {
@@ -125,7 +126,6 @@ $(window).on('beforeunload',function(){     // navigating away from a page
                 $('.basic.modal .content .button').off('click').on('click',function(){
                   $('.basic.modal').modal('hide');
                 });
-                // alert(data.message)
               });
               return false  //not sure why preventDefault does not work here
             });
