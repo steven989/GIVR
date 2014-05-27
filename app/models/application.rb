@@ -24,4 +24,9 @@
         self.errors[:base] << 'This position is already filled.' if self.project.status == 'filled'
     end
 
+    def cannot_shortlist_more_than_once
+        if self.project.applications.where("applications.status in ('shortlist')").map {|application| application.user_id}.include? self.user_id
+          self.errors[:base] << "You've already shortlisted to this project."
+        end     
+    end
 end

@@ -1,5 +1,16 @@
+<!-- @already_applied = if current_user; current_user.made_applications.where("applications.status not in ('shortlist')").map {|application| application.project}.include?(project) ? 1 : nil; else nil end -->
+
+<!-- @already_shortlisted = if current_user; current_user.made_applications.where("applications.status in ('shortlist')").map {|application| application.project}.include?(project) ? 1 : nil; else nil end  -->
+
+<% @already_applied = Application.where("status not like 'shortlist' AND project_id = ? and user_id = ?",project.id,current_user.id).take %>
+
+<% @already_shortlisted = Application.where("status like 'shortlist' AND project_id = ? and user_id = ?",project.id,current_user.id).take %>
+
+<% @available_positions = [(project.number_of_positions - project.applications.where("status in ('engage','complete')").length),0].max %>
+
 <div class="project_popup" data-projectid="<%= project.id %>">
-    <div class="project_card_in_popup" data-shown=1>
+    <span id='view_closed' data-viewpath='<%= j project_view_path(@view)%>' style="display:inline-block; width: 1px; height: 1px;"></span>
+    <div class="project_card_in_popup" data-shown=1 data-loggedin="<%= current_user ? 1 : 0 %>" data-applied="<%= @already_applied %>" data-shortlisted="<%= @already_shortlisted %>">
       <div class="project_header">
           <h1><%= project.title %></h1>
       </div>
@@ -8,7 +19,6 @@
       <div class="project_details">
         <h3>Project Details:</h3>
           <br>
-
         <p>
           <%= project.description %>
         </p>
@@ -38,7 +48,7 @@
         </p>        
         
         <p>
-          Number of Positions: <%= project.number_of_positions %>
+          Number of Positions: <%= project.number_of_positions %> (<%= @available_positions %> still available)
         </p>
 
         <br>
@@ -61,20 +71,25 @@
       </div>
       <% if current_user %> 
         <% if current_user.role == 'professional' %>
-          <div class="load_application show_project_buttons">Apply</div>
+          <div class="noTextSelectCursor <%= "load_application" unless @already_applied %> show_project_buttons<%= "_disabled" if @already_applied %>"><%= if @already_applied; "Applied" else "Apply" end %></div>
         <% end %> 
       <% else %>
-        <div class="load_application show_project_buttons">Apply</div>
+        <div class="noTextSelectCursor show_project_buttons_disabled">Log in to apply</div>
       <% end %>
       <% if current_user %> 
         <% if current_user.role == 'professional' %>
-          <%= link_to 'Shortlist', project_applications_path(@project, todo: 'shortlist'), class: 'do_project show_project_buttons', data: {todo: 'shortlist'}, method: 'POST'  %>
+          <% if @already_shortlisted %>
+            <div class="noTextSelectCursor show_project_buttons_disabled">Shortlisted</div>
+          <% elsif @already_applied %>
+            <div class="noTextSelectCursor show_project_buttons_disabled">Shortlist</div>
+          <% else %>
+            <div class="noTextSelectCursor do_project show_project_buttons" href="<%= project_applications_path(@project, todo: 'shortlist') %>" data-method="POST">Shortlist</div>
+          <% end %>
         <% end %>
       <% else %> 
-          <%= link_to 'Shortlist', project_applications_path(@project, todo: 'shortlist'), class: 'do_project show_project_buttons', data: {todo: 'shortlist'}, method: 'POST'  %>
+        <div class="noTextSelectCursor show_project_buttons_disabled">Log in to shortlist</div>
       <% end %>
-      <%= link_to 'Close', projects_path, id: 'close_project' %>
-      <span id='view_closed' data-viewpath='<%= j project_view_path(@view) %>'></span>
+      <div class="noTextSelectCursor" id="close_project">Close</div>      
       <div class='fb-like' data-href='<%= @project %>' data-width='50' data-layout='button_count' data-action='like' data-show-faces='false' data-share='false'>
       </div>
     </div>
@@ -87,9 +102,13 @@
         <%= text_area_tag 'message', nil, class: 'text_area', placeholder: 'Put a blurb here on why you want to apply to the project.' %>
       <% end %>
       <% if current_user %>
-        <%= render partial: 'users/resume_upload', locals: {user: @user=current_user} %>
+        <% if current_user.resume_quick_look.nil? %>
+          <div class="upload_container">
+            <%= render partial: 'users/resume_upload', locals: {user: @user=current_user} %>
+          </div>
+        <% end %>
       <% end %>
-      <%= link_to 'Submit application', project_applications_path(@project, todo: 'apply'), class: 'do_project show_project_buttons', data: {todo: 'apply'}, method: 'POST'  %>
-      <div class="load_application show_project_buttons">Back to project</div>
+      <div class="noTextSelectCursor <%= "do_project" unless @already_applied || current_user.resume_quick_look.nil? %> show_project_buttons<%= "_disabled" if @already_applied || current_user.resume_quick_look.nil? %>" id="application_submit" href="<%= @already_shortlisted ? applicant_update_path(@already_shortlisted.project, @already_shortlisted, todo: 'apply') : project_applications_path(@project, todo: 'apply') %>" data-method="<%= @already_shortlisted ? "PUT" : "POST" %>">Submit</div>
+      <div class="noTextSelectCursor load_application show_project_buttons">Back to project</div>
     </div>
   </div>

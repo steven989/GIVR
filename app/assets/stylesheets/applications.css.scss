@@ -12,6 +12,7 @@ $text-color: #888888;
 $box-shadow-color: #888888;
 $light-gray: #EEEEEE;
 
+
 /* ----------------------- across the whole document ---------------------- */
 
 body {
@@ -451,6 +452,21 @@ body {
     }
   }
 
+  .show_project_buttons_disabled {
+    display: inline-block;
+    background-color: #EBEBEB;
+    color: #CECECE;
+    height: 1rem;
+    min-width: 6rem;
+    padding: 6px;
+    margin-left: 1rem;
+    margin-top: 2rem;
+    text-decoration: none;
+    border-radius: 2px;
+    text-align: center;
+    vertical-align: bottom;    
+  }
+
   .project_card_in_popup {
     position: relative;
     width: 95%;
@@ -497,6 +513,18 @@ body {
   }
 
 }
+
+  .basic.modal .content {
+      .message {
+        font-size: 2rem;
+        margin: 3rem auto;
+        text-align: center;}
+
+      .button_container {
+        margin: 0 auto;
+        text-align: center;
+      }
+  }
 
 /* ----------------- user#new (sign up and log in form) -------------------- */
 

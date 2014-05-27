@@ -161,7 +161,7 @@ function configureDropzone() {
       uploadMultiple: false,
       maxFiles: 1,
       forceFallback: false,
-      acceptedFiles: 'application/pdf,.doc,.docx',
+      // acceptedFiles: 'application/pdf,.doc,.docx',
       addRemoveLinks: true,
 
       init: function() {
@@ -193,8 +193,11 @@ function configureDropzone() {
         this.on('success',function(file, response){
             $('.upload_container').html(response.replaceWith);
             $('.error_messages').html(response.message);
-
+            Dropzone.discover(); 
             removeUpload(); //this calls the function to assign an AJAX listner to the remove resume button 
+            if (response.successflag == 1) {
+            makeSubmitButtonAvailable(); // this makes the submit button available again
+            };
         });
 
       }
@@ -223,12 +226,6 @@ function configureDropzone() {
           myDropzone.processQueue(); // Tell Dropzone to process all queued files.
         });
 
-        // // show the submit button only when files are dropped here:
-        // this.on("addedfile", function() {
-        //   // Show submit button here and/or inform user to click it.
-        //   submitButton.show();
-        // });
-
         // this is the hover effect
         this.on('dragover', function(){
             $('.upload .dropzone').addClass('draghover');
@@ -241,8 +238,8 @@ function configureDropzone() {
         this.on('success',function(file, response){
             $('.upload_container').html(response.replaceWith);
             $('.error_messages').html(response.message);
-
-            removeUpload(); //this calls the function to assign an AJAX listner to the remove resume button 
+            Dropzone.discover(); 
+            removeUpload();
         });
 
       }
@@ -252,42 +249,8 @@ function configureDropzone() {
 // This is used to animate the show project details div when we click on it on the marekt place
 
 function animateProjects() {
-
-    // var top_pos     = $(this).find('.project_card')[0].getBoundingClientRect().top
-    // var left_pos    = $(this).find('.project_card')[0].getBoundingClientRect().left
-    // var width       = $(this).find('.project_card')[0].getBoundingClientRect().width
-    // var height      = $(this).find('.project_card')[0].getBoundingClientRect().height
-
-    // var targetWidth = 800
-    // var targetHeight= 600  
-
-    // $('.projects_detail').css({
-    //     'position': 'fixed',
-    //     'left': left_pos,
-    //     'top': top_pos,
-    //     'width': width,
-    //     'height': height,
-    //     'margin': 0
-    // });
-
-    // var properties = {
-    //     marginLeft: -targetWidth/2,
-    //     marginTop: -targetHeight/2,
-    //     width: targetWidth,
-    //     height: targetHeight,
-    //     left: '50%',
-    //     top: '50%',
-    //     effect: 'show'
-    // };
-
-    
-    
-    // $('.projects_detail').show();
     $('.projects_overlay').show();
-    $('.projects_detail').show();
-    
-
-//     console.log(top_pos);
+    $('.projects_detail').show();    
 }
 
 
@@ -334,4 +297,15 @@ function toggleApplicationForm() {
                 $('.project_card_in_popup').data('shown',1);
         };
     });
+}
+
+// function to make the submit button available once a resume is uploaded
+
+function makeSubmitButtonAvailable() {
+    $('#application_submit').removeClass('do_project');
+    $('#application_submit').removeClass('show_project_buttons');
+    $('#application_submit').removeClass('show_project_buttons_disabled');
+    $('#application_submit').addClass('do_project');
+    $('#application_submit').addClass('show_project_buttons');
+    buttonsInsideShowProject(); // this assigns the listener for submit 
 }

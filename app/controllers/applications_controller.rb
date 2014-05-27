@@ -6,13 +6,12 @@ class ApplicationsController < ApplicationController
   def create
 
     @project = Project.find_by(id: params[:project_id])
-    if params[:todo] == 'apply'
-      @application = @project.applications.new(user_id: current_user.id)
+    @application = @project.applications.new(user_id: current_user.id)
+    if params[:todo] == 'apply' 
       success_message = 'Application successful!'
       fail_message = "Application could not be completed."
       status = params[:todo]
     elsif params[:todo] == 'shortlist'
-      @application = @project.applications.new(user_id: current_user.id)
       success_message = 'Project successfully shortlisted!'
       fail_message = 'Project could not be shortlisted.'
       status = params[:todo]
@@ -21,18 +20,28 @@ class ApplicationsController < ApplicationController
     end
 
     respond_to do |format|
-      if @application.save
+      @application.cannot_shortlist_more_than_once if status == 'shortlist' # run this validation only on shortlist requests
+      if !@application.errors.any? && @application.valid?
+         @application.save
          @application.statuses= status
          if status == 'apply'
             @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just applied, we want the pop up to show up on npo's screen)
+            UserMailer.applied_to_project(@project.user).deliver
          end
-        if params[:todo] == 'apply'
-          UserMailer.applied_to_project(@project.user).deliver
-        end
-          format.json {render json: {message: success_message}}
+         format.json {render json: {
+            message: success_message,
+            alertMessage: "",
+            successFlag: 1
+            }
+          }
       else
         fail_message += " #{@application.errors.full_messages.join(' ')}"
-        format.json {render json: {message: fail_message}}
+        format.json {render json: {
+          message: fail_message,
+          alertMessage: "",
+          successFlag: 0
+          }
+        }
       end 
     end 
   end 
@@ -48,12 +57,15 @@ class ApplicationsController < ApplicationController
           @application.statuses= params[:todo]
           @application.project.attempt_close  # this will check to see if a project is filled and update a project's status accordingly if filled
           @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just accepted the project, we want the pop up to show up on npo's screen)
+          successFlag = 1
       elsif params[:todo] == 'apply'
           @application.cannot_apply_to_filled_projects  #call the custom validation
           @application.professional_cannot_apply_twice_to_same_project #call the custom validation
           unless @application.errors.any? 
             @application.statuses= params[:todo]
             @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just applied, we want the pop up to show up on npo's screen)
+            message = "Application successful!"
+            successFlag = 1
             UserMailer.applied_to_project(@application.project.user).deliver
           end
       end 
@@ -63,7 +75,9 @@ class ApplicationsController < ApplicationController
         format.json {   self.formats = ['html']
               render json: { 
                   replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role}),
-                  alertMessage: @application.errors.full_messages.join(' ')
+                  message: message,
+                  alertMessage: @application.errors.full_messages.join(' '),
+                  successFlag: successFlag ||= 0
                       } 
           }
         end

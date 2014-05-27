@@ -95,6 +95,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         buttonsInsideShowProject();
         toggleApplicationForm();
         animateProjects.call(_this);
+        removeUpload();
       });        
     });
   }
@@ -112,13 +113,24 @@ $(window).on('beforeunload',function(){     // navigating away from a page
               event.stopImmediatePropagation(); //not sure why preventDefault does not work here
               $.ajax({
                 url: $(this).attr('href'),
-                type: 'POST',
+                type: $(this).data('method'),
                 dataType: 'JSON'
-              }).always(function(data){alert(data.message)});
+              }).done(function(data){
+                if (data.successFlag == 1) {
+                      $('.projects_detail').fadeOut('fast');
+                      $('.projects_overlay').fadeOut('fast');
+                }
+                $('.basic.modal .content .message').html(data.message+" "+data.alertMessage)
+                $('.basic.modal').modal('show');
+                $('.basic.modal .content .button').off('click').on('click',function(){
+                  $('.basic.modal').modal('hide');
+                });
+                // alert(data.message)
+              });
               return false  //not sure why preventDefault does not work here
             });
 
-          $('.projects_overlay').on('click', function() {
+          $('.projects_overlay').off('click').on('click', function() {
             $('.projects_detail').fadeOut('fast');
             $(this).fadeOut('fast');
             endView();

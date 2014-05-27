@@ -68,10 +68,24 @@ class UsersController < ApplicationController
         @user = current_user
         if params[:user] && params[:resume_action] == 'upload'
             @user.update_attribute(:resume, params[:user][:resume])
-            message = "Resume could not be saved. #{@user.errors.full_messages.join(" ")}" if @user.errors.any?
+            if !@user.resume.file.nil?
+                if @user.resume.file.exists?   
+                    @user.update_attribute(:resume_quick_look, 'exists')
+                    message = "Resume saved."
+                    successflag = 1
+                else
+                    message = "Resume could not be saved. #{@user.errors.full_messages.join(" ")}" if @user.errors.any?
+                    successflag = 0
+                end
+            else
+                message = "Resume could not be saved. #{@user.errors.full_messages.join(" ")}" if @user.errors.any?
+                successflag = 0
+            end
         elsif params[:resume_action] == 'remove'
             @user.remove_resume!
-            @user.save  
+            @user.save
+            @user.update_attribute(:resume_quick_look, nil)
+            message = "Resume removed."
         end
 
         respond_to do |format|
@@ -79,7 +93,8 @@ class UsersController < ApplicationController
             format.json {   self.formats = ['html']
               render json: { 
                   replaceWith: render_to_string(partial: 'users/resume_upload', layout: false, locals: {user: @user}),
-                  message: message
+                  message: message,
+                  successflag: successflag
                       } 
           }
         end
