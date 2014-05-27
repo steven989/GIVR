@@ -17,7 +17,10 @@
             <li><%= link_to 'MY PROFILE', user_profile_path %></li>
             <li><%= link_to 'SIGN OUT', session_path('current'), method: 'delete' %></li>
         <% else %>
-            <li><%= link_to 'SIGN IN', new_user_path %></li>
+            <li>
+                <%= link_to 'SIGN IN', new_user_path, class: 'nav_sign_in' %>
+                <%= render 'users/login_form' %>
+            </li>
         <% end %>
 
         </ul>
