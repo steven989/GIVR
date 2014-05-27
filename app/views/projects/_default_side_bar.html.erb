@@ -1,0 +1,105 @@
+<div class="projects_search">
+
+  <ul class="search_bar">FIND A PROJECT
+
+    <li>
+      <ul>
+        <div class="clickable clicked" id="category_search">CATEGORY</div>
+        <div class="lis" id="show_by_default">
+          
+          <% @categories.each do |category| %>
+          
+            <% if current_user %>
+              <% if current_user.role == 'professional' %>
+                <% if @user_categories.include?(category.id) %>
+                    <% filter_option = "filter_on" %>
+                    <% data_on_option = 1 %>
+                <% else %>
+                  <% filter_option = "" %>
+                  <% data_on_option = 0 %>
+                <% end %>
+              <% elsif current_user.role == 'npo' %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>    
+              <% end %>
+            <% else %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+            <% end %>
+
+            <%= link_to filter_projects_path do %>
+              <li class="filter_button <%= filter_option %>" data-filterid=<%= category.id %> data-filtertype ="category" data-on=<%= data_on_option %>><%= category.category %></li>
+            <% end %>
+          <% end %>
+
+        </div>
+      </ul>
+    </li>
+    
+    <li>
+      <ul>
+        <div class="clickable" id="cause_search">CAUSE</div>
+        <div class="lis">
+          <% @causes.each do |cause| %>
+          
+            <% if current_user %>
+              <% if current_user.role == 'professional' %>
+                <% if @user_causes.include?(cause.id) %>
+                  <% filter_option = "filter_on" %>
+                  <% data_on_option = 1 %>  
+                <% else %>
+                  <% filter_option = "" %>
+                  <% data_on_option = 0 %>
+                <% end %>
+              <% elsif current_user.role == 'npo' %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>  
+              <% end %>
+            <% else %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+            <% end %>
+
+            <%= link_to filter_projects_path do %>
+              <li class="filter_button <%= filter_option %>" data-filterid=<%= cause.id %> data-filtertype = "cause" data-on=<%= data_on_option %>><%= cause.cause %></li>
+            <% end %>
+          <% end %>
+        </div>
+      </ul>
+    </li>
+
+    <li>        
+      <ul>
+        <div class="clickable" id="location_search">LOCATION</div>
+        <div class="lis">
+
+          <% @locations.each do |location| %>
+
+            <% if current_user %>
+              <% if current_user.role == 'professional' %>
+                <% if @user_locations.include?(location.id) %>
+                  <% filter_option = "filter_on" %>
+                  <% data_on_option = 1 %>
+                <% else %>
+                  <% filter_option = "" %>
+                  <% data_on_option = 0 %>
+                <% end %>
+              <% elsif current_user.role == 'npo' %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>  
+              <% end %>
+            <% else %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+            <% end %>
+
+            <%= link_to filter_projects_path do %>
+              <li class="filter_button <%= filter_option %>" data-filterid=<%= location.id %> data-filtertype = "location" data-on=<%= data_on_option %> ><%= location.location %></li>
+            <% end %>
+          <% end %>
+
+        </div>
+      </ul>
+    </li>
+  </ul>
+</div>

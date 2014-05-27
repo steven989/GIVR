@@ -15,6 +15,7 @@ $('document').ready(function() {
     signin_toggle();
     signinVisibilityToggle();
     urlCommands();
+    searchBarClickListener();
 });
 
 // toggle between showing the sign in form and not showing the sign in form
@@ -95,6 +96,13 @@ function highlightButton() {
         else {$(this).removeClass('clicked')}
 }
 
+// this code is to activate a filter group
+
+function searchBarClickListener() {
+    $('.search_bar > .filter_group').off('click').on('click',function(){
+        $(this).dropdown('toggle');
+    });
+}
 
 // this code is for the user profile page, the toggle among the profile sections (summary, applications, etc.)
 
