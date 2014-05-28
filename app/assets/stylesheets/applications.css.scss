@@ -11,6 +11,7 @@ $accent-color: #3D9977;
 $text-color: #888888;
 $box-shadow-color: #888888;
 $light-gray: #EEEEEE;
+$very-light-gray: #FAFAFA;
 
 
 /* ----------------------- across the whole document ---------------------- */
@@ -279,68 +280,106 @@ body {
 
 .projects_search {
   position: fixed;
-  padding-top: 3rem;
-  padding-left: 2rem;
+  margin-top: 3rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   top: 4rem;
-  height: 40rem;
+  height: 78%;
   width: 15%;
   background-color: white;
   z-index: 1;
   overflow: scroll;
   color: $text-color;
   
+  .search_bar_header {
+    font-size: 1rem;  
+    font-weight: bold;
+    color: black;
+  }
   .search_bar {
     font-size: 1rem;  
     font-weight: bold;
     display: block;
     position: relative;
-    min-height: 30rem;
+
+    
+    .li {
+      width: 100%;
+      padding: 0 !important;
+    }
 
     .clickable {
       font-size: 1rem;
-      font-weight: normal;
+      font-weight: bolder;
       display: block;
-      margin-top: 0.5rem;
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
       padding-left: 0.5rem;
 
       &:hover {
-        background-color: $primary-color;
-        color: white;
-
+        cursor: pointer;
+        background-color: $very-light-gray;
+        -webkit-box-shadow: 0.2em 0em 0em $primary-color inset;
+        box-shadow: 0.2em 0em 0em $primary-color inset;
       }
-    }
 
+      &:active {
+        background-color: $light-gray;
+      }
+      
+}
 
      .lis {
-      display: none;
+      display: none; 
+      margin-top: 0;
+      border-radius: 0;
 
-      a {
-        color: $text-color;
-        text-decoration: none;
+      .filter_value {
+        padding: 0;
+        width: 100%;
 
-      }
+        &:hover {
+          cursor: pointer;
+          background-color: $very-light-gray;
+          -webkit-box-shadow: 0.2rem 0em 0em $primary-color inset;
+          box-shadow: 0.2rem 0em 0em $primary-color inset;
+        }
 
-      li {
-        font-size: 1rem;
-        font-weight: normal;
-        display: block;
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
-        padding-left: 2rem;
-        border-bottom: 2px solid white;
+        &:active {
+          background-color: $light-gray;
+        }
 
-       
+        label:before {
+          position: absolute;
+          top: 50%;
+          margin-top: -0.5rem;
+          margin-left: 1.5rem;
+        }
 
-       &:hover {
-          border-bottom: 2px solid $primary-color;
+         label:after {
+          position: absolute;
+          top: 50%;
+          margin-top: -0.2rem;
+          margin-left: 1.5rem;        
+         }
+
+        .label {
+          position: relative;
+          min-height: 2rem;
+          overflow: auto;
+          
+          span {
+            position: relative;
+            display: block;
+            height: 100%;
+            margin-left: 2rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            padding-right: 0.5rem;
+          }
 
         }
-      }
-
-      .filter_on {
-        background-color: #F1F1F1;
 
       }
     }

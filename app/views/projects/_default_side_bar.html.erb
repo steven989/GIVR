@@ -1,44 +1,44 @@
 <div class="projects_search">
 
-  <ul class="search_bar">FIND A PROJECT
-
-    <li>
-      <ul>
-        <div class="clickable clicked" id="category_search">CATEGORY</div>
-        <div class="lis" id="show_by_default">
-          
-          <% @categories.each do |category| %>
-          
-            <% if current_user %>
-              <% if current_user.role == 'professional' %>
-                <% if @user_categories.include?(category.id) %>
-                    <% filter_option = "filter_on" %>
-                    <% data_on_option = 1 %>
-                <% else %>
-                  <% filter_option = "" %>
-                  <% data_on_option = 0 %>
+  <div class="search_bar_header">Filter for projects</div>
+  <div class="search_bar ui fluid vertical menu">
+    <div class='li item active'>
+        <div class="clickable" id="category_search">By skill category</div>
+          <div class="lis" id="show_by_default">
+            
+            <% @categories.each do |category| %>
+            
+              <% if current_user %>
+                <% if current_user.role == 'professional' %>
+                  <% if @user_categories.include?(category.id) %>
+                      <% filter_option = "filter_on" %>
+                      <% data_on_option = 1 %>
+                  <% else %>
+                    <% filter_option = "" %>
+                    <% data_on_option = 0 %>
+                  <% end %>
+                <% elsif current_user.role == 'npo' %>
+                  <% filter_option = "filter_on" %>
+                  <% data_on_option = 1 %>    
                 <% end %>
-              <% elsif current_user.role == 'npo' %>
-                <% filter_option = "filter_on" %>
-                <% data_on_option = 1 %>    
+              <% else %>
+                  <% filter_option = "filter_on" %>
+                  <% data_on_option = 1 %>
               <% end %>
-            <% else %>
-                <% filter_option = "filter_on" %>
-                <% data_on_option = 1 %>
+
+              <div class="filter_value ui large checkbox">
+              <%= check_box_tag 'category'+category.id.to_s, category.category, data_on_option == 1, class: 'filter_button', data: { filterid: category.id, filtertype: 'category', on: data_on_option}, href: filter_projects_path %>
+              <%= label_tag  'category'+category.id.to_s do%>
+                <div class="label"><span><%= category.category %></span></div>
+              <% end %>
+              </div>
             <% end %>
 
-            <%= link_to filter_projects_path do %>
-              <li class="filter_button <%= filter_option %>" data-filterid=<%= category.id %> data-filtertype ="category" data-on=<%= data_on_option %>><%= category.category %></li>
-            <% end %>
-          <% end %>
-
-        </div>
-      </ul>
-    </li>
+          </div>
+    </div>
     
-    <li>
-      <ul>
-        <div class="clickable" id="cause_search">CAUSE</div>
+    <div class='li item'>
+        <div class="clickable" id="cause_search">By cause</div>
         <div class="lis">
           <% @causes.each do |cause| %>
           
@@ -60,17 +60,18 @@
                 <% data_on_option = 1 %>
             <% end %>
 
-            <%= link_to filter_projects_path do %>
-              <li class="filter_button <%= filter_option %>" data-filterid=<%= cause.id %> data-filtertype = "cause" data-on=<%= data_on_option %>><%= cause.cause %></li>
+            <div class="filter_value ui large checkbox">
+            <%= check_box_tag 'cause'+cause.id.to_s, cause.cause, data_on_option == 1, class: 'filter_button', data: { filterid: cause.id, filtertype: 'cause', on: data_on_option}, href: filter_projects_path %>
+            <%= label_tag  'cause'+cause.id.to_s do%>
+              <div class="label"><span><%= cause.cause %></span></div>
             <% end %>
+            </div>
           <% end %>
         </div>
-      </ul>
-    </li>
+    </div>
 
-    <li>        
-      <ul>
-        <div class="clickable" id="location_search">LOCATION</div>
+    <div class='li item'>        
+        <div class="clickable" id="location_search">By location</div>
         <div class="lis">
 
           <% @locations.each do |location| %>
@@ -93,13 +94,15 @@
                 <% data_on_option = 1 %>
             <% end %>
 
-            <%= link_to filter_projects_path do %>
-              <li class="filter_button <%= filter_option %>" data-filterid=<%= location.id %> data-filtertype = "location" data-on=<%= data_on_option %> ><%= location.location %></li>
+            <div class="filter_value ui large checkbox">
+            <%= check_box_tag 'location'+location.id.to_s, location.location, data_on_option == 1, class: 'filter_button', data: { filterid: location.id, filtertype: 'location', on: data_on_option}, href: filter_projects_path %>
+            <%= label_tag  'location'+location.id.to_s do%>
+              <div class="label"><span><%= location.location %></span></div>
             <% end %>
+            </div>
           <% end %>
 
         </div>
-      </ul>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>

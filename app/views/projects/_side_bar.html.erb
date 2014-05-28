@@ -1,23 +1,89 @@
 <div class="search_bar ui secondary vertical menu">
     <div class="filter_group ui dropdown link item">Skill category
-        <div class="menu ui transition">
-            <a class="item">test 1</a>
-            <a class="item">test 2</a>
-            <a class="item">test 3</a>
+        <div class="filter_items menu ui transition">
+          <% @categories.each do |category| %>
+          
+            <% if current_user %>
+              <% if current_user.role == 'professional' %>
+                <% if @user_categories.include?(category.id) %>
+                    <% filter_option = "filter_on" %>
+                    <% data_on_option = 1 %>
+                <% else %>
+                  <% filter_option = "" %>
+                  <% data_on_option = 0 %>
+                <% end %>
+              <% elsif current_user.role == 'npo' %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>    
+              <% end %>
+            <% else %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+            <% end %>
+            
+            <div class="item ui large checkbox">
+            <%= check_box_tag 'category'+category.id.to_s, category.category, data_on_option == 1, data: { filterid: category.id, filtertype: 'category', on: data_on_option}, href: filter_projects_path %>
+            <%= label_tag  'category'+category.id.to_s, category.category %>
+            </div>
+          <% end %>
         </div>
     </div>
     <div class="filter_group ui dropdown link item">Cause
-        <div class="menu ui transition">
-            <a class="item">test 4</a>
-            <a class="item">test 5</a>
-            <a class="item">test 6</a>
+        <div class="filter_items menu ui transition">
+          <% @causes.each do |cause| %>
+          
+            <% if current_user %>
+              <% if current_user.role == 'professional' %>
+                <% if @user_causes.include?(cause.id) %>
+                    <% filter_option = "filter_on" %>
+                    <% data_on_option = 1 %>
+                <% else %>
+                  <% filter_option = "" %>
+                  <% data_on_option = 0 %>
+                <% end %>
+              <% elsif current_user.role == 'npo' %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>    
+              <% end %>
+            <% else %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+            <% end %>
+            
+            <div class="item ui large checkbox">
+            <%= check_box_tag 'cause'+cause.id.to_s, cause.cause, data_on_option == 1, data: { filterid: cause.id, filtertype: 'cause', on: data_on_option}, href: filter_projects_path %>
+            <%= label_tag  'cause'+cause.id.to_s, cause.cause %>
+            </div>
+          <% end %>
         </div>
     </div>
     <div class="filter_group ui dropdown link item">Location
-        <div class="menu ui transition">
-            <a class="item">test 7</a>
-            <a class="item">test 8</a>
-            <a class="item">test 9</a>
+        <div class="filter_items menu ui transition">
+          <% @locations.each do |location| %>
+          
+            <% if current_user %>
+              <% if current_user.role == 'professional' %>
+                <% if @user_locations.include?(location.id) %>
+                    <% filter_option = "filter_on" %>
+                    <% data_on_option = 1 %>
+                <% else %>
+                  <% filter_option = "" %>
+                  <% data_on_option = 0 %>
+                <% end %>
+              <% elsif current_user.role == 'npo' %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>    
+              <% end %>
+            <% else %>
+                <% filter_option = "filter_on" %>
+                <% data_on_option = 1 %>
+            <% end %>
+            
+            <div class="item ui large checkbox">
+            <%= check_box_tag 'location'+location.id.to_s, location.location, data_on_option == 1, data: { filterid: location.id, filtertype: 'location', on: data_on_option}, href: filter_projects_path %>
+            <%= label_tag  'location'+location.id.to_s, location.location %>
+            </div>
+          <% end %>
         </div>
     </div>
 </div>

@@ -5,7 +5,11 @@ $('document').ready(function() {
     $(document).on('scroll', scrollCheck);
     window.headerHeight = $('#visible_blue').outerHeight(false);    // taking a snapshot of the height of the header as an anchor
     $('.search_bar .clickable').each(function(){    // search bar 
-        $(this).on('click',highlightButton);
+        $(this).on('click',function () {
+            var notClicked = $(this).parent().attr('class').indexOf('active') < 0
+            if (notClicked) {$(this).parent().addClass('active')} 
+            else {$(this).parent().removeClass('active')}
+        });
         $(this).on('click',slideUpDown);
         });
     buttonHighlightToggle($('.profile_view_nav .profile_view_button'));
@@ -16,6 +20,9 @@ $('document').ready(function() {
     signinVisibilityToggle();
     urlCommands();
     searchBarClickListener();
+    $('.filter_items').off('click').on('click',function(){
+        console.log($(this).parent().dropdown)
+    });
 });
 
 // toggle between showing the sign in form and not showing the sign in form
@@ -84,8 +91,8 @@ function navigationUnderline() {
 
 function slideUpDown() {
     var list = $(this).parent().children().eq(1)
-    if (list.css('display')=="none") {list.slideDown()}
-        else {list.slideUp()}
+    if (list.css('display')=="none") {list.slideDown(135)}
+        else {list.slideUp(135)}
 }
 
 // this code is so that when a search group button is clicked, it is always highlighted even without mouseover
@@ -100,7 +107,7 @@ function highlightButton() {
 
 function searchBarClickListener() {
     $('.search_bar > .filter_group').off('click').on('click',function(){
-        $(this).dropdown('toggle');
+        $(this).dropdown('show');
     });
 }
 
@@ -145,16 +152,6 @@ function jumpToTheRightProfileSection(raw_hash){
     execute_profile_toggle.call(content_context);
     var button_context = $('.profile_view_nav .profile_view_button').filter(function(){return $(this).attr('id') == section_id}); // find the button whose id matches the fragment
     highlightButton.call(button_context);
-}
-
-// this code is to highlight the categories, causes and locations that are filtered on and unhighlight those that are not on
-
-function putHighlightOnProjectFilter(_this) {
-    if (_this.data('on') == 0) {
-        _this.removeClass('filter_on')
-    } else if (_this.data('on') == 1) {
-        _this.addClass('filter_on')
-    }
 }
 
 // this code is to hide the notification once user clicks on the Applications tab in the profile

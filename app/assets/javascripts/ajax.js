@@ -56,7 +56,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   function filterProjects() {
 
     $('.filter_button').off('click').on('click',function(){
-      event.preventDefault();
+      // event.preventDefault();
       $(this).data('on', 1 - $(this).data('on'));  // a data attribute of 1 represent checked, while a 0 represents unchecked. This is a toggle
       var allCheckedButtonsObject = $('.filter_button').filter(function(){
         return $(this).data('on') == 1
@@ -64,7 +64,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       var allCheckedButtons = [];
       allCheckedButtonsObject.each(function(){allCheckedButtons.push($(this).data())})
       $.ajax({
-        url: $(this).parent().attr('href'),
+        url: $(this).attr('href'),
         type: 'POST',
         dataType: 'script',
         data: JSON.stringify(allCheckedButtons),
@@ -73,7 +73,6 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         infiniteScroll();
         showProject();
       });
-      putHighlightOnProjectFilter($(this))
     });
   }
 
