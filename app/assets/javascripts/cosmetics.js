@@ -13,25 +13,31 @@ $('document').ready(function() {
         $(this).on('click',slideUpDown);
         });
     buttonHighlightToggle($('.profile_view_nav .profile_view_button'));
-    buttonHighlightToggle($('.login_box .horizontal_tab'));
     navigationUnderline();  // will add underline to the navigation link that's currently active
     profile_toggle();
     signin_toggle();
     signinVisibilityToggle();
     urlCommands();
     searchBarClickListener();
-    $('.filter_items').off('click').on('click',function(){
-        console.log($(this).parent().dropdown)
-    });
+    clickingOnTransparentLayer();
 });
 
 // toggle between showing the sign in form and not showing the sign in form
 
 function signinVisibilityToggle(){
     $('.nav_sign_in').on('click',function(){
-    $(this).addClass('signin_clicked')
     event.preventDefault();
-    hideShowThings.call($('.login_box'));     
+    highlightButton.call($(this).find('li'));
+    hideShowThings.call($('.login_box'));  
+    hideShowThings.call($('.projects_overlay_transparent'));
+    });
+}
+
+function clickingOnTransparentLayer(){
+    $('.projects_overlay_transparent').off('click').on('click',function(){
+        hideShowThings.call($('.login_box')); // hide the login box
+        hideShowThings.call($(this));   // disable the transparent layer
+        highlightButton.call($('.nav_sign_in').find('li')); //restore the highlighted signin navigation button
     });
 }
 
@@ -83,8 +89,8 @@ function scrollCheck() {
 function navigationUnderline() {
     var linksToHighlightBlueHeader = $('.header .nav').find('li').filter(function(){return $(this).find('a').attr('href') == $(location).attr('pathname')});
     linksToHighlightBlueHeader.css({"border-bottom": "2px solid white"});
-    var linksToHighlightWhiteHeader = $('.alt_header .nav').find('li').filter(function(){return $(this).find('a').attr('href') == $(location).attr('pathname')});
-    linksToHighlightWhiteHeader.css({"border-bottom": "2px solid #76D7B3"});
+    var linksToHighlightWhiteHeader = $('.alt_header .nav').find('li').filter(function(){return $(this).parent().attr('href') == $(location).attr('pathname')});
+    linksToHighlightWhiteHeader.css({"background-color": "rgba(175,175,175,0.5)"});
 }
 
 // this code is to enable the exanding of the search items in the "find a project" bar
@@ -275,10 +281,18 @@ function signin_toggle() {
     function execute_signin_toggle(){                          
             var _this = $(this)
             $('.login_box .form').each(function(){
-                if (_this.attr('id') === $(this).attr('id')) {
+                if (_this.attr('data-openitem') === $(this).attr('id')) {
                     $(this).show()
                 } else { 
                     $(this).hide()          
+                };
+            });
+            $('.login_box .horizontal_tab').each(function(){
+                if ($(this).attr('data-openitem') == _this.attr('data-openitem')) {
+                    $(this).removeClass('active');
+                    $(this).addClass('active');
+                } else {
+                    $(this).removeClass('active');
                 };
             });
         }

@@ -12,25 +12,37 @@
 <!-- this is the actual view -->
 <div class="alt_header" id="visible_white">
     <div class="logo">
-        <%= link_to image_tag("logo_short.png"), root_path %>
+        <%= link_to image_tag("logo_full.png"), root_path %>
     </div>
 
     <div class="nav">
         <ul>
-        <li><%= link_to 'HOME', root_path %></li>
-        <li><%= link_to 'HOW IT WORKS', 'tbd' %></li>
-        <li><%= link_to 'PROJECTS', projects_path %></li>
+        <%= link_to root_path do %>
+            <li><p>Home</p></li>
+        <% end %>
+        <%= link_to 'tbd' do %>
+            <li><p>How it works</p></li>
+        <% end %>
+        <%= link_to projects_path do %>
+            <li><p>Projects</p></li>
+        <% end %>
         <% if current_user %>
-            <li>
-                <%= link_to 'MY PROFILE', user_profile_path %>
-                <div class="notification_count <%= "hidden" if @notification_count.nil? || @notification_count == 0 %>"><%= @notification_count %></div>
-            </li>
-            <li><%= link_to 'SIGN OUT', session_path('current'), method: 'delete' %></li>
+            <%= link_to user_profile_path do %>
+                <li>
+                    <p>My profile</p>
+                    <div class="notification_count <%= "hidden" if @notification_count.nil? || @notification_count == 0 %>"><%= @notification_count %></div>
+                </li>
+            <% end %>
+            <%= link_to session_path('current'), method: 'delete' do %>
+                <li><p>Sign out</p></li>
+            <% end %>
         <% else %>
-            <li>
-                <%= link_to 'SIGN IN', new_user_path, class: 'nav_sign_in' %>
-                <%= render 'users/login_form' %>
-            </li>
+            <%= link_to new_user_path, class: 'nav_sign_in' do %>
+                <li class="">
+                    <p>Sign in</p>
+                </li>
+            <% end %>
+            <%= render 'users/login_form' %>
         <% end %>
         </ul>
     </div>

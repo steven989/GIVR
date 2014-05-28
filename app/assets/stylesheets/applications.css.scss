@@ -6,7 +6,7 @@
 
 $font-stack: "Raleway", serif;
 
-$primary-color: #76D7B3;
+$primary-color: #01775B;
 $accent-color: #3D9977;
 $text-color: #888888;
 $box-shadow-color: #888888;
@@ -27,7 +27,7 @@ body {
 }
 
 .clicked {
-  background-color: $primary-color;
+  background-color: rgba(175,175,175,0.5);
   color: white;
 }
 
@@ -57,7 +57,7 @@ body {
   z-index: 1;
   height: 4.5rem;
   width: 100%;
-  z-index: 3;
+  z-index: 22;
   overflow: hidden;
   
   .logo {
@@ -102,7 +102,6 @@ body {
 
       &:hover {
         border-bottom: 2px solid white;
-
       }
     
     a {
@@ -117,25 +116,24 @@ body {
 
 }
 
-
 .alt_header {
   color: $text-color;
   position: fixed;
   top: 0;
-  background-color: white;
+  background-color: $primary-color;
   z-index: 1;
-  height: 4rem;
+  height: 2.5rem;
   width: 100%;
-  box-shadow: 1px 1px 5px $box-shadow-color;
-  z-index: 2;
+  z-index: 20;
+  opacity: 0.95;
 
   .logo {
     position: absolute;
-    margin-top: 0.0rem;
+    margin-top: 0.22rem;
     margin-left: 3rem;
 
     img {
-      height: 4rem;
+      height: 2rem;
 
     }
   }
@@ -157,26 +155,38 @@ body {
   .nav {
     position: absolute;
     right: 2rem;
-    margin-top: 2rem;
-    margin-right: 5rem;
+    height: 100%;
+    
+    ul {
+      height: 100%;
+      overflow: none;
+    }
 
     li {
       position: relative;
       display: inline-block;
-      margin-left: 1rem;
       font-size: 1rem;
-      padding-bottom: 0.25rem;
-      padding-right: 0.25rem;
-      padding-left: 0.25rem;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      height: 100%;
+      -webkit-transition: background-color 150ms; /* For Safari 3.1 to 6.0 */
+      transition: background-color 150ms;
 
       &:hover {
-        border-bottom: 2px solid $primary-color;
+        background-color: rgba(175,175,175,0.5);
+      }
 
+      &:active {
+        background-color: rgba(130,130,130,0.5);
+      }  
+
+      p {
+        margin-top: 0.85rem;
       }
     }
 
     a {
-      color: $text-color;
+      color: white;
       text-decoration: none;
 
     }
@@ -185,7 +195,7 @@ body {
 
 #static {
   position: static;
-  height: 4rem;
+  height: 2.5rem;
 
 }
 
@@ -571,48 +581,37 @@ body {
   color: $text-color;
   position: absolute;
   right: 0;
-  top: 2rem;
+  top: 2.5rem;
   width: 20rem;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  background-color: white;
+  padding: 1rem;
+  background-color: rgb(81, 145, 130);
   overflow: auto; 
   font-size: 1rem;
-  border: 1px solid $primary-color;
+
 
   form input {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   }  
 
-  .login_nav_bar {
-    position: relative;
-    width: 15rem;
-    left: 2.5rem;
-    
-    .horizontal_tab {
-      display: inline-block;
-      float: left;
-      height: 1.5rem;
-      margin-left: 2px;
-      width: 5rem;
-      text-align: center;
-      padding-top: 0.3rem;
+  .tabular.menu {
+    border:none !important;
+    margin-bottom: 0 !important;
 
-        &:hover {
-         background-color: #76D7B3;
-         color: white;
-        }
-      }
+    .active.item {
+      border: none !important;
     }
 
+  }
+
   .form{
-    margin-top:2rem;
-    left: 2.5rem;
+    background-color: white;
     position: relative;
-    width: 15rem;
+    width: 18rem;
+    padding: 1rem;
     clear: both;
     display: none;
+    overflow: auto;
     
 
       .text_field{
@@ -622,41 +621,39 @@ body {
         margin: 0.75rem auto;
         border: 1px solid $primary-color;
       }
-
-      .button {
-        display: block;
-        color: white;
-        text-decoration: none;
-        width: 96%;
-        height: 1.5rem;
-        margin: 2px auto;
-        background-color: $primary-color;
-        border: 1px solid $primary-color;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-      }
-
-      #facebook {
-        margin-top: 1rem;
-        background-color: #3B5998;  
-        border: 1px solid #3B5998;
-        text-align: center;
-      }
-
-      #linkedin {
-        margin-top: 0.5rem;
-        background-color: #007bb6;
-        border: 1px solid #007bb6;
-        text-align: center;
-      }
-
   }
   
   #login{
     display:block;
   }
 
+  #facebook {
+    width: 8rem;
+    float: left;
+  }
+  
+  #linkedin {
+    width: 9rem;
+    float: right;
+  }
+
+
 }
+
+
+.projects_overlay_transparent {
+  background-color: none;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 19;
+  opacity: 0.7;
+}
+
 
 /* -------------------------- user#profile ------------------------- */
 

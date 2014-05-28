@@ -1,54 +1,67 @@
 <div class="login_box hidden">
-    <div class="login_nav_bar">
-        <div class="horizontal_tab noTextSelectCursor clicked" id='login'>LOG IN</div>
-        <div class="horizontal_tab noTextSelectCursor" id= 'signup'>SIGN UP</div>
+    <div class="ui tabular menu">
+        <div class="horizontal_tab link active item" data-openitem='login'>LOG IN</div>
+        <div class="horizontal_tab link item" data-openitem= 'signup'>SIGN UP</div>
     </div>
-    <div class="form" id='login'>
+    <div class="ui form segment" id='login'>
         <%= form_tag '/sessions' do %>
+        <div class='field'>
+            <%= label_tag 'email', 'Email' %>
+            <%= text_field_tag 'email', nil,placeholder: 'email', class: 'ui input' %>
+        </div>
+        <div class='field'>
+            <%= label_tag 'password', 'Password' %>
+            <%= password_field_tag 'password', nil, placeholder: 'password', class: 'ui input' %>
+        </div>
         <p>
-            <%= text_field_tag 'email', nil,placeholder: 'email', class: 'text_field' %>
-        </p>
-        <p>
-            <%= password_field_tag 'password', nil, placeholder: 'password', class: 'text_field' %>
-        </p>
-        <p>
-            <%= submit_tag 'Log in', class: 'button' %>
+            <%= submit_tag 'Log in now', class: 'mini ui givrgreen button' %>
         </p>
         <% end %>
         <div class="forgot_password">
-            <p>Forgot password?</p>
             <%= render 'users/forgot_password_form' %>
         </div>
-        <%= link_to 'Log in with Facebook', auth_at_provider_path(provider: :facebook), class: 'button', id: 'facebook' %>
-        <%= link_to 'Log in with LinkedIn', auth_at_provider_path(provider: :linkedin), class: 'button', id: 'linkedin' %>
+        <div class="ui horizontal divider">Or login with</div>
+        <%= link_to 'facebook', auth_at_provider_path(provider: :facebook), class: 'mini ui facebook button', id: 'facebook' %>
+        <%= link_to 'linkedIn', auth_at_provider_path(provider: :linkedin), class: 'mini ui linkedin button', id: 'linkedin' %>
     </div>
-    <div class="form" id='signup'>
+    <div class="ui form segment" id='signup'>
         <%= form_for @user do |f| %>
         <div class='error_messages'>
             <%= @user.errors.full_messages.first if @user.errors.any? %>
         </div>
-        <p>
-            <%= f.text_field 'email', placeholder: 'email', class: 'text_field' %>
-        </p>
-        <p>
-            <%= f.password_field 'password', placeholder: 'password', class: 'text_field' %>
-        </p>
-        <p>
-            <%= f.password_field 'password_confirmation', placeholder: 'confirm password', class: 'text_field' %>
-        </p>
-        <div class="i_am_a">
+        <div class="field">
+            <%= label_tag 'email', 'Email' %>
+            <%= f.text_field 'email', placeholder: 'email', class: 'ui input' %>
+        </div>
+        <div class="field">
+            <%= label_tag 'password', 'Password' %>
+            <%= f.password_field 'password', placeholder: 'password', class: 'ui input' %>
+        </div>
+        <div class="field">
+            <%= label_tag 'password_confirmation', 'Confirm password' %>
+            <%= f.password_field 'password_confirmation', placeholder: 'confirm password', class: 'ui input' %>
+        </div>
+        <div class="i_am_a grouped inline fields">
         I am a:
-            <p><%= f.radio_button :role, 'professional' %>
-            <%= f.label :role_volunteer, 'Professional' %></p>
-            <p><%= f.radio_button :role, 'npo' %>
-            <%= f.label :role_npo, 'Non-Profit Organization' %></p>
-        
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <%= f.radio_button :role, 'professional' %>
+                    <%= f.label :role_professional, 'Professional' %>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui radio checkbox">
+                    <%= f.radio_button :role, 'npo' %>
+                    <%= f.label :role_npo, 'Non-Profit Organization' %>
+                </div>
+            </div>
         </div>
         <p>
-            <%= f.submit 'Sign up', class: 'button' %>
+            <%= f.submit 'Sign up now', class: 'mini ui givrgreen button' %>
         </p>
-        <%= link_to 'Sign up with Facebook', auth_at_provider_path(provider: :facebook), class: 'button', id: 'facebook' %>
-        <%= link_to 'Sign up with LinkedIn', auth_at_provider_path(provider: :linkedin), class: 'button', id: 'linkedin' %>
+        <div class="ui horizontal divider">Or sign up with</div>
+        <%= link_to 'facebook', auth_at_provider_path(provider: :facebook), class: 'mini ui facebook button', id: 'facebook' %>
+        <%= link_to 'linkedin', auth_at_provider_path(provider: :linkedin), class: 'mini ui linkedin button', id: 'linkedin' %>
         <% end %>
     </div>
 </div>
