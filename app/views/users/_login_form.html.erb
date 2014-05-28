@@ -3,7 +3,14 @@
         <div class="horizontal_tab link active item" data-openitem='login'>LOG IN</div>
         <div class="horizontal_tab link item" data-openitem= 'signup'>SIGN UP</div>
     </div>
-    <div class="ui form segment" id='login'>
+    <div class="ui small form segment" id='login'>
+        <% if flash[:login_error] %>
+        <div class="errors">
+            <p>
+                <%= flash[:login_error] %>
+            </p>
+        </div>
+        <% end %>
         <%= form_tag '/sessions' do %>
         <div class='field'>
             <%= label_tag 'email', 'Email' %>
@@ -24,7 +31,14 @@
         <%= link_to 'facebook', auth_at_provider_path(provider: :facebook), class: 'mini ui facebook button', id: 'facebook' %>
         <%= link_to 'linkedIn', auth_at_provider_path(provider: :linkedin), class: 'mini ui linkedin button', id: 'linkedin' %>
     </div>
-    <div class="ui form segment" id='signup'>
+    <div class="ui small form segment" id='signup'>
+        <% if flash[:signup_error] %>
+        <div class="errors">
+            <p>
+                <%= flash[:signup_error] %>
+            </p>
+        </div>
+        <% end %>
         <%= form_for @user do |f| %>
         <div class='error_messages'>
             <%= @user.errors.full_messages.first if @user.errors.any? %>

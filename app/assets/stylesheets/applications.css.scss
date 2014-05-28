@@ -613,14 +613,15 @@ body {
     display: none;
     overflow: auto;
     
-
-      .text_field{
-        display: block;
-        width: 96%;
-        height: 1.5rem;
-        margin: 0.75rem auto;
-        border: 1px solid $primary-color;
-      }
+    .errors {
+      width: 16rem;
+      font-size: 1rem;
+      background-color: #F1D7D7;
+      color: #A95252;
+      border-radius: 5px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }    
   }
   
   #login{

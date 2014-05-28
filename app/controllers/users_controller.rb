@@ -15,7 +15,8 @@ class UsersController < ApplicationController
             auto_login(@user)
             redirect_to projects_path
         else 
-            redirect_to projects_path+'#showLogin', notice: @user.errors.full_messages.join(" ")
+            flash[:signup_error] = "Sign up could not be completd. #{@user.errors.full_messages.join(". ")}"
+            redirect_to projects_path+'#showLogin/signup'
         end 
     end 
 

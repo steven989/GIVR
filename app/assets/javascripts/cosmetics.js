@@ -46,7 +46,14 @@ function clickingOnTransparentLayer(){
 function urlCommands(){
     var raw_hash = window.location.hash.substring(1) // get the url fragment
     if (window.location.href.indexOf('profile')>-1) {jumpToTheRightProfileSection(raw_hash)};  // will jump to the profile section indicated by the url fragment
-    if ($('.login_box').length>0 && raw_hash.indexOf('showLogin')>-1) {hideShowThings.call($('.login_box'))}; // if the login box exists on the page ()
+    if ($('.login_box').length>0 && raw_hash.indexOf('showLogin')>-1) {     // if the login box exists on the page ()
+        hideShowThings.call($('.login_box'));
+        if (raw_hash.indexOf('/')>-1){
+            var tab = raw_hash.substring(10);
+            var jqtab = $('.login_box .horizontal_tab').filter(function(){return $(this).data('openitem') == tab});
+            execute_signin_toggle.call(jqtab);
+        };
+    }; 
 }
 
 // Button toggle; can be applied to many buttons

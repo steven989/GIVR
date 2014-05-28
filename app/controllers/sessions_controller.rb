@@ -4,7 +4,8 @@ class SessionsController < ApplicationController
         if login(params[:email], params[:password])
             redirect_back_or_to projects_path, notice: 'Login successful'
         else 
-            redirect_back_or_to projects_path+'#showLogin', notice: 'Your email or password is incorrect.'
+            flash[:login_error] = 'Your email or password is incorrect.'
+            redirect_back_or_to projects_path+'#showLogin/login'
         end 
     end 
 
