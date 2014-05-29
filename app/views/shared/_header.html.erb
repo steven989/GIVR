@@ -1,41 +1,49 @@
+<!-- this block is related to the notification. Put in here because current_user doesn't work for some reason in the Application controller (not project application, but the Rails application) -->
+   <% if current_user %> 
+      <%   if current_user.role == 'npo' %>
+         <% @applications = current_user.applications.order('created_at ASC').where("applications.status not like 'shortlist'") %>
+         <%    @notification_count = @applications.where("notification_view_flag like 'npo'").length %>
+        <% elsif current_user.role == 'professional' %>
+            <% @applications = current_user.made_applications.order('created_at ASC').where("applications.status in ('apply','approve', 'engage')") %>
+           <%  @notification_count = @applications.where("notification_view_flag like 'professional'").length %>
+        <% end %>
+    <% end %>
+
+<!-- this is the actual view -->
 <div class="header" id="visible_blue">
     <div class="logo">
         <%= link_to image_tag("logo_full.png"), root_path %>
     </div>
 
     <div class="nav">
-
         <ul>
-
-        <li><%= link_to 'HOME', root_path %></li>
-
-        <li><%= link_to 'HOW IT WORKS', 'tbd' %></li>
-
-        <li><%= link_to 'PROJECTS', projects_path %></li>
-
-        <% if current_user %>
-            <li><%= link_to 'MY PROFILE', user_profile_path %></li>
-            <li><%= link_to 'SIGN OUT', session_path('current'), method: 'delete' %></li>
-        <% else %>
-            <li>
-                <%= link_to 'SIGN IN', new_user_path, class: 'nav_sign_in' %>
-                <%= render 'users/login_form' %>
-            </li>
+        <%= link_to root_path, class: 'li' do %>
+            <li><p>Home</p></li>
         <% end %>
-
+        <%= link_to 'tbd', class: 'li'  do %>
+            <li><p>How it works</p></li>
+        <% end %>
+        <%= link_to projects_path, class: 'li'  do %>
+            <li><p>Projects</p></li>
+        <% end %>
+        <% if current_user %>
+            <div class='li profile_dropdown' href="<%= user_profile_path %>">
+                <li>
+                    <p class = 'text'><%= current_user.display_name %></p>
+                </li>
+                <%= render 'users/profile_menu' %>
+            </div>   
+        <% else %>
+            <%= link_to new_user_path, class: 'nav_sign_in li' do %>
+                <li class="">
+                    <p>Log in</p>
+                </li>
+            <% end %>
+            <%= render 'users/login_form' %>
+        <% end %>
         </ul>
-
     </div>
-
-<!--     <div class="login">
-        <ul>
-
-        <li>Sign up</li>
-
-        <li>Log in</li>
-
-        </ul>
-    </div> -->
+</div>
 
 </div>
 

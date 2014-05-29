@@ -17,35 +17,30 @@
 
     <div class="nav">
         <ul>
-        <%= link_to root_path do %>
+        <%= link_to root_path, class: 'li' do %>
             <li><p>Home</p></li>
         <% end %>
-        <%= link_to 'tbd' do %>
+        <%= link_to 'tbd', class: 'li'  do %>
             <li><p>How it works</p></li>
         <% end %>
-        <%= link_to projects_path do %>
+        <%= link_to projects_path, class: 'li'  do %>
             <li><p>Projects</p></li>
         <% end %>
         <% if current_user %>
-            <%= link_to user_profile_path do %>
+            <div class='li profile_dropdown' href="<%= user_profile_path %>">
                 <li>
-                    <p>My profile</p>
-                    <div class="notification_count <%= "hidden" if @notification_count.nil? || @notification_count == 0 %>"><%= @notification_count %></div>
+                    <p class = 'text'><%= current_user.display_name %></p>
                 </li>
-            <% end %>
-            <%= link_to session_path('current'), method: 'delete' do %>
-                <li><p>Sign out</p></li>
-            <% end %>
+                <%= render 'users/profile_menu' %>
+            </div>   
         <% else %>
-            <%= link_to new_user_path, class: 'nav_sign_in' do %>
+            <%= link_to new_user_path, class: 'nav_sign_in li' do %>
                 <li class="">
-                    <p>Sign in</p>
+                    <p>Log in</p>
                 </li>
             <% end %>
             <%= render 'users/login_form' %>
         <% end %>
         </ul>
     </div>
-
-
 </div>

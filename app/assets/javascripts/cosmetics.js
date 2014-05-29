@@ -20,14 +20,30 @@ $('document').ready(function() {
     urlCommands();
     searchBarClickListener();
     clickingOnTransparentLayer();
+    toggleUserProfileMenu();
 });
+
+// toggle the user profile menu
+
+function toggleUserProfileMenu() {
+
+    if(window.location.href.indexOf('profile')<0){
+        $('.profile_dropdown').off('mouseover').on('mouseover',function(){
+                $('.user_options_menu').slideDown(100);
+        });
+    
+        $('.profile_dropdown').off('mouseleave').on('mouseleave',function(){
+                $('.user_options_menu').slideUp(100);
+        });
+    };
+}
 
 // toggle between showing the sign in form and not showing the sign in form
 
 function signinVisibilityToggle(){
     $('.nav_sign_in').on('click',function(){
     event.preventDefault();
-    highlightButton.call($(this).find('li'));
+    highlightButton.call($(this));
     hideShowThings.call($('.login_box'));  
     hideShowThings.call($('.projects_overlay_transparent'));
     });
@@ -37,7 +53,7 @@ function clickingOnTransparentLayer(){
     $('.projects_overlay_transparent').off('click').on('click',function(){
         hideShowThings.call($('.login_box')); // hide the login box
         hideShowThings.call($(this));   // disable the transparent layer
-        highlightButton.call($('.nav_sign_in').find('li')); //restore the highlighted signin navigation button
+        highlightButton.call($('.nav_sign_in')); //restore the highlighted signin navigation button
     });
 }
 
@@ -54,6 +70,11 @@ function urlCommands(){
             execute_signin_toggle.call(jqtab);
         };
     }; 
+    if (raw_hash.indexOf('applications')>-1){
+        _button_with_link = $('.profile_view_button').filter(function(){return $(this).attr('id') == 'applications'});
+        projectApplicationRead.call(_button_with_link);
+        hideNotification();
+    };
 }
 
 // Button toggle; can be applied to many buttons
@@ -96,7 +117,7 @@ function scrollCheck() {
 function navigationUnderline() {
     var linksToHighlightBlueHeader = $('.header .nav').find('li').filter(function(){return $(this).find('a').attr('href') == $(location).attr('pathname')});
     linksToHighlightBlueHeader.css({"border-bottom": "2px solid white"});
-    var linksToHighlightWhiteHeader = $('.alt_header .nav').find('li').filter(function(){return $(this).parent().attr('href') == $(location).attr('pathname')});
+    var linksToHighlightWhiteHeader = $('.alt_header .nav').find('.li').filter(function(){return $(this).attr('href') == $(location).attr('pathname')});
     linksToHighlightWhiteHeader.css({"background-color": "rgba(175,175,175,0.5)"});
 }
 
