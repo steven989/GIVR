@@ -29,11 +29,15 @@ function toggleUserProfileMenu() {
 
     if(window.location.href.indexOf('profile')<0){
         $('.profile_dropdown').off('mouseover').on('mouseover',function(){
-                $('.user_options_menu').slideDown(100);
+                $('.user_options_menu').removeClass('hidden');
         });
     
         $('.profile_dropdown').off('mouseleave').on('mouseleave',function(){
-                $('.user_options_menu').slideUp(100);
+                $('.user_options_menu').addClass('hidden');
+        });
+        
+        $('.profile_dropdown').off('click').on('click',function(){
+                hideShowThings.call($('.user_options_menu'));
         });
     };
 }
