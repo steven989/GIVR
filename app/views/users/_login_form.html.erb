@@ -28,8 +28,12 @@
             <%= render 'users/forgot_password_form' %>
         </div>
         <div class="ui horizontal divider">Or login with</div>
-        <%= link_to 'facebook', auth_at_provider_path(provider: :facebook), class: 'mini ui facebook button', id: 'facebook' %>
-        <%= link_to 'linkedIn', auth_at_provider_path(provider: :linkedin), class: 'mini ui linkedin button', id: 'linkedin' %>
+        <%= link_to auth_at_provider_path(provider: :facebook), class: 'mini ui facebook button', id: 'facebook' do %>
+        <%= fa_icon 'facebook-square', class: 'icon_left' %>facebook
+        <% end %>
+        <%= link_to auth_at_provider_path(provider: :linkedin), class: 'mini ui linkedin button', id: 'linkedin' do %>
+        <%= fa_icon 'linkedin-square', class: 'icon_left' %>linkedin
+        <% end %>
     </div>
     <div class="ui small form segment" id='signup'>
         <% if flash[:signup_error] %>
@@ -74,8 +78,12 @@
             <%= f.submit 'Sign up now', class: 'mini ui givrgreen button' %>
         </p>
         <div class="ui horizontal divider">Or sign up with</div>
-        <%= link_to 'facebook', auth_at_provider_path(provider: :facebook), class: 'mini ui facebook button', id: 'facebook' %>
-        <%= link_to 'linkedin', auth_at_provider_path(provider: :linkedin), class: 'mini ui linkedin button', id: 'linkedin' %>
+        <%= link_to auth_at_provider_path(provider: :facebook), class: 'mini ui facebook button', id: 'facebook' do %>
+        <%= fa_icon 'facebook-square', class: 'icon_left' %>facebook
+        <% end %>
+        <%= link_to auth_at_provider_path(provider: :linkedin), class: 'mini ui linkedin button', id: 'linkedin' do %>
+        <%= fa_icon 'linkedin-square', class: 'icon_left' %>facebook
+        <% end %>
         <% end %>
     </div>
 </div>

@@ -128,9 +128,15 @@ function navigationUnderline() {
 // this code is to enable the exanding of the search items in the "find a project" bar
 
 function slideUpDown() {
-    var list = $(this).parent().children().eq(1)
-    if (list.css('display')=="none") {list.slideDown(135)}
-        else {list.slideUp(135)}
+    var list = $(this).parent().children().eq(1);
+    var icon = $(this).find('.fa');
+    if (list.css('display')=="none") {
+        list.slideDown(135);         // show the list
+        icon.removeClass('fa-minus-square-o fa-plus-square-o').addClass('fa-minus-square-o');
+        } else {
+            list.slideUp(135);
+            icon.removeClass('fa-minus-square-o fa-plus-square-o').addClass('fa-plus-square-o');
+        }
 }
 
 // this code is so that when a search group button is clicked, it is always highlighted even without mouseover

@@ -84,6 +84,8 @@ gem 'chartkick'
 #12) To interface with Amazon S3
 gem 'fog', "~> 1.3.1"
 
+#13) Great fonts
+gem 'font-awesome-rails'
 
 group :production do
   gem "rails_12factor"

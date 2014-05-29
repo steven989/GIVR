@@ -3,7 +3,9 @@
   <div class="search_bar_header">Filter for projects</div>
   <div class="search_bar ui fluid vertical menu">
     <div class='li item active'>
-        <div class="clickable" id="category_search">By skill category</div>
+        <div class="clickable" id="category_search">
+          By skill category<%= fa_icon 'minus-square-o', class: 'icon_right' %>
+        </div>
           <div class="lis" id="show_by_default">
             
             <% @categories.each do |category| %>
@@ -38,7 +40,7 @@
     </div>
     
     <div class='li item'>
-        <div class="clickable" id="cause_search">By cause</div>
+        <div class="clickable" id="cause_search">By cause<%= fa_icon 'plus-square-o', class: 'icon_right' %></div>
         <div class="lis">
           <% @causes.each do |cause| %>
           
@@ -71,7 +73,7 @@
     </div>
 
     <div class='li item'>        
-        <div class="clickable" id="location_search">By location</div>
+        <div class="clickable" id="location_search">By location<%= fa_icon 'plus-square-o', class: 'icon_right' %></div>
         <div class="lis">
 
           <% @locations.each do |location| %>

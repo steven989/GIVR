@@ -18,7 +18,10 @@
     <div class="nav">
         <ul>
         <%= link_to root_path, class: 'li' do %>
-            <li><p>Home</p></li>
+            <li>
+
+                <p>Home</p>
+            </li>
         <% end %>
         <%= link_to 'tbd', class: 'li'  do %>
             <li><p>How it works</p></li>
@@ -29,14 +32,14 @@
         <% if current_user %>
             <div class='li profile_dropdown' href="<%= user_profile_path %>">
                 <li>
-                    <p class = 'text'><%= current_user.display_name %></p>
+                    <p class = 'text'><%= current_user.display_name %><%= fa_icon 'bars', class: 'icon_right' %></p>
                 </li>
                 <%= render 'users/profile_menu' %>
             </div>   
         <% else %>
             <%= link_to new_user_path, class: 'nav_sign_in li' do %>
                 <li class="">
-                    <p>Log in</p>
+                    <p>Log in<%= fa_icon 'angle-down', class: 'icon_right' %></p>
                 </li>
             <% end %>
             <%= render 'users/login_form' %>

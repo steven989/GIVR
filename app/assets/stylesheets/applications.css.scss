@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+@import "font-awesome";
+
 // Variables:
 
 $font-stack: "Raleway", serif;
@@ -33,6 +36,18 @@ body {
 
   .noTextSelectCursor {
     cursor: default;
+  }
+
+  .icon_left {
+    margin-right: 0.5rem;
+  }
+
+  .icon_right {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    position: absolute;
+    right: 0;
+
   }
 
 /* -------------------------- header and footer ------------------------- */
@@ -89,12 +104,12 @@ body {
       position: relative;
       margin-left: -0.25rem;
       display: inline-block;
-      font-size: 1rem;
-      padding-right: 1rem;
-      padding-left: 1rem;
+      font-size: 0.8rem;
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
       height: 100%;
-      -webkit-transition: background-color 150ms; /* For Safari 3.1 to 6.0 */
-      transition: background-color 150ms;
+      -webkit-transition: color 150ms; /* For Safari 3.1 to 6.0 */
+      transition: color 150ms;
       color: #97CEB1;
       text-decoration: none;
       cursor: pointer;
@@ -160,9 +175,9 @@ body {
       position: relative;
       margin-left: -0.25rem;
       display: inline-block;
-      font-size: 1rem;
-      padding-right: 1rem;
-      padding-left: 1rem;
+      font-size: 0.8rem;
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
       height: 100%;
       -webkit-transition: background-color 150ms; /* For Safari 3.1 to 6.0 */
       transition: background-color 150ms;
@@ -621,13 +636,15 @@ body {
   }
 
   #facebook {
-    width: 8rem;
+    width: 8.5rem;
     float: left;
+
   }
   
   #linkedin {
-    width: 9rem;
+    width: 8.5rem;
     float: right;
+
   }
 
 
@@ -659,7 +676,7 @@ body {
   font-size: 1rem;
   
   .ui.menu .item {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: bold;
     color: white;
   }
