@@ -505,10 +505,14 @@ body {
   }
 
   .project_header {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
     clear: both;
     display: block;
     width: 100%;
     padding-top: 1.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
     padding-bottom: 1rem;
     margin-bottom: 1.5rem;
     background-color: #313131;
