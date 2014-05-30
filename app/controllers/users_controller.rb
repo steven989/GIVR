@@ -122,6 +122,7 @@ class UsersController < ApplicationController
     end
 
     def profile
+        @abridged_menu = true
         @user = current_user
         @role = current_user.role
         if @role == 'npo'

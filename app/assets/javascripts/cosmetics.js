@@ -27,7 +27,6 @@ $('document').ready(function() {
 
 function toggleUserProfileMenu() {
 
-    if(window.location.href.indexOf('profile')<0){
         $('.profile_dropdown').off('mouseover').on('mouseover',function(){
                 $('.user_options_menu').removeClass('hidden');
         });
@@ -39,9 +38,6 @@ function toggleUserProfileMenu() {
         $('.profile_dropdown').off('click').on('click',function(){
                 hideShowThings.call($('.user_options_menu'));
         });
-    } else {
-        $('.profile_dropdown .fa').remove();
-    };
 }
 
 // toggle between showing the sign in form and not showing the sign in form

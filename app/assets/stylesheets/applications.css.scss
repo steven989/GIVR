@@ -128,6 +128,14 @@ body {
       p {
         margin-top: 0.85rem;
       }
+
+      &.profile_dropdown {
+        padding-right: 2.5rem;
+
+        .icon_right {
+          margin-right: 1rem;
+        }
+      }
     }
   }
 }
@@ -202,6 +210,14 @@ body {
 
       p {
         margin-top: 0.85rem;
+      }
+
+      &.profile_dropdown {
+        padding-right: 2.5rem;
+
+        .icon_right {
+          margin-right: 1rem;
+        }
       }
     }
   }
@@ -661,7 +677,7 @@ body {
   top: 2.5rem;
   width: 20rem;
   padding: 1rem;
-  background-color: #B1C4C0;
+  background-color: #A5A5A5;
   overflow: auto; 
   font-size: 1rem;
 
