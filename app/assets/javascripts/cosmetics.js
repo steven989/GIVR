@@ -39,6 +39,8 @@ function toggleUserProfileMenu() {
         $('.profile_dropdown').off('click').on('click',function(){
                 hideShowThings.call($('.user_options_menu'));
         });
+    } else {
+        $('.profile_dropdown .fa').remove();
     };
 }
 

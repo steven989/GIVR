@@ -1,7 +1,10 @@
 <div class="projects_search">
 
-  <div class="search_bar_header">Filter for projects</div>
   <div class="search_bar ui fluid vertical menu">
+    <div class="header item">
+      Filter for projects
+      <%= fa_icon 'search', class: 'icon_right' %>
+    </div>
     <div class='li item active'>
         <div class="clickable" id="category_search">
           By skill category<%= fa_icon 'minus-square-o', class: 'icon_right' %>
@@ -28,7 +31,7 @@
                   <% data_on_option = 1 %>
               <% end %>
 
-              <div class="filter_value ui large checkbox">
+              <div class="filter_value ui checkbox">
               <%= check_box_tag 'category'+category.id.to_s, category.category, data_on_option == 1, class: 'filter_button', data: { filterid: category.id, filtertype: 'category', on: data_on_option}, href: filter_projects_path %>
               <%= label_tag  'category'+category.id.to_s do%>
                 <div class="label"><span><%= category.category %></span></div>
@@ -62,7 +65,7 @@
                 <% data_on_option = 1 %>
             <% end %>
 
-            <div class="filter_value ui large checkbox">
+            <div class="filter_value ui checkbox">
             <%= check_box_tag 'cause'+cause.id.to_s, cause.cause, data_on_option == 1, class: 'filter_button', data: { filterid: cause.id, filtertype: 'cause', on: data_on_option}, href: filter_projects_path %>
             <%= label_tag  'cause'+cause.id.to_s do%>
               <div class="label"><span><%= cause.cause %></span></div>
@@ -96,7 +99,7 @@
                 <% data_on_option = 1 %>
             <% end %>
 
-            <div class="filter_value ui large checkbox">
+            <div class="filter_value ui checkbox">
             <%= check_box_tag 'location'+location.id.to_s, location.location, data_on_option == 1, class: 'filter_button', data: { filterid: location.id, filtertype: 'location', on: data_on_option}, href: filter_projects_path %>
             <%= label_tag  'location'+location.id.to_s do%>
               <div class="label"><span><%= location.location %></span></div>

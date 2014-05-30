@@ -1,37 +1,50 @@
+<% @available_positions = [(project.number_of_positions - project.applications.where("status in ('engage','complete')").length),0].max %>
+
 <%= link_to project_path(project.id), class:"project_link" do %>
   <div class="project_popup" data-projectid="<%= project.id %>" >
     <div class="project_card">
-      
-      <div class="project_header">
-          <h1>
-            <%= project.title %>
-          </h1>
+      <div class="category_wrapper">
+        <div class="category">
+            <%= project.category.category %>
+        </div>
       </div>
-        <br>
-      <div class="project_details">
-        <h3>Project details</h3>
-          <br>
-   
-        <p>
-          <%= project.description %>
-        </p>
-          <br>
-   
-        <p>
-          Category: <%= project.category.category %>
-        </p>
-
-        <p>
-          Cause: <%= project.cause.cause %>
-        </p>
-
-        <p>
-          Location: <%= project.location.location %>
-        </p>
-          <br>
-
-        <h2>Length: 4 weeks</h2>
- 
+      <div class="logo_name_wrapper">
+        <div class="organization_logo">
+          <% if !project.user.logo.file.nil? %>
+            <% if project.user.logo.file.exists? %>
+              <%= image_tag project.user.logo_url(:thumb), class: 'logo' %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="organization_name">
+            <p><%= project.user.org_name %></p>
+        </div>
+      </div>
+      <div class="project_header">
+            <h1>
+              <%= project.title %>
+            </h1>
+      </div>
+      <div class="project_deets">
+        <div class="num_pos">
+            Available positions: 
+            <div class="ui <%= @available_positions > 1 ? '': 'red' %> label"><%= @available_positions %>
+            </div> 
+        </div>
+        <div class="date_created">
+          Posted on: 
+          <div class="ui label">
+            <%= project.created_at.strftime('%Y-%m-%d') %>
+          </div>
+        </div>
+        <div class="cause">
+            Cause:
+            <div class="ui label"><%= project.cause.cause %></div> 
+        </div>
+        <div class="location">
+            Location:
+            <div class="ui label"><%= project.location.location %></div> 
+        </div>
       </div>
     </div>
   </div>
