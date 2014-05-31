@@ -14,7 +14,7 @@ $accent-color: #3D9977;
 $text-color: #888888;
 $box-shadow-color: #888888;
 $light-gray: #EEEEEE;
-$active-color: #9EE8FF;
+$active-color: #A3E4CC;
 $very-light-gray: #FAFAFA;
 /*#01775B;*/
 
@@ -149,7 +149,7 @@ body {
   height: 2.5rem;
   width: 100%;
   z-index: 20;
-  opacity: 0.95;
+  opacity: 0.98;
 
   .logo {
     position: absolute;
@@ -353,8 +353,8 @@ body {
       &:hover {
         cursor: pointer;
         background-color: $very-light-gray;
-        -webkit-box-shadow: 0.2em 0em 0em $active-color inset;
-        box-shadow: 0.2em 0em 0em $active-color inset;
+        -webkit-box-shadow: 0.2em 0em 0em $primary-color inset;
+        box-shadow: 0.2em 0em 0em $primary-color inset;
       }
 
       &:active {
@@ -375,8 +375,8 @@ body {
         &:hover {
           cursor: pointer;
           background-color: $very-light-gray;
-          -webkit-box-shadow: 0.2rem 0em 0em $active-color inset;
-          box-shadow: 0.2rem 0em 0em $active-color inset;
+          -webkit-box-shadow: 0.2rem 0em 0em $primary-color inset;
+          box-shadow: 0.2rem 0em 0em $primary-color inset;
         }
 
         &:active {
@@ -447,7 +447,6 @@ body {
   margin-left: 2%;
   height:22rem;
   background-color: white;
-  border-radius: 5px;
   
   .category_wrapper {
     position: relative;

@@ -989,19 +989,19 @@
 /*--- Givr Green ---*/
 .ui.givrgreen.buttons .button,
 .ui.givrgreen.button {
-  background-color: #01775B;
+  background-color: #76D7B3;
   color: #FFFFFF;
 }
 .ui.givrgreen.buttons .button:hover,
 .ui.givrgreen.button:hover,
 .ui.givrgreen.buttons .active.button,
 .ui.givrgreen.button.active {
-  background-color: #006D53;
+  background-color: #7CE2BC;
   color: #FFFFFF;
 }
 .ui.givrgreen.buttons .button:active,
 .ui.givrgreen.button:active {
-  background-color: #005C46;
+  background-color: #6BC7A5;
   color: #FFFFFF;
 }
 
