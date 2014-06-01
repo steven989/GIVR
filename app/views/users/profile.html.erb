@@ -72,7 +72,6 @@
         </div>
 
         <div class="profile_view_content" id='projects'>
-            <h1>Projects</h1>
             <% if @user.role == 'npo' %>
               <%= render partial: 'projects/project', collection: @projects %>
             <% elsif @user.role == 'professional' %>
@@ -81,7 +80,6 @@
         </div>
 
         <div class="profile_view_content" id='applications'>
-            <h1>Applications</h1>
             <%= render partial: 'applications/application', collection: @applications, locals: {role: @role} %>
         </div>
         
@@ -89,7 +87,6 @@
           <div class="profile_view_content" id='shortlist'>
               <div id="error_messages">
               </div>
-              <h1>Shortlist</h1>
               <%= render partial: 'applications/application', collection: @shortlists, locals: {role: @role} %>
           </div>
         <% end %>
