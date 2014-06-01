@@ -21,7 +21,21 @@ $('document').ready(function() {
     searchBarClickListener();
     clickingOnTransparentLayer();
     toggleUserProfileMenu();
+    setMinHeightToElements();
 });
+
+// set the minimum height of container elements intially upon page load
+
+function setMinHeightToElements() {
+    $('.background_div').css({
+        'min-height': $(window).height() 
+    });
+
+    $('.profile_view_content').css({
+        'min-height': $(window).height() * 0.8
+    }); 
+
+}
 
 // toggle the user profile menu
 
@@ -84,12 +98,12 @@ function urlCommands(){
 function buttonHighlightToggle(buttons) {   // this takes a jquery array of clickable objects you want to turn into buttons
     buttons.each(function(){    // profile nav bar
             $(this).on('click',function(){
-                if ($(this).attr('class').indexOf('clicked') >= 0) {return false}
+                if ($(this).attr('class').indexOf('active') >= 0) {return false}
                 var all_buttons = buttons
                 var _this = $(this)
                     all_buttons.each(function(){
-                        if ($(this).text() == _this.text() || $(this).attr('class').indexOf('clicked') >= 0) {
-                            highlightButton.call($(this));
+                        if ($(this).text() == _this.text() || $(this).attr('class').indexOf('active') >= 0) {
+                            highlightButtonUI.call($(this));
                         };
                     });
             });
@@ -145,6 +159,12 @@ function highlightButton() {
         else {$(this).removeClass('clicked')}
 }
 
+function highlightButtonUI() {
+    var notClicked = $(this).attr('class').indexOf('active') < 0
+    if (notClicked) {$(this).addClass('active')} 
+        else {$(this).removeClass('active')}
+}
+
 // this code is to activate a filter group
 
 function searchBarClickListener() {
@@ -193,7 +213,7 @@ function jumpToTheRightProfileSection(raw_hash){
     var content_context = $('.profile_view_content').filter(function(){return $(this).attr('id') == section_id}); // find the content div whose id matches the fragment
     execute_profile_toggle.call(content_context);
     var button_context = $('.profile_view_nav .profile_view_button').filter(function(){return $(this).attr('id') == section_id}); // find the button whose id matches the fragment
-    highlightButton.call(button_context);
+    highlightButtonUI.call(button_context);
 }
 
 // this code is to hide the notification once user clicks on the Applications tab in the profile

@@ -460,9 +460,9 @@ body {
 
     .category {
       position: absolute;
-      right: 1.5rem;
       display: inline-block;
       border-radius: 4px;
+      right: 1.5rem;
       padding: 0.2rem 0.5rem;
       color: $primary-color;
       border: 1px solid $primary-color;
@@ -514,7 +514,7 @@ body {
     padding-right: 0.5rem;
     padding-bottom: 1rem;
     margin-bottom: 1.5rem;
-    background-color: #313131;
+    background-color: #5F5F5F;
     text-align: center;
     font-size: 1.25rem;
     font-weight: bold;
@@ -765,7 +765,12 @@ body {
   overflow: auto; 
   font-size: 1rem;
   
+  .ui.secondary.vertical.menu {
+    width: 100%;
+  }
+
   .ui.menu .item {
+    width: 100%;
     font-size: 0.75rem;
     font-weight: bold;
     color: white;
@@ -776,11 +781,11 @@ body {
 
 .profile_view {
   position: relative;
-  background-color: white;
-  padding:3rem;
-  width: 85%;
-  min-height: 10rem;
-  margin-left: 15rem;
+  background-color: none;
+  margin-right: 3rem;
+  padding-top:4rem;
+  min-height: 40rem;
+  margin-left: 22.5%;
   overflow: hidden;
 
   .chart {
@@ -795,85 +800,195 @@ body {
   }
 
   .profile_view_content {
-    /*margin-top: rem;*/
-    display: none;
-
-    .show_application{
-      width: 50%;
-    }
+    width: 100%;
+    /*min-height is set by cosmetics.js setMinHeightToElements function*/
 
     .unread {
       background-color: $primary-color;
     }
   }
-
-
-  .greeting_message {
-    position: relative;
-    background-color: white;
-    width: 85%;
-    overflow: hidden;
-
-  }
-
-  #summary {
-    display: initial;
-
-  }
-
-  .show_application {
-    margin-top: 1.5rem;
-    line-height: 1.5rem;
-
-  }
 }
 
+
+.show_application {  /* this is the card that shows the application */
+
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  color: black;
+  float: left;
+  position: relative;
+  width: 23%;
+  margin-bottom: 1rem;
+  margin-left: 2%;
+  height:15rem;
+  background-color: white;
+
+  .apply {
+    color: #F19F68;
+    background-color: white;
+    border: 1px solid #F19F68;
+  }
+
+  .approve {
+    color: #6FC26C;
+    background-color: white;
+    border: 1px solid #6FC26C;
+  }
+
+  .decline, .cancel {
+    color: #B44B4B;
+    background-color: white;
+    border: 1px solid #B44B4B;
+  }
+
+  .engage {
+    color: #C48D69;
+    background-color: white;
+    border: 1px solid #C48D69;
+  }
+
+  .complete {
+    color: #6E81CA;
+    background-color: white;
+    border: 1px solid #6E81CA;
+  }
+
+  .status_wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 1.5rem;
+    margin: 0.5rem;
+    padding-right: 0.5rem;
+
+    .application_status {
+      position: absolute;
+      display: inline-block;
+      border-radius: 4px;
+      right: 1.5rem;
+      padding: 0.2rem 0.5rem;
+
+    }
+  }
+
+  .project {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    padding: 0.5rem;
+    background-color: #5F5F5F;
+    color: white;
+  }
+
+  .application_deets {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    padding: 0.5rem;
+    width: 100%;
+    color: black;
+  }
+
+  .user_action {
+    height: 2rem;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 0.5rem;
+
+    .status_change {
+      display: inline-block;
+      height: 2rem;
+      width: 50%;
+      float: left;
+
+        .action_button {
+          width: 100%;
+        }
+
+        a {
+            color: white;
+            text-decoration: none;
+          }
+    }
+
+    .fa {
+      font-size: 2rem;
+    }
+    .modify {
+      display: inline-block;
+      width: 22%;
+      float: right;
+      color: #4E97DB;
+      position: relative;
+      top :50%;
+      margin-top: -1rem;
+    }
+    .delete {
+      display: inline-block;
+      width: 22%;
+      float: right;
+      color: #E54A4A;
+      position: relative;
+      top :50%;
+      margin-top: -1.1rem;
+    }
+
+
+  }
+
+}
 
 
 .profile_view_nav {
   position: fixed;
-  padding-top: 3rem;
-  padding-left: 2rem;
-  top: 4rem;
-  height:40rem;
-  width: 15%;
-  background-color: white;
+  padding-top: 4rem;
+  padding-left: 3rem;
+  padding-right: 1rem;
+  top: 2.5rem;
+  height: 85%;
+  width: 16%;
   z-index: 1;
-  overflow: visible;
+  overflow: scroll;
+  color: $text-color;
+  
+  .profile_menu {
+    background-color: rgba(70, 78, 80, 0.9);
+    padding: 0.5rem;
+    padding-right: 0.2rem;
 
-  .profile_view_nav_buttons {
-    font-size: 1rem;
-    color: $text-color;
-    font-weight: bold;
-    display: block;
-    position: relative;
-    min-height: 30rem;
+    .profile_view_nav_buttons {
+      width: 100%;
+      opacity: 0.8;
 
+      .header.item {
+        line-height: 1.5rem;
 
-    .profile_view_button {
-      position: relative;
-      font-size: 1rem;
-      font-weight: normal;
-      display: block;
-      margin-top: 1rem;
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
-      padding-left: 1rem;
+        h1 {
+          color: white;
+          font-size: 1.5rem;
+        }
 
-      &:hover {
-        background-color: $primary-color;
-        color: white;
-        
-
-
+        p {
+          color: white;
+          font-size: 0.75rem;
+        }
       }
-    }
 
-    .clicked {
-      @extend .profile_view_button:hover;
+      .profile_view_button {
+        color: white;
+        font-size: 0.8rem;
 
-    }
-  }    
+        &:hover {
+          color: white !important;
+        }
+
+        &.active {
+          color: white !important;
+          border-color: $primary-color !important;
+        }
+      }
+    }   
+  } 
 }
 
 .upload {

@@ -2,39 +2,80 @@
 <% if role == 'npo' %>
 
 <div class="show_application <%= "unread" if application.notification_view_flag == 'npo' %>" >
-    <p class='user'>User: <%= application.user.email %></p>
-    <p class='project'>Project: <%= application.project.title %></p>
-    <p class='application_status'>Application status: <%= application.status %></p>
-    <p class='application_date'>Application date: <%= application.created_at %></p>
-    
-    <% if application.status == 'apply' %>
-        <p class='action_button'><%= link_to 'Approve', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'approve'}, class: 'user_action_button' %></p>
-    <% elsif application.status == 'approve' %>
-        <p class='action_button'><%= link_to 'Unapprove', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'unapprove'}, class: 'user_action_button' %></p>        
-    <% elsif application.status == 'engage' %>
-        <p class='action_button'><%= link_to 'Complete', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'complete'}, class: 'user_action_button' %></p>        
-    <% end %>
-
-    <p><%= link_to 'Resume', application.user.resume_url %></p>
+    <div class="status_wrapper">
+        <div class='application_status npo <%= application.status %>'>
+            <% if application.status == 'apply' %>
+                <%= "Pending approval" %>
+            <% elsif application.status == 'approve' %>
+                <%= "Approved" %>
+            <% elsif application.status == 'decline' %>
+                <%= "Unaccepted" %>
+            <% elsif application.status == 'engage' %>
+                <%= "In progress" %>
+            <% elsif application.status == 'complete' %>
+                <%= "Completed" %>
+            <% end %>
+        </div>
+    </div>
+    <div class='project'><h1><%= application.project.title %></h1></div>
+    <div class="application_deets">
+        <div class='user'>User: <%= application.user.email %></div>
+        <div class="link_to_resume"><%= link_to 'Resume', application.user.resume_url %></div>
+        <div class='application_date'>Application date: <%= application.created_at %></div>
+    </div>
+    <div class="user_action">
+        <div class="status_change">
+            <% if application.status == 'apply' %>
+                <p class='action_button ui tiny givrgreen button'><%= link_to 'Approve', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'approve'}, class: 'user_action_button' %></p>
+            <% elsif application.status == 'approve' %>
+                <p class='action_button ui tiny givrgreen button'><%= link_to 'Unapprove', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'unapprove'}, class: 'user_action_button' %></p>        
+            <% elsif application.status == 'engage' %>
+                <p class='action_button ui tiny givrgreen button'><%= link_to 'Complete', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'complete'}, class: 'user_action_button' %></p>        
+            <% end %>
+        </div>
+    </div>
 
 </div>
 
 <% elsif role == 'professional' %>
 
 <div class="show_application <%= "unread" if application.notification_view_flag == 'professional' %>" >
-    <p class='project'>Project: <%= application.project.title %></p>
-    <p class='organization'>Organization: <%= application.project.user.email %></p>
-    <p class='application_status'>Application status: <%= application.status %></p>
-    <p class='application_date'>Application date: <%= application.created_at %></p>
+    <div class="status_wrapper">
+        <div class='application_status pro <%= application.status %>'>
+            <% if application.status == 'apply' %>
+                <%= "Pending approval" %>
+            <% elsif application.status == 'approve' %>
+                <%= "Approved" %>
+            <% elsif application.status == 'decline' %>
+                <%= "Unaccepted" %>
+            <% elsif application.status == 'engage' %>
+                <%= "In progress" %>
+            <% elsif application.status == 'complete' %>
+                <%= "Completed" %>
+            <% elsif application.status == 'shortlist' %>
+                <%= "Shortlisted" %>
+            <% end %>
+        </div>
+    </div>
 
-    <% if application.status == 'shortlist' %>
-        <p class='action_button'><%= link_to 'Apply', applicant_update_path(application.project, application), class: 'user_action_button', data: {todo: 'apply'}, method: 'PUT' %>
-        </p>
+    <div class='project'><h1><%= application.project.title %></h1></div>
+    <div class="application_deets">
+        <div class='organization'>Organization: <%= application.project.user.org_name %></div>
+        <div class='application_date'>Application date: <%= application.created_at %></div>
+    </div>
+    <div class="user_action">
+        <div class="status_change">
+            <% if application.status == 'shortlist' %>
+                <div class='action_button ui tiny givrgreen button'><%= link_to 'Apply', applicant_update_path(application.project, application), class: 'user_action_button', data: {todo: 'apply'}, method: 'PUT' %>
+                </div>
 
-    <% elsif application.status == 'approve' %>
-        <p class='action_button'><%= link_to 'Engage', applicant_update_path(application.project, application), method: 'PUT', data: {todo: 'engage'}, class: 'user_action_button' %></p>
-    <% end %>
-
+            <% elsif application.status == 'approve' %>
+                <div class='action_button ui tiny givrgreen button'><%= link_to 'Engage', applicant_update_path(application.project, application), method: 'PUT', data: {todo: 'engage'}, class: 'user_action_button' %></div>
+            <% end %>
+        </div>
+        <div class="delete"><%= fa_icon 'times' %></div>
+        <div class="modify"><%= fa_icon 'pencil-square-o' %></div>
+    </div>
 </div>
 
 <% end %>

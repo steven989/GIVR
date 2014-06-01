@@ -43,7 +43,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       dataType: 'json',
       data: {todo: $(this).data('todo')}
     }).done(function(data){
-      _this.parent().parent().html(data.replaceWith);
+      _this.parent().parent().parent().parent().replaceWith(data.replaceWith);
       $('#error_messages').html(data.alertMessage);
       triggerApproval();
     });

@@ -1,218 +1,202 @@
 <%= render 'shared/alt_header' %>
 <%= render 'shared/alt_static' %>
 
-<% if @user.role.nil? %>
+<div class="background_div index">
+  <% if @user.role.nil? %>
 
-<div class="without_role">
-  <div class="user_form">
-    <%= form_for @user, url: update_role_path do |f| %>
-      <p>I am a:
-          <%= f.radio_button :role, 'professional' %>
-          <%= f.label :role_volunteer, 'Professional' %>
-          <%= f.radio_button :role, 'npo' %>
-          <%= f.label :role_npo, 'Non-Profit Organization' %>
-      </p>
-      <p>
-          <%= f.submit 'Set my role' %>
-      </p>
-    <% end %>
+  <div class="without_role">
+    <div class="user_form">
+      <%= form_for @user, url: update_role_path do |f| %>
+        <p>I am a:
+            <%= f.radio_button :role, 'professional' %>
+            <%= f.label :role_volunteer, 'Professional' %>
+            <%= f.radio_button :role, 'npo' %>
+            <%= f.label :role_npo, 'Non-Profit Organization' %>
+        </p>
+        <p>
+            <%= f.submit 'Set my role' %>
+        </p>
+      <% end %>
+    </div>
   </div>
-</div>
 
-<% else %>
+  <% else %>
 
-<div class="with_role">
-  <div class="profile_view_nav">
-      <ul class="profile_view_nav_buttons noTextSelectCursor">   
-          <li>
-              <div class='profile_view_button' id='summary'>Summary</div>
-          </li>
-          <li>
-              <div class='profile_view_button' id='applications' data-readapp = '<%= read_applications_path %>'>Applications
-                <div class="notification_count <%= "hidden" if @notification_count == 0 %>"><%= @notification_count %></div>
-              </div>
-          </li>
-          <li>
-              <div class='profile_view_button' id='projects'>Projects</div>              
-          </li>
+  <div class="with_role">
+    <div class="profile_view_nav">
+        <div class="profile_menu">
+          <div class="profile_view_nav_buttons ui secondary fluid vertical pointing menu">   
+                  <div class="header item">
+                    <h1><%= current_user.display_name %></h1>
+                    <p><% if current_user.role == 'professional' %>
+                        <%= "Professional" %>
+                       <% elsif current_user.role == 'npo' %>
+                        <%= "Non-profit" %>
+                       <% end %>
+                    </p>
+                  </div>
+                  <div class="ui fitted inverted divider"></div>
+                  <div class='profile_view_button link item' id='summary'>Dashboard</div>
+                  <div class="ui fitted inverted divider"></div>
+                  <div class='profile_view_button link item' id='applications' data-readapp = '<%= read_applications_path %>'>Applications
+                  <div class="notification_count ui small red label <%= "hidden" if @notification_count.nil? || @notification_count == 0 %>"><%= @notification_count %></div>
+                  </div>
+                  <div class="ui fitted inverted divider"></div>
+                  <div class='profile_view_button link item' id='projects'>Projects</div>              
 
+              <% if @user.role == 'professional' %>   
+                      <div class="ui fitted inverted divider"></div>             
+                      <div class='profile_view_button link item' id='shortlist'>Shortlisted projects</div>                  
+              <% end %>
+
+              <% if @user.role == 'npo' %>
+                    <div class="ui fitted inverted divider"></div>
+                    <div class="profile_view_button link item" id="add-new">Add new project</div>
+              <% end %>
+                <div class="ui fitted inverted divider"></div>
+                <div class='profile_view_button link item' id='settings'>Settings</div>
+          </div>
+        </div>
+    </div>
+    <div class="profile_view">
+        <div class="profile_view_content" id='summary'>
           <% if @user.role == 'professional' %>
-              <li>                  
-                  <div class='profile_view_button' id='shortlist'>Shortlisted projects</div>                  
-              </li>
+          <div class="points">
+            <p><%= "You have completed #{pluralize(@number_completed_applications, 'project')} to date and earned #{pluralize(@points, 'point')}." %></p>
+          </div>
+          <% elsif @user.role == 'npo' %>
+            <div class='project_view_container'>
+              <%= render 'project_view' %>
+            </div>
           <% end %>
-
-          <% if @user.role == 'npo' %>
-
-              <li>
-                <div class="profile_view_button" id="add-new">Add new project</div>
-              </li>
-
-          <% end %>
-
-          <li>
-            
-            <div class='profile_view_button' id='settings'>Settings</div>
-
-          </li>
-
-      </ul>
-
-  </div>
-  <div class="profile_view">
-      <div class="profile_view_content" id='summary'>
-        <div class="greeting_message">
-            <p>
-                Hi <%= @user.email %>, you are registered as a 
-                <% if @user.role == 'npo' %>
-                non-profit
-                <% elsif @user.role == 'professional' %>
-                professional
-                <% end %>
-                . In this page, you can view your your applications and past projects.
-            </p>
         </div>
+
+        <div class="profile_view_content" id='projects'>
+            <h1>Projects</h1>
+            <% if @user.role == 'npo' %>
+              <%= render partial: 'projects/project', collection: @projects %>
+            <% elsif @user.role == 'professional' %>
+              <%= render partial: 'applications/application', collection: @completed_applications, locals: {role: @role} %>
+            <% end %>
+        </div>
+
+        <div class="profile_view_content" id='applications'>
+            <h1>Applications</h1>
+            <%= render partial: 'applications/application', collection: @applications, locals: {role: @role} %>
+        </div>
+        
         <% if @user.role == 'professional' %>
-        <div class="points">
-          <p><%= "You have completed #{pluralize(@number_completed_applications, 'project')} to date and earned #{pluralize(@points, 'point')}." %></p>
-        </div>
-        <% elsif @user.role == 'npo' %>
-          <div class='project_view_container'>
-            <%= render 'project_view' %>
+          <div class="profile_view_content" id='shortlist'>
+              <div id="error_messages">
+              </div>
+              <h1>Shortlist</h1>
+              <%= render partial: 'applications/application', collection: @shortlists, locals: {role: @role} %>
           </div>
         <% end %>
-      </div>
-
-      <div class="profile_view_content" id='projects'>
-          <h1>Projects</h1>
-          <% if @user.role == 'npo' %>
-            <%= render partial: 'projects/project', collection: @projects %>
-          <% elsif @user.role == 'professional' %>
-            <%= render partial: 'applications/application', collection: @completed_applications, locals: {role: @role} %>
-          <% end %>
-      </div>
-
-      <div class="profile_view_content" id='applications'>
-          <h1>Applications</h1>
-          <%= render partial: 'applications/application', collection: @applications, locals: {role: @role} %>
-      </div>
-      
-      <% if @user.role == 'professional' %>
-        <div class="profile_view_content" id='shortlist'>
-            <div id="error_messages">
-            </div>
-            <h1>Shortlist</h1>
-            <%= render partial: 'applications/application', collection: @shortlists, locals: {role: @role} %>
-        </div>
-      <% end %>
-      
-      <% if @user.role == 'npo' %>
-        <% @project = Project.new %>
-        <div class="profile_view_content" id="add-new">
-          <%= render 'projects/form' %>
-        </div>
-      <% end %>
-
-      <div class="profile_view_content" id='settings'>
-        <% if @user.role == 'professional' %>
-          <div class='proto_form'>
-            <%= form_for @user do |f| %>
-
-              <p><%= f.label :contact_first_name, "First name:" %></p>
-              <p><%= f.text_field :contact_first_name, class: 'text_field' %></p>
-
-              <p><%= f.label :contact_last_name, "Last name:" %></p>
-              <p><%= f.text_field :contact_last_name, class: 'text_field' %></p>
-
-              <p><%= f.label :email, "Email:" %></p>
-              <p><%= f.text_field :email, class: 'text_field' %></p>
-
-              <p><%= f.label :phone, "Preferred contact phone number:" %></p>
-              <p><%= f.text_field :phone, class: 'text_field' %></p>
-              
-              <p><%= f.label :years_of_experience, "Years of experience:" %></p>
-              <p><%= f.text_field :years_of_experience, class: 'text_field' %></p>
-
-              <p>Your skills categories:</p>
-              <p><%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category, class: 'drop_down') %></p>
-               
-              <p>Your causes:</p>
-              <p><%= collection_check_boxes(:user, :cause_ids, Cause.all, :id, :cause, class: 'drop_down') %></p>
-
-              <p>Your preferred locations:</p>
-              <p><%= collection_check_boxes(:user, :location_ids, Location.all, :id, :location) %></p>
-
-              <p><%= f.label :website, "Website" %><p>
-              </p><%= f.text_field :website %></p>
-
-              <%= f.submit 'Update my information', class: 'button' %>
-            <% end %>
+        
+        <% if @user.role == 'npo' %>
+          <% @project = Project.new %>
+          <div class="profile_view_content" id="add-new">
+            <%= render 'projects/form' %>
           </div>
-          <div class="upload_container">
-            <%= render partial: 'resume_upload', locals: {user: @user} %>
-          </div>
-        <% elsif @user.role == 'npo' %>
-          <div class="proto_form">
-            <%= form_for @user do |f| %>
+        <% end %>
+
+        <div class="profile_view_content" id='settings'>
+          <% if @user.role == 'professional' %>
+            <div class='proto_form'>
+              <%= form_for @user do |f| %>
+
+                <p><%= f.label :contact_first_name, "First name:" %></p>
+                <p><%= f.text_field :contact_first_name, class: 'text_field' %></p>
+
+                <p><%= f.label :contact_last_name, "Last name:" %></p>
+                <p><%= f.text_field :contact_last_name, class: 'text_field' %></p>
 
                 <p><%= f.label :email, "Email:" %></p>
                 <p><%= f.text_field :email, class: 'text_field' %></p>
 
-                <p><%= f.label :org_name, "Organization name:" %></p>
-                <p><%= f.text_field :org_name, class: 'text_field' %></p>
+                <p><%= f.label :phone, "Preferred contact phone number:" %></p>
+                <p><%= f.text_field :phone, class: 'text_field' %></p>
+                
+                <p><%= f.label :years_of_experience, "Years of experience:" %></p>
+                <p><%= f.text_field :years_of_experience, class: 'text_field' %></p>
 
-                <p><%= f.label :cause_id, "Cause:" %></p>
-                <%= options_from_collection_for_select(Cause.all, :id, :cause) %>
-                <p><%= collection_select(:user, :cause_id, Cause.all, :id, :cause, class: 'drop_down') %></p>
+                <p>Your skills categories:</p>
+                <p><%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category, class: 'drop_down') %></p>
+                 
+                <p>Your causes:</p>
+                <p><%= collection_check_boxes(:user, :cause_ids, Cause.all, :id, :cause, class: 'drop_down') %></p>
 
-                <p><%= f.label :mission, "Mission:" %></p>
-                <p><%= f.text_area :mission, class: 'text_area' %></p>
+                <p>Your preferred locations:</p>
+                <p><%= collection_check_boxes(:user, :location_ids, Location.all, :id, :location) %></p>
 
-                <p><%= f.label :organization_size, "Number of full-time staff/volunteer:" %></p>
-                <p><%= f.text_field :organization_size, class: 'text_field' %></p>
+                <p><%= f.label :website, "Website" %><p>
+                </p><%= f.text_field :website %></p>
 
-                <p><%= f.label :address, "Address:" %><p>
-                <p><%= f.text_field :address, class: 'text_field' %></p>
-
-                <p><%= f.label :city, "City:" %><p>
-                <p><%= f.text_field :city, class: 'text_field' %></p>
-
-                <p><%= f.label :postal_code, "Postal code:" %></p>
-                <p><%= f.text_field :postal_code, class: 'text_field' %></p>
-
-                <p><%= f.label :contact_first_name, "Contact person first name:" %></p>
-                <p><%= f.text_field :contact_first_name, class: 'text_field' %></p>
-
-                <p><%= f.label :contact_last_name, "Contact person last name:" %></p>
-                <p><%= f.text_field :contact_last_name, class: 'text_field' %></p>     
-                <p><%= f.label :website, "Website:" %></p>
-                <p><%= f.text_field :website, class: 'text_field' %></p>
-
-                <p><%= f.label :phone, "Phone:" %><p>
-                </p><%= f.text_field :phone, class: 'text_field' %></p>
-
-                <p><%= f.label :extension, "Extension:" %></p>
-                <p><%= f.text_field :extension, class: 'text_field' %></p>
-
-                <p><%= f.label :fax, "Fax:" %></p>
-                <p><%= f.text_field :fax, class: 'text_field' %></p>
-
-                <p><%= f.submit 'Update my information', class: 'button' %></p>
-
+                <%= f.submit 'Update my information', class: 'button' %>
               <% end %>
             </div>
-          <div class="upload_container">
-            <%= render partial: 'logo_upload', locals: {user: @user} %>
-          </div>
-        <% end %>
+            <div class="upload_container">
+              <%= render partial: 'resume_upload', locals: {user: @user} %>
+            </div>
+          <% elsif @user.role == 'npo' %>
+            <div class="proto_form">
+              <%= form_for @user do |f| %>
 
-      </div>
+                  <p><%= f.label :email, "Email:" %></p>
+                  <p><%= f.text_field :email, class: 'text_field' %></p>
 
+                  <p><%= f.label :org_name, "Organization name:" %></p>
+                  <p><%= f.text_field :org_name, class: 'text_field' %></p>
+
+                  <p><%= f.label :cause_id, "Cause:" %></p>
+                  <%= options_from_collection_for_select(Cause.all, :id, :cause) %>
+                  <p><%= collection_select(:user, :cause_id, Cause.all, :id, :cause, class: 'drop_down') %></p>
+
+                  <p><%= f.label :mission, "Mission:" %></p>
+                  <p><%= f.text_area :mission, class: 'text_area' %></p>
+
+                  <p><%= f.label :organization_size, "Number of full-time staff/volunteer:" %></p>
+                  <p><%= f.text_field :organization_size, class: 'text_field' %></p>
+
+                  <p><%= f.label :address, "Address:" %><p>
+                  <p><%= f.text_field :address, class: 'text_field' %></p>
+
+                  <p><%= f.label :city, "City:" %><p>
+                  <p><%= f.text_field :city, class: 'text_field' %></p>
+
+                  <p><%= f.label :postal_code, "Postal code:" %></p>
+                  <p><%= f.text_field :postal_code, class: 'text_field' %></p>
+
+                  <p><%= f.label :contact_first_name, "Contact person first name:" %></p>
+                  <p><%= f.text_field :contact_first_name, class: 'text_field' %></p>
+
+                  <p><%= f.label :contact_last_name, "Contact person last name:" %></p>
+                  <p><%= f.text_field :contact_last_name, class: 'text_field' %></p>     
+                  <p><%= f.label :website, "Website:" %></p>
+                  <p><%= f.text_field :website, class: 'text_field' %></p>
+
+                  <p><%= f.label :phone, "Phone:" %><p>
+                  </p><%= f.text_field :phone, class: 'text_field' %></p>
+
+                  <p><%= f.label :extension, "Extension:" %></p>
+                  <p><%= f.text_field :extension, class: 'text_field' %></p>
+
+                  <p><%= f.label :fax, "Fax:" %></p>
+                  <p><%= f.text_field :fax, class: 'text_field' %></p>
+
+                  <p><%= f.submit 'Update my information', class: 'button' %></p>
+
+                <% end %>
+            </div>
+            <div class="upload_container">
+              <%= render partial: 'logo_upload', locals: {user: @user} %>
+            </div>
+          <% end %>
+
+        </div>
+
+    </div>
   </div>
-
-  <div>
-
-
+  <% end %>
 </div>
-
-<% end %>
