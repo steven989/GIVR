@@ -50,7 +50,7 @@ function toggleUserProfileMenu() {
         });
         
         $('.profile_dropdown').off('click').on('click',function(){
-                hideShowThings.call($('.user_options_menu'));
+                window.open("/user/profile#summary","_self")
         });
 }
 
@@ -159,7 +159,7 @@ function highlightButton() {
         else {$(this).removeClass('clicked')}
 }
 
-function highlightButtonUI() {
+function highlightButtonUI() {          // add "active" class for Semantic UI integration
     var notClicked = $(this).attr('class').indexOf('active') < 0
     if (notClicked) {$(this).addClass('active')} 
         else {$(this).removeClass('active')}
