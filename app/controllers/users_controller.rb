@@ -122,7 +122,8 @@ class UsersController < ApplicationController
     end
 
     def profile
-        @abridged_menu = true
+        @abridged_menu = true   #this is so that the drop down menu only says logout
+        @project_edit = true    #this is so that links to modifying and deleting projects show up
         @user = current_user
         @role = current_user.role
         if @role == 'npo'
