@@ -7,9 +7,9 @@
 
 // Variables:
 
-$font-stack: "Raleway", serif;
+$font-stack: "Lato", sans-serif;
 
-$primary-color: #76D7B3;
+$primary-color: #2DD1A3;
 $accent-color: #3D9977;
 $text-color: #888888;
 $box-shadow-color: #888888;
@@ -17,6 +17,7 @@ $light-gray: #EEEEEE;
 $active-color: #A3E4CC;
 $very-light-gray: #FAFAFA;
 /*#01775B;*/
+/*#76D7B3 */
 
 /* ----------------------- across the whole document ---------------------- */
 
@@ -54,7 +55,7 @@ body {
 .background_div {
     height: 100%;
     width: 100%;
-    background-color: rgb(223, 223, 223);
+    background-color: #F8F8F8;
 }
 
 /* -------------------------- header and footer ------------------------- */
@@ -144,7 +145,7 @@ body {
   color: $text-color;
   position: fixed;
   top: 0;
-  background-color: #474747;
+  background-color: $primary-color;
   z-index: 1;
   height: 2.5rem;
   width: 100%;
@@ -447,6 +448,7 @@ body {
   margin-left: 2%;
   height:22rem;
   background-color: white;
+  border: 1px solid #C9C9C9;
   
   .category_wrapper {
     position: relative;
@@ -514,11 +516,11 @@ body {
     padding-right: 0.5rem;
     padding-bottom: 1rem;
     margin-bottom: 1.5rem;
-    background-color: #5F5F5F;
+    background-color: $light-gray;
     text-align: center;
     font-size: 1.25rem;
     font-weight: bold;
-    color: #F1F1F1;
+    color: #303030;
   }
 
   .project_deets {
@@ -822,6 +824,7 @@ body {
   margin-right: 1%;
   height:15rem;
   background-color: white;
+  border: 1px solid #C9C9C9;
 
   .apply {
     color: #F19F68;
@@ -876,8 +879,8 @@ body {
     -moz-box-sizing: border-box;
     width: 100%;
     padding: 0.5rem;
-    background-color: #5F5F5F;
-    color: white;
+    background-color: $light-gray;
+    color: #303030;
   }
 
   .application_deets {
@@ -957,7 +960,7 @@ body {
   color: $text-color;
   
   .profile_menu {
-    background-color: rgba(70, 78, 80, 0.9);
+    background-color: rgba(223, 223, 223, 0.9);
     padding: 0.5rem;
     padding-right: 0.2rem;
 
@@ -969,18 +972,18 @@ body {
         line-height: 1.5rem;
 
         h1 {
-          color: white;
+          color: black;
           font-size: 1.5rem;
         }
 
         p {
-          color: white;
+          color: black;
           font-size: 0.75rem;
         }
       }
 
       .profile_view_button {
-        color: white;
+        color: black;
         font-size: 0.8rem;
 
         &:hover {
@@ -1034,7 +1037,7 @@ body {
   width: 80%;
   clear: both;
   background-color: white;
-  border: 2px solid rgba(70, 78, 80, 0.4);
+  border: 2px solid #C9C9C9;
   margin-bottom: 2rem;
 
   .section_title {
