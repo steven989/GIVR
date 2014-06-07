@@ -72,11 +72,7 @@
         </div>
 
         <div class="profile_view_content" id='projects'>
-            <% if @user.role == 'npo' %>
               <%= render partial: 'projects/project', collection: @projects %>
-            <% elsif @user.role == 'professional' %>
-              <%= render partial: 'applications/application', collection: @completed_applications, locals: {role: @role} %>
-            <% end %>
         </div>
 
         <div class="profile_view_content" id='applications'>
@@ -87,7 +83,7 @@
           <div class="profile_view_content" id='shortlist'>
               <div id="error_messages">
               </div>
-              <%= render partial: 'applications/application', collection: @shortlists, locals: {role: @role} %>
+              <%= render partial: 'projects/project', collection: @shortlists %>
           </div>
         <% end %>
         
@@ -100,41 +96,64 @@
 
         <div class="profile_view_content" id='settings'>
           <% if @user.role == 'professional' %>
-            <div class='proto_form'>
+            <div class='ui form segment' id='user_settings'>
               <%= form_for @user do |f| %>
-
-                <p><%= f.label :contact_first_name, "First name:" %></p>
-                <p><%= f.text_field :contact_first_name, class: 'text_field' %></p>
-
-                <p><%= f.label :contact_last_name, "Last name:" %></p>
-                <p><%= f.text_field :contact_last_name, class: 'text_field' %></p>
-
-                <p><%= f.label :email, "Email:" %></p>
-                <p><%= f.text_field :email, class: 'text_field' %></p>
-
-                <p><%= f.label :phone, "Preferred contact phone number:" %></p>
-                <p><%= f.text_field :phone, class: 'text_field' %></p>
-                
-                <p><%= f.label :years_of_experience, "Years of experience:" %></p>
-                <p><%= f.text_field :years_of_experience, class: 'text_field' %></p>
-
-                <p>Your skills categories:</p>
-                <p><%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category, class: 'drop_down') %></p>
-                 
-                <p>Your causes:</p>
-                <p><%= collection_check_boxes(:user, :cause_ids, Cause.all, :id, :cause, class: 'drop_down') %></p>
-
-                <p>Your preferred locations:</p>
-                <p><%= collection_check_boxes(:user, :location_ids, Location.all, :id, :location) %></p>
-
-                <p><%= f.label :website, "Website" %><p>
-                </p><%= f.text_field :website %></p>
-
-                <%= f.submit 'Update my information', class: 'button' %>
+                <div class='field'>
+                  <p class='section_title'><%= f.label :contact_first_name, "First name:" %></p>
+                  <p><%= f.text_field :contact_first_name, class: 'text_field' %></p>
+                </div>
+                <div class='field'>
+                  <p class='section_title'><%= f.label :contact_last_name, "Last name:" %></p>
+                  <p><%= f.text_field :contact_last_name, class: 'text_field' %></p>
+                </div>
+                <div class='field'>
+                  <p class='section_title'><%= f.label :email, "Email:" %></p>
+                  <p><%= f.text_field :email, class: 'text_field' %></p>
+                </div>
+                <div class='field'>
+                  <p class='section_title'><%= f.label :phone, "Preferred contact phone number:" %></p>
+                  <p><%= f.text_field :phone, class: 'text_field' %></p>
+                </div>
+                <div class='field'>
+                  <p class='section_title'><%= f.label :years_of_experience, "Years of experience:" %></p>
+                  <p><%= f.text_field :years_of_experience, class: 'text_field' %></p>
+                </div>
+                <div class='field'>
+                  <p class='section_title'><%= f.label :website, "Website" %></p>
+                  <p><%= f.text_field :website %></p>
+                </div>
+                <p class='section_title'>Your skills categories</p>
+                <div class="ui divider"></div>
+                <div class="preference_check">
+                  <%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category) do |c| %>
+                     <div class = "individual_checkbox ui checkbox" >
+                     <%= c.check_box + c.label %> 
+                     </div>
+                  <% end %>
+                </div>
+                <p class='section_title'>Your causes</p>
+                <div class="ui divider"></div>
+                <div class="preference_check">
+                  <%= collection_check_boxes(:user, :cause_ids, Cause.all, :id, :cause) do |c| %>
+                     <div class = "individual_checkbox ui checkbox" >
+                     <%= c.check_box + c.label %> 
+                     </div>
+                  <% end %>
+                </div>
+                <p class='section_title'>Your preferred locations</p>
+                <div class="ui divider"></div>
+                <div class="preference_check">
+                  <%= collection_check_boxes(:user, :location_ids, Location.all, :id, :location) do |c| %>
+                     <div class = "individual_checkbox ui checkbox" >
+                     <%= c.check_box + c.label %> 
+                     </div>
+                  <% end %>
+                </div>
+                <%= f.submit 'Update my information', class: 'submit mini ui givrgreen button' %>
               <% end %>
-            </div>
-            <div class="upload_container">
-              <%= render partial: 'resume_upload', locals: {user: @user} %>
+              <div class="upload_container">
+                <%= render partial: 'resume_upload', locals: {user: @user} %>
+              </div>
             </div>
           <% elsif @user.role == 'npo' %>
             <div class="proto_form">
@@ -185,6 +204,8 @@
                   <p><%= f.submit 'Update my information', class: 'button' %></p>
 
                 <% end %>
+            
+
             </div>
             <div class="upload_container">
               <%= render partial: 'logo_upload', locals: {user: @user} %>

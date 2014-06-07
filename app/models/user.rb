@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
 
 
   def completed_projects
-    self.projects.where("status like 'complete'")
+    self.projects.where("projects.status like 'complete'")
   end 
 
   def display_name #this is to get a display name for the user for the navigation bar and other places in the app

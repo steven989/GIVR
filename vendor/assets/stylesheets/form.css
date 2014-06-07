@@ -155,8 +155,8 @@
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
   -webkit-appearance: none;
-  -webkit-box-shadow: 0.3em 0em 0em 0em rgba(0, 0, 0, 0.2) inset;
-  box-shadow: 0.3em 0em 0em 0em rgba(0, 0, 0, 0.2) inset;
+  -webkit-box-shadow: 0.3em 0em 0em 0em rgba(118, 215, 179, 1) inset;  /* edited by steve - changed the color to primary color */
+  box-shadow: 0.3em 0em 0em 0em rgba(118, 215, 179, 1) inset; /* edited by steve - changed the color to primary color */
 }
 /*--------------------
         Error

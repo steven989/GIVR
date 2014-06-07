@@ -130,11 +130,11 @@ class UsersController < ApplicationController
             @projects = current_user.submitted_projects
             @applications = current_user.applications.order('created_at ASC').where("applications.status not like 'shortlist'")
         elsif @role == 'professional'
-            @projects = current_user.completed_projects
             @applications = current_user.made_applications.order('created_at ASC').where("applications.status in ('apply','approve', 'engage')")
-            @shortlists = current_user.made_applications.order('created_at ASC').where("applications.status in ('shortlist')")
+            @shortlists = current_user.made_applications.order('created_at ASC').where("applications.status in ('shortlist')").map {|application| application.project}
             @completed_applications = current_user.made_applications.order('created_at ASC').where("applications.status in ('complete')")
             @number_completed_applications = @completed_applications.length
+            @projects = @completed_applications.map {|application| application.project}
             @points = current_user.points
         end
     # a series of variables for displaying charts. Output are in the form of array of arrays

@@ -237,6 +237,7 @@ function configureDropzone() {
       forceFallback: false,
       // acceptedFiles: 'application/pdf,.doc,.docx',
       addRemoveLinks: true,
+      dictDefaultMessage: "<i class='fa fa-cloud-upload'> Drop your resume here or click to upload",
 
       init: function() {
         var submitButton = $("#resume_upload")
@@ -281,6 +282,7 @@ function configureDropzone() {
       forceFallback: false,
       acceptedFiles: 'image/jpg,image/jpeg,image/gif,image/png',
       addRemoveLinks: true,
+      dictDefaultMessage: "<i class='fa fa-cloud-upload'> Drop your logo here or click to upload",
 
       init: function() {
         var submitButton = $("#logo_upload")

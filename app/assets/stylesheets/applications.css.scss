@@ -999,53 +999,80 @@ body {
 .upload {
   padding-top: 1rem;
   .dropzone {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
     position: relative;
     display: block;
-    background-color: #D8D8D8;
-    width: 39rem;
-    height: 3rem;
+    width: 80%;
+    height: 6rem;
     padding-top: 2rem;
-    left: 3rem;
+    left: 10%;
     text-align: center;
-    border: 1px dashed $box-shadow-color;
+    font-size: 1.5rem;
+    color: $text-color;
+    border: 3px dashed $box-shadow-color;
+    border-radius: 10px;
+    cursor: pointer;
+
 
   }
 
   .draghover {
-    border: 0.2rem dashed #7ABDAF;
+    border: 0.2rem dashed $primary-color;
+    color: $primary-color;
   }
 }
 
 
-.proto_form{
-  left: 2.5rem;
+#user_settings{
+  box-sizing:border-box;
+  -moz-box-sizing:border-box; /* Firefox */
+  left: 10%;
   position: relative;
-  width: 40rem;
+  padding: 2rem;
+  padding-top: 0rem;
+  width: 80%;
   clear: both;
+  background-color: white;
+  border: 2px solid rgba(70, 78, 80, 0.4);
+  margin-bottom: 2rem;
 
+  .section_title {
+    font-weight: bold;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
 
-    .text_field, .text_area{
-      display: block;
-      width: 96%;
-      height: 1.5rem;
-      margin: 10px auto;
-      border: 1px solid $box-shadow-color;
-    }
+  .individual_checkbox{
+    margin: 0.5rem;
+    display: block;
+  }
 
-    .text_area {
-      height: 5rem;
-    }
+  .submit {
+    margin-top: 1rem;
+  }
 
-    .button {
-      display: block;
-      color: white;
+  .divider {
+    margin-top: 0rem;
+  }
+
+  .uploaded_stuff_action {
+    margin: 0.5rem;
+
+    a {
       text-decoration: none;
-      width: 96%;
-      height: 1.5rem;
-      margin: 2px auto;
-      background-color: $primary-color;
-      border: 1px solid $primary-color;
-      box-sizing: border-box;
-      -moz-box-sizing: border-box;
+      color: rgba(0,0,0,0.8);
+      
+      i {
+        display: inline-block;
+        width: 1.5rem;
+        text-align: center;
+      }
+      
+      &:hover {
+        color: $primary-color;
+      }
+
     }
+  }
 }
