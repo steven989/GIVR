@@ -547,7 +547,7 @@ body {
 
 .projects_overlay {
   display: none;
-  background-color: $box-shadow-color;
+  background-color: black;
   position: fixed;
   height: 100%;
   width: 100%;
@@ -555,7 +555,7 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 19;
+  z-index: 20;
   opacity: 0.7;
 }
 
@@ -574,43 +574,21 @@ body {
   overflow: hidden;
 
   .project_header {
-      border-bottom: 1px solid $primary-color;
       height: 3rem;
+      font-size: 1.3rem;
     }
 
-  .show_project_buttons {
-    display: inline-block;
-    background-color: #EEEEEE;
-    height: 1rem;
-    min-width: 6rem;
-    padding: 6px;
-    margin-left: 1rem;
-    margin-top: 2rem;
-    text-decoration: none;
-    color: black;
-    border-radius: 2px;
-    text-align: center;
-    vertical-align: bottom;
+  #close_project {
+    position: absolute;
+    right:-0.5rem;
+    top: -2.5rem;
+    cursor: pointer;
+    color: gray;
+      
+      &:hover {
+        color: red;
+      }
 
-    &:hover {
-      background-color: $primary-color;
-      color: white;
-    }
-  }
-
-  .show_project_buttons_disabled {
-    display: inline-block;
-    background-color: #EBEBEB;
-    color: #CECECE;
-    height: 1rem;
-    min-width: 6rem;
-    padding: 6px;
-    margin-left: 1rem;
-    margin-top: 2rem;
-    text-decoration: none;
-    border-radius: 2px;
-    text-align: center;
-    vertical-align: bottom;    
   }
 
   .project_card_in_popup {
@@ -626,11 +604,6 @@ body {
         overflow-y: scroll;
         width: 100%;
         height: 18rem;
-      }
-
-
-      #close_project {
-        @extend .show_project_buttons;
       }
 
       .fb-like {

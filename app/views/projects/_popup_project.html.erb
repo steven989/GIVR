@@ -9,84 +9,82 @@
     <span id='view_closed' data-viewpath='<%= j project_view_path(@view)%>' style="display:inline-block; width: 1px; height: 1px;"></span>
     <div class="project_card_in_popup" data-shown=1 data-loggedin="<%= current_user ? 1 : 0 %>" data-applied="<%= @already_applied %>" data-shortlisted="<%= @already_shortlisted %>">
       <div class="project_header">
-          <h1><%= project.title %></h1>
+          <h1><%= project.title %> for <%= project.user.org_name %></h1>
       </div>
-
-        <br>
+    
+      <div class="ui divider"></div>
       <div class="project_details">
-        <h3>Project Details:</h3>
-          <br>
+        <h3>Project details</h3>
         <p>
           <%= project.description %>
         </p>
-
         <br>
-
+        <h3>Why We Need This</h3>
         <p>
-          Project Owner: <%= project.user.org_name %>
+          <%= project.why_we_need_this %>
+        </p> 
+        <br>       
+        <h3>Deliverables</h3>
+        <p>
+          <%= project.deliverable %>
         </p>
-
         <br>
-
+        <h3>Requirements</h3>
         <p>
-          Why We Need This: <%= project.why_we_need_this %>
-        </p>        
-        
-        <p>
-          Deliverables: <%= project.deliverable %>
+          <%= project.requirements %>
         </p>
-        
-        <p>
-          Requirements: <%= project.requirements %>
-        </p>
-
-        <p>
-          Project Perks: <%= project.perks %>
-        </p>        
-        
-        <p>
-          Number of Positions: <%= project.number_of_positions %> (<%= @available_positions %> still available)
-        </p>
-
         <br>
-
+        <% if !project.perks.blank? %>
+        <h3>Perks</h3>
         <p>
-          Category: <%= project.category.category %>
+          <%= project.perks %>
         </p>
+        <br>        
+        <% end %>
 
+        <h3>Number of positions</h3>
         <p>
-          Cause: <%= project.cause.cause %>
+          <%= project.number_of_positions %> (<%= @available_positions %> still available)
         </p>
-
+        <br>
+        <h3>Skill category</h3>
+        <p>
+          <%= project.category.category %>
+        </p>
+        <br>
+        <h3>Cause</h3>
+        <p>
+          <%= project.cause.cause %>
+        </p>
+        <br>
+        <h3>Location</h3>
         <p>
           Location: <%= project.location.location %>
         </p>
-        
-        <br>
-
-        <h2>Length: 4 weeks</h2>
       </div>
       <% if current_user %> 
         <% if current_user.role == 'professional' %>
-          <div class="noTextSelectCursor <%= "load_application" unless @already_applied %> show_project_buttons<%= "_disabled" if @already_applied %>"><%= if @already_applied; "Applied" else "Apply" end %></div>
+          <div class="<%= "load_application" unless @already_applied %> ui <%= "disabled" if @already_applied %> tiny givrgreen button"><%= if @already_applied; "Applied" else "Apply" end %></div>
         <% end %> 
       <% else %>
-        <div class="noTextSelectCursor show_project_buttons_disabled">Log in to apply</div>
+        <div class="ui tiny disabled button">Log in to apply</div>
       <% end %>
       <% if current_user %> 
         <% if current_user.role == 'professional' %>
           <% if @already_shortlisted %>
-            <div class="noTextSelectCursor show_project_buttons_disabled">Shortlisted</div>
+            <div class="ui tiny disabled button">Shortlisted</div>
           <% elsif @already_applied %>
-            <div class="noTextSelectCursor show_project_buttons_disabled">Shortlist</div>
+            <div class="ui tiny disabled button">Shortlist</div>
           <% else %>
-            <div class="noTextSelectCursor do_project show_project_buttons" href="<%= project_applications_path(@project, todo: 'shortlist') %>" data-method="POST">Shortlist</div>
+            <div class="do_project ui tiny blue button" href="<%= project_applications_path(@project, todo: 'shortlist') %>" data-method="POST">Shortlist</div>
           <% end %>
         <% end %>
       <% else %> 
-        <div class="noTextSelectCursor show_project_buttons_disabled">Log in to shortlist</div>
+        <div class="ui tiny disabled button">Log in to shortlist</div>
       <% end %>
-      <div class="noTextSelectCursor" id="close_project">Close</div>      
+      <div id="close_project">
+        <%= fa_icon 'times' %>
+      </div>      
       <div class='fb-like' data-href='<%= @project %>' data-width='50' data-layout='button_count' data-action='like' data-show-faces='false' data-share='false'>
       </div>
     </div>
@@ -94,10 +92,15 @@
       <div class="project_header">
           <h1>Apply to <%= project.title %></h1>
       </div>
+      <br>
+      <div class="ui form">
       <%= form_tag do %>
+        <div class="field">
         <%= label_tag "Add a message to #{project.user.org_name}:" %>
-        <%= text_area_tag 'message', nil, class: 'text_area', placeholder: 'Put a blurb here on why you want to apply to the project.' %>
+        <%= text_area_tag 'message', nil, placeholder: 'Put a blurb here on why you want to apply to the project.' %>
+        </div>
       <% end %>
+      </div>
       <% if current_user %>
         <% if current_user.resume_quick_look.nil? %>
           <div class="upload_container">
@@ -105,7 +108,9 @@
           </div>
         <% end %>
       <% end %>
-      <div class="noTextSelectCursor <%= "do_project" unless @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %> show_project_buttons<%= "_disabled" if @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %>" id="application_submit" href="<%= @already_shortlisted ? applicant_update_path(@already_shortlisted.project, @already_shortlisted, todo: 'apply') : project_applications_path(@project, todo: 'apply') %>" data-method="<%= @already_shortlisted ? "PUT" : "POST" %>">Submit</div>
-      <div class="noTextSelectCursor load_application show_project_buttons">Back to project</div>
+      <div class="<%= "do_project" unless @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %> ui <%= "disabled" if @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %> tiny givrgreen button" id="application_submit" href="<%= @already_shortlisted ? applicant_update_path(@already_shortlisted.project, @already_shortlisted, todo: 'apply') : project_applications_path(@project, todo: 'apply') %>" data-method="<%= @already_shortlisted ? "PUT" : "POST" %>">Submit</div>
+      <div class="load_application ui tiny black button">
+        <%= fa_icon 'arrow-left' %> Back
+      </div>
     </div>
   </div>
