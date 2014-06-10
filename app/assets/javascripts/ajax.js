@@ -24,7 +24,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       $(window).scroll(function() {
         var url = $('.pagination span.next').children().attr('href');
         if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 200) {
-          $('.pagination').text("Fetching more projects...");
+          $('.pagination').html("<i class='fa fa-circle-o-notch fa-2x pagination_load spinner'></i>");
           return $.getScript(url).done(showProject);
         }
       });

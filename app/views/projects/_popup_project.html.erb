@@ -90,14 +90,13 @@
     </div>
     <div class="proto_form">
       <div class="project_header">
-          <h1>Apply to <%= project.title %></h1>
+          <h1><%= project.title %> for <%= project.user.org_name %></h1>
       </div>
-      <br>
       <div class="ui form">
+      <p class="section_title">Add a message</p>
       <%= form_tag do %>
         <div class="field">
-        <%= label_tag "Add a message to #{project.user.org_name}:" %>
-        <%= text_area_tag 'message', nil, placeholder: 'Put a blurb here on why you want to apply to the project.' %>
+          <%= text_area_tag 'message', nil, placeholder: 'Put a blurb here on why you want to apply to the project.' %>
         </div>
       <% end %>
       </div>
