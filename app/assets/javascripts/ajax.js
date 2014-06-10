@@ -54,9 +54,10 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // Filter projects based on category, cause and location selected
 
   function filterProjects() {
-
+    var spinners = [];
     $('.filter_button').off('click').on('click',function(){
-      // event.preventDefault();
+      spinners.push($(this).parent().find('.filter_checkbox.spinner'));
+      spinners[spinners.length-1].removeClass('hidden'); // this shows the spinning icon next to the filter checkbox while filter is being updated by adding the hidden class to the last element of the array (which is the newest jQuery object to be added)
       $(this).data('on', 1 - $(this).data('on'));  // a data attribute of 1 represent checked, while a 0 represents unchecked. This is a toggle
       var allCheckedButtonsObject = $('.filter_button').filter(function(){
         return $(this).data('on') == 1
@@ -69,9 +70,11 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         dataType: 'script',
         data: JSON.stringify(allCheckedButtons),
         contentType: 'application/json'
-      }).done(function(){
+      }).always(function(){
         infiniteScroll();
         showProject();
+        spinner = spinners.splice(0,1); // take the first element of the array of jQuery objects (they represent the spinners), and remove that element from the array
+        spinner[0].addClass('hidden'); // hide the spinner
       });
     });
   }

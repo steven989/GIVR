@@ -32,10 +32,13 @@
               <% end %>
 
               <div class="filter_value ui checkbox">
-              <%= check_box_tag 'category'+category.id.to_s, category.category, data_on_option == 1, class: 'filter_button', data: { filterid: category.id, filtertype: 'category', on: data_on_option}, href: filter_projects_path %>
-              <%= label_tag  'category'+category.id.to_s do%>
-                <div class="label"><span><%= category.category %></span></div>
-              <% end %>
+                <%= check_box_tag 'category'+category.id.to_s, category.category, data_on_option == 1, class: 'filter_button', data: { filterid: category.id, filtertype: 'category', on: data_on_option}, href: filter_projects_path %>
+                <%= label_tag  'category'+category.id.to_s do%>
+                  <div class="label"><span><%= category.category %>
+                  <%= fa_icon 'circle-o-notch', class: 'icon_right filter_checkbox spinner hidden' %>
+                  </span>
+                  </div>
+                <% end %>
               </div>
             <% end %>
 
@@ -68,7 +71,9 @@
             <div class="filter_value ui checkbox">
             <%= check_box_tag 'cause'+cause.id.to_s, cause.cause, data_on_option == 1, class: 'filter_button', data: { filterid: cause.id, filtertype: 'cause', on: data_on_option}, href: filter_projects_path %>
             <%= label_tag  'cause'+cause.id.to_s do%>
-              <div class="label"><span><%= cause.cause %></span></div>
+              <div class="label"><span><%= cause.cause %>
+                  <%= fa_icon 'circle-o-notch', class: 'icon_right filter_checkbox spinner hidden' %>
+              </span></div>
             <% end %>
             </div>
           <% end %>
@@ -102,7 +107,9 @@
             <div class="filter_value ui checkbox">
             <%= check_box_tag 'location'+location.id.to_s, location.location, data_on_option == 1, class: 'filter_button', data: { filterid: location.id, filtertype: 'location', on: data_on_option}, href: filter_projects_path %>
             <%= label_tag  'location'+location.id.to_s do%>
-              <div class="label"><span><%= location.location %></span></div>
+              <div class="label"><span><%= location.location %>
+                  <%= fa_icon 'circle-o-notch', class: 'icon_right filter_checkbox spinner hidden' %>
+              </span></div>
             <% end %>
             </div>
           <% end %>
