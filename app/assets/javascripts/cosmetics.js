@@ -236,9 +236,10 @@ function configureDropzone() {
       maxFiles: 1,
       forceFallback: false,
       // acceptedFiles: 'application/pdf,.doc,.docx',
-      addRemoveLinks: true,
+      addRemoveLinks: false,
       dictDefaultMessage: "<i class='fa fa-cloud-upload'> Drop your resume here or click to upload",
-
+      maxFilesize: 1, 
+      previewTemplate: "<span class='file_preview'></span>",
       init: function() {
         var submitButton = $("#resume_upload")
             myDropzone = this; // closure
@@ -259,6 +260,11 @@ function configureDropzone() {
         this.on('dragleave', function(){
             $('.upload .dropzone').removeClass('draghover');
         }); 
+        // spinner when file is uploading
+        this.on('drop',function(){
+            $('.upload .dropzone').removeClass('draghover');
+            $('.dz-default.dz-message').html("<i class='fa fa-circle-o-notch fa-2x upload spinner'></i>");
+        });
         this.on('success',function(file, response){
             $('.upload_container').html(response.replaceWith);
             $('.error_messages').html(response.message);
@@ -280,10 +286,11 @@ function configureDropzone() {
       uploadMultiple: false,
       maxFiles: 1,
       forceFallback: false,
-      acceptedFiles: 'image/jpg,image/jpeg,image/gif,image/png',
-      addRemoveLinks: true,
+      // acceptedFiles: 'image/jpg,image/jpeg,image/gif,image/png',
+      addRemoveLinks: false,
       dictDefaultMessage: "<i class='fa fa-cloud-upload'> Drop your logo here or click to upload",
-
+      maxFilesize: 1, 
+      previewTemplate: "<span class='file_preview'></span>",
       init: function() {
         var submitButton = $("#logo_upload")
             myDropzone = this; // closure
@@ -299,6 +306,11 @@ function configureDropzone() {
         this.on('dragleave', function(){
             $('.upload .dropzone').removeClass('draghover');
         }); 
+        // spinner when file is uploading
+        this.on('drop',function(){
+            $('.upload .dropzone').removeClass('draghover');
+            $('.dz-default.dz-message').html("<i class='fa fa-circle-o-notch fa-2x upload spinner'></i>");
+        });
         this.on('success',function(file, response){
             $('.upload_container').html(response.replaceWith);
             $('.error_messages').html(response.message);

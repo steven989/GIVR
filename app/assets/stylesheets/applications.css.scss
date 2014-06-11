@@ -1051,13 +1051,19 @@ body {
     border: 3px dashed $box-shadow-color;
     border-radius: 10px;
     cursor: pointer;
-
-
   }
 
   .draghover {
     border: 0.2rem dashed $primary-color;
     color: $primary-color;
+  }
+
+  .upload.spinner {
+    position: absolute;
+    left: 50%;
+    margin-left: -1rem;
+    padding: 0;
+    top: 1.5rem;
   }
 }
 
