@@ -122,7 +122,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
                 if (data.successFlag == 1) {
                       $('.projects_detail').fadeOut('fast');
                       $('.projects_overlay').fadeOut('fast');
-                }
+                };
                 $('.basic.modal .content .message').html(data.message+" "+data.alertMessage)
                 $('.basic.modal').modal('show');
                 $('.basic.modal .content .button').off('click').on('click',function(){
@@ -133,19 +133,23 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             });
 
           $('.projects_overlay').off('click').on('click', function() {
-            $('.projects_detail').fadeOut('fast');
-            $(this).fadeOut('fast');
+            endProjectShow();
             endView();
-          })
+          });
 
           $('#close_project').off('click').on('click', function() {
             event.preventDefault();
-            $('.projects_detail').fadeOut('fast');
-            $('.projects_overlay').fadeOut('fast');
+            endProjectShow();
             endView();
-          })
+          });
 
-      }
+          $(document).off('keydown').on('keydown',function(event){
+            if (event.which == 27){           // escape key
+            endProjectShow();
+            endView();          
+            };
+          });
+      };
 
   //Button to remove uploaded resume or logo
 

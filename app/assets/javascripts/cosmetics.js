@@ -403,3 +403,10 @@ function makeSubmitButtonAvailable() {
     $('#application_submit').removeClass('disabled');
     buttonsInsideShowProject(); // this assigns the listener for submit 
 }
+
+// close the viewing of project show popup
+
+function endProjectShow() {
+    $('.projects_detail').fadeOut('fast');
+    $('.projects_overlay').fadeOut('fast');
+};
