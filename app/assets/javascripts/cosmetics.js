@@ -400,10 +400,6 @@ function toggleApplicationForm() {
 // function to make the submit button available once a resume is uploaded
 
 function makeSubmitButtonAvailable() {
-    $('#application_submit').removeClass('do_project');
-    $('#application_submit').removeClass('show_project_buttons');
-    $('#application_submit').removeClass('show_project_buttons_disabled');
-    $('#application_submit').addClass('do_project');
-    $('#application_submit').addClass('show_project_buttons');
+    $('#application_submit').removeClass('disabled');
     buttonsInsideShowProject(); // this assigns the listener for submit 
 }
