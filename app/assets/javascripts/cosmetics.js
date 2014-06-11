@@ -270,7 +270,7 @@ function configureDropzone() {
             $('.dz-default.dz-message').html("<i class='fa fa-circle-o-notch fa-2x upload spinner'></i>");
         });
         this.on('removedfile',function(){
-            $('.dz-default.dz-message').html("<i class='fa fa-cloud-upload'> Drop your logo here or click to upload");
+            $('.dz-default.dz-message').html("<i class='fa fa-cloud-upload'> Drop your resume here or click to upload");
         });
         this.on('success',function(file, response){
             $('.upload_container').html(response.replaceWith);
