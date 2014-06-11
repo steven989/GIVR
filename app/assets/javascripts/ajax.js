@@ -48,8 +48,8 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       triggerApproval();
     });
    return false  //not sure why preventDefault does not work here
- });
-}
+    });
+  }
 
   // Filter projects based on category, cause and location selected
 
@@ -113,6 +113,8 @@ $(window).on('beforeunload',function(){     // navigating away from a page
     }
             $('.do_project').off('click').on('click',function(){
               event.stopImmediatePropagation(); //not sure why preventDefault does not work here
+              $(this).html("<i class='fa fa-circle-o-notch do_project spinner'></i>");
+              _this = $(this);
               $.ajax({
                 url: $(this).attr('href'),
                 type: $(this).data('method'),
@@ -123,6 +125,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
                       $('.projects_detail').fadeOut('fast');
                       $('.projects_overlay').fadeOut('fast');
                 };
+                _this.html("Submit")
                 $('.basic.modal .content .message').html(data.message+" "+data.alertMessage)
                 $('.basic.modal').modal('show');
                 $('.basic.modal .content .button').off('click').on('click',function(){

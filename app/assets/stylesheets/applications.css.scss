@@ -683,6 +683,14 @@ body {
 
     }
   }
+
+  .load_application, .do_project {
+    width: 7rem;
+
+    .spinner {
+      width: auto;
+    }
+  }
 }
 
   .basic.modal .content {
