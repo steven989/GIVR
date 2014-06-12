@@ -4,7 +4,7 @@
          <% @applications = current_user.applications.order('created_at ASC').where("applications.status not like 'shortlist'") %>
          <%    @notification_count = @applications.where("notification_view_flag like 'npo'").length %>
         <% elsif current_user.role == 'professional' %>
-            <% @applications = current_user.made_applications.order('created_at ASC').where("applications.status in ('apply','approve', 'engage')") %>
+            <% @applications = current_user.made_applications.order('created_at ASC').where("applications.status in ('apply','approve','decline', 'engage')") %>
            <%  @notification_count = @applications.where("notification_view_flag like 'professional'").length %>
         <% end %>
     <% end %>

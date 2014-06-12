@@ -94,8 +94,8 @@ class ApplicationsController < ApplicationController
           @application.statuses= params[:todo]
           @application.update_attribute(:notification_view_flag, 'professional')  # this sets up the pop up notification for the professional (because an npo just approved the application, we want the pop up to show up on the applicant's screen)
           UserMailer.project_approved(@application.user).deliver
-      elsif params[:todo] == 'unapprove'
-          @application.statuses= 'apply'
+      elsif params[:todo] == 'decline'
+          @application.statuses= 'decline'
           @application.update_attribute(:notification_view_flag, 'professional')  # this sets up the pop up notification for the professional (because an npo just unapproved the application, we want the pop up to show up on the applicant's screen)
       elsif params[:todo] == 'complete'
           @application.statuses= params[:todo]
@@ -117,7 +117,7 @@ class ApplicationsController < ApplicationController
       if @role == 'npo'
           @applications = current_user.applications.order('created_at ASC').where("applications.status not like 'shortlist'")
       elsif @role == 'professional'
-          @applications = current_user.made_applications.order('created_at ASC').where("applications.status in ('apply','approve', 'engage')")
+          @applications = current_user.made_applications.order('created_at ASC').where("applications.status in ('apply','approve', 'decline', 'engage')")
       end 
       @applications.where("notification_view_flag like ?", current_user.role).each {|application| application.update_attribute(:notification_view_flag, nil)}
 

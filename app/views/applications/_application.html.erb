@@ -32,8 +32,7 @@
         <div class="status_change">
             <% if application.status == 'apply' %>
                 <p class='action_button ui tiny givrgreen button'><%= link_to 'Approve', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'approve'}, class: 'user_action_button' %></p>
-            <% elsif application.status == 'approve' %>
-                <p class='action_button ui tiny givrgreen button'><%= link_to 'Unapprove', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'unapprove'}, class: 'user_action_button' %></p>        
+                <p class='action_button ui tiny red button'><%= link_to 'Decline', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'decline'}, class: 'user_action_button' %></p>       
             <% elsif application.status == 'engage' %>
                 <p class='action_button ui tiny givrgreen button'><%= link_to 'Complete', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'complete'}, class: 'user_action_button' %></p>        
             <% end %>

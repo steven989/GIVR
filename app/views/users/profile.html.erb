@@ -76,7 +76,7 @@
         </div>
 
         <div class="profile_view_content" id='applications'>
-            <%= render partial: 'applications/application', collection: @applications, locals: {role: @role} %>
+            <%= render partial: 'applications/application', collection: @applicationss, locals: {role: @role} %>
         </div>
         
         <% if @user.role == 'professional' %>

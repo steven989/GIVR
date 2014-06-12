@@ -942,13 +942,16 @@ body {
     padding: 0.5rem;
 
     .status_change {
+      box-sizing:border-box;
+      -moz-box-sizing:border-box; /* Firefox */     
       display: inline-block;
       height: 2rem;
-      width: 50%;
+      min-width: 50%;
       float: left;
 
         .action_button {
-          width: 100%;
+          display: inline-block;
+          min-width: 45.5%;
         }
 
         a {
