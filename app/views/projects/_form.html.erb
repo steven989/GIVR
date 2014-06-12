@@ -1,71 +1,57 @@
 <div class='error_messages'>
 </div>
-<div class="proto_form">
+<div class="ui form segment profile_form">
   <%= form_for @project, :remote => true do |f| %>
     <div class="field">
-      <%= f.label :title, 'Project name' %>
-      <br>
-      <%= f.text_field :title, class:'text_field' %>
+      <p class='section_title'><%= f.label :title, 'Project name' %></p>
+      <p><%= f.text_field :title, class:'text_field' %></p>
     </div>
-    
-    <div class="fields">
-      <%= f.label :description, 'Project description' %>
-      <br>
-      <%= f.text_area :description, class:'text_area' %>
+    <div class="field">
+      <p class='section_title'><%= f.label :description, 'Project description' %></p>
+      <p><%= f.text_area :description, class:'text_area' %></p>
     </div>
-
-    <div class="fields">
-      <%= f.label :why_we_need_this, 'Why do you need this:' %>
-      <br>
-      <%= f.text_area :why_we_need_this, class:'text_area' %>
+    <div class="field">
+      <p class='section_title'><%= f.label :why_we_need_this, 'Why do you need this:' %></p>
+      <p><%= f.text_area :why_we_need_this, class:'text_area' %></p>
     </div>
-
-    <div class="fields">
-      <%= f.label :deliverable, 'Project deliverables' %>
-      <br>
-      <%= f.text_area :deliverable, class:'text_area' %>
+    <div class="field">
+      <p class='section_title'><%= f.label :deliverable, 'Project deliverables' %></p>
+      <p><%= f.text_area :deliverable, class:'text_area' %></p>
     </div>
-
-    <div class="fields">
-      <%= f.label :overseer, 'Name of the project manager' %>
-      <br>
-      <%= f.text_field :overseer, class:'text_field' %>
+    <div class="field">
+      <p class='section_title'><%= f.label :overseer, 'Name of the project manager' %></p>
+      <p><%= f.text_field :overseer, class:'text_field' %></p>
     </div>
-
-    <div class="fields">
-      <%= f.label :number_of_positions, 'Number of positions' %>
-      <br>
-      <%= f.text_field :number_of_positions, class:'text_field' %>
+    <div class="field">
+      <p class='section_title'><%= f.label :number_of_positions, 'Number of positions' %></p>
+      <p><%= f.text_field :number_of_positions, class:'text_field' %></p>
     </div>
-
-    <div class="fields">
-      <%= f.label :perks, 'Perks for volunteers' %>
-      <br>
-      <%= f.text_area :perks, class:'text_area' %>
+    <div class="field">
+      <p class='section_title'><%= f.label :perks, 'Perks for volunteers' %></p>
+      <p><%= f.text_area :perks, class:'text_area' %></p>
     </div>
-
-    <div class="fields">
-      <%= f.label :requirements, 'Volunteer requirements' %>
-      <br>
-      <%= f.text_area :requirements, class:'text_area' %>
+    <div class="field">
+      <p class='section_title'><%= f.label :requirements, 'Volunteer requirements' %></p>
+      <p><%= f.text_area :requirements, class:'text_area' %></p>
     </div>
-
-    <div class="fields">
-      <%= f.label :category, "Category" %>
+    <div class="field">
+      <p class='section_title'><%= f.label :category, "Category" %></p>
       <%= options_from_collection_for_select(Category.all, :id, :category) %>
       <%= collection_select(:project, :category_id, Category.all, :id, :category, class: 'drop_down') %>
-
-      <%= f.label :cause, "Cause" %>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :cause, "Cause" %></p>
       <%= options_from_collection_for_select(Cause.all, :id, :cause) %>
       <%= collection_select(:project, :cause_id, Cause.all, :id, :cause, { selected: current_user.cause_id}, class: 'drop_down' )%>
-       
-      <%= f.label :location, "Location" %>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :location, "Location" %></p>
       <%= options_from_collection_for_select(Location.all, :id, :location) %>
       <%= collection_select(:project, :location_id, Location.all, :id, :location, class: 'drop_down')%>
     </div>
 
     <div class="actions">
-      <%= f.submit 'Create a project', class: 'button' %>
+      <%= f.submit 'Create a project', class: 'submit mini ui givrgreen button' %>
     </div>
   <% end %>
 </div>

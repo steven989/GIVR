@@ -2,18 +2,25 @@
 <div class='error_messages'></div>
 <% if user.logo.file.nil? %>
   <div class="upload">
-    <span>Upload your logo below:</span>
+    <p class="section_title">Upload your logo below:</p>
+    <div class="ui divider"></div>
     <%= render partial: 'raw_upload', locals: {user: user} %>
   </div>
 <% else %>
   <% if !user.logo.file.exists? %>
     <div class="upload">
-      <span>Upload your logo below:</span>
+      <p class="section_title">Upload your logo below:</p>
+      <div class="ui divider"></div>
       <%= render partial: 'raw_upload', locals: {user: user} %>
     </div>
   <% else %>
-    <p>Your logo:</p>
+    <p class="section_title">Your logo:</p>
+    <div class="ui divider"></div>
     <p><%= image_tag user.logo_url if user.logo? %></p>
-    <p><%= link_to 'Remove logo', user_upload_logo_path(logo_action: 'remove' ), method: 'patch', class: 'remove_upload' %> </p>
+    <div class="uploaded_stuff_action"><%= link_to user_upload_logo_path(logo_action: 'remove' ), method: 'patch', class: 'remove_upload' do %> 
+          <%= fa_icon 'times', class: 'icon_left' %>Remove logo
+        <% end %>
+    </div>
+
   <% end %>
 <% end %>

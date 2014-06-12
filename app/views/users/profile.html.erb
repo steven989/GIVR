@@ -96,7 +96,7 @@
 
         <div class="profile_view_content" id='settings'>
           <% if @user.role == 'professional' %>
-            <div class='ui form segment' id='user_settings'>
+            <div class='ui form segment profile_form'>
               <%= form_for @user do |f| %>
                 <div class='field'>
                   <p class='section_title'><%= f.label :contact_first_name, "First name:" %></p>
@@ -156,60 +156,72 @@
               </div>
             </div>
           <% elsif @user.role == 'npo' %>
-            <div class="proto_form">
+            <div class="ui form segment profile_form">
               <%= form_for @user do |f| %>
-
-                  <p><%= f.label :email, "Email:" %></p>
-                  <p><%= f.text_field :email, class: 'text_field' %></p>
-
-                  <p><%= f.label :org_name, "Organization name:" %></p>
-                  <p><%= f.text_field :org_name, class: 'text_field' %></p>
-
-                  <p><%= f.label :cause_id, "Cause:" %></p>
-                  <%= options_from_collection_for_select(Cause.all, :id, :cause) %>
-                  <p><%= collection_select(:user, :cause_id, Cause.all, :id, :cause, class: 'drop_down') %></p>
-
-                  <p><%= f.label :mission, "Mission:" %></p>
-                  <p><%= f.text_area :mission, class: 'text_area' %></p>
-
-                  <p><%= f.label :organization_size, "Number of full-time staff/volunteer:" %></p>
-                  <p><%= f.text_field :organization_size, class: 'text_field' %></p>
-
-                  <p><%= f.label :address, "Address:" %><p>
-                  <p><%= f.text_field :address, class: 'text_field' %></p>
-
-                  <p><%= f.label :city, "City:" %><p>
-                  <p><%= f.text_field :city, class: 'text_field' %></p>
-
-                  <p><%= f.label :postal_code, "Postal code:" %></p>
-                  <p><%= f.text_field :postal_code, class: 'text_field' %></p>
-
-                  <p><%= f.label :contact_first_name, "Contact person first name:" %></p>
-                  <p><%= f.text_field :contact_first_name, class: 'text_field' %></p>
-
-                  <p><%= f.label :contact_last_name, "Contact person last name:" %></p>
-                  <p><%= f.text_field :contact_last_name, class: 'text_field' %></p>     
-                  <p><%= f.label :website, "Website:" %></p>
-                  <p><%= f.text_field :website, class: 'text_field' %></p>
-
-                  <p><%= f.label :phone, "Phone:" %><p>
-                  </p><%= f.text_field :phone, class: 'text_field' %></p>
-
-                  <p><%= f.label :extension, "Extension:" %></p>
-                  <p><%= f.text_field :extension, class: 'text_field' %></p>
-
-                  <p><%= f.label :fax, "Fax:" %></p>
-                  <p><%= f.text_field :fax, class: 'text_field' %></p>
-
-                  <p><%= f.submit 'Update my information', class: 'button' %></p>
-
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :email, "Email:" %></p>
+                    <p><%= f.text_field :email, class: 'text_field' %></p>
+                  </div>                  
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :org_name, "Organization name:" %></p>
+                    <p><%= f.text_field :org_name, class: 'text_field' %></p>
+                  </div>
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :cause_id, "Cause:" %></p>
+                    <%= options_from_collection_for_select(Cause.all, :id, :cause) %>
+                    <p><%= collection_select(:user, :cause_id, Cause.all, :id, :cause, class: 'drop_down') %></p>
+                  </div>        
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :mission, "Mission:" %></p>
+                    <p><%= f.text_area :mission, class: 'text_area' %></p>
+                  </div>
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :organization_size, "Number of full-time staff/volunteer:" %></p>
+                    <p><%= f.text_field :organization_size, class: 'text_field' %></p>
+                  </div>
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :address, "Address:" %><p>
+                    <p><%= f.text_field :address, class: 'text_field' %></p>
+                  </div>
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :city, "City:" %><p>
+                    <p><%= f.text_field :city, class: 'text_field' %></p>
+                  </div>
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :postal_code, "Postal code:" %></p>
+                    <p><%= f.text_field :postal_code, class: 'text_field' %></p>
+                  </div>
+                  <div class='field'>
+                   <p class='section_title'><%= f.label :contact_first_name, "Contact person first name:" %></p>
+                   <p><%= f.text_field :contact_first_name, class: 'text_field' %></p>
+                  </div>
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :contact_last_name, "Contact person last name:" %></p>
+                    <p><%= f.text_field :contact_last_name, class: 'text_field' %></p> 
+                  </div> 
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :website, "Website:" %></p>
+                    <p><%= f.text_field :website, class: 'text_field' %></p>
+                  </div>
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :phone, "Phone:" %><p>
+                    </p><%= f.text_field :phone, class: 'text_field' %></p>
+                  </div>
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :extension, "Extension:" %></p>
+                    <p><%= f.text_field :extension, class: 'text_field' %></p>
+                  </div>
+                  <div class='field'>
+                    <p class='section_title'><%= f.label :fax, "Fax:" %></p>
+                    <p><%= f.text_field :fax, class: 'text_field' %></p>
+                  </div>
+                  <p><%= f.submit 'Update my information', class: 'submit mini ui givrgreen button' %></p>
                 <% end %>
-            
+                <div class="upload_container">
+                  <%= render partial: 'logo_upload', locals: {user: @user} %>
+                </div>   
+            </div>
 
-            </div>
-            <div class="upload_container">
-              <%= render partial: 'logo_upload', locals: {user: @user} %>
-            </div>
           <% end %>
 
         </div>
