@@ -22,8 +22,20 @@ $('document').ready(function() {
     clickingOnTransparentLayer();
     toggleUserProfileMenu();
     setMinHeightToElements();
+    landingPageScroll();
 });
 
+// welcome page button to scroll to individual sections
+
+function landingPageScroll() {
+    $('.pro_summ_button, .npo_summ_button, .get_invite, .section_nav_button').off('click').on('click',function(){
+        var target = $(this).data('scrollto');
+        var targetYPosition = $(target).offset().top;
+        $('html, body').animate({
+            scrollTop: targetYPosition
+        },500);
+    });
+}
 // set the minimum height of container elements intially upon page load
 
 function setMinHeightToElements() {
@@ -35,6 +47,9 @@ function setMinHeightToElements() {
         'min-height': $(window).height() * 0.8
     }); 
 
+    $('#who_are_we').css({
+        'height': $(window).height() 
+    }); 
 }
 
 // toggle the user profile menu
@@ -114,25 +129,46 @@ function buttonHighlightToggle(buttons) {   // this takes a jquery array of clic
 
 function scrollCheck() {
     var scrollPosition = window.scrollY
-    var threshold = $('#who_are_we').outerHeight(false) // the threshold is set to the height of the #who_are_we div because when we scroll past the bottom of this div we want to trigger the header shrinking
+    var threshold_who_are_we = $('#who_are_we').outerHeight(false) // the threshold is set to the height of the #who_are_we div because when we scroll past the bottom of this div we want to trigger the header shrinking
+        var threshold_professionals = threshold_who_are_we + $('#professionals').outerHeight(false)
+        var threshold_nonprofits = threshold_professionals + $('#nonprofits').outerHeight(false)
+        var threshold_categories = threshold_nonprofits + $('#categories').outerHeight(false)
+        var threshold_join = threshold_categories + $('.join').outerHeight(false)
+    // this is to change the header
     var transitionLength = 200;
-    if (scrollPosition > threshold) { 
-        $('#visible_white').fadeIn(); 
-        $('#visible_blue').fadeOut(transitionLength);
-    }
-    else 
-        {  
-            $('#visible_white').fadeOut(transitionLength);
-            $('#visible_blue').fadeIn(); 
-    }    
+    if ($(location).attr('pathname') == '/') {
+        if (scrollPosition > threshold_who_are_we) { 
+            $('#visible_white').fadeIn(); 
+            $('#visible_blue').fadeOut(transitionLength);
+        } else {  
+                $('#visible_white').fadeOut(transitionLength);
+                $('#visible_blue').fadeIn(); 
+        };
+    };
+    // this is to highlight the appropriate in-page section navigatino dots
+
+    if ($(location).attr('pathname') == '/') {
+        if (scrollPosition > threshold_who_are_we && scrollPosition <= threshold_professionals) { 
+            $('.section_nav_button').removeClass('clicked_alt').eq(1).addClass('clicked_alt');
+        } else if (scrollPosition > threshold_professionals && scrollPosition <= threshold_nonprofits) {
+            $('.section_nav_button').removeClass('clicked_alt').eq(2).addClass('clicked_alt');
+        } else if (scrollPosition > threshold_nonprofits && scrollPosition <= threshold_categories) {
+            $('.section_nav_button').removeClass('clicked_alt').eq(3).addClass('clicked_alt');
+        } else if (scrollPosition > threshold_categories) {
+            $('.section_nav_button').removeClass('clicked_alt').eq(4).addClass('clicked_alt');
+        } else if (scrollPosition <= threshold_who_are_we) {
+            $('.section_nav_button').removeClass('clicked_alt').eq(0).addClass('clicked_alt');
+        };
+    };
 }
 
 
 // this code is to make the underline below the navigation bar stay if the user is currently on the page
 
 function navigationUnderline() {
-    var linksToHighlightBlueHeader = $('.header .nav').find('li').filter(function(){return $(this).find('a').attr('href') == $(location).attr('pathname')});
-    linksToHighlightBlueHeader.css({"border-bottom": "2px solid white"});
+    if ($(location).attr('pathname') != '/') {
+        $('.alt_header').css({"display": "block"})
+    }
     var linksToHighlightWhiteHeader = $('.alt_header .nav').find('.li').filter(function(){return $(this).attr('href') == $(location).attr('pathname')});
     linksToHighlightWhiteHeader.css({"background-color": "rgba(175,175,175,0.5)"});
 }

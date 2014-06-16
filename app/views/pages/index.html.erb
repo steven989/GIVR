@@ -4,49 +4,164 @@
 <%= render 'shared/header' %>
 <%= render 'shared/alt_header' %>
 
-
+<div class="landing_section_nav">
+    <div class="section_nav_button clicked_alt" data-scrollto = "#who_are_we"></div>
+    <div class="section_nav_button clicked_alt" data-scrollto = "#professionals"></div>
+    <div class="section_nav_button" data-scrollto = "#nonprofits"></div>
+    <div class="section_nav_button" data-scrollto = "#categories"></div>
+    <div class="section_nav_button" data-scrollto = ".join"></div>
+</div>
 <div class="intro" id="who_are_we">
 
     <div class="headline">
-        <h2>Give back to the community with Givr</h2>
-    </div>
-    <div class="subtitle">
-        <h2>Givr is a marketplace of pro bono projects in the GTA area.</h2>
-        <h2>We help non-profit organizations find the talent they need.</h2>
-        <h2>And we help professionals channel their experience to better our city. </h2>
+        <h2>Give back to your community today</h2>
     </div>
     <div class="logo"><%= link_to image_tag("logo_full.png"), root_path %></div> 
+    <div class="subtitle">
+        <h2>Givingly is a marketplace of skill-based pro bono projects</h2>
+        <h2>We help non-profit organizations find the talent they need</h2>
+        <h2>And we help professionals channel their experience to better our city</h2>
+    </div>   
+    <div class="button_container">
+        <div class="pro_summ_button" data-scrollto = "#professionals">Professionals <%= fa_icon 'chevron-right', class: 'icon_right' %></div>
+        <div class="npo_summ_button" data-scrollto = "#nonprofits">Non-profits <%= fa_icon 'chevron-right', class: 'icon_right' %></div>
+        <div class="get_invite" data-scrollto = ".join">Get invitation <%= fa_icon 'chevron-right', class: 'icon_right' %></div>
+    </div>
+
 </div>
 <div class="front_page_background"></div>
 
-<div class="divider"></div>
+<div class="font_page_content">
+    <div class="divider"></div>
 
-<div class="intro" id="professionals">
-
-    <div>
-        <h2>For professionals</h2>
+    <div class="intro" id="professionals">
+        <div>
+            <h2>I am a professional</h2>
+            <p>You have the skills and experience that your community needs. Why not use them to make a difference? We help you find the perfect project.</p>
+        </div>
+        <div class='how_it_works'>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">1</div>
+                <div class="text">Browse through the projects, filter by skill, cause and location</div>
+            </div>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">2</div>
+                <div class="text">Apply to a project with your resume</div>
+            </div>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">3</div>
+                <div class="text">Chat with the non-profit to see fit</div>
+            </div>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">4</div>
+                <div class="text">Start doing project and feel awesome about yourself!</div>
+            </div>
+        </div>
     </div>
-    <div>
-        <p>"Spinning Around" is the lead single from Light Years (2000), Kylie Minogue's seventh studio album. The disco-influenced dance-pop song addresses the theme of reinvention, with Minogue (pictured performing the song) claiming that she has changed as a person and learned from the past. Released in June 2000, it received favourable reviews from music critics, who regarded it as one of the album's highlights and praised Minogue for returning to her signature musical style. The song was a commercial success and became Minogue's "comeback" single following the critical and commercial disappointment of her sixth studio album Impossible Princess (1997). It entered the Australian Singles Chart at number one, becoming the singer's first chart-topper since "Confide in Me" (1994).</p>
+    <div class="ui divider"></div>
+    <div class="intro" id="nonprofits">
+        <div>
+            <h2>I am a non-profit</h2>
+            <p>You are passionate about your cause and you are good at what you do. We help you find talented professionals to take your organization to the next level.</p>
+        </div>
+        <div class='how_it_works'>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">1</div>
+                <div class="text">Identify a project that your organization needs done</div>
+            </div>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">2</div>
+                <div class="text">Put up your project on Givingly</div>
+            </div>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">3</div>
+                <div class="text">Chat with professionals to see fit</div>
+            </div>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">4</div>
+                <div class="text">Start the project and take your organization to the next level!
     </div>
-
-</div>
-
-<div class="divider"></div>
-
-<div class="intro" id="nonprofits">
-
-    <div>
-        <h2>For non-profits</h2>
+            </div>
+        </div>
     </div>
-    <div>
-        <p>"Spinning Around" is the lead single from Light Years (2000), Kylie Minogue's seventh studio album. The disco-influenced dance-pop song addresses the theme of reinvention, with Minogue (pictured performing the song) claiming that she has changed as a person and learned from the past. Released in June 2000, it received favourable reviews from music critics, who regarded it as one of the album's highlights and praised Minogue for returning to her signature musical style. The song was a commercial success and became Minogue's "comeback" single following the critical and commercial disappointment of her sixth studio album Impossible Princess (1997). It entered the Australian Singles Chart at number one, becoming the singer's first chart-topper since "Confide in Me" (1994).</p>
+    <div class="ui divider"></div>
+    <div class="intro" id="categories">
+        <div>
+            <h2>Sample project categories</h2>
+        </div>
+        <div class='how_it_works'>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">Design</div>
+                <div class="text">Logo design, info graphics, brochure and more</div>
+            </div>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">Web</div>
+                <div class="text">Web development, web design, search engine optimization, and more</div>
+            </div>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">Revenue</div>
+                <div class="text">Fundraising strategy, self-generated revenue strategy and more</div>
+            </div>
+            <div class="step">
+                <div class="graphics"></div>
+                <div class="number">Marketing</div>
+                <div class="text">Marketing strategy, brand messaging, advertising campaign and more
     </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui divider"></div>
+    <div class="join">
+        <h2>Can't wait to get started?</h2>
+        <p>Givingly is currently in private beta. Leave your email and we'll send you an invite soon! We promise we won't share your info with anyone.</p>
+        <div class="ui form segment">
+            <%= form_tag do %>
+                <div class="field">
+                    <%= label_tag 'email', "Email" %>
+                    <%= text_field_tag 'email' %>
+                </div>        
+                <div class="i_am_a grouped inline fields">
+                I am a:
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <%= radio_button_tag :role, 'professional' %>
+                            <%= label_tag :role_professional, 'Professional' %>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <%= radio_button_tag :role, 'npo' %>
+                            <%= label_tag :role_npo, 'Non-Profit Organization' %>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <%= label_tag 'category', "My skills/We'd like help with" %>
+                    <%= text_field_tag 'category' %>
+                </div>
+                <div class="field">
+                    <%= label_tag 'source', "How did you hear about us?" %>
+                    <%= text_field_tag 'source' %>
+                </div>
+                <div class="field">
+                    <%= label_tag 'notes', "Suggestions/feedback/anything else?" %>
+                    <%= text_area_tag 'notes' %>
+                </div>
 
-</div>
-
-<div class="join">
-    
-
+                <%= submit_tag 'Submit', class: 'ui button' %>
+            <% end %>
+        </div> 
+    </div>
 </div>
 <div class="projects_overlay_transparent hidden"></div>
