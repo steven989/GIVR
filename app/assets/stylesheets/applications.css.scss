@@ -107,9 +107,9 @@ body {
   color: $text-color;
   position: fixed;
   top: 0;
-  background-color: $primary-color;
+  background-color: none;
   z-index: 1;
-  height: 4.5rem;
+  height: 2.5rem;
   width: 100%;
   z-index: 21;
   opacity: 1;
@@ -159,12 +159,12 @@ body {
       height: 100%;
       -webkit-transition: color 150ms; /* For Safari 3.1 to 6.0 */
       transition: color 150ms;
-      color: #CBFFE4;
+      color: white;
       text-decoration: none;
       cursor: pointer;
 
       &:hover {
-        color: white;
+        background-color: rgba(175,175,175,0.5);
       }
 
       p {
@@ -285,10 +285,8 @@ body {
 
 .intro {
   position: relative;
-  min-height: 40rem;
-  background-color: #FFFDFD;
+  min-height: 42rem;
   color: black;
-
 }
 
 .divider {
@@ -297,15 +295,25 @@ body {
 
 }
 
+.front_page_background {
+  position: fixed;
+  left: 0;
+  top: 0rem;
+  background-image: url('http://comeinunity.org/wp-content/uploads/2013/11/helping-hand.jpg');
+  background-size: 120%;
+  width: 100%;
+  height: 42rem;
+  z-index: -1;
+}
+
 #who_are_we {
   color: white;
   font-size: 1.5rem;
   line-height: 2rem;
-  background-color: $primary-color;
 
   .headline {
     position:absolute;
-    top: 10rem;
+    top: 8rem;
     left: 12rem;
     font-family: 'Josefin Slab';
     font-size: 3rem;
@@ -313,14 +321,14 @@ body {
 
   .subtitle {
     position:absolute;
-    top: 23rem;
+    top: 21rem;
     left: 12rem; 
     text-align: center; 
   }
 
   .logo {
     position:absolute;
-    top: 15rem;
+    top: 13rem;
     left: 32rem; 
 
     img {
@@ -333,8 +341,8 @@ body {
   /*color: black;*/
   font-size: 1.5rem;
   line-height: 2rem;
-  /*background-color: rgba(255,255,255,0.8);*/
-  /*border: 1px solid white;*/
+  background-color: white;
+
 
   div {
     position: relative;
@@ -349,7 +357,7 @@ body {
   /*color: white;*/
   font-size: 1.5rem;
   line-height: 2rem;
-  background-color: #AEE5D1;
+  background-color: white;
 
   div {
     position: relative;

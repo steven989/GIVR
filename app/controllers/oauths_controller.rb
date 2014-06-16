@@ -8,7 +8,6 @@ class OauthsController < ApplicationController
 
     provider = params[:provider]
     if @user = login_from(provider)
-        puts "logged in user"
         redirect_to projects_path, notice: "Logged in from #{provider.titleize}"
     else 
         begin
