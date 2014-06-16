@@ -310,6 +310,8 @@ body {
     height: 0.8rem;
     width: 0.8rem;
     border-radius: 100%;
+    -webkit-transition: background-color 150ms; /* For Safari 3.1 to 6.0 */
+    transition: background-color 150ms;
   }
 
 }
@@ -390,6 +392,8 @@ body {
       position: relative;
       float: left;
       margin: 0 1rem;
+      -webkit-transition: background-color 150ms; /* For Safari 3.1 to 6.0 */
+      transition: background-color 150ms;
 
       i {
         margin-top: 0.45rem;
