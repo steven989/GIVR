@@ -10,12 +10,29 @@ $(function() {                  // document ready
   showProject();
   buttonsInsideShowProject();
   removeUpload();
+  subscribeToMailchimp();
 });
 
 $(window).on('beforeunload',function(){     // navigating away from a page
   endView();  // indicate the end of a particular project if user navigates away
 });
 
+  // Subscribe to mailing list hosted on Mailchimp
+
+  function subscribeToMailchimp() {
+    $('.subscribe').off('click').on('click',function(){
+      event.preventDefault();
+      $.ajax({
+        url:  $(this).parent().attr('action'),
+        type: 'POST',
+        dataType: 'json',
+        data: $(this).parent().serialize()
+      }).done(function(data){
+        var message = data.message;
+        dimmedModalMessage(message);
+      });
+    });
+  }
 
   // infinite scroll on the projects page
   
@@ -126,11 +143,8 @@ $(window).on('beforeunload',function(){     // navigating away from a page
                       $('.projects_overlay').fadeOut('fast');
                 };
                 _this.html("Submit")
-                $('.basic.modal .content .message').html(data.message+" "+data.alertMessage)
-                $('.basic.modal').modal('show');
-                $('.basic.modal .content .button').off('click').on('click',function(){
-                  $('.basic.modal').modal('hide');
-                });
+                var message = data.message+" "+data.alertMessage;
+                dimmedModalMessage(message);
               });
               return false  //not sure why preventDefault does not work here
             });

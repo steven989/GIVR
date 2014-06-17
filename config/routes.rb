@@ -24,6 +24,7 @@ Givr::Application.routes.draw do
   resources :sessions, only: [:create, :destroy]
   resources :password_resets, only: [:create, :edit, :update]
   resources :project_views, only: [:update]
+  post 'subscribe/:id' => 'pages#subscribe', as: 'subscribe'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

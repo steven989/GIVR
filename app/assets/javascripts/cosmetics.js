@@ -25,6 +25,16 @@ $('document').ready(function() {
     landingPageScroll();
 });
 
+// dimmed page message
+
+function dimmedModalMessage(message) {
+    $('.basic.modal .content .message').html(message)
+    $('.basic.modal').modal('show');
+    $('.basic.modal .content .button').off('click').on('click',function(){
+      $('.basic.modal').modal('hide');
+    });  
+}
+
 // welcome page button to scroll to individual sections
 
 function landingPageScroll() {

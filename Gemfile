@@ -82,10 +82,13 @@ gem 'rmagick', :require => 'RMagick'
 gem 'chartkick'
 
 #12) To interface with Amazon S3
-gem 'fog', "~> 1.3.1"
+gem 'fog'
 
 #13) Great fonts
 gem 'font-awesome-rails'
+
+#14) MailChimp API wrapper for landing page
+gem 'mailchimp-api'
 
 group :production do
   gem "rails_12factor"

@@ -28,6 +28,17 @@
 
 <%= yield %>
 
+<div class="ui dimmer page">
+  <div class="ui basic modal transition">
+    <div class="content">
+      <div class="message"></div>
+      <div class="button_container">
+        <div class="ui green button">Okay</div>
+      </div>
+    </div>
+  </div>
+</div>  
+
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>
 </html>
