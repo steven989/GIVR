@@ -10,6 +10,7 @@
 $font-stack: "Open Sans", sans-serif;
 
 $primary-color: #2DD1A3;
+$medium-primary-color: #56CEA1;
 $accent-color: #3D9977;
 $text-color: #a0a0a0;
 $box-shadow-color: #888888;
@@ -442,21 +443,29 @@ body {
       float: left;
       
       .graphics {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
         position: relative;
+        padding-top: 2rem;
         height: 60%;
         width: 90%;
         margin: 0 auto;
-        border: 1px solid gray;
+        
+        .icongraphic {
+          width: 65%;
+          position: relative;
+        }
+
       } 
 
       .number {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         margin: 1rem auto;
-        padding-top: 0.4rem;
+        padding-top: 0.5rem;
         position: relative;
-        border: 2px solid $primary-color;
-        color: $primary-color;
+        background-color: $medium-primary-color;
+        color: white;
         height: 3rem;
         width: 3rem;
         border-radius: 100%;
@@ -464,7 +473,7 @@ body {
       }
 
       .text {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin: 1rem auto;
         position: relative;
         height:4rem;
@@ -509,29 +518,35 @@ body {
       float: left;
       
       .graphics {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
         position: relative;
+        padding-top: 2rem;
         height: 60%;
         width: 90%;
         margin: 0 auto;
-        border: 1px solid gray;
+        
+        .icongraphic {
+          width: 65%;
+          position: relative;
+        }
       } 
 
       .number {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         margin: 1rem auto;
-        padding-top: 0.4rem;
+        padding-top: 0.5rem;
         position: relative;
-        border: 2px solid $primary-color;
-        color: $primary-color;
+        background-color: $medium-primary-color;
+        color: white;
         height: 3rem;
         width: 3rem;
         border-radius: 100%;
-
       }
 
       .text {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin: 1rem auto;
         position: relative;
         height:4rem;
@@ -577,11 +592,20 @@ body {
       float: left;
       
       .graphics {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
         position: relative;
-        height: 60%;
+        padding-top: 1rem;
+        height: 50%;
         width: 90%;
         margin: 0 auto;
-        border: 1px solid gray;
+        
+        .icongraphic {
+          font-size: 5rem;
+          color: $text-color;
+          position: relative;
+        }
+
       } 
 
       .number {
@@ -590,14 +614,14 @@ body {
         margin: 1rem 0;
         text-align: center;
         position: relative;
-        color: $primary-color;
+        color: $medium-primary-color;
         height: 3rem;
         border-radius: 100%;
 
       }
 
       .text {
-        font-size: 1rem;
+        font-size: 1.1rem;
         margin: 1rem auto;
         position: relative;
         height:4rem;
@@ -625,10 +649,12 @@ body {
   }
 
   label {
+    margin: 0;
     font-size: 1rem !important;
     color: $text-color !important;
   }
   input {
+    margin: 0;
     font-size: 1rem !important;
   }
 
