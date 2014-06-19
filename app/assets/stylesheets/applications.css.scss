@@ -462,12 +462,13 @@ body {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         margin: 1rem auto;
-        padding-top: 0.5rem;
+        padding-bottom: 0.1rem;
         position: relative;
+        font-size: 1.1rem;
         background-color: $medium-primary-color;
         color: white;
-        height: 3rem;
-        width: 3rem;
+        height: 2rem;
+        width: 2rem;
         border-radius: 100%;
 
       }
@@ -536,12 +537,13 @@ body {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         margin: 1rem auto;
-        padding-top: 0.5rem;
+        padding-bottom: 0.1rem;
         position: relative;
+        font-size: 1.1rem;
         background-color: $medium-primary-color;
         color: white;
-        height: 3rem;
-        width: 3rem;
+        height: 2rem;
+        width: 2rem;
         border-radius: 100%;
       }
 
