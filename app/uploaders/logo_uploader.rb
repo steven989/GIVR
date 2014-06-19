@@ -31,7 +31,7 @@ class LogoUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
-  # resize the width to be no more than 50px
+  # resize the width to be no more than 200px
 
     process :resize_to_limit => [200, 200]
 
