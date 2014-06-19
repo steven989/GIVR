@@ -22,15 +22,18 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   function subscribeToMailchimp() {
     $('.subscribe').off('click').on('click',function(){
       event.preventDefault();
-      $.ajax({
-        url:  $(this).parent().attr('action'),
-        type: 'POST',
-        dataType: 'json',
-        data: $(this).parent().serialize()
-      }).done(function(data){
-        var message = data.message;
-        dimmedModalMessage(message);
-      });
+      if ($(this).hasClass('disabled')) 
+        {return false} else {
+          $.ajax({
+            url:  $(this).parent().attr('action'),
+            type: 'POST',
+            dataType: 'json',
+            data: $(this).parent().serialize()
+          }).done(function(data){
+            var message = data.message;
+            dimmedModalMessage(message);
+          });
+        };
     });
   }
 

@@ -126,15 +126,19 @@
         <h2>Can't wait to get started?</h2>
         <p>Givingly is currently in private beta. Leave your email and we'll send you an invite soon! We promise we won't share your info with anyone.</p>
         <div class="ui form segment">
-            <%= form_tag subscribe_path(@list_id), method: 'POST' do %>
+            <div class="mand"><%= fa_icon 'asterisk' %>Indicates required fields</div>
+            <%= form_tag subscribe_path(@list_id), method: 'POST', class: "subscription_form" do %>
                 <div class="field">
-                    <%= label_tag 'email', "Email" %>
+                    <%= label_tag 'email' do %>
+                     Email<%= fa_icon 'asterisk' %>
+                    <% end %>
                     <%= text_field_tag 'email' %>
                 </div>        
                 <div class="i_am_a grouped inline fields">
-                I am a:
+                I am a<%= fa_icon 'asterisk' %>
                     <div class="field">
                         <div class="ui radio checkbox">
+                            
                             <%= radio_button_tag :role, 'professional' %>
                             <%= label_tag :role_professional, 'Professional' %>
                         </div>
@@ -145,9 +149,21 @@
                             <%= label_tag :role_npo, 'Non-Profit Organization' %>
                         </div>
                     </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <%= radio_button_tag :role, 'business' %>
+                            <%= label_tag :role_business, 'Business' %>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui radio checkbox">
+                            <%= radio_button_tag :role, 'other' %>
+                            <%= label_tag :role_other, 'Other' %>
+                        </div>
+                    </div>
                 </div>
                 <div class="field">
-                    <%= label_tag 'category', "My skills/We'd like help with" %>
+                    <%= label_tag 'category', "My skills / We'd like help with" %>
                     <%= text_field_tag 'category' %>
                 </div>
                 <div class="field">
@@ -155,11 +171,11 @@
                     <%= text_field_tag 'source' %>
                 </div>
                 <div class="field">
-                    <%= label_tag 'notes', "Suggestions/feedback/anything else?" %>
+                    <%= label_tag 'notes', "Suggestions / Feedback / Anything else?" %>
                     <%= text_area_tag 'notes' %>
                 </div>
 
-                <%= submit_tag 'Submit', class: 'ui button subscribe' %>
+                <%= submit_tag 'Submit', class: 'ui disabled button subscribe' %>
             <% end %>
         </div> 
     </div>
