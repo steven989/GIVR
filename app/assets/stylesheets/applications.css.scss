@@ -321,7 +321,7 @@ body {
   position: fixed;
   left: 0;
   top: 0rem;
-  background-image: image-url('background.png');
+  background-image: image-url('background1.jpg');
   background-size: 100%;
   background-repeat: no-repeat;
   width: 100%;
@@ -1473,3 +1473,18 @@ body {
       }
     }
   }
+
+/* ----------------------- NPO public profile ---------------------- */
+
+.organization_info {
+  background-color: none;
+  position: absolute;
+  padding-top: 4rem;
+  padding-left: 3rem;
+  padding-right: 1rem;
+  top: 2.5rem;
+  height: 85%;
+  width: 16%;
+  z-index: 1;
+  color: $text-color;
+}

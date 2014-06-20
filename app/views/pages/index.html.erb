@@ -46,7 +46,7 @@
                 <div class="text">Browse through the projects, filter by skill, cause and location</div>
             </div>
             <div class="step">
-                <div class="graphics"><%= image_tag 'flipchart.png', class: 'icongraphic' %></div>
+                <div class="graphics"><%= image_tag 'id.png', class: 'icongraphic' %></div>
                 <div class="number">2</div>
                 <div class="text">Apply to a project you are passionate about</div>
             </div>
@@ -75,7 +75,7 @@
                 <div class="text">Identify a project that your organization needs to get done</div>
             </div>
             <div class="step">
-                <div class="graphics"><%= image_tag 'monitor.png', class: 'icongraphic' %></div>
+                <div class="graphics"><%= image_tag 'flipchart.png', class: 'icongraphic' %></div>
                 <div class="number">2</div>
                 <div class="text">Put up your project on Givingly</div>
             </div>
@@ -124,7 +124,7 @@
     <div class="ui divider"></div>
     <div class="join">
         <h2>Can't wait to get started?</h2>
-        <p>Givingly is currently in private beta. Leave your email and we'll send you an invite soon! We promise we won't share your info with anyone.</p>
+        <p>Givingly is currently in private beta. Leave your email and we'll send you an invite soon! We promise we won't share your info with anyone or spam your inbox.</p>
         <div class="ui form segment">
             <div class="mand"><%= fa_icon 'asterisk' %>Indicates required fields</div>
             <%= form_tag subscribe_path(@list_id), method: 'POST', class: "subscription_form" do %>
@@ -132,7 +132,7 @@
                     <%= label_tag 'email' do %>
                      Email<%= fa_icon 'asterisk' %>
                     <% end %>
-                    <%= text_field_tag 'email' %>
+                    <%= text_field_tag 'email',nil, maxlength:'250' %>
                 </div>        
                 <div class="i_am_a grouped inline fields">
                 I am a<%= fa_icon 'asterisk' %>
@@ -164,17 +164,17 @@
                 </div>
                 <div class="field">
                     <%= label_tag 'category', "My skills / We'd like help with" %>
-                    <%= text_field_tag 'category' %>
+                    <%= text_field_tag 'category',nil, maxlength:'250' %>
                 </div>
                 <div class="field">
                     <%= label_tag 'source', "How did you hear about us?" %>
-                    <%= text_field_tag 'source' %>
+                    <%= text_field_tag 'source',nil, maxlength:'250' %>
                 </div>
                 <div class="field">
-                    <%= label_tag 'notes', "Suggestions / Feedback / Anything else?" %>
-                    <%= text_area_tag 'notes' %>
+                    <%= label_tag 'notes', "Suggestions / Feedback / Anything else? (250 characters)" %>
+                    <%= text_area_tag 'notes',nil, maxlength:'250' %>
                 </div>
-                <p>Please check your inbox in a few minutes for an email from us. We need to confirm your permission to record your email.</p>
+                <p>Please check your inbox in a few minutes for an email from us. We need to confirm your permission to save your email.</p>
                 <%= submit_tag 'Submit', class: 'ui disabled button subscribe' %>
             <% end %>
         </div> 

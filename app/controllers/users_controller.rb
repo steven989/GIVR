@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     before_filter :require_login
-    skip_before_filter :require_login, only: [:new, :create]
+    skip_before_filter :require_login, only: [:new, :create, :organization_profile]
 
     def new
         @user = User.new
@@ -121,6 +121,19 @@ class UsersController < ApplicationController
         end
     end
 
+    def organization_profile
+        @user = User.new #this is because we are pulling the login form in this view as well    
+        @npo = User.find_by_id(params[:id])
+        @email = @npo.email
+        @mission = @npo.mission
+        @cause = @npo.cause.cause
+        @description = @npo.description
+        @city = @npo.city
+        @website = @npo.website
+        @size = @npo.organization_size
+        @projects = @npo.submitted_projects.where("projects.status like 'active'").take(3)
+    end
+
     def profile
         @abridged_menu = true   #this is so that the drop down menu only says logout
         @project_edit = true    #this is so that links to modifying and deleting projects show up
@@ -178,7 +191,7 @@ class UsersController < ApplicationController
     end
 
     def npo_params
-        params.require(:user).permit(:email,:org_name,:mission,:contact_first_name,:contact_last_name,:organization_size,:address,:city,:postal_code,:phone,:extension,:fax,:website, :cause_id)
+        params.require(:user).permit(:email,:org_name,:mission,:contact_first_name,:contact_last_name,:organization_size,:address,:city,:postal_code,:phone,:extension,:fax,:website, :cause_id, :description)
     end
 
     def require_login

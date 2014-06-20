@@ -1,0 +1,44 @@
+<%= render 'shared/alt_header' %>
+<%= render 'shared/alt_static' %>
+
+
+<div class="organization_info">
+  <div class="logo">
+      <% if !@npo.logo.file.nil? %>
+        <% if @npo.logo.file.exists? %>
+          <%= image_tag @npo.logo_url(:thumb), class: 'logo' %>
+        <% end %>
+      <% end %>
+  </div>
+  <div class="org_name">
+      <%= @npo.org_name %>
+  </div>
+  <div class="ui divider"></div>
+  <div class="email">
+      <%= @email %>
+  </div>
+  <div class="cause">
+      <%= @cause %>
+  </div>
+  <div class="website">
+      <%= @website %>
+  </div>
+  <div class="city">
+      <%= @city %>
+  </div>
+  <div class="org_size">
+      <%= @size %>
+  </div>
+  <div class="mission">
+      <h1>Mission</h1><br>
+      <%= @mission %>
+  </div>
+  <div class="description">
+      <h1>Our activities</h1><br>
+      <%= @description %>
+  </div>
+</div>
+
+<div class="projects_show">
+    <%= render @projects %>
+</div>

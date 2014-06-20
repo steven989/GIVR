@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
     def index
-        @user= User.new
+        @user= User.new #this is because we are pulling the login form in this view as well
         @list_id = ENV['MAILCHIMP_GIVINGLY_LIST_ID']
     end 
 
