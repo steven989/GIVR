@@ -21,6 +21,8 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   function subscribeToMailchimp() {
     $('.subscribe').off('click').on('click',function(){
+      $(this).html("<i class='fa fa-circle-o-notch spinner'></i>");
+      _this = $(this);
       event.preventDefault();
       if ($(this).hasClass('disabled')) 
         {return false} else {
@@ -30,6 +32,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             dataType: 'json',
             data: $(this).parent().serialize()
           }).done(function(data){
+            _this.html("Submit");
             var message = data.message;
             dimmedModalMessage(message);
           });
@@ -131,7 +134,8 @@ $(window).on('beforeunload',function(){     // navigating away from a page
     } catch (e) {
       console.log(e);
     }
-            $('.do_project').off('click').on('click',function(){
+
+            $('#application_submit').off('click').on('click',function(){
               event.stopImmediatePropagation(); //not sure why preventDefault does not work here
               $(this).html("<i class='fa fa-circle-o-notch do_project spinner'></i>");
               _this = $(this);

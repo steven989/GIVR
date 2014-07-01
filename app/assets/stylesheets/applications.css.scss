@@ -107,8 +107,6 @@ body {
 
 /* -------------------------- header and footer ------------------------- */
 
-
-
 .header {
   color: $text-color;
   position: fixed;
@@ -321,8 +319,8 @@ body {
   position: fixed;
   left: 0;
   top: 0rem;
-  background-image: image-url('background1.jpg');
-  background-size: 100%;
+  background-image: image-url('background.png');
+  background-size: 120%;
   background-repeat: no-repeat;
   width: 100%;
   height: 50rem;
@@ -345,16 +343,15 @@ body {
 #who_are_we {
   position:relative;
   color: white;
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 2rem;
 
   .headline {
     position:relative;
     text-align: center;
     margin: auto;
-    padding-top: 5rem;
-    font-family: 'Josefin Slab';
-    font-size: 3rem;
+    padding-top: 11rem;
+    font-size: 2rem;
 
     h2 {
       margin: 0;
@@ -365,46 +362,39 @@ body {
     position:relative;
     margin: 2rem auto;
     text-align: center; 
+    width: 40%;
+    font-size: 1.1rem;
   }
 
-  .logo {
-    position:relative;
-    margin: 3rem auto;
-    text-align: center;
-
-    img {
-      height: 5rem;
-    }
-  }
 
   .button_container {
-    width: 70%;
+    width: 50%;
     position: relative;
     margin: 0 auto;
-    margin-top: 5rem;
+    margin-top: 1rem;
 
-    .pro_summ_button, .npo_summ_button, .get_invite {
-      padding: 1rem 1rem 0.4rem 1rem;      
+    .pro_summ_button, .npo_summ_button, .faq_button, .get_invite {
+      text-align: center;
+      border: 1px solid white;
+      padding: 0.5rem 0.5rem 0.5rem 0.5rem;    
+      font-size: 1.2rem;  
       cursor: pointer;
-      width: 25%;
-      height: 3rem;
+      width: 20%;
+      height: 2rem;
       color: white;
       border-radius: 5px;
       position: relative;
+      margin: 0 1%;
       float: left;
-      margin: 0 1rem;
       -webkit-transition: background-color 150ms; /* For Safari 3.1 to 6.0 */
       transition: background-color 150ms;
 
-      i {
-        margin-top: 0.45rem;
-        margin-right: 1rem;
-      }
-
       &:hover {
         background-color: $primary-color;
+        border: 1px solid $primary-color;
       }
     }
+
   }
 }
 
@@ -416,10 +406,31 @@ body {
   position: relative;
   text-align: center;
 
+  .get_invite {
+    text-align: center;
+    border: 1px solid $text-color;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;    
+    font-size: 1.2rem;  
+    position: relative;
+    width: 10%;
+    margin: 0 auto;
+    cursor: pointer;
+    height: 2rem;
+    border-radius: 5px;
+    -webkit-transition: background-color 150ms; /* For Safari 3.1 to 6.0 */
+    transition: background-color 150ms;
+
+    &:hover {
+      background-color: $primary-color;
+      border: 1px solid $primary-color;
+      color: white;
+    }
+  }
+
   h2 {
     display: block;
     position: relative;
-    padding-top: 5rem;
+    padding-top: 4rem;
     font-size:3rem;
   }
 
@@ -432,7 +443,7 @@ body {
 
   .how_it_works {
     position: relative;
-    top: 2rem;
+    top: 0rem;
     width: 75%;
     height: 20rem;
     margin: 0 auto;
@@ -492,10 +503,32 @@ body {
   position: relative;
   text-align: center;
 
+  .get_invite {
+    text-align: center;
+    border: 1px solid $text-color;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;    
+    font-size: 1.2rem;  
+    position: relative;
+    width: 10%;
+    margin: 0 auto;
+    cursor: pointer;
+    height: 2rem;
+    border-radius: 5px;
+    -webkit-transition: background-color 150ms; /* For Safari 3.1 to 6.0 */
+    transition: background-color 150ms;
+
+    &:hover {
+      background-color: $primary-color;
+      border: 1px solid $primary-color;
+      color: white;
+    }
+  }
+
+
   h2 {
     display: block;
     position: relative;
-    padding-top: 5rem;
+    padding-top: 4rem;
     font-size:3rem;
   }
 
@@ -508,7 +541,7 @@ body {
 
   .how_it_works {
     position: relative;
-    top: 2rem;
+    top: 0rem;
     width: 75%;
     height: 20rem;
     margin: 0 auto;
@@ -567,10 +600,33 @@ body {
   position: relative;
   text-align: center;
 
+  .get_invite {
+    text-align: center;
+    border: 1px solid $text-color;
+    padding: 0.5rem 0.5rem 0.5rem 0.5rem;    
+    font-size: 1.2rem;  
+    position: relative;
+    width: 10%;
+    margin: 0 auto;
+    margin-top: 3rem;
+    cursor: pointer;
+    height: 2rem;
+    border-radius: 5px;
+    -webkit-transition: background-color 150ms; /* For Safari 3.1 to 6.0 */
+    transition: background-color 150ms;
+
+    &:hover {
+      background-color: $primary-color;
+      border: 1px solid $primary-color;
+      color: white;
+    }
+  }
+
+
   h2 {
     display: block;
     position: relative;
-    padding-top: 8rem;
+    padding-top: 5rem;
     font-size:3rem;
   }
 
@@ -634,6 +690,41 @@ body {
 }
 
 
+#faq {
+  height: 52rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  background-color: $background-color;
+  position: relative;
+  text-align: center;
+
+  h2 {
+    display: block;
+    position: relative;
+    padding-top: 5rem;
+    padding-bottom: 4rem;
+    font-size:3rem;
+  }
+
+  .q {
+    width: 75%;
+    position: relative;
+    margin: 1rem auto;
+
+    .question {
+      color: black;
+      font-size: 1.1rem;  
+      font-weight: bold;  
+    }
+
+    .answer {
+      font-size: 1rem;
+      text-align: left;
+    }
+  }
+
+}
+
 .join {
   min-height: 50rem;
   font-size: 1.5rem;
@@ -683,6 +774,16 @@ body {
     padding: 2rem;
     font-size: 1rem;
 
+    .subscribe {
+      width: 7rem;
+
+      .spinner {
+        width: auto;
+        color: $text-color;
+        font-size: 0.9rem;
+      }
+    }
+
     .fa {
       font-size: 0.5rem;
       position: relative;
@@ -695,6 +796,7 @@ body {
     .mand {
       position: relative;
       left: 27.5rem;
+      display: inline;
     }
 
   }
@@ -1027,7 +1129,7 @@ body {
     }
   }
 
-  .load_application, .do_project {
+  .load_application, .do_project, #application_submit {
     width: 7rem;
 
     .spinner {
@@ -1482,9 +1584,26 @@ body {
   padding-top: 4rem;
   padding-left: 3rem;
   padding-right: 1rem;
-  top: 2.5rem;
+  top: 1rem;
   height: 85%;
-  width: 16%;
+  width: 85%;
   z-index: 1;
   color: $text-color;
+
+  .basic_info {
+    text-align: center;
+
+    .org_title {
+      position: relative;
+      overflow: auto;
+
+      .logo, .org_name {
+        float: left;
+      }
+    }
+  }
+}
+
+.org_projects {
+  padding-top: 30rem;
 }

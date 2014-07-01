@@ -38,7 +38,7 @@ function dimmedModalMessage(message) {
 // welcome page button to scroll to individual sections
 
 function landingPageScroll() {
-    $('.pro_summ_button, .npo_summ_button, .get_invite, .section_nav_button').off('click').on('click',function(){
+    $('.pro_summ_button, .npo_summ_button, .faq_button, .get_invite, .section_nav_button').off('click').on('click',function(){
         var target = $(this).data('scrollto');
         var targetYPosition = $(target).offset().top;
         $('html, body').animate({
@@ -143,7 +143,8 @@ function scrollCheck() {
         var threshold_professionals = threshold_who_are_we + $('#professionals').outerHeight(false)
         var threshold_nonprofits = threshold_professionals + $('#nonprofits').outerHeight(false)
         var threshold_categories = threshold_nonprofits + $('#categories').outerHeight(false)
-        var threshold_join = threshold_categories + $('.join').outerHeight(false)
+        var threshold_faq = threshold_categories + $('#faq').outerHeight(false)
+        var threshold_join = threshold_faq + $('.join').outerHeight(false)
     // this is to change the header
     var transitionLength = 200;
     if ($(location).attr('pathname') == '/') {
@@ -158,15 +159,17 @@ function scrollCheck() {
     // this is to highlight the appropriate in-page section navigatino dots
 
     if ($(location).attr('pathname') == '/') {
-        if (scrollPosition > threshold_who_are_we && scrollPosition <= threshold_professionals) { 
+        if (scrollPosition >= threshold_who_are_we && scrollPosition <= threshold_professionals) { 
             $('.section_nav_button').removeClass('clicked_alt').eq(1).addClass('clicked_alt');
         } else if (scrollPosition > threshold_professionals && scrollPosition <= threshold_nonprofits) {
             $('.section_nav_button').removeClass('clicked_alt').eq(2).addClass('clicked_alt');
         } else if (scrollPosition > threshold_nonprofits && scrollPosition <= threshold_categories) {
             $('.section_nav_button').removeClass('clicked_alt').eq(3).addClass('clicked_alt');
-        } else if (scrollPosition > threshold_categories) {
+        } else if (scrollPosition > threshold_categories && scrollPosition <= threshold_faq) {
             $('.section_nav_button').removeClass('clicked_alt').eq(4).addClass('clicked_alt');
-        } else if (scrollPosition <= threshold_who_are_we) {
+        } else if (scrollPosition > threshold_faq) {
+            $('.section_nav_button').removeClass('clicked_alt').eq(5).addClass('clicked_alt');
+        } else if (scrollPosition < threshold_who_are_we) {
             $('.section_nav_button').removeClass('clicked_alt').eq(0).addClass('clicked_alt');
         };
     };

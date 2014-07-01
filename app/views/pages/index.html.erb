@@ -1,14 +1,15 @@
 
 <!-- <script type="text/javascript" src="scroll.js"></script> -->
 
-<%= render 'shared/header' %>
-<%= render 'shared/alt_header' %>
+<!-- render 'shared/header' -->
+<!-- render 'shared/alt_header' -->
 
 <div class="landing_section_nav">
     <div class="section_nav_button clicked_alt" data-scrollto = "#who_are_we"></div>
     <div class="section_nav_button" data-scrollto = "#professionals"></div>
     <div class="section_nav_button" data-scrollto = "#nonprofits"></div>
     <div class="section_nav_button" data-scrollto = "#categories"></div>
+    <div class="section_nav_button" data-scrollto = "#faq"></div>
     <div class="section_nav_button" data-scrollto = ".join"></div>
 </div>
 <div class="intro" id="who_are_we">
@@ -16,16 +17,16 @@
     <div class="headline">
         <h2>Give back to your community today</h2>
     </div>
-    <div class="logo"><%= link_to image_tag("logo_full.png"), root_path %></div> 
     <div class="subtitle">
-        <h2>Givingly is a marketplace of skill-based pro bono projects</h2>
-        <h2>We help non-profit organizations find the talent they need</h2>
-        <h2>And we help professionals channel their experience to better our city</h2>
-    </div>   
+        <p>Givingly is a marketplace for skill-based volunteer projects currently serving the Greater Toronto Area. We connect non-profit organizations who need specific projects done with skilled professionals who want to give back.</p>
+    </div>
     <div class="button_container">
-        <div class="pro_summ_button" data-scrollto = "#professionals">Professionals <%= fa_icon 'chevron-right', class: 'icon_right' %></div>
-        <div class="npo_summ_button" data-scrollto = "#nonprofits">Non-profits <%= fa_icon 'chevron-right', class: 'icon_right' %></div>
-        <div class="get_invite" data-scrollto = ".join">Get invitation <%= fa_icon 'chevron-right', class: 'icon_right' %></div>
+        <div class="pro_summ_button" data-scrollto = "#professionals">Professionals</div>
+        <div class="npo_summ_button" data-scrollto = "#nonprofits">Non-profits</div>
+        <div class="faq_button" data-scrollto = "#faq">FAQ</div>
+    </div>
+    <div class="button_container">
+        <div class="get_invite" data-scrollto = ".join">Get started</div>
     </div>
 
 </div>
@@ -33,40 +34,45 @@
 
 <div class="font_page_content">
     <div class="divider"></div>
-
     <div class="intro" id="professionals">
         <div>
             <h2>I am a professional</h2>
             <p>You have the skills and experience that your community needs. Why not use them to make a difference? We help you find the perfect project.</p>
         </div>
-        <div class='how_it_works'>
-            <div class="step">
-                <div class="graphics"><%= image_tag 'monitor.png', class: 'icongraphic' %></div>
-                <div class="number">1</div>
-                <div class="text">Browse through the projects, filter by skill, cause and location</div>
-            </div>
-            <div class="step">
-                <div class="graphics"><%= image_tag 'id.png', class: 'icongraphic' %></div>
-                <div class="number">2</div>
-                <div class="text">Apply to a project you are passionate about</div>
-            </div>
-            <div class="step">
-                <div class="graphics"><%= image_tag 'comments.png', class: 'icongraphic' %></div>
-                <div class="number">3</div>
-                <div class="text">Chat with the non-profit to see fit</div>
-            </div>
-            <div class="step">
-                <div class="graphics"><%= image_tag 'suitcase.png', class: 'icongraphic' %></div>
-                <div class="number">4</div>
-                <div class="text">Start doing project and feel awesome about yourself!</div>
-            </div>
+        <div class="button_container">
+            <div class="get_invite" data-scrollto = ".join">Get started</div>
         </div>
+            <div class='how_it_works'>
+                <div class="step">
+                    <div class="graphics"><%= image_tag 'monitor.png', class: 'icongraphic' %></div>
+                    <div class="number">1</div>
+                    <div class="text">Browse through the projects, filter by skill, cause and location</div>
+                </div>
+                <div class="step">
+                    <div class="graphics"><%= image_tag 'id.png', class: 'icongraphic' %></div>
+                    <div class="number">2</div>
+                    <div class="text">Apply to a project you are passionate about</div>
+                </div>
+                <div class="step">
+                    <div class="graphics"><%= image_tag 'comments.png', class: 'icongraphic' %></div>
+                    <div class="number">3</div>
+                    <div class="text">Chat with the non-profit to see fit</div>
+                </div>
+                <div class="step">
+                    <div class="graphics"><%= image_tag 'suitcase.png', class: 'icongraphic' %></div>
+                    <div class="number">4</div>
+                    <div class="text">Start doing project and feel awesome about yourself!</div>
+                </div>
+            </div>
     </div>
     <div class="ui divider"></div>
     <div class="intro" id="nonprofits">
         <div>
             <h2>I am a non-profit</h2>
             <p>You are passionate about your cause and you are good at what you do. We help you find talented professionals to take your organization to the next level.</p>
+        </div>
+        <div class="button_container">
+            <div class="get_invite" data-scrollto = ".join">Get started</div>
         </div>
         <div class='how_it_works'>
             <div class="step">
@@ -88,7 +94,7 @@
                 <div class="graphics"><%= image_tag 'graph.png', class: 'icongraphic' %></div>
                 <div class="number">4</div>
                 <div class="text">Start the project and take your organization to the next level!
-    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -96,6 +102,9 @@
     <div class="intro" id="categories">
         <div>
             <h2>Sample project categories</h2>
+        </div>
+        <div class="button_container">
+            <div class="get_invite" data-scrollto = ".join">Get started</div>
         </div>
         <div class='how_it_works'>
             <div class="step">
@@ -116,9 +125,34 @@
             <div class="step">
                 <div class="graphics"><%= fa_icon 'bar-chart-o', class: 'icongraphic' %></div>
                 <div class="number">Marketing</div>
-                <div class="text">Marketing strategy, brand messaging, advertising campaign and more
-    </div>
+                <div class="text">Marketing strategy, brand messaging, advertising campaign and more</div>
             </div>
+        </div>
+    </div>
+    <div class="ui divider"></div>
+    <div class="intro" id="faq">
+        <div>
+            <h2>Frequently asked questions</h2>
+        </div>
+        <div class="q">
+            <p class="question">Is Givingly a non-profit organization?</p>
+            <p class="answer">Yes - Givingly is a non-profit organization based in Toronto. Our mission is to connect non-profit organizations and charities who need help in solving a problem, with professionals who have the right skills.</p>
+        </div>
+        <div class="q">
+            <p class="question">Why should I get involved?</p>
+            <p class="answer">If you are a professional, your expertise and experiences are highly sought after by the non-profit organizations serving our community. It is rewarding to make a difference with something you do so well, in our opinion! Also, volunteering is a great way to build your network and add projects to your resume and portfolio.</p>
+        </div>
+        <div class="q">
+            <p class="question">Do I get recognized for volunteering?</p>
+            <p class="answer">Yes - Givingly keeps track of all the projects you have volunteered on along with the hours you spent volunteering, which we will make available to you in your profile. We are working on ways and partnering with organizations to let you redeem those hours for rewarding experiences.</p>
+        </div>
+        <div class="q">
+            <p class="question">Does it cost money?</p>
+            <p class="answer">For professionals, Givingly is completely free. For non-profit organizations, we charge a nominal fee only when we make a successful match. This fee is used to pay for the cost of providing the platform.</p>
+        </div>
+        <div class="q">
+            <p class="question">How do I get involved?</p>
+            <p class="answer">Givingy is currently in beta - meaning that we are testing our platform with a small group of users to ensure that the it is easy to use. If you are interested in joining, please leave your email in the form below, and we will send you an invite as soon as we can!</p>
         </div>
     </div>
     <div class="ui divider"></div>
@@ -128,54 +162,54 @@
         <div class="ui form segment">
             <div class="mand"><%= fa_icon 'asterisk' %>Indicates required fields</div>
             <%= form_tag subscribe_path(@list_id), method: 'POST', class: "subscription_form" do %>
-                <div class="field">
-                    <%= label_tag 'email' do %>
-                     Email<%= fa_icon 'asterisk' %>
-                    <% end %>
-                    <%= text_field_tag 'email',nil, maxlength:'250' %>
-                </div>        
-                <div class="i_am_a grouped inline fields">
+            <div class="field">
+                <%= label_tag 'email' do %>
+                Email<%= fa_icon 'asterisk' %>
+                <% end %>
+                <%= text_field_tag 'email',nil, maxlength:'250' %>
+            </div>        
+            <div class="i_am_a grouped inline fields">
                 I am a<%= fa_icon 'asterisk' %>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            
-                            <%= radio_button_tag :role, 'professional' %>
-                            <%= label_tag :role_professional, 'Professional' %>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <%= radio_button_tag :role, 'npo' %>
-                            <%= label_tag :role_npo, 'Non-Profit Organization' %>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <%= radio_button_tag :role, 'business' %>
-                            <%= label_tag :role_business, 'Business' %>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class="ui radio checkbox">
-                            <%= radio_button_tag :role, 'other' %>
-                            <%= label_tag :role_other, 'Other' %>
-                        </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+
+                        <%= radio_button_tag :role, 'professional' %>
+                        <%= label_tag :role_professional, 'Professional' %>
                     </div>
                 </div>
                 <div class="field">
-                    <%= label_tag 'category', "My skills / We'd like help with" %>
-                    <%= text_field_tag 'category',nil, maxlength:'250' %>
+                    <div class="ui radio checkbox">
+                        <%= radio_button_tag :role, 'npo' %>
+                        <%= label_tag :role_npo, 'Non-Profit Organization' %>
+                    </div>
                 </div>
                 <div class="field">
-                    <%= label_tag 'source', "How did you hear about us?" %>
-                    <%= text_field_tag 'source',nil, maxlength:'250' %>
+                    <div class="ui radio checkbox">
+                        <%= radio_button_tag :role, 'business' %>
+                        <%= label_tag :role_business, 'Business' %>
+                    </div>
                 </div>
                 <div class="field">
-                    <%= label_tag 'notes', "Suggestions / Feedback / Anything else? (250 characters)" %>
-                    <%= text_area_tag 'notes',nil, maxlength:'250' %>
+                    <div class="ui radio checkbox">
+                        <%= radio_button_tag :role, 'other' %>
+                        <%= label_tag :role_other, 'Other' %>
+                    </div>
                 </div>
-                <p>Please check your inbox in a few minutes for an email from us. We need to confirm your permission to save your email.</p>
-                <%= submit_tag 'Submit', class: 'ui disabled button subscribe' %>
+            </div>
+            <div class="field">
+                <%= label_tag 'category', "My skills / We'd like help with" %>
+                <%= text_field_tag 'category',nil, maxlength:'250' %>
+            </div>
+            <div class="field">
+                <%= label_tag 'source', "How did you hear about us?" %>
+                <%= text_field_tag 'source',nil, maxlength:'250' %>
+            </div>
+            <div class="field">
+                <%= label_tag 'notes', "Suggestions / Feedback / Anything else? (250 characters)" %>
+                <%= text_area_tag 'notes',nil, maxlength:'250' %>
+            </div>
+            <p>Please check your inbox in a few minutes for an email from us. We need to confirm your permission to save your email.</p>
+            <div class="ui disabled button subscribe">Submit</div>
             <% end %>
         </div> 
     </div>

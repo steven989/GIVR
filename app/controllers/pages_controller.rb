@@ -21,9 +21,9 @@ class PagesController < ApplicationController
         else
           begin
             @mc.lists.subscribe(params[:id], {'email' => email}, {'USERROLE' => role, 'CATEGORY' => category, 'SOURCE' => source, 'NOTES' => notes})
-            message = "#{email} subscribed successfully"
+            message = "#{email} subscribed successfully. Please check your inbox in a few minutes for an email to confirm your inclusion on the invitation list."
           rescue Mailchimp::ListAlreadySubscribedError
-            message = "#{email} is already subscribed to the list"
+            message = "#{email} is already on the invitation list."
           rescue Mailchimp::Error => ex
             if ex.message
               message = ex.message
