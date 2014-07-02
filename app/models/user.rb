@@ -52,6 +52,14 @@ class User < ActiveRecord::Base
 
   end
 
+  def proper_website
+    if self.website.include? 'http://'
+      self.website
+    else 
+      "http://#{self.website}"
+    end
+  end
+
   def points
     points_per_application = self.made_applications.map { |application|
         # put the calcuation here to translate application into points

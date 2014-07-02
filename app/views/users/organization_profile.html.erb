@@ -3,38 +3,44 @@
 
 
 <div class="organization_info">
-<div class="basic_info">
-    <div class="org_title">
-      <div class="logo">
-          <% if !@npo.logo.file.nil? %>
-            <% if @npo.logo.file.exists? %>
-              <%= image_tag @npo.logo_url(:thumb), class: 'logo' %>
+  <div class="basic_info">
+      <div class="org_title">
+        <div class="logo_container">
+            <% if !@npo.logo.file.nil? %>
+              <% if @npo.logo.file.exists? %>
+                <%= image_tag @npo.logo_url(:thumb), class: 'logo' %>
+              <% end %>
             <% end %>
-          <% end %>
+        </div>
+        <br>
+        <div class="org_name">
+            <%= @npo.org_name %>
+        </div>
       </div>
-      <br>
-      <div class="org_name">
-          <%= @npo.org_name %>
-      </div>
+    <div class="cause">
+        <%= @cause %>
     </div>
-  <div class="email">
-    Email:
-      <%= @email %>
-  </div>
-  <div class="cause">
-      <%= @cause %>
-  </div>
-  <div class="website">
-      <%= @website %>
-  </div>
-  <div class="city">
-      <%= @city %>
-  </div>
-  <div class="org_size">
-      <%= @size %>
+    <div class="email">
+      Email:
+        <%= @email %>
+    </div>
+
+    <div class="website">
+      Website:
+        <%= link_to @website, @npo.proper_website %>
+    </div>
+    <div class="city">
+      City:
+        <%= @city %>
+    </div>
+    <div class="org_size">
+      Organization size:
+        <%= @size %>
+    </div>
   </div>
 </div>
-  <div class="ui divider"></div>
+
+<div class="org_details">
   <div class="mission">
       <h1>Our mission</h1><br>
       <%= @mission %>
@@ -44,8 +50,8 @@
       <%= @description %>
   </div>
 
-
-<div class="projects_show org_projects">
-    <h1>Our active projects</h1>
-    <%= render @projects %>
+  <div class="org_projects">
+      <h1>Our active projects</h1><br>
+      <%= render @projects %>
+  </div>
 </div>

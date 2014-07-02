@@ -362,7 +362,7 @@ body {
     position:relative;
     margin: 2rem auto;
     text-align: center; 
-    width: 40%;
+    width: 42%;
     font-size: 1.1rem;
   }
 
@@ -691,7 +691,7 @@ body {
 
 
 #faq {
-  height: 52rem;
+  height: 64rem;
   font-size: 1.5rem;
   line-height: 2rem;
   background-color: $background-color;
@@ -1062,6 +1062,18 @@ body {
   .project_header {
     height: 3rem;
     font-size: 1.3rem;
+
+    .link_to_profile {
+      a {
+        text-decoration: underline;
+        color: black;
+        font-weight: bold;
+        
+        &:hover {
+          color: $active-color;
+        }
+      }
+    }
   }
 
   #close_project {
@@ -1111,9 +1123,22 @@ body {
     left: 2.5%;
     width: 95%;
 
-    .project_header {
+  .project_header {
+    height: 3rem;
+    font-size: 1.3rem;
 
+    .link_to_profile {
+      a {
+        text-decoration: underline;
+        color: black;
+        font-weight: bold;
+        
+        &:hover {
+          color: $active-color;
+        }
+      }
     }
+  }
 
     .form textarea {
       height: 2rem;
@@ -1580,30 +1605,87 @@ body {
 
 .organization_info {
   background-color: none;
-  position: absolute;
+  position: fixed;
   padding-top: 4rem;
   padding-left: 3rem;
   padding-right: 1rem;
-  top: 1rem;
+  top: 2.5rem;
   height: 85%;
-  width: 85%;
+  width: 16%;
   z-index: 1;
+  overflow: scroll;
   color: $text-color;
 
+
   .basic_info {
-    text-align: center;
+  font-size: 0.9rem;
+  width: 100%;
 
     .org_title {
       position: relative;
-      overflow: auto;
+      font-size: 1rem;
 
-      .logo, .org_name {
-        float: left;
+      .logo_container {
+        box-sizing:border-box;
+        -moz-box-sizing:border-box; /* Firefox */
+        width: 12rem;
+        height: 12rem;
+        position: relative;
+        margin: 0 auto;
+        padding: 1rem;
+        border: 1px solid $light-gray;
+        border-radius: 3px;
+
+        .logo {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          width: 97.5%;
+
+        }
+
+      }
+      .org_name {
+        position: relative;
+        margin: 0.5rem auto;
+        margin-bottom: 1rem;
+        font-weight: bold;
+
       }
     }
+  
+  .cause {
+    border: 1px solid $text-color;
+    font-size: 1rem;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 0.3rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+
+  .email, .website, .city, .org_size {
+    margin: 0.5rem 0;
+  }
+
   }
 }
 
-.org_projects {
-  padding-top: 30rem;
+.org_details {
+  position: relative;
+  background-color: none;
+  margin-right: 3rem;
+  padding-top:2rem;
+  padding-bottom:2rem;
+  min-height: 40rem;
+  margin-left: 22.5%;
+  overflow: hidden;
+
+  .mission, .description, .org_projects {
+    margin: 2rem 0;
+  }
+
 }
