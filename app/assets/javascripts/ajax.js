@@ -21,11 +21,11 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   function subscribeToMailchimp() {
     $('.subscribe').off('click').on('click',function(){
-      $(this).html("<i class='fa fa-circle-o-notch spinner'></i>");
       _this = $(this);
       event.preventDefault();
       if ($(this).hasClass('disabled')) 
         {return false} else {
+          $(this).html("<i class='fa fa-circle-o-notch spinner'></i>");
           $.ajax({
             url:  $(this).parent().attr('action'),
             type: 'POST',
