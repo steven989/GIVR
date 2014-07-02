@@ -288,6 +288,8 @@ body {
 
 /* -------------------------- pages#index ------------------------- */
 
+
+
 .intro {
   position: relative;
   min-height: 42rem;
@@ -311,6 +313,27 @@ body {
     border-radius: 100%;
     -webkit-transition: background-color 150ms; /* For Safari 3.1 to 6.0 */
     transition: background-color 150ms;
+
+    p {
+      color: $text-color;
+      font-size: 0.7rem;
+      top: 0.05rem;
+      position: relative;
+      right: 15.5rem;
+      text-align: right;
+      width: 15rem;
+    }
+  }
+}
+
+.logo {
+  position: absolute;
+  width: 8rem;
+  left: 1rem;
+  top: 1rem;
+
+  img {
+    width: 100%;
   }
 
 }

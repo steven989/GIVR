@@ -23,6 +23,7 @@ $('document').ready(function() {
     toggleUserProfileMenu();
     setMinHeightToElements();
     landingPageScroll();
+    landingPageScrollMouseover();
 });
 
 // dimmed page message
@@ -46,6 +47,22 @@ function landingPageScroll() {
         },500);
     });
 }
+
+    // welcome page button to scroll to individual sections highlight on mouseover
+
+    function landingPageScrollMouseover() {
+        $('.section_nav_button').off('mouseover').on('mouseover',function(){
+            $(this).addClass('clicked_alt');
+            $(this).find('p').removeClass('hidden');
+        });
+
+        $('.section_nav_button').off('mouseleave').on('mouseleave',function(){
+            $(this).removeClass('clicked_alt');
+            $(this).find('p').addClass('hidden');
+            scrollCheck(); // this is added so that the currently highlighted button does not disappear on mouseleave
+        });
+    }
+
 // set the minimum height of container elements intially upon page load
 
 function setMinHeightToElements() {
@@ -161,16 +178,28 @@ function scrollCheck() {
     if ($(location).attr('pathname') == '/') {
         if (scrollPosition >= threshold_who_are_we && scrollPosition <= threshold_professionals) { 
             $('.section_nav_button').removeClass('clicked_alt').eq(1).addClass('clicked_alt');
+            $('.section_nav_button p').addClass('hidden').eq(1).removeClass('hidden');
+            $('.landing_section_nav .section_nav_button p').css({'color':'#a0a0a0'});
         } else if (scrollPosition > threshold_professionals && scrollPosition <= threshold_nonprofits) {
             $('.section_nav_button').removeClass('clicked_alt').eq(2).addClass('clicked_alt');
+            $('.section_nav_button p').addClass('hidden').eq(2).removeClass('hidden');
+            $('.landing_section_nav .section_nav_button p').css({'color':'#a0a0a0'});
         } else if (scrollPosition > threshold_nonprofits && scrollPosition <= threshold_categories) {
             $('.section_nav_button').removeClass('clicked_alt').eq(3).addClass('clicked_alt');
+            $('.section_nav_button p').addClass('hidden').eq(3).removeClass('hidden');
+            $('.landing_section_nav .section_nav_button p').css({'color':'#a0a0a0'});
         } else if (scrollPosition > threshold_categories && scrollPosition <= threshold_faq) {
             $('.section_nav_button').removeClass('clicked_alt').eq(4).addClass('clicked_alt');
+            $('.section_nav_button p').addClass('hidden').eq(4).removeClass('hidden');
+            $('.landing_section_nav .section_nav_button p').css({'color':'#a0a0a0'});
         } else if (scrollPosition > threshold_faq) {
             $('.section_nav_button').removeClass('clicked_alt').eq(5).addClass('clicked_alt');
+            $('.section_nav_button p').addClass('hidden').eq(5).removeClass('hidden');
+            $('.landing_section_nav .section_nav_button p').css({'color':'#a0a0a0'});
         } else if (scrollPosition < threshold_who_are_we) {
             $('.section_nav_button').removeClass('clicked_alt').eq(0).addClass('clicked_alt');
+            $('.section_nav_button p').addClass('hidden').eq(0).removeClass('hidden');
+            $('.landing_section_nav .section_nav_button p').css({'color':'white'});
         };
     };
 }
