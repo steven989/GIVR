@@ -281,9 +281,14 @@ body {
 
 .footer {
   color: white;
-  height: 5rem;
-  background-color: #474747;
+  height: 4rem;
+  background-color: #4B4B4B;
 
+  .copyright {
+    font-size: 0.7rem;
+    position: absolute;
+    margin: 1.5rem 0 0 3rem;
+  }
 }
 
 /* -------------------------- pages#index ------------------------- */
@@ -328,9 +333,9 @@ body {
 
 .logo {
   position: absolute;
-  width: 8rem;
-  left: 1rem;
-  top: 1rem;
+  width: 6rem;
+  left: 3rem;
+  top: 2rem;
 
   img {
     width: 100%;
@@ -391,19 +396,24 @@ body {
 
 
   .button_container {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
     width: 50%;
     position: relative;
     margin: 0 auto;
     margin-top: 1rem;
+    background-color: red;
 
     .pro_summ_button, .npo_summ_button, .faq_button, .get_invite {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
       text-align: center;
       border: 1px solid white;
       padding: 0.5rem 0.5rem 0.5rem 0.5rem;    
-      font-size: 1.2rem;  
+      font-size: 1rem;  
       cursor: pointer;
-      width: 20%;
-      height: 2rem;
+      width: 23%;
+      height: 3rem;
       color: white;
       border-radius: 5px;
       position: relative;
@@ -782,7 +792,7 @@ body {
     display:block;
     width: 75%;
     position: relative;
-    margin: 3rem auto;
+    margin: 1rem auto;
     text-align: center;
   }
 
