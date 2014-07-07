@@ -26,6 +26,9 @@ $('document').ready(function() {
     landingPageScrollMouseover();
 });
 
+// show the remainder of the sign up form when 
+
+
 // dimmed page message
 
 function dimmedModalMessage(message) {

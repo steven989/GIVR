@@ -257,21 +257,64 @@
                     </div>
                 </div>
             </div>
-            <div class="field">
+            <div class="field category_input hidden">
                 <%= label_tag 'category', "My skills / We'd like help with" %>
                 <%= text_field_tag 'category',nil, maxlength:'250' %>
             </div>
-            <div class="field">
-                <%= label_tag 'source', "How did you hear about us?" %>
-                <%= text_field_tag 'source',nil, maxlength:'250' %>
+
+            <div class="grouped inline fields hidden">
+                How did you hear about us?
+                <div class="field">
+                    <div class="ui radio checkbox">
+
+                        <%= radio_button_tag :source, 'search' %>
+                        <%= label_tag :source_search, 'Web search (e.g. Google search)' %>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <%= radio_button_tag :source, 'google_ad' %>
+                        <%= label_tag :source_googlead, 'Ad on Google' %>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <%= radio_button_tag :source, 'linkedin' %>
+                        <%= label_tag :source_linkedin, 'Ad on LinkedIn' %>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <%= radio_button_tag :source, 'facebook' %>
+                        <%= label_tag :source_facebook, 'Ad on Facebook' %>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <%= radio_button_tag :source, 'blog' %>
+                        <%= label_tag :source_blog, 'Ad on a blog' %>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <%= radio_button_tag :source, 'word_of_mouth' %>
+                        <%= label_tag :source_wordofmouth, 'Word of mouth' %>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <%= radio_button_tag :source, 'other' %>
+                        <%= label_tag :source_other, 'Other' %>
+                    </div>
+                </div>
             </div>
-            <div class="field">
+            <div class="field hidden">
                 <%= label_tag 'notes', "Suggestions / Feedback / Anything else? (250 characters)" %>
                 <%= text_area_tag 'notes',nil, maxlength:'250' %>
             </div>
-            <p>Please check your inbox in a few minutes for an email from us. We need to confirm your permission to save your email.</p>
-            <p>You can also contact us at <a href="mailto:info@givingly.me?Subject=Inquiry%20from%20givingly.me" target="_top">info@givingly.me</a></p>
             <div class="ui disabled button subscribe">Submit</div>
+            <p class="form_text hidden">Please check your inbox in a few minutes for an email from us. We need to confirm your permission to save your email.</p>
+            <p class="form_text hidden">You can also contact us at <a href="mailto:info@givingly.me?Subject=Inquiry%20from%20givingly.me" target="_top">info@givingly.me</a></p>
             <% end %>
         </div> 
     </div>

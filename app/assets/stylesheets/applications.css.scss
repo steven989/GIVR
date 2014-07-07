@@ -293,8 +293,6 @@ body {
 
 /* -------------------------- pages#index ------------------------- */
 
-
-
 .intro {
   position: relative;
   min-height: 42rem;
@@ -394,7 +392,7 @@ body {
     font-size: 1rem;
 
     .tag {
-      color: #AAAAAA;
+      font-size: 0.75rem;
     }
   }
 
@@ -892,6 +890,14 @@ body {
         color: $text-color;
         font-size: 0.9rem;
       }
+    }
+    
+    .form_text {
+      text-align: left;
+      margin-left: 0;
+      width: 100%;
+      line-height: 1rem;
+      margin-top: 2rem;
     }
 
     .fa {
