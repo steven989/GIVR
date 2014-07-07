@@ -90,6 +90,9 @@ gem 'font-awesome-rails'
 #14) MailChimp API wrapper for landing page
 gem 'mailchimp-api'
 
+#15) New relic addon
+gem 'newrelic_rpm'
+
 group :production do
   gem "rails_12factor"
 end
