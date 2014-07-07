@@ -39,7 +39,7 @@ function dimmedModalMessage(message) {
 // welcome page button to scroll to individual sections
 
 function landingPageScroll() {
-    $('.pro_summ_button, .npo_summ_button, .faq_button, .get_invite, .section_nav_button').off('click').on('click',function(){
+    $('.pro_summ_button, .npo_summ_button, .faq_button, .get_invite, .section_nav_button, .link_to_categories').off('click').on('click',function(){
         var target = $(this).data('scrollto');
         var targetYPosition = $(target).offset().top;
         $('html, body').animate({

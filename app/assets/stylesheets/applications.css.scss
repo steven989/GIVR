@@ -320,7 +320,7 @@ body {
     transition: background-color 150ms;
 
     p {
-      color: $text-color;
+      color: white;
       font-size: 0.7rem;
       top: 0.05rem;
       position: relative;
@@ -391,20 +391,23 @@ body {
     margin: 2rem auto;
     text-align: center; 
     width: 42%;
-    font-size: 1.1rem;
+    font-size: 1rem;
+
+    .tag {
+      color: #AAAAAA;
+    }
   }
 
-
-  .button_container {
+  .button_container_invite {
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    width: 50%;
+    width: 15%;
+    height: 3rem;
     position: relative;
     margin: 0 auto;
-    margin-top: 1rem;
-    background-color: red;
+    margin-top: 3rem;  
 
-    .pro_summ_button, .npo_summ_button, .faq_button, .get_invite {
+    .get_invite {
       box-sizing: border-box;
       -moz-box-sizing: border-box;
       text-align: center;
@@ -412,7 +415,7 @@ body {
       padding: 0.5rem 0.5rem 0.5rem 0.5rem;    
       font-size: 1rem;  
       cursor: pointer;
-      width: 23%;
+      width: 100%;
       height: 3rem;
       color: white;
       border-radius: 5px;
@@ -427,12 +430,53 @@ body {
         border: 1px solid $primary-color;
       }
     }
+  }
 
+  .divider_container {
+    width: 35%;
+    position: relative;
+    margin: 0.5rem auto;
+    margin-top: 2rem;
+    height: 1rem;
+    font-size: 0.7rem;
+  }
+
+  .button_container {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 35%;
+    position: relative;
+    margin: 0 auto;
+    height: 3rem;
+    margin-top: 2rem;
+
+    .pro_summ_button, .npo_summ_button, .faq_button {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      text-align: center;
+      border: 1px solid white;
+      font-size: 0.7rem;  
+      cursor: pointer;
+      width: 31%;
+      height: 2rem;
+      color: white;
+      border-radius: 5px;
+      position: relative;
+      margin: 0 1%;
+      float: left;
+      -webkit-transition: background-color 150ms; /* For Safari 3.1 to 6.0 */
+      transition: background-color 150ms;
+
+      &:hover {
+        background-color: $primary-color;
+        border: 1px solid $primary-color;
+      }
+    }
   }
 }
 
 #professionals {
-  height: 54rem;
+  height: 47rem;
   font-size: 1.5rem;
   line-height: 2rem;
   background-color: $background-color;
@@ -441,12 +485,15 @@ body {
 
   .get_invite {
     text-align: center;
-    border: 1px solid $text-color;
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    color: white;
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;    
     font-size: 1.2rem;  
     position: relative;
-    width: 10%;
+    width: 15%;
     margin: 0 auto;
+    margin-top: 3rem;
     cursor: pointer;
     height: 2rem;
     border-radius: 5px;
@@ -454,9 +501,8 @@ body {
     transition: background-color 150ms;
 
     &:hover {
-      background-color: $primary-color;
-      border: 1px solid $primary-color;
-      color: white;
+      background-color: #1FC597;
+      border: 1px solid #1FC597;
     }
   }
 
@@ -464,21 +510,31 @@ body {
     display: block;
     position: relative;
     padding-top: 4rem;
-    font-size:3rem;
+    font-size:2rem;
   }
 
   p {
     display:block;
     width: 50%;
     position: relative;
-    margin: 2rem auto;
+    margin: 2rem auto 0rem auto;
+  }
+
+  .link_to_categories {
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+    text-decoration: underline;
+    font-weight: bold;
+
   }
 
   .how_it_works {
     position: relative;
     top: 0rem;
     width: 75%;
-    height: 20rem;
+    height: 18rem;
     margin: 0 auto;
 
     .step {
@@ -490,7 +546,7 @@ body {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         position: relative;
-        padding-top: 2rem;
+        padding-top: 1rem;
         height: 60%;
         width: 90%;
         margin: 0 auto;
@@ -509,18 +565,18 @@ body {
         padding-bottom: 0.1rem;
         position: relative;
         font-size: 1.1rem;
-        background-color: $medium-primary-color;
-        color: white;
-        height: 2rem;
         width: 2rem;
-        border-radius: 100%;
-
+        text-align: center;
+        color: black;
+        height: 2rem;
+        width: 5rem;
       }
 
       .text {
-        font-size: 1.1rem;
+        font-size: 1rem;
         margin: 1rem auto;
         position: relative;
+        line-height: 1.1rem;
         height:4rem;
         width: 90%;
       }
@@ -538,12 +594,15 @@ body {
 
   .get_invite {
     text-align: center;
-    border: 1px solid $text-color;
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    color: white;
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;    
     font-size: 1.2rem;  
     position: relative;
-    width: 10%;
+    width: 15%;
     margin: 0 auto;
+    margin-top: 3rem;
     cursor: pointer;
     height: 2rem;
     border-radius: 5px;
@@ -551,9 +610,8 @@ body {
     transition: background-color 150ms;
 
     &:hover {
-      background-color: $primary-color;
-      border: 1px solid $primary-color;
-      color: white;
+      background-color: #1FC597;
+      border: 1px solid #1FC597;
     }
   }
 
@@ -562,21 +620,32 @@ body {
     display: block;
     position: relative;
     padding-top: 4rem;
-    font-size:3rem;
+    font-size:2rem;
   }
 
   p {
     display:block;
     width: 50%;
+    font-size: 1.5rem;
     position: relative;
-    margin: 2rem auto;
+    margin: 2rem auto 0rem auto;
+  }
+
+  .link_to_categories {
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+    text-decoration: underline;
+    font-weight: bold;
+
   }
 
   .how_it_works {
     position: relative;
     top: 0rem;
     width: 75%;
-    height: 20rem;
+    height: 18rem;
     margin: 0 auto;
 
     .step {
@@ -588,7 +657,7 @@ body {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
         position: relative;
-        padding-top: 2rem;
+        padding-top: 1rem;
         height: 60%;
         width: 90%;
         margin: 0 auto;
@@ -606,17 +675,18 @@ body {
         padding-bottom: 0.1rem;
         position: relative;
         font-size: 1.1rem;
-        background-color: $medium-primary-color;
-        color: white;
-        height: 2rem;
         width: 2rem;
-        border-radius: 100%;
+        text-align: center;
+        color: black;
+        height: 2rem;
+        width: 5rem;
       }
 
       .text {
-        font-size: 1.1rem;
+        font-size: 1rem;
         margin: 1rem auto;
         position: relative;
+        line-height: 1.1rem;
         height:4rem;
         width: 90%;
       }
@@ -626,7 +696,7 @@ body {
 
 
 #categories {
-  height: 35rem;
+  height: 45rem;
   font-size: 1.5rem;
   line-height: 2rem;
   background-color: $background-color;
@@ -635,13 +705,15 @@ body {
 
   .get_invite {
     text-align: center;
-    border: 1px solid $text-color;
+    background-color: $primary-color;
+    border: 1px solid $primary-color;
+    color: white;
     padding: 0.5rem 0.5rem 0.5rem 0.5rem;    
     font-size: 1.2rem;  
     position: relative;
-    width: 10%;
+    width: 15%;
     margin: 0 auto;
-    margin-top: 3rem;
+    margin-top: 6rem;
     cursor: pointer;
     height: 2rem;
     border-radius: 5px;
@@ -649,9 +721,8 @@ body {
     transition: background-color 150ms;
 
     &:hover {
-      background-color: $primary-color;
-      border: 1px solid $primary-color;
-      color: white;
+      background-color: #1FC597;
+      border: 1px solid #1FC597;
     }
   }
 
@@ -660,7 +731,7 @@ body {
     display: block;
     position: relative;
     padding-top: 5rem;
-    font-size:3rem;
+    font-size:2rem;
   }
 
   p {
@@ -672,14 +743,14 @@ body {
 
   .how_it_works {
     position: relative;
-    top: 5rem;
+    top: 1.5rem;
     width: 75%;
-    height: 20rem;
+    height: 15rem;
     margin: 0 auto;
 
     .step {
       height: 100%;
-      width: 25%;
+      width: 20%;
       float: left;
       
       .graphics {
@@ -702,21 +773,25 @@ body {
       .number {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
-        margin: 1rem 0;
-        text-align: center;
+        margin: 1rem auto;
+        padding-bottom: 0.1rem;
         position: relative;
-        color: $medium-primary-color;
-        height: 3rem;
-        border-radius: 100%;
-
+        font-size: 1.1rem;
+        width: 2rem;
+        text-align: center;
+        color: black;
+        height: 2rem;
+        width: 5rem;
       }
 
       .text {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         margin: 1rem auto;
         position: relative;
+        line-height: 1.1rem;
         height:4rem;
         width: 90%;
+
       }
     }
   }
@@ -724,7 +799,7 @@ body {
 
 
 #faq {
-  height: 64rem;
+  height: 66rem;
   font-size: 1.5rem;
   line-height: 2rem;
   background-color: $background-color;
@@ -736,23 +811,25 @@ body {
     position: relative;
     padding-top: 5rem;
     padding-bottom: 4rem;
-    font-size:3rem;
+    font-size:2rem;
   }
 
   .q {
-    width: 75%;
+    width: 65%;
     position: relative;
     margin: 1rem auto;
 
     .question {
       color: black;
       font-size: 1.1rem;  
-      font-weight: bold;  
+      font-weight: bold; 
+      text-align: left; 
     }
 
     .answer {
       font-size: 1rem;
       text-align: left;
+      line-height: 1.5rem;
     }
   }
 
@@ -771,7 +848,7 @@ body {
     display: block;
     position: relative;
     padding-top: 5rem;
-    font-size:3rem;
+    font-size:2rem;
   }
 
   label {
@@ -801,7 +878,7 @@ body {
     position: relative;
     width: 50%;
     margin: 0 auto;
-    margin-top: 1rem;
+    margin-top: 3rem;
     border: 1px solid $light-gray;
     border-radius: 10px;
     padding: 2rem;

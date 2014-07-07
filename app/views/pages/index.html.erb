@@ -18,19 +18,26 @@
 <div class="intro" id="who_are_we">
 
     <div class="headline">
-        <h2>Give back to your community today</h2>
+        <h2>Give back to your community</h2>
     </div>
     <div class="subtitle">
-        <p>Givingly is a marketplace for skill-based volunteer projects currently serving the Greater Toronto Area. We connect non-profit organizations who need specific projects completed with skilled professionals who want to volunteer on those projects.</p>
+        <p>Givingly connects non-profit organizations with <br> professionals through skill-based volunteer projects.</p>
+        <p class='tag'>Currently serving the Greater Toronto Area</p>
+    </div>
+    <div class="button_container_invite">
+        <div class="get_invite" data-scrollto = ".join">Get started</div>
+    </div>
+    
+    <div class="divider_container">
+        How it works
+        <div class="ui fitted divider"></div>
     </div>
     <div class="button_container">
         <div class="pro_summ_button" data-scrollto = "#professionals">Professionals</div>
         <div class="npo_summ_button" data-scrollto = "#nonprofits">Non-profits</div>
         <div class="faq_button" data-scrollto = "#faq">FAQ</div>
     </div>
-    <div class="button_container">
-        <div class="get_invite" data-scrollto = ".join">Get started</div>
-    </div>
+
 
 </div>
 <div class="front_page_background"></div>
@@ -41,32 +48,33 @@
         <div>
             <h2>How it works: Professionals</h2>
             <p>You have the skills and experience that your community needs. Why not use them to make a difference? We help you find the perfect project.</p>
-        </div>
-        <div class="button_container">
-            <div class="get_invite" data-scrollto = ".join">Get started</div>
+            <p class='link_to_categories' data-scrollto = "#categories">What skills are we looking for?</p>
         </div>
             <div class='how_it_works'>
                 <div class="step">
                     <div class="graphics"><%= image_tag 'monitor.png', class: 'icongraphic' %></div>
-                    <div class="number">1</div>
-                    <div class="text">Browse through the projects, filter by skill, cause and location</div>
+                    <div class="number">Browse</div>
+                    <div class="text">View projects on Givingly's marketplace; filter by skill, cause and location</div>
                 </div>
                 <div class="step">
                     <div class="graphics"><%= image_tag 'id.png', class: 'icongraphic' %></div>
-                    <div class="number">2</div>
-                    <div class="text">Apply to a project you are passionate about</div>
+                    <div class="number">Apply</div>
+                    <div class="text">Submit your resume to interesting projects</div>
                 </div>
                 <div class="step">
                     <div class="graphics"><%= image_tag 'comments.png', class: 'icongraphic' %></div>
-                    <div class="number">3</div>
-                    <div class="text">Chat with the non-profit to see fit</div>
+                    <div class="number">Chat</div>
+                    <div class="text">Connect with non-profits to find out more about the projects you applied to</div>
                 </div>
                 <div class="step">
                     <div class="graphics"><%= image_tag 'suitcase.png', class: 'icongraphic' %></div>
-                    <div class="number">4</div>
-                    <div class="text">Start doing project and feel awesome about yourself!</div>
+                    <div class="number">Start</div>
+                    <div class="text">Feel awesome about yourself! Your hours will be recorded and we are working to bring you great rewards</div>
                 </div>
             </div>
+        <div class="button_container">
+            <div class="get_invite" data-scrollto = ".join">Get started</div>
+        </div>
     </div>
     <div class="ui divider"></div>
     <div class="intro" id="nonprofits">
@@ -74,62 +82,104 @@
             <h2>How it works: Non-profit organizations</h2>
             <p>You are passionate about your cause and you are good at what you do. We help you find talented professionals to take your organization to the next level.</p>
         </div>
-        <div class="button_container">
-            <div class="get_invite" data-scrollto = ".join">Get started</div>
-        </div>
+        <p class='link_to_categories' data-scrollto = "#categories">What kind of projects?</p>
         <div class='how_it_works'>
             <div class="step">
                 <div class="graphics"><%= image_tag 'search.png', class: 'icongraphic' %></div>
-                <div class="number">1</div>
-                <div class="text">Identify a project that your organization needs to get done</div>
+                <div class="number">Identify</div>
+                <div class="text">Brainstorm a few projects that your organization needs</div>
             </div>
             <div class="step">
                 <div class="graphics"><%= image_tag 'flipchart.png', class: 'icongraphic' %></div>
-                <div class="number">2</div>
-                <div class="text">Put up your project on Givingly</div>
+                <div class="number">Post</div>
+                <div class="text">Put your projects up on Givingly so everyone can see them</div>
             </div>
             <div class="step">
                 <div class="graphics"><%= image_tag 'comments.png', class: 'icongraphic' %></div>
-                <div class="number">3</div>
-                <div class="text">Chat with professionals to see fit</div>
+                <div class="number">Chat</div>
+                <div class="text">Connect with your applicants to find out more about them</div>
             </div>
             <div class="step">
                 <div class="graphics"><%= image_tag 'graph.png', class: 'icongraphic' %></div>
-                <div class="number">4</div>
-                <div class="text">Start the project and take your organization to the next level!
+                <div class="number">Start</div>
+                <div class="text">Start the projects and take your organization to the next level!
                 </div>
             </div>
+        </div>
+        <div class="button_container">
+            <div class="get_invite" data-scrollto = ".join">Get started</div>
         </div>
     </div>
     <div class="ui divider"></div>
     <div class="intro" id="categories">
         <div>
-            <h2>Sample project categories</h2>
-        </div>
-        <div class="button_container">
-            <div class="get_invite" data-scrollto = ".join">Get started</div>
+            <h2>Project categories</h2>
+            <p>We welcome a diverse range of talents - here are just a few examples. Tell us what you're awesome at and we'll find something for you.</p>
         </div>
         <div class='how_it_works'>
             <div class="step">
                 <div class="graphics"><%= fa_icon 'picture-o', class: 'icongraphic' %></div>
                 <div class="number">Design</div>
-                <div class="text">Logo design, info graphics, brochure and more</div>
+                <div class="text">
+                    <ul>
+                        <li>Logo design</li>
+                        <li>Info graphics</li>
+                        <li>Brochure design</li>
+                        <li>Business card design</li>
+                    </ul>
+                </div>
             </div>
             <div class="step">
                 <div class="graphics"><%= fa_icon 'laptop', class: 'icongraphic' %></div>
                 <div class="number">Web</div>
-                <div class="text">Web development, web design, search engine optimization, and more</div>
+                <div class="text">
+                    <ul>
+                        <li>Web development</li>
+                        <li>Web design</li>
+                        <li>Search engine optimization</li>
+                        <li>Social media strategy</li>
+                    </ul>
+                </div>
             </div>
             <div class="step">
                 <div class="graphics"><%= fa_icon 'money', class: 'icongraphic' %></div>
                 <div class="number">Revenue</div>
-                <div class="text">Fundraising strategy, self-generated revenue strategy and more</div>
+                <div class="text">
+                    <ul>
+                        <li>Fundraising strategy</li>
+                        <li>Self-generated revenue</li>
+                        <li>Pricing strategy</li>
+                        <li>Donor relations</li>
+                    </ul>
+                </div>
             </div>
             <div class="step">
                 <div class="graphics"><%= fa_icon 'bar-chart-o', class: 'icongraphic' %></div>
                 <div class="number">Marketing</div>
-                <div class="text">Marketing strategy, brand messaging, advertising campaign and more</div>
+                <div class="text">
+                    <ul>
+                        <li>Marketing plan</li>
+                        <li>Brand messaging</li>
+                        <li>Advertising campaign</li>
+                        <li>Membership strategy</li>
+                    </ul>
+                </div>
             </div>
+            <div class="step">
+                <div class="graphics"><%= fa_icon 'plus', class: 'icongraphic' %></div>
+                <div class="number">More</div>
+                <div class="text">
+                    <ul>
+                        <li>Account system design</li>
+                        <li>Customer database design</li>
+                        <li>Business process redesign</li>
+                        <li>...and more</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="button_container">
+            <div class="get_invite" data-scrollto = ".join">Get started</div>
         </div>
     </div>
     <div class="ui divider"></div>
@@ -142,7 +192,7 @@
             <p class="answer">Yes - Givingly is a non-profit organization based in Toronto. Our mission is to connect non-profit organizations and charities who need help in solving a problem, with professionals who have the right skills.</p>
         </div>
         <div class="q">
-            <p class="question">Why should I get volunteer?</p>
+            <p class="question">Why should I volunteer?</p>
             <p class="answer">If you are a professional, your expertise and experiences are highly sought after by the non-profit organizations serving our community. It is rewarding to make a difference with something you do so well, in our opinion! Also, volunteering is a great way to build your network and add projects to your resume and portfolio.</p>
         </div>
         <div class="q">
@@ -154,8 +204,12 @@
             <p class="answer">Yes - Givingly keeps track of all the projects you have volunteered on along with the hours you spent volunteering, which we will make available to you in your profile. We are working on ways and partnering with organizations to let you redeem those hours for rewarding experiences.</p>
         </div>
         <div class="q">
+            <p class="question">How are the projects vetted?</p>
+            <p class="answer">Before any project is posted on Givingly, we work extensively with the non-profit organization to scope and structure the project. This is to make sure that the project creates lasting impact for the organization and is meaningful for the volunteers. This takes time, but we do this to ensure a great experience for both our non-profits and the professionals.</p>
+        </div>
+        <div class="q">
             <p class="question">Does it cost money?</p>
-            <p class="answer">For professionals, Givingly is completely free. For non-profit organizations, we charge a nominal fee only when we make a successful match. This fee is used to pay for the cost of providing the platform.</p>
+            <p class="answer">For professionals, Givingly is completely free. For non-profit organizations, posting your project is completely free and we only charge a fee when you have found a professional. This fee is used to pay for the cost of providing the platform.</p>
         </div>
         <div class="q">
             <p class="question">How do I get involved?</p>
