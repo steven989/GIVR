@@ -102,7 +102,7 @@ class ProjectsController < ApplicationController
     message = "Project successfully deleted."
 
     respond_to do |format|
-      format.html {redirect_to projects_path, notice: message}
+      format.html {redirect_to user_profile_path, notice: message}
       format.json {render json: {message: message}}
     end
   end

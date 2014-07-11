@@ -80,9 +80,9 @@
                 <% end %>
               </td>
               <td>
-                <div class="ui tiny button admin_edit" href='<%= edit_project_path(project.id) %>'>Edit</div>
+                <div class="ui tiny button admin_edit" href="<%= edit_project_path(project) %>">Edit</div>
               </td>
-              <td><div class="ui tiny button admin_delete" href='<%= project_path(project.id) %>'>Delete</div></td>
+              <td><div class="ui tiny button admin_delete" href="<%= project_path(project) %>">Delete</div></td>
             </tr>
           <% end %>
         </tbody>
@@ -112,8 +112,8 @@
               <td><%= application.status %></td>
               <td><%= application.created_at %></td>
               <td><%= application.updated_at %></td>
-              <td><div class="ui tiny button">Edit</div></td>
-              <td><div class="ui tiny button">Delete</div></td>
+              <td><div class="ui tiny button admin_edit" href="<%= edit_project_application_path(application.project,application) %>">Edit</div></td>
+              <td><div class="ui tiny button admin_delete" href="<%= project_application_path(application.project,application) %>">Delete</div></td>
             </tr>
           <% end %>
         </tbody>
@@ -136,8 +136,8 @@
             <tr>
               <td><%= category.category %></td>
               <td><%= category.description %></td>
-              <td><div class="ui tiny button">Edit</div></td>
-              <td><div class="ui tiny button">Delete</div></td>
+              <td><div class="ui tiny button admin_edit">Edit</div></td>
+              <td><div class="ui tiny button admin_delete">Delete</div></td>
             </tr>
           <% end %>
         </tbody>

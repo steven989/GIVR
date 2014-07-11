@@ -47,8 +47,25 @@ class ApplicationsController < ApplicationController
     end 
   end 
 
-    def update
+    def edit
+      @application = Application.find_by(id: params[:id])
 
+      if request.xhr?
+        render partial: 'form'
+      end
+    end
+
+    def update
+      @application = Application.find_by(id: params[:id])
+      @application.attributes = application_params
+      @application.save validate: false
+      message = @application.errors.full_messages.join(' ')
+      message = "Application successfully updated." if message.blank?
+      respond_to do |format|
+        format.json {
+          render json: {message: message}
+        }
+      end
     end 
 
     def applicant_update
@@ -127,8 +144,20 @@ class ApplicationsController < ApplicationController
     end
 
     def destroy
-        
+        @application = Application.find_by(id: params[:id])
+        @application.destroy
+        message = "Application successfully deleted."
+
+        respond_to do |format|
+          format.html {redirect_to user_profile_path, notice: message}
+          format.json {render json: {message: message}}
+        end
     end
 
+    private
+
+    def application_params
+      params.require(:application).permit(:project_id,:user_id,:status,:notification_view_flag,:message)
+    end
 
 end
