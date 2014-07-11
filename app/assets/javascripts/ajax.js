@@ -11,11 +11,62 @@ $(function() {                  // document ready
   buttonsInsideShowProject();
   removeUpload();
   subscribeToMailchimp();
+  admin_edit();
+  adminDelete();
 });
 
 $(window).on('beforeunload',function(){     // navigating away from a page
   endView();  // indicate the end of a particular project if user navigates away
 });
+
+  // admin edit
+
+  function admin_edit() {
+    $('.admin_edit').off('click').on('click',function(){
+      $.ajax({
+        url: $(this).attr('href'),
+        type: 'GET',
+        dataType: 'html'
+      }).done(function(data){
+        $('.edit_info_popup').html(data);
+        $('.profile_form .submit').off('click').on('click',function(){
+          event.preventDefault();
+          $.ajax({
+            url: $(this).parent().parent().attr('action'),
+            type: 'PUT',
+            dataType: 'json',
+            data: $(this).parent().parent().serialize()
+          }).done(function(data){
+            endProjectShow();
+            var message = data.message;
+            dimmedModalMessage(message);
+            $('.basic.modal .content .button').on('click',function(){
+              location.reload();
+            });            
+          });
+        });
+        animateProjects();
+      });
+    });
+  }
+
+  // admin delete
+
+  function adminDelete() {
+    $('.admin_delete').off('click').on('click',function(){
+      $.ajax({
+        url: $(this).attr('href'),
+        type: 'DELETE',
+        dataType: 'json'
+      }).done(function(data){
+        var message = data.message;
+        dimmedModalMessage(message);
+        $('.basic.modal .content .button').on('click',function(){
+          location.reload();
+        });           
+      })      
+    });
+  }
 
   // Subscribe to mailing list hosted on Mailchimp
 

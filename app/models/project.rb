@@ -1,13 +1,13 @@
 class Project < ActiveRecord::Base
 
   belongs_to :user
-  has_many :applications
-  has_many :users, through: :applications
+  has_many :applications, dependent: :destroy
+  has_many :users, through: :applications, dependent: :destroy
   belongs_to :category
   belongs_to :cause
   belongs_to :location
-  has_many :statuses, foreign_key: 'project_id', class_name: 'ProjectStatuses'
-  has_many :views, foreign_key: 'project_id', class_name: 'ProjectView'
+  has_many :statuses, foreign_key: 'project_id', class_name: 'ProjectStatuses', dependent: :destroy
+  has_many :views, foreign_key: 'project_id', class_name: 'ProjectView', dependent: :destroy
 
   accepts_nested_attributes_for :category, :cause, :location
 

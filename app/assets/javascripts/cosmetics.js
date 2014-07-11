@@ -24,10 +24,24 @@ $('document').ready(function() {
     setMinHeightToElements();
     landingPageScroll();
     landingPageScrollMouseover();
+    showDataTable();
 });
 
-// show the remainder of the sign up form when 
+// show JQuery DataTable
 
+function showDataTable() {
+    $('#admin_projects').DataTable({
+        "order": [[ 7, "desc" ]]
+    });
+
+    $('#admin_applications').DataTable({
+        "order": [[ 4, "desc" ]]
+    });
+
+    $('#admin_categories').DataTable();
+    $('#admin_causes').DataTable();
+    $('#admin_locations').DataTable();
+}
 
 // dimmed page message
 
@@ -122,7 +136,7 @@ function clickingOnTransparentLayer(){
 
 function urlCommands(){
     var raw_hash = window.location.hash.substring(1) // get the url fragment
-    if (window.location.href.indexOf('profile')>-1) {jumpToTheRightProfileSection(raw_hash)};  // will jump to the profile section indicated by the url fragment
+    if (window.location.href.indexOf('profile')>-1 && raw_hash != '') {jumpToTheRightProfileSection(raw_hash)};  // will jump to the profile section indicated by the url fragment
     if ($('.login_box').length>0 && raw_hash.indexOf('showLogin')>-1) {     // if the login box exists on the page ()
         hideShowThings.call($('.login_box'));
         if (raw_hash.indexOf('/')>-1){
@@ -420,8 +434,9 @@ function configureDropzone() {
 // This is used to animate the show project details div when we click on it on the marekt place
 
 function animateProjects() {
-    $('.projects_overlay').show();
-    $('.projects_detail').show();    
+    $('.projects_overlay').fadeIn('fast');
+    $('.projects_detail').fadeIn('fast');
+    $('.edit_info_popup').fadeIn('fast');    
 }
 
 
@@ -490,4 +505,5 @@ function makeSubmitButtonAvailable() {
 function endProjectShow() {
     $('.projects_detail').fadeOut('fast');
     $('.projects_overlay').fadeOut('fast');
+    $('.edit_info_popup').fadeOut('fast');
 };

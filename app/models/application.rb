@@ -2,7 +2,7 @@
 
     belongs_to :user
     belongs_to :project
-    has_many :statuses, foreign_key: 'application_id', class_name: 'ApplicationStatus'
+    has_many :statuses, foreign_key: 'application_id', class_name: 'ApplicationStatus', dependent: :destroy
 
     validate :cannot_apply_to_filled_projects
     validate :professional_cannot_apply_twice_to_same_project

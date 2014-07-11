@@ -55,7 +55,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        @project.statuses= 'active'
+        @project.statuses= 'under review'
         @project.update_attribute(:user_id,current_user.id)
         format.js { render :js => 'alert("Your project was saved!")'}
         format.html
@@ -68,16 +68,43 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+
+    if request.xhr?
+      render partial: 'form'
+    end
+  end
+
+  def admin_update
+    @project = Project.find(params[:id])
+    if @project.status == 'under review'
+      @project.statuses = 'active'
+    else
+      @project.statuses = 'under review'
+    end
+    redirect_to user_profile_path
   end
 
   def update
     @project = Project.find(params[:id])
+    @project.update_attributes(projects_params)
+    message = "Project successfully updated."
+
+    respond_to do |format|
+      format.json {
+        render json: {message: message}
+      }
+    end
   end
 
   def destroy
     @project = Project.find(params[:id])
     @project.destroy
-    redirect_to projects_path
+    message = "Project successfully deleted."
+
+    respond_to do |format|
+      format.html {redirect_to projects_path, notice: message}
+      format.json {render json: {message: message}}
+    end
   end
 
 

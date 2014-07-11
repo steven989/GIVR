@@ -26,6 +26,7 @@ Givr::Application.routes.draw do
   resources :password_resets, only: [:create, :edit, :update]
   resources :project_views, only: [:update]
   post 'subscribe/:id' => 'pages#subscribe', as: 'subscribe'
+  put 'projects/:id/admin_update' => 'projects#admin_update', as: 'project_admin_update'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

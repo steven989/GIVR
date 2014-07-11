@@ -140,15 +140,21 @@ class UsersController < ApplicationController
         @user = current_user
         @role = current_user.role
         if @role == 'npo'
-            @projects = current_user.submitted_projects
-            @applicationss = current_user.applications.order('created_at ASC').where("applications.status not like 'shortlist'")
+            @projects = current_user.submitted_projects.order('created_at DESC')
+            @applicationss = current_user.applications.order('created_at DESC').where("applications.status not like 'shortlist'")
         elsif @role == 'professional'
-            @applicationss = current_user.made_applications.order('created_at ASC').where("applications.status in ('apply','approve', 'decline', 'engage')")
-            @shortlists = current_user.made_applications.order('created_at ASC').where("applications.status in ('shortlist')").map {|application| application.project}
-            @completed_applications = current_user.made_applications.order('created_at ASC').where("applications.status in ('complete')")
+            @applicationss = current_user.made_applications.order('created_at DESC').where("applications.status in ('apply','approve', 'decline', 'engage')")
+            @shortlists = current_user.made_applications.order('created_at DESC').where("applications.status in ('shortlist')").map {|application| application.project}
+            @completed_applications = current_user.made_applications.order('created_at DESC').where("applications.status in ('complete')")
             @number_completed_applications = @completed_applications.length
             @projects = @completed_applications.map {|application| application.project}
             @points = current_user.points
+        elsif @role == 'admin'
+            @projects = Project.all.order('created_at DESC')
+            @applicationss = Application.all.order('created_at DESC').where("status not like 'shortlist'")
+            @categories = Category.all
+            @causes = Cause.all
+            @locations = Location.all
         end
     # a series of variables for displaying charts. Output are in the form of array of arrays
         #npos

@@ -23,6 +23,10 @@ class Ability
             can :manage, User, id: user.id
             can :create, User
 
+        elsif user.is? 'admin'
+            can :manage, Project
+            can :manage, Application
+            can :manage, User
         else
             can :read, Project
             can :create, User

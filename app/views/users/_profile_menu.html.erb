@@ -40,4 +40,14 @@
             <%= link_to 'Log out', session_path('current'), method: 'delete', class: 'item' %>
         </div>
     </div>
+<% elsif current_user.role == 'admin' %>
+    <div class="user_options_menu hidden">
+        <div class="ui secondary vertical menu">
+            <% unless @abridged_menu %>
+                <%= link_to 'Admin dashboard',  user_profile_path+'', class: 'item' %>
+                <div class="ui fitted inverted divider"></div>
+            <% end %>
+            <%= link_to 'Log out', session_path('current'), method: 'delete', class: 'item' %>
+        </div>
+    </div>
 <% end %>
