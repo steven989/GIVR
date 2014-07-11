@@ -22,18 +22,24 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // admin edit
 
   function admin_edit() {
-    $('.admin_edit').off('click').on('click',function(){
+    $('.admin_edit, .admin_create').off('click').on('click',function(){
+      _this = $(this)
       $.ajax({
         url: $(this).attr('href'),
         type: 'GET',
         dataType: 'html'
       }).done(function(data){
+        if (_this.hasClass('admin_edit')) {
+          var method = 'PUT'
+        } else if (_this.hasClass('admin_create')) {
+          var method = 'POST'
+        }
         $('.edit_info_popup').html(data);
         $('.profile_form .submit').off('click').on('click',function(){
           event.preventDefault();
           $.ajax({
             url: $(this).parent().parent().attr('action'),
-            type: 'PUT',
+            type: method,
             dataType: 'json',
             data: $(this).parent().parent().serialize()
           }).done(function(data){

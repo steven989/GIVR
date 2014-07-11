@@ -121,7 +121,7 @@
     </div>
     <div class="categories">
       <div class="section_name">Skill categories</div>
-      <div class="ui tiny button">Add a category</div>
+      <div class="ui tiny button admin_create" href="<%= new_category_path %>">Add a skill category</div>
       <table id="admin_categories" class="display">
         <thead>
           <tr>
@@ -136,8 +136,8 @@
             <tr>
               <td><%= category.category %></td>
               <td><%= category.description %></td>
-              <td><div class="ui tiny button admin_edit">Edit</div></td>
-              <td><div class="ui tiny button admin_delete">Delete</div></td>
+              <td><div class="ui tiny button admin_edit" href="<%= edit_category_path(category) %>">Edit</div></td>
+              <td><div class="ui tiny button admin_delete" href="<%= category_path(category) %>">Delete</div></td>
             </tr>
           <% end %>
         </tbody>
@@ -145,7 +145,7 @@
     </div>
     <div class="causes">
       <div class="section_name">Causes</div>
-      <div class="ui tiny button">Add a cause</div>
+      <div class="ui tiny button admin_create" href="<%= new_cause_path %>">Add a cause</div>
       <table id="admin_causes" class="display">
         <thead>
           <tr>
@@ -160,8 +160,8 @@
             <tr>
               <td><%= cause.cause %></td>
               <td><%= cause.description %></td>
-              <td><div class="ui tiny button">Edit</div></td>
-              <td><div class="ui tiny button">Delete</div></td>
+              <td><div class="ui tiny button admin_edit" href="<%= edit_cause_path(cause) %>">Edit</div></td>
+              <td><div class="ui tiny button admin_delete" href="<%= cause_path(cause) %>">Delete</div></td>
             </tr>
           <% end %>
         </tbody>
@@ -169,7 +169,7 @@
     </div>
     <div class="locations">
       <div class="section_name">Locations</div>
-      <div class="ui tiny button">Add a location</div>
+      <div class="ui tiny button admin_create" href="<%= new_location_path %>">Add a location</div>
       <table id="admin_locations" class="display">
         <thead>
           <tr>
@@ -184,8 +184,8 @@
             <tr>
               <td><%= location.location %></td>
               <td><%= location.description %></td>
-              <td><div class="ui tiny button">Edit</div></td>
-              <td><div class="ui tiny button">Delete</div></td>
+              <td><div class="ui tiny button admin_edit" href="<%= edit_location_path(location) %>">Edit</div></td>
+              <td><div class="ui tiny button admin_delete" href="<%= location_path(location) %>">Delete</div></td>
             </tr>
           <% end %>
         </tbody>

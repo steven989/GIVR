@@ -27,6 +27,9 @@ Givr::Application.routes.draw do
   resources :project_views, only: [:update]
   post 'subscribe/:id' => 'pages#subscribe', as: 'subscribe'
   put 'projects/:id/admin_update' => 'projects#admin_update', as: 'project_admin_update'
+  resources :categories, only: [:new, :create, :edit, :update, :destroy]
+  resources :causes, only: [:new, :create, :edit, :update, :destroy]
+  resources :locations, only: [:new, :create, :edit, :update, :destroy]
 
 
   # The priority is based upon order of creation: first created -> highest priority.

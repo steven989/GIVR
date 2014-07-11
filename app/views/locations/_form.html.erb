@@ -1,0 +1,15 @@
+<div class="ui form segment profile_form">
+  <%= form_for @location, :remote => true do |f| %>
+    <div class="field">
+      <p class='section_title'><%= f.label :location, 'Location' %></p>
+      <p><%= f.text_field :location, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :description, 'Description' %></p>
+      <p><%= f.text_field :description, class:'text_field' %></p>
+    </div>
+    <div class="actions">
+      <%= f.submit class: 'submit mini ui givrgreen button' %>
+    </div>
+  <% end %>
+</div>
