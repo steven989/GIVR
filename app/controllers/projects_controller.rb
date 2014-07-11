@@ -48,6 +48,10 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
+
+    if request.xhr?
+      render partial: 'form'
+    end
   end
 
   def create
@@ -55,13 +59,17 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        message = "Your project was saved."
         @project.statuses= 'under review'
         @project.update_attribute(:user_id,current_user.id)
-        format.js { render :js => 'alert("Your project was saved!")'}
-        format.html
+        format.js { render :js => 'alert("Your project was saved.")'}
+        format.html {redirect_to user_profile_path, notice: message}
+        format.json {render json: {message: message}}
       else
-        format.js 
+        message = @project.errors.full_messages.join(" ")
+        format.js { render :js => 'alert("Your project was saved!")'}
         format.html {render :new}
+        format.json {render json: {message: message}}
       end
     end
   end

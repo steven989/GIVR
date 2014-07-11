@@ -31,7 +31,7 @@ $('document').ready(function() {
 
 function showDataTable() {
     $('#admin_projects').DataTable({
-        "order": [[ 7, "desc" ]]
+        "order": [[ 13, "desc" ]]
     });
 
     $('#admin_applications').DataTable({
