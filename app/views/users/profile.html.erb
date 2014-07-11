@@ -55,10 +55,10 @@
           <% @projects.each do |project| %>
             <tr>
               <td><%= project.title %></td>
-              <td><%= project.user.org_name %></td>
-              <td><%= project.category.category %></td>
-              <td><%= project.cause.cause %></td>
-              <td><%= project.location.location %></td>
+              <td><%= project.user.org_name if project.user %></td>
+              <td><%= project.category.category if project.category %></td>
+              <td><%= project.cause.cause if project.cause %></td>
+              <td><%= project.location.location if project.location %></td>
               <td><%= project.status %></td>
               <td><%= project.number_of_positions %></td>
               <td><%= project.applications.where("applications.status like 'shortlist'").length %></td>
@@ -107,7 +107,7 @@
         <tbody>
           <% @applicationss.each do |application| %>
             <tr>
-              <td><%= application.project.user.org_name %></td>
+              <td><%= application.project.user.org_name if application.project.user %></td>
               <td><%= application.project.title %></td>
               <td><%= application.user.display_name %></td>
               <td><%= application.status %></td>

@@ -61,7 +61,11 @@ class ProjectsController < ApplicationController
       if @project.save
         message = "Your project was saved."
         @project.statuses= 'under review'
-        @project.update_attribute(:user_id,current_user.id)
+        if current_user.is? ('admin')
+          @project.update_attribute(:user_id,params[:project][:user_id])
+        else
+          @project.update_attribute(:user_id,current_user.id)
+        end
         format.js { render :js => 'alert("Your project was saved.")'}
         format.html {redirect_to user_profile_path, notice: message}
         format.json {render json: {message: message}}
@@ -95,6 +99,11 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     @project.update_attributes(projects_params)
+    if current_user.is? ('admin')
+      @project.update_attribute(:user_id,params[:project][:user_id])
+    else
+      @project.update_attribute(:user_id,current_user.id)
+    end
     message = "Project successfully updated."
 
     respond_to do |format|

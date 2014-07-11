@@ -6,6 +6,12 @@
       <p class='section_title'><%= f.label :title, 'Project name' %></p>
       <p><%= f.text_field :title, class:'text_field' %></p>
     </div>
+    <% if current_user.is? "admin" %>
+    <div class="field">
+      <p class='section_title'><%= f.label :user_id, 'Organization ID' %></p>
+      <p><%= f.text_field :user_id, class:'text_field' %></p>
+    </div>
+    <% end %>
     <div class="field">
       <p class='section_title'><%= f.label :description, 'Project description' %></p>
       <p><%= f.text_area :description, class:'text_area' %></p>
