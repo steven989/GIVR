@@ -24,9 +24,9 @@ class ProjectsController < ApplicationController
       end
     end
 
-    @categories = Category.all.order(category: :asc)
-    @causes = Cause.all.order(cause: :asc)
-    @locations = Location.all.order(location: :asc)
+    @categories = Category.order(category: :asc).select {|category| category.projects.length > 0 }
+    @causes = Cause.order(cause: :asc).select {|cause| cause.projects.length > 0 }
+    @locations = Location.order(location: :asc).select {|location| location.projects.length > 0 }
 
     respond_to do |format|
       format.js
