@@ -38,6 +38,10 @@ function showDataTable() {
         "order": [[ 4, "desc" ]]
     });
 
+    $('#admin_users').DataTable({
+        "order": [[ 7, "desc" ]]
+    });
+
     $('#admin_categories').DataTable();
     $('#admin_causes').DataTable();
     $('#admin_locations').DataTable();

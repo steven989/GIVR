@@ -55,7 +55,7 @@
       <%= options_from_collection_for_select(Location.all, :id, :location) %>
       <%= collection_select(:project, :location_id, Location.all, :id, :location, class: 'drop_down')%>
     </div>
-
+    
     <div class="actions">
       <%= f.submit class: 'submit mini ui givrgreen button' %>
     </div>

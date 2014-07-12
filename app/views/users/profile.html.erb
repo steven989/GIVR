@@ -26,8 +26,21 @@
   
   <div class="admin_panel">
     <div class="projects">
-      <div class="section_name">Projects</div>
-      <div class="ui tiny button admin_create" href="<%= new_project_path %>">Add a project</div>
+      <div class="section_name">Projects (<span class="admin_create" href="<%= new_project_path %>">add</span>)</div>
+      <div class="high_level_stats">Project count
+        <table class="stats">
+          <tr>
+            <th>All</th>
+            <th>Under review</th>
+            <th>Active</th>
+          </tr>
+          <tr>
+            <td><%= @project_count %></td>
+            <td><%= @project_count_under_review %></td>
+            <td><%= @project_count_active %></td>
+          </tr>
+        </table>
+      </div>
       <table id="admin_projects" class="display">
         <thead>
           <tr>
@@ -91,6 +104,28 @@
     </div>
     <div class="applications">
       <div class="section_name">Applications</div>
+      <div class="high_level_stats">Application count
+        <table class="stats">
+          <tr>
+            <th>All</th>
+            <th>Shortlisted</th>
+            <th>Under review</th>
+            <th>Approved</th>
+            <th>Declined</th>
+            <th>Started</th>
+            <th>Completed</th>
+          </tr>
+          <tr>
+            <td><%= @application_count %></td>
+            <td><%= @application_count_shortlist %></td>
+            <td><%= @application_count_apply %></td>
+            <td><%= @application_count_approve %></td>
+            <td><%= @application_count_decline %></td>
+            <td><%= @application_count_engage %></td>
+            <td><%= @application_count_complete %></td>
+          </tr>
+        </table>
+      </div>
       <table id="admin_applications" class="display">
         <thead>
           <tr>
@@ -120,9 +155,55 @@
         </tbody>
       </table>      
     </div>
+    <div class="users">
+      <div class="section_name">Users</div>
+      <div class="high_level_stats">User count
+        <table class="stats">
+          <tr>
+            <th>All</th>
+          </tr>
+          <tr>
+            <td><%= @user_count %></td>
+          </tr>
+        </table>
+      </div>
+      <table id="admin_users" class="display">
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Role</th>
+            <th>City</th>
+            <th>Organization</th>
+            <th>Phone number</th>
+            <th>Extension</th>
+            <th>Website</th>
+            <th>Created</th>
+            <th>Updated</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.email %></td>
+              <td><%= user.role %></td>
+              <td><%= user.city %></td>
+              <td><%= user.org_name %></td>
+              <td><%= user.phone %></td>
+              <td><%= user.extension %></td>
+              <td><%= link_to user.website, user.proper_website %></td>
+              <td><%= user.created_at %></td>
+              <td><%= user.updated_at %></td>
+              <td><div class="ui tiny button admin_edit" href="<%= edit_user_path(user) %>">Edit</div></td>
+              <td><div class="ui tiny button admin_delete" href="<%= user_path(user) %>">Delete</div></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>      
+    </div>
     <div class="categories">
-      <div class="section_name">Skill categories</div>
-      <div class="ui tiny button admin_create" href="<%= new_category_path %>">Add a skill category</div>
+      <div class="section_name">Skill categories (<span class="admin_create" href="<%= new_category_path %>">add</span>)</div>
       <table id="admin_categories" class="display">
         <thead>
           <tr>
@@ -145,8 +226,7 @@
       </table>      
     </div>
     <div class="causes">
-      <div class="section_name">Causes</div>
-      <div class="ui tiny button admin_create" href="<%= new_cause_path %>">Add a cause</div>
+      <div class="section_name">Causes (<span class="admin_create" href="<%= new_cause_path %>">add</span>)</div>
       <table id="admin_causes" class="display">
         <thead>
           <tr>
@@ -169,8 +249,7 @@
       </table>      
     </div>
     <div class="locations">
-      <div class="section_name">Locations</div>
-      <div class="ui tiny button admin_create" href="<%= new_location_path %>">Add a location</div>
+      <div class="section_name">Locations (<span class="admin_create" href="<%= new_location_path %>">add</span>)</div>
       <table id="admin_locations" class="display">
         <thead>
           <tr>

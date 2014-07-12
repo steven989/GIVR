@@ -7,6 +7,14 @@
     validate :cannot_apply_to_filled_projects, except: [:update]
     validate :professional_cannot_apply_twice_to_same_project, except: [:update]
     
+    def self.count(status=nil)
+        if status.nil?
+            Application.all.length
+        else
+            Application.where("status like '#{status}'").length
+        end
+    end
+
     def statuses= (status_value)
         if status_value
             self.statuses.new(status: status_value).save    # add a record to the status table to keep a running tab of statuses

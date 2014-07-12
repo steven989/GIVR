@@ -1717,6 +1717,56 @@ body {
     }
   }
 
+  .admin_panel {
+    position: relative;
+    margin: 5rem auto;
+    width: 85%;
+
+    .projects, .applications, .categories, .causes, .locations, .users {
+      padding: 1rem;
+      margin: 0rem auto 3rem auto;
+      border: 2px solid $light-gray;
+      width: 100%;
+      overflow: scroll;
+
+      .high_level_stats {
+        margin: 1rem auto;
+        font-size: 0.8rem;
+
+        .stats {
+          text-align: center;
+          background-color: $very-light-gray;
+
+          td {
+            width: 7rem;
+          }
+        }  
+      }
+    
+      .section_name {
+        font-size: 1rem;
+        font-weight: bold;
+        margin: 1rem 0rem;
+      }
+
+      .admin_create {
+        color: $primary-color;
+        cursor: pointer;
+        text-decoration: underline;
+
+        &:hover {
+          color: #82E7CB;
+        }
+      }
+
+    }
+
+    #admin_projects, #admin_applications, #admin_categories, #admin_causes, #admin_locations, #admin_users {
+      font-size: 0.8rem;
+
+    }
+  }
+
   .edit_info_popup {
     display: none;
     z-index: 21;

@@ -22,6 +22,13 @@ class Project < ActiveRecord::Base
   validates :number_of_positions, numericality: { only_integer: true}
 
 
+  def self.count(status=nil)
+        if status.nil?
+            Project.all.length
+        else
+            Project.where("status like '#{status}'").length
+        end
+  end
 
   def statuses= (status_value)
     if status_value

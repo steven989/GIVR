@@ -1,0 +1,105 @@
+<div class="ui form segment profile_form">
+  <%= form_for @user, :remote => true do |f| %>
+    <div class="field">
+      <p class='section_title'><%= f.label :email, 'Email' %></p>
+      <p><%= f.text_field :email, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :role, 'Role' %></p>
+      <p><%= f.text_field :role, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :org_name, 'Organization' %></p>
+      <p><%= f.text_field :org_name, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :address, 'Address' %></p>
+      <p><%= f.text_field :address, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :city, 'City' %></p>
+      <p><%= f.text_field :city, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :postal_code, 'Postal code' %></p>
+      <p><%= f.text_field :postal_code, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :website, 'Website' %></p>
+      <p><%= f.text_field :website, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :contact_first_name, 'Contact first name' %></p>
+      <p><%= f.text_field :contact_first_name, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :contact_last_name, 'Contact last name' %></p>
+      <p><%= f.text_field :contact_last_name, class:'text_field' %></p>
+    </div>
+
+    <div class="field">
+      <p class='section_title'><%= f.label :phone, 'Phone number' %></p>
+      <p><%= f.text_field :phone, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :extension, 'Extension' %></p>
+      <p><%= f.text_field :extension, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :fax, 'Fax number' %></p>
+      <p><%= f.text_field :fax, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :years_of_experience, 'Years of experience' %></p>
+      <p><%= f.text_field :years_of_experience, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :organization_size, 'Organization size' %></p>
+      <p><%= f.text_field :organization_size, class:'text_field' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :description, 'Description' %></p>
+      <p><%= f.text_area :description, class:'text_area' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :mission, 'Mission' %></p>
+      <p><%= f.text_area :mission, class:'text_area' %></p>
+    </div>
+    <div class="field">
+      <% if @user.resume_exists? %>
+        <p class="section_title">User resume</p>
+        <div class="ui divider"></div>
+        <div class="uploaded_stuff_action"><%= link_to @user.resume_url(:query => {"response-content-disposition" => "attachment"}) do %>
+            <%= fa_icon 'download', class: 'icon_left' %>Download resume
+          <% end %>
+        </div>
+        <div class="uploaded_stuff_action"><%= link_to user_upload_resume_path(resume_action: 'remove', id: @user.id ), method: 'patch', class: 'remove_upload' do %> 
+              <%= fa_icon 'times', class: 'icon_left' %>Remove resume
+            <% end %>
+        </div>
+      <% else %>
+        <p class="section_title">User resume</p>
+        <div class="ui divider"></div>
+        No resume on record
+      <% end %>
+    </div>
+    <div class="field">
+      <% if @user.logo_exists? %>
+        <p class="section_title">Organization logo:</p>
+        <div class="ui divider"></div>
+        <p><%= image_tag @user.logo_url if @user.logo? %></p>
+        <div class="uploaded_stuff_action"><%= link_to user_upload_logo_path(logo_action: 'remove', id: @user.id ), method: 'patch', class: 'remove_upload' do %> 
+              <%= fa_icon 'times', class: 'icon_left' %>Remove logo
+            <% end %>
+        </div>
+      <% else %>
+        <p class="section_title">Organization logo</p>
+        <div class="ui divider"></div>
+        No logo on record
+      <% end %>
+    </div>
+    <div class="actions">
+      <%= f.submit class: 'submit mini ui givrgreen button' %>
+    </div>
+  <% end %>
+</div>

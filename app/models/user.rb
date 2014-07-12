@@ -1,12 +1,12 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  has_many :submitted_projects, foreign_key: 'user_id', class_name: 'Project'
-  has_many :made_applications, foreign_key: 'user_id', class_name: 'Application'
-  has_many :projects, through: :applications
-  has_many :applications, through: :submitted_projects
+  has_many :submitted_projects, foreign_key: 'user_id', class_name: 'Project', dependent: :destroy
+  has_many :made_applications, foreign_key: 'user_id', class_name: 'Application', dependent: :destroy
+  has_many :projects, through: :applications, dependent: :destroy
+  has_many :applications, through: :submitted_projects, dependent: :destroy
   has_many :authentications, dependent: :destroy
-  has_many :projectviews, foreign_key: 'user_id', class_name: 'ProjectView'
+  has_many :projectviews, foreign_key: 'user_id', class_name: 'ProjectView', dependent: :destroy
 
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :causes
@@ -34,10 +34,14 @@ class User < ActiveRecord::Base
   validates :password, confirmation: true, on: :create
   validates :password_confirmation, presence: true, on: :create
 
+
+  def self.count
+    User.all.length
+  end
+
   def is?(role)
     self.role == role
   end 
-
 
   def completed_projects
     self.projects.where("projects.status like 'complete'")
@@ -53,10 +57,12 @@ class User < ActiveRecord::Base
   end
 
   def proper_website
-    if self.website.include? 'http://'
-      self.website
-    else 
-      "http://#{self.website}"
+    unless self.website.nil?
+      if self.website.include? 'http://'
+        self.website
+      else 
+        "http://#{self.website}"
+      end
     end
   end
 
@@ -70,4 +76,20 @@ class User < ActiveRecord::Base
       total_points+=points_per_application
     }
   end 
+
+  def resume_exists?
+      if self.resume.file.nil? 
+          false
+      else
+          self.resume.file.exists?
+      end
+  end
+
+  def logo_exists?
+      if self.logo.file.nil? 
+          false
+      else
+          self.logo.file.exists?
+      end
+  end
 end

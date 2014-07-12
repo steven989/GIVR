@@ -20,9 +20,18 @@ class UsersController < ApplicationController
         end 
     end 
 
+    def edit
+        if current_user.is? 'admin'
+            @user = User.find_by(id: params[:id])
+            if request.xhr?
+              render partial: 'form'
+            end
+        end
+    end
+
     def update
         @user = current_user
-        if @user.role == 'professional'
+        if @user.is? 'professional'
             if @user.update_attributes(professional_params)
                 message = 'Information successfully updated.'                
             else 
@@ -41,16 +50,28 @@ class UsersController < ApplicationController
             params[:user][:cause_ids].each do |cause_id|
                 @user.causes << Cause.find_by(id:cause_id) unless cause_id == ""
             end
-
-        elsif @user.role == 'npo'
+            redirect_to user_profile_path+'#settings', notice: message
+        elsif @user.is? 'npo'
             if @user.update_attributes(npo_params)
                 message = 'Information successfully updated.'                
             else
                 message = 'Information could not be updated.'+@user.errors.full_messages.join(" ")                
             end
+            redirect_to user_profile_path+'#settings', notice: message
+        elsif @user.is? 'admin'
+            @modify_user = User.find_by(id:params[:id])
+            @modify_user.update_attributes(admin_params)
+            message = @modify_user.errors.full_messages.join(" ")
+            message = "User successfully updated." if message.blank?
+
+            respond_to do |format|
+              format.json {
+                render json: {message: message}
+              }
+            end
         end
 
-        redirect_to user_profile_path+'#settings', notice: message
+        
     end
 
     def update_role
@@ -65,7 +86,11 @@ class UsersController < ApplicationController
     end
 
     def upload_resume
-        @user = current_user
+        if current_user.is? 'admin' 
+            @user = User.find_by(id:params[:id]) 
+        else
+            @user = current_user
+        end
         if params[:user] && params[:resume_action] == 'upload'
             @user.update_attribute(:resume, params[:user][:resume])
             if !@user.resume.file.nil?
@@ -101,7 +126,11 @@ class UsersController < ApplicationController
     end 
 
     def upload_logo
-        @user = current_user
+        if current_user.is? 'admin' 
+            @user = User.find_by(id:params[:id]) 
+        else
+            @user = current_user
+        end
         if params[:user] && params[:logo_action] == 'upload'
             @user.update_attribute(:logo, params[:user][:logo])
             message = "Logo could not be saved. #{@user.errors.full_messages.join(" ")}" if @user.errors.any?
@@ -151,10 +180,22 @@ class UsersController < ApplicationController
             @points = current_user.points
         elsif @role == 'admin'
             @projects = Project.all.order('created_at DESC')
-            @applicationss = Application.all.order('created_at DESC').where("status not like 'shortlist'")
+                @project_count = Project.count
+                @project_count_active = Project.count('active')
+                @project_count_under_review = Project.count('under review')
+            @applicationss = Application.all.order('created_at DESC')
+                @application_count = Application.count
+                @application_count_shortlist = Application.count('shortlist')
+                @application_count_apply = Application.count('apply')
+                @application_count_approve = Application.count('approve')
+                @application_count_decline = Application.count('decline')
+                @application_count_engage = Application.count('engage')
+                @application_count_complete = Application.count('complete')
             @categories = Category.all
             @causes = Cause.all
             @locations = Location.all
+            @users = User.all.order('created_at DESC')
+                @user_count = User.count
         end
     # a series of variables for displaying charts. Output are in the form of array of arrays
         #npos
@@ -185,12 +226,31 @@ class UsersController < ApplicationController
 
     end 
 
+    def destroy
+        if current_user.is? 'admin' 
+            @user = User.find_by(id:params[:id]) 
+        else
+            @user = current_user
+        end
+        @user.destroy
+        message = "User successfully deleted."
+
+        respond_to do |format|
+          format.html {redirect_to projects_path, notice: message}
+          format.json {render json: {message: message}}
+        end
+    end
+
 
     private
 
     def users_params
         params.require(:user).permit(:email,:password,:password_confirmation,:role,:resume)
     end 
+
+    def admin_params
+        params.require(:user).permit(:email,:role,:org_name,:address,:city,:postal_code,:website,:contact_first_name,:contact_last_name,:phone,:extension,:fax,:years_of_experience,:organization_size,:description,:mission)
+    end
 
     def professional_params
         params.require(:user).permit(:email,:contact_first_name,:contact_last_name,:phone,:years_of_experience,:website)
