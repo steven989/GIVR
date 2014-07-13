@@ -172,7 +172,7 @@ class UsersController < ApplicationController
             @projects = current_user.submitted_projects.order('created_at DESC')
             @applicationss = current_user.applications.order('created_at DESC').where("applications.status not like 'shortlist'")
         elsif @role == 'professional'
-            @applicationss = current_user.made_applications.order('created_at DESC').where("applications.status in ('apply','approve', 'decline', 'engage')")
+            @applicationss = current_user.made_applications.order('created_at DESC').where("applications.status in ('apply','approve', 'decline', 'engage','complete','view')")
             @shortlists = current_user.made_applications.order('created_at DESC').where("applications.status in ('shortlist')").map {|application| application.project}
             @completed_applications = current_user.made_applications.order('created_at DESC').where("applications.status in ('complete')")
             @number_completed_applications = @completed_applications.length

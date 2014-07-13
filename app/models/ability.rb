@@ -16,7 +16,9 @@ class Ability
         elsif user.is? 'npo'
             
             can :manage, Project, user_id: user.id
-            can :read, Application 
+            can :read, Application do |application|
+                application.project.user.id == user.id
+            end
             can :project_creator_update, Application do |application|
                 application.project.user.id == user.id
             end

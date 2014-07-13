@@ -48,12 +48,17 @@ class User < ActiveRecord::Base
   end 
 
   def display_name #this is to get a display name for the user for the navigation bar and other places in the app
-
     loc = self.email.index('@')
     name_from_email = self.email[0..loc-1]
 
     self.contact_first_name.nil? || self.contact_first_name.blank? ? name_from_email : contact_first_name
+  end
 
+  def display_full_name
+    loc = self.email.index('@')
+    name_from_email = self.email[0..loc-1]
+
+    self.contact_first_name.nil? || self.contact_first_name.blank? || self.contact_last_name.nil? || self.contact_last_name.blank? ? name_from_email : contact_first_name+" "+contact_last_name
   end
 
   def proper_website

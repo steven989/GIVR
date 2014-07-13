@@ -1,0 +1,45 @@
+<div class="ui form segment profile_form">
+  <h2>Application details</h2>
+  <div class="ui divider"></div>
+  <div id="close_project">
+    <%= fa_icon 'times' %>
+  </div> 
+  <div class="field">
+    <p class='section_title'>Project</p>
+    <p><%= @application.project.title %></p>
+    <div class="ui divider"></div>
+  </div>
+  <div class="field">
+    <p class='section_title'>Professional's name</p>
+    <p><%= @application.user.display_full_name %></p>
+    <div class="ui divider"></div>
+  </div>
+  <div class="field">
+    <p class='section_title'>Email</p>
+    <p><%= @application.user.email %></p>
+    <div class="ui divider"></div>
+  </div>
+  <% if @application.user.phone %>
+    <div class="field">
+      <p class='section_title'>Phone number</p>
+      <p><%= @application.user.phone + if @application.user.extension; "ext. "+@application.user.extension.to_s else "" end %></p>
+      <div class="ui divider"></div>
+    </div>    
+  <% end %>
+  <div class="field">
+    <p class='section_title'>Resume</p>
+    <% if @application.user.resume_exists? %>
+    <div class="uploaded_stuff_action"><%= link_to @application.user.resume_url(:query => {"response-content-disposition" => "attachment"}) do %>
+        <%= fa_icon 'download', class: 'icon_left' %>Download resume
+      <% end %>
+    </div>
+    <% else %>
+      <p>No resume provided</p>
+    <% end %>
+    <div class="ui divider"></div>
+  </div>
+  <div class="field">
+    <p class='section_title'>Message from professional</p>
+    <p><%= @application.message %></p>
+  </div>
+</div>

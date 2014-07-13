@@ -14,6 +14,7 @@ $(function() {                  // document ready
   admin_edit();
   adminDelete();
   finishProjectPrompt();
+  applicationDetails();
 });
 
 $(window).on('beforeunload',function(){     // navigating away from a page
@@ -112,6 +113,25 @@ $(window).on('beforeunload',function(){     // navigating away from a page
     }
   }
 
+  // view more application details
+  function applicationDetails() {
+    $('.show_application.npo').off('click').on('click',function(){
+      $.ajax({
+        url: $(this).attr('href'),
+        type: 'GET',
+        dataType: 'html'
+      }).done(function(data){
+        $('.edit_info_popup').html(data);
+        $('#close_project').off('click').on('click', function() {
+          event.preventDefault();
+          endProjectShow();
+          endView();
+        });
+        animateProjects();
+      });      
+    });
+  }
+
   // finish project from the user profile
 
   function finishProjectPrompt() {
@@ -140,6 +160,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             if (data.successFlag == 1) {
               endProjectShow();
               _this.parent().parent().parent().parent().replaceWith(data.replaceWith);
+              applicationDetails();
             } else {
             var message = data.message;
             dimmedModalMessage(message);
@@ -168,6 +189,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       _this.parent().parent().parent().parent().replaceWith(data.replaceWith);
       $('#error_messages').html(data.alertMessage);
       triggerApproval();
+      applicationDetails();
     });
    return false  //not sure why preventDefault does not work here
     });

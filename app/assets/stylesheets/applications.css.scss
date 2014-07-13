@@ -1454,8 +1454,13 @@ body {
     height:15rem;
     background-color: white;
     border: 1px solid #C9C9C9;
+    cursor: pointer;
 
-    .apply {
+    &.professional {
+      cursor: auto;
+    }
+
+    .apply, .view {
       color: #F19F68;
       background-color: white;
       border: 1px solid #F19F68;
@@ -1785,6 +1790,11 @@ body {
       position: absolute;
       top: 0rem;
       left: 0rem;
+
+      h2 {
+        font-size: 1.3rem;
+        font-weight: bold;
+      }
 
       #close_project {
         position: absolute;

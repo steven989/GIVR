@@ -1,7 +1,7 @@
 
 <% if role == 'npo' %>
 
-<div class="show_application" >
+<div class="show_application npo" href="<%= project_application_path(application.project,application) %>">
     <% if application.notification_view_flag == 'npo' %>
         <div class="ui left red corner label">
             <div class="text">New</div>
@@ -10,6 +10,8 @@
     <div class="status_wrapper">
         <div class='application_status npo <%= application.status %>'>
             <% if application.status == 'apply' %>
+                <%= "Pending approval" %>
+            <% elsif application.status == 'view' %>
                 <%= "Pending approval" %>
             <% elsif application.status == 'approve' %>
                 <%= "Approved" %>
@@ -25,16 +27,11 @@
     <div class='project'><h1><%= application.project.title %></h1></div>
     <div class="application_deets">
         <div class='user'>User: <%= application.user.display_name %></div>
-        <% if application.user.resume_exists? %>
-            <div class="link_to_resume"><%= link_to 'Resume', application.user.resume_url %></div>
-        <% else %>
-            No resume on record
-        <% end %>
         <div class='application_date'>Application date: <%= application.created_at %></div>
     </div>
     <div class="user_action">
         <div class="status_change">
-            <% if application.status == 'apply' %>
+            <% if application.status == 'apply' || application.status == 'view' %>
                 <p class='action_button ui tiny givrgreen button'><%= link_to 'Approve', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'approve'}, class: 'user_action_button' %></p>
                 <p class='action_button ui tiny red button'><%= link_to 'Decline', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'decline'}, class: 'user_action_button' %></p>       
             <% elsif application.status == 'engage' %>
@@ -47,7 +44,7 @@
 
 <% elsif role == 'professional' %>
 
-<div class="show_application" >
+<div class="show_application professional" >
     <% if application.notification_view_flag == 'professional' %>
         <div class="ui left red corner label">
             <div class="text">New</div>
@@ -57,6 +54,8 @@
         <div class='application_status pro <%= application.status %>'>
             <% if application.status == 'apply' %>
                 <%= "Pending approval" %>
+            <% elsif application.status == 'view' %>
+                <%= "Pdng approval (viewed)" %>
             <% elsif application.status == 'approve' %>
                 <%= "Approved" %>
             <% elsif application.status == 'decline' %>

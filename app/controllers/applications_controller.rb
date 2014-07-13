@@ -3,6 +3,15 @@ class ApplicationsController < ApplicationController
   authorize_resource
   skip_authorize_resource only: :user_index
 
+  def show
+    @application = Application.find_by(id: params[:id])
+    @application.statuses = 'view' if (current_user.is? 'npo') && (@application.status == 'apply')
+
+    if request.xhr?
+      render partial: 'show_application'
+    end    
+  end
+
   def create
 
     @project = Project.find_by(id: params[:project_id])
@@ -76,7 +85,6 @@ class ApplicationsController < ApplicationController
     def applicant_update
 
       @application = Application.find_by(id: params[:id])
-      @application.update_attribute(:message, params[:message])
       if params[:todo] == 'engage'
           @application.statuses= params[:todo]
           @application.project.attempt_close  # this will check to see if a project is filled and update a project's status accordingly if filled
@@ -86,7 +94,8 @@ class ApplicationsController < ApplicationController
           @application.cannot_apply_to_filled_projects  #call the custom validation
           @application.professional_cannot_apply_twice_to_same_project #call the custom validation
           @application.must_include_message #call the custom validation
-          unless @application.errors.any? 
+          unless @application.errors.any?
+            @application.update_attribute(:message, params[:message]) 
             @application.statuses= params[:todo]
             @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just applied, we want the pop up to show up on npo's screen)
             message = "Application successful!"
