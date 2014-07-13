@@ -24,8 +24,12 @@
     </div>
     <div class='project'><h1><%= application.project.title %></h1></div>
     <div class="application_deets">
-        <div class='user'>User: <%= application.user.email %></div>
-        <div class="link_to_resume"><%= link_to 'Resume', application.user.resume_url %></div>
+        <div class='user'>User: <%= application.user.display_name %></div>
+        <% if application.user.resume_exists? %>
+            <div class="link_to_resume"><%= link_to 'Resume', application.user.resume_url %></div>
+        <% else %>
+            No resume on record
+        <% end %>
         <div class='application_date'>Application date: <%= application.created_at %></div>
     </div>
     <div class="user_action">
@@ -34,7 +38,7 @@
                 <p class='action_button ui tiny givrgreen button'><%= link_to 'Approve', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'approve'}, class: 'user_action_button' %></p>
                 <p class='action_button ui tiny red button'><%= link_to 'Decline', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'decline'}, class: 'user_action_button' %></p>       
             <% elsif application.status == 'engage' %>
-                <p class='action_button ui tiny givrgreen button'><%= link_to 'Complete', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'complete'}, class: 'user_action_button' %></p>        
+                <p class='action_button ui tiny givrgreen button'><%= link_to 'Complete', complete_application_path(application.project, application), method: 'GET', class: 'user_action_button_complete_application' %></p>        
             <% end %>
         </div>
     </div>

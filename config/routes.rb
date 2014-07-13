@@ -12,6 +12,7 @@ Givr::Application.routes.draw do
   post 'projects/filter' => 'projects#index', as: 'filter_projects'
   put 'projects/:project_id/applications/:id/creator' => 'applications#project_creator_update', as: 'creator_update'
   put 'projects/:project_id/applications/:id/applicant' => 'applications#applicant_update', as: 'applicant_update'
+  get 'projects/:project_id/applications/:id/complete' => 'applications#complete', as: 'complete_application'
   resources :users, only: [:show, :new, :create, :edit, :update, :destroy]
   patch 'user/upload_resume' => 'users#upload_resume'
   patch 'user/upload_logo' => 'users#upload_logo'

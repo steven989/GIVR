@@ -20,8 +20,13 @@ class ApplicationsController < ApplicationController
     end
 
     respond_to do |format|
-      @application.cannot_shortlist_more_than_once if status == 'shortlist' # run this validation only on shortlist requests
-      @application.must_include_message if status == 'apply' #run this validation only on apply requests
+      if status == 'shortlist'
+        @application.cannot_shortlist_more_than_once 
+      elsif status == 'apply'
+        @application.must_include_message 
+        @application.professional_cannot_apply_twice_to_same_project
+        @application.cannot_apply_to_filled_projects
+      end
       if !@application.errors.any? && @application.valid?
          @application.save
          @application.statuses= status
@@ -105,7 +110,6 @@ class ApplicationsController < ApplicationController
     end
 
     def project_creator_update
-
       @application = Application.find_by(id: params[:id])
       if params[:todo] == 'approve'
           @application.statuses= params[:todo]
@@ -115,18 +119,32 @@ class ApplicationsController < ApplicationController
           @application.statuses= 'decline'
           @application.update_attribute(:notification_view_flag, 'professional')  # this sets up the pop up notification for the professional (because an npo just unapproved the application, we want the pop up to show up on the applicant's screen)
       elsif params[:todo] == 'complete'
+          @application.update_attributes(complete_application_params)
           @application.statuses= params[:todo]
+          message = @application.errors.full_messages.join(" ")
+          successFlag = 1 if message.blank?
+          message = "Application completed!" if message.blank?
       end
       @role = current_user.role
       respond_to do |format|
         format.html {redirect_to user_profile_path}
         format.json {   self.formats = ['html']
-              render json: { 
+              render json: {
+                  successFlag: successFlag,
+                  message: message, 
                   replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role})
                       } 
           }
         end
     end 
+
+    def complete
+      @application = Application.find_by(id: params[:id])
+
+      if request.xhr?
+        render partial: 'complete_application'
+      end
+    end
 
     def read
       @user = current_user
@@ -160,4 +178,7 @@ class ApplicationsController < ApplicationController
       params.require(:application).permit(:project_id,:user_id,:status,:notification_view_flag,:message)
     end
 
+    def complete_application_params
+      params.require(:application).permit(:hours,:rating_for_professional,:work_again,:comments_for_professional)
+    end
 end

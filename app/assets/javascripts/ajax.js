@@ -13,6 +13,7 @@ $(function() {                  // document ready
   subscribeToMailchimp();
   admin_edit();
   adminDelete();
+  finishProjectPrompt();
 });
 
 $(window).on('beforeunload',function(){     // navigating away from a page
@@ -110,6 +111,43 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       });
     }
   }
+
+  // finish project from the user profile
+
+  function finishProjectPrompt() {
+    $('.user_action_button_complete_application').off('click').on('click',function(){
+      event.stopImmediatePropagation(); //not sure why preventDefault does not work here
+      var _this = $(this);
+      $.ajax({
+        url: $(this).attr('href'),
+        type: 'GET',
+        dataType: 'html'
+      }).done(function(data){
+        $('.edit_info_popup').html(data);
+        $('.profile_form .submit').off('click').on('click',function(){
+          event.preventDefault();
+          $.ajax({
+            url: $(this).parent().parent().attr('action'),
+            type: 'PUT',
+            dataType: 'json',
+            data: $(this).parent().parent().serialize()
+          }).done(function(data){
+            console.log(data)
+            if (data.successFlag == 1) {
+              endProjectShow();
+              _this.parent().parent().parent().parent().replaceWith(data.replaceWith);
+            } else {
+            var message = data.message;
+            dimmedModalMessage(message);
+            };            
+          });
+        });
+        animateProjects();
+      });
+    return false  //not sure why preventDefault does not work here
+    });
+  }
+
 
   // approve projects from the user profile. 
 

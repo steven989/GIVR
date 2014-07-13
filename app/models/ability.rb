@@ -19,7 +19,10 @@ class Ability
             can :read, Application 
             can :project_creator_update, Application do |application|
                 application.project.user.id == user.id
-            end 
+            end
+            can :complete, Application do |application|
+                application.project.user.id == user.id
+            end  
             can :manage, User, id: user.id
             can :create, User
 

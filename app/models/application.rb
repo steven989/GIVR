@@ -4,9 +4,7 @@
     belongs_to :project
     has_many :statuses, foreign_key: 'application_id', class_name: 'ApplicationStatus', dependent: :destroy
 
-    validate :cannot_apply_to_filled_projects, except: [:update]
-    validate :professional_cannot_apply_twice_to_same_project, except: [:update]
-    
+
     def self.count(status=nil)
         if status.nil?
             Application.all.length
