@@ -200,12 +200,12 @@ body {
 
   .logo {
     position: absolute;
-    margin-top: 0.22rem;
-    margin-left: 3rem;
+    top: 0.22rem;
+    left: 4rem;
 
     img {
-      height: 2rem;
-
+      width: 2.3rem;
+      
     }
   }
 
@@ -1785,6 +1785,18 @@ body {
       position: absolute;
       top: 0rem;
       left: 0rem;
+
+      #close_project {
+        position: absolute;
+        right:0.5rem;
+        top: 0.45rem;
+        cursor: pointer;
+        color: gray;
+
+        &:hover {
+          color: red;
+        }
+      }
     }
   }
 

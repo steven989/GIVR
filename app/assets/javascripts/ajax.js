@@ -124,6 +124,11 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         dataType: 'html'
       }).done(function(data){
         $('.edit_info_popup').html(data);
+        $('#close_project').off('click').on('click', function() {
+          event.preventDefault();
+          endProjectShow();
+          endView();
+        });
         $('.profile_form .submit').off('click').on('click',function(){
           event.preventDefault();
           $.ajax({

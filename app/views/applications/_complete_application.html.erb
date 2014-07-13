@@ -1,4 +1,7 @@
 <div class="ui form segment profile_form">
+  <div id="close_project">
+    <%= fa_icon 'times' %>
+  </div>  
   <p class='section_title'><%= @application.project.title %></p>
   <div class="ui divider"></div>
   <%= form_for @application, url: creator_update_path(@application.project,@application, todo: 'complete'), :remote => true do |f| %>
@@ -30,7 +33,7 @@
       <p><%= f.text_area :comments_for_professional, class:'text_area' %></p>
     </div>
     <div class="actions">
-      <%= f.submit 'Complete project', class: 'submit mini ui givrgreen button' %>
+      <%= f.submit 'Complete engagement', class: 'submit mini ui givrgreen button' %>
     </div>
   <% end %>
 </div>
