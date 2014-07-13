@@ -132,7 +132,6 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             dataType: 'json',
             data: $(this).parent().parent().serialize()
           }).done(function(data){
-            console.log(data)
             if (data.successFlag == 1) {
               endProjectShow();
               _this.parent().parent().parent().parent().replaceWith(data.replaceWith);
