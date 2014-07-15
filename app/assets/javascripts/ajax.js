@@ -37,6 +37,11 @@ $(window).on('beforeunload',function(){     // navigating away from a page
           var method = 'POST'
         }
         $('.edit_info_popup').html(data);
+        $('#close_project').off('click').on('click', function() {
+          event.preventDefault();
+          endProjectShow();
+          endView();
+        });
         $('.profile_form .submit').off('click').on('click',function(){
           event.preventDefault();
           $.ajax({
@@ -48,9 +53,11 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             endProjectShow();
             var message = data.message;
             dimmedModalMessage(message);
-            $('.basic.modal .content .button').on('click',function(){
-              location.reload();
-            });            
+            if (!_this.hasClass('no_reload')) {
+              $('.basic.modal .content .button').on('click',function(){
+                location.reload();
+              }); 
+            };         
           });
         });
         animateProjects();

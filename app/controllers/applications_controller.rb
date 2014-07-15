@@ -69,6 +69,14 @@ class ApplicationsController < ApplicationController
       end
     end
 
+    def professional_edit
+      @application = Application.find_by(id: params[:id])
+
+      if request.xhr?
+        render partial: 'professional_form'
+      end
+    end
+
     def update
       @application = Application.find_by(id: params[:id])
       @application.attributes = application_params
@@ -98,9 +106,17 @@ class ApplicationsController < ApplicationController
             @application.update_attribute(:message, params[:message]) 
             @application.statuses= params[:todo]
             @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just applied, we want the pop up to show up on npo's screen)
-            message = "Application successful!"
+            unless @application.errors.any?
+              message = "Application successful!"
+              successFlag = 1
+              UserMailer.applied_to_project(@application.project.user).deliver
+            end
+          end
+      elsif params[:todo] == 'update_info'
+          @application.update_attribute(:message, params[:application][:message]) 
+          unless @application.errors.any?
+            message = "Message updated."
             successFlag = 1
-            UserMailer.applied_to_project(@application.project.user).deliver
           end
       end 
       @role = current_user.role

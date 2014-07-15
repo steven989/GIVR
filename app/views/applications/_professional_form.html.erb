@@ -1,0 +1,14 @@
+<div class="ui form segment profile_form">
+  <div id="close_project">
+    <%= fa_icon 'times' %>
+  </div>    
+  <%= form_for [@application.project, @application], url: applicant_update_path(@application.project,@application, todo: 'update_info'), :remote => true do |f| %>
+    <div class="field">
+      <p class='section_title'><%= f.label :message, 'Message to the non-profit organization' %></p>
+      <p><%= f.text_area :message, class:'text_area' %></p>
+    </div>
+    <div class="actions">
+      <%= f.submit class: 'submit mini ui givrgreen button' %>
+    </div>
+  <% end %>
+</div>

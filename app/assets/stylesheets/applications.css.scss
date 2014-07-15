@@ -1554,7 +1554,7 @@ body {
       .fa {
         font-size: 2rem;
       }
-      .modify {
+      .admin_edit {
         display: inline-block;
         width: 22%;
         float: right;
@@ -1562,6 +1562,11 @@ body {
         position: relative;
         top :50%;
         margin-top: -1rem;
+        cursor: pointer;
+
+        &:hover {
+          color: #7BBDFC;
+        }
       }
       .delete {
         display: inline-block;

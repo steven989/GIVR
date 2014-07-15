@@ -86,7 +86,9 @@
             <% end %>
         </div>
         <div class="delete"><%= fa_icon 'times' %></div>
-        <div class="modify"><%= fa_icon 'pencil-square-o' %></div>
+        <% if ['apply','view'].include? application.status %>
+        <div class="admin_edit no_reload" href="<%= application_professional_edit_path(application.project, application) %>"><%= fa_icon 'pencil-square-o' %></div>
+        <% end %>
     </div>
 </div>
 
