@@ -1,7 +1,7 @@
 
 <% if role == 'npo' %>
 
-<div class="show_application npo" href="<%= project_application_path(application.project,application) %>">
+<div class="show_application">
     <% if application.notification_view_flag == 'npo' %>
         <div class="ui left red corner label">
             <div class="text">New</div>
@@ -28,6 +28,7 @@
     <div class="application_deets">
         <div class='user'>User: <%= application.user.display_name %></div>
         <div class='application_date'>Application date: <%= application.created_at %></div>
+        <div class='view_application' href="<%= project_application_path(application.project,application) %>">View application details</div>
     </div>
     <div class="user_action">
         <div class="status_change">
@@ -38,6 +39,9 @@
                 <p class='action_button ui tiny givrgreen button'><%= link_to 'Complete', complete_application_path(application.project, application), method: 'GET', class: 'user_action_button_complete_application' %></p>        
             <% end %>
         </div>
+        <% if ['complete'].include? application.status %>
+        <div class="admin_edit no_reload" href="<%= application_user_edit_path(application.project, application) %>"><%= fa_icon 'pencil-square-o' %></div>
+        <% end %>
     </div>
 
 </div>
@@ -80,14 +84,13 @@
             <% if application.status == 'shortlist' %>
                 <div class='action_button ui tiny givrgreen button'><%= link_to 'Apply', applicant_update_path(application.project, application), class: 'user_action_button', data: {todo: 'apply'}, method: 'PUT' %>
                 </div>
-
             <% elsif application.status == 'approve' %>
                 <div class='action_button ui tiny givrgreen button'><%= link_to 'Engage', applicant_update_path(application.project, application), method: 'PUT', data: {todo: 'engage'}, class: 'user_action_button' %></div>
             <% end %>
         </div>
-        <div class="admin_delete" href="<%= project_application_path(application.project,application) %>"><%= fa_icon 'times' %></div>
+        <div class="admin_delete no_reload" href="<%= project_application_path(application.project,application) %>"><%= fa_icon 'times' %></div>
         <% if ['apply','view'].include? application.status %>
-        <div class="admin_edit no_reload" href="<%= application_professional_edit_path(application.project, application) %>"><%= fa_icon 'pencil-square-o' %></div>
+        <div class="admin_edit no_reload" href="<%= application_user_edit_path(application.project, application) %>"><%= fa_icon 'pencil-square-o' %></div>
         <% end %>
     </div>
 </div>

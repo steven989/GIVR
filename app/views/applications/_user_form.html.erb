@@ -1,0 +1,44 @@
+<div class="ui form segment profile_form">
+  <div id="close_project">
+    <%= fa_icon 'times' %>
+  </div>    
+  <%= form_for [@application.project, @application], url: if current_user.is? 'professional'; applicant_update_path(@application.project,@application, todo: 'update_info') elsif current_user.is? 'npo'; creator_update_path(@application.project,@application, todo: 'update_info') end, :remote => true do |f| %>
+    <% if current_user.is? 'professional' %>
+    <div class="field">
+      <p class='section_title'><%= f.label :message, 'Message to the non-profit organization' %></p>
+      <p><%= f.text_area :message, class:'text_area' %></p>
+    </div>
+    <% elsif current_user.is? 'npo'%>
+      <div class="field">
+        <p class='section_title'><%= f.label :hours, "Hours volunteered by #{@application.user.display_name}" %></p>
+        <p><%= f.text_field :hours, class:'text_field' %></p>
+      </div>
+      <div class="field">
+        <p class='section_title'><%= f.label :rating_for_professional, "How would you rate the #{@application.user.display_name}'s performance? (5 is best performance)" %></p>
+        <%= f.select :rating_for_professional, [5,4,3,2,1] %>
+      </div>
+      <div class="i_am_a grouped inline fields">
+      Would you work with <%= @application.user.display_name %> again in the future?
+          <div class="field">
+              <div class="ui radio checkbox">
+                  <%= f.radio_button :work_again, 'yes' %>
+                  <%= f.label :work_again_yes, 'Yes' %>
+              </div>
+          </div>
+          <div class="field">
+              <div class="ui radio checkbox">
+                  <%= f.radio_button :work_again, 'no' %>
+                  <%= f.label :work_again_no, 'No' %>
+              </div>
+          </div>
+      </div>
+      <div class="field">
+        <p class='section_title'><%= f.label :comments_for_professional, "Feedback for #{@application.user.display_name} (This will not be visible to the professional if you chose not to work with him/her again." %></p>
+        <p><%= f.text_area :comments_for_professional, class:'text_area' %></p>
+      </div>
+    <% end %>
+    <div class="actions">
+      <%= f.submit class: 'submit mini ui givrgreen button' %>
+    </div>
+  <% end %>
+</div>

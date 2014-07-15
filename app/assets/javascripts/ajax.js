@@ -69,6 +69,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   function adminDelete() {
     $('.admin_delete').off('click').on('click',function(){
+      var _this = $(this);
       $.ajax({
         url: $(this).attr('href'),
         type: 'DELETE',
@@ -76,9 +77,14 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       }).done(function(data){
         var message = data.message;
         dimmedModalMessage(message);
-        $('.basic.modal .content .button').on('click',function(){
-          location.reload();
-        });           
+        if (_this.hasClass('no_reload')) {
+        console.log(_this.parent().parent())
+        _this.parent().parent().remove();
+        } else {
+          $('.basic.modal .content .button').on('click',function(){
+            location.reload();
+          }); 
+        };        
       })      
     });
   }
@@ -122,7 +128,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   // view more application details
   function applicationDetails() {
-    $('.show_application.npo').off('click').on('click',function(){
+    $('.view_application').off('click').on('click',function(){
       $.ajax({
         url: $(this).attr('href'),
         type: 'GET',
@@ -139,7 +145,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
     });
   }
 
-  // finish project from the user profile
+  // complete an application at the end of an engagement
 
   function finishProjectPrompt() {
     $('.user_action_button_complete_application').off('click').on('click',function(){
@@ -167,6 +173,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             if (data.successFlag == 1) {
               endProjectShow();
               _this.parent().parent().parent().parent().replaceWith(data.replaceWith);
+              admin_edit();
               applicationDetails();
             } else {
             var message = data.message;

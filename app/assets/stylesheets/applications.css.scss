@@ -1454,7 +1454,6 @@ body {
     height:15rem;
     background-color: white;
     border: 1px solid #C9C9C9;
-    cursor: pointer;
 
     &.professional {
       cursor: auto;
@@ -1523,6 +1522,15 @@ body {
       padding: 0.5rem;
       width: 100%;
       color: black;
+
+      .view_application {
+        color: #1400FF;
+        cursor: pointer;
+
+        &:hover {
+          color: #3868FF;
+        }
+      }
     }
 
     .user_action {
@@ -1563,6 +1571,8 @@ body {
         top :50%;
         margin-top: -1rem;
         cursor: pointer;
+        -webkit-transition: color 150ms; /* For Safari 3.1 to 6.0 */
+        transition: color 150ms;
 
         &:hover {
           color: #7BBDFC;
@@ -1577,6 +1587,8 @@ body {
         top :50%;
         margin-top: -1.1rem;
         cursor: pointer;
+        -webkit-transition: color 150ms; /* For Safari 3.1 to 6.0 */
+        transition: color 150ms;
 
         &:hover {
           color: #FF4C4C;

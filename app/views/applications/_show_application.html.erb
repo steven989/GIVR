@@ -42,4 +42,26 @@
     <p class='section_title'>Message from professional</p>
     <p><%= @application.message %></p>
   </div>
+  <% if @application.status == 'complete' %>
+    <div class="field">
+      <div class="ui divider"></div>
+      <p class='section_title'>Hours volunteered</p>
+      <p><%= @application.hours %></p>
+    </div>
+    <div class="field">
+      <div class="ui divider"></div>
+      <p class='section_title'>Rating for <%= @application.user.display_name %></p>
+      <p><%= @application.rating_for_professional %></p>
+    </div>
+    <div class="field">
+      <div class="ui divider"></div>
+      <p class='section_title'>Would work with <%= @application.user.display_name %> again</p>
+      <p><%= @application.work_again %></p>
+    </div>
+    <div class="field">
+      <div class="ui divider"></div>
+      <p class='section_title'>Feedback for <%= @application.user.display_name %></p>
+      <p><%= @application.comments_for_professional %></p>
+    </div>
+  <% end %>
 </div>

@@ -69,11 +69,11 @@ class ApplicationsController < ApplicationController
       end
     end
 
-    def professional_edit
+    def user_edit
       @application = Application.find_by(id: params[:id])
 
       if request.xhr?
-        render partial: 'professional_form'
+        render partial: 'user_form'
       end
     end
 
@@ -149,6 +149,12 @@ class ApplicationsController < ApplicationController
           message = @application.errors.full_messages.join(" ")
           successFlag = 1 if message.blank?
           message = "Application completed!" if message.blank?
+      elsif params[:todo] == 'update_info'
+          @application.update_attributes(complete_application_params)
+          unless @application.errors.any?
+            message = "Information updated."
+            successFlag = 1
+          end
       end
       @role = current_user.role
       respond_to do |format|
@@ -156,7 +162,7 @@ class ApplicationsController < ApplicationController
         format.json {   self.formats = ['html']
               render json: {
                   successFlag: successFlag,
-                  message: message, 
+                  message: message||= "Could not be updated.", 
                   replaceWith: render_to_string(partial: 'applications/application', layout: false, object: @application, locals: {role: @role})
                       } 
           }
