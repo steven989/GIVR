@@ -1568,7 +1568,7 @@ body {
           color: #7BBDFC;
         }
       }
-      .delete {
+      .admin_delete {
         display: inline-block;
         width: 22%;
         float: right;
@@ -1576,6 +1576,11 @@ body {
         position: relative;
         top :50%;
         margin-top: -1.1rem;
+        cursor: pointer;
+
+        &:hover {
+          color: #FF4C4C;
+        }
       }
 
 

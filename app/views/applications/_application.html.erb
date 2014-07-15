@@ -85,7 +85,7 @@
                 <div class='action_button ui tiny givrgreen button'><%= link_to 'Engage', applicant_update_path(application.project, application), method: 'PUT', data: {todo: 'engage'}, class: 'user_action_button' %></div>
             <% end %>
         </div>
-        <div class="delete"><%= fa_icon 'times' %></div>
+        <div class="admin_delete" href="<%= project_application_path(application.project,application) %>"><%= fa_icon 'times' %></div>
         <% if ['apply','view'].include? application.status %>
         <div class="admin_edit no_reload" href="<%= application_professional_edit_path(application.project, application) %>"><%= fa_icon 'pencil-square-o' %></div>
         <% end %>
