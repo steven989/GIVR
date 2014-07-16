@@ -1,6 +1,13 @@
 <% @available_positions = [(project.number_of_positions - project.applications.where("status in ('engage','complete')").length),0].max %>
+<% if loc == 'index' %>
+  <% @link = project_path(project) %>
+  <% @class = 'project_link' %>
+<% elsif loc == 'project' %>
+  <% @link = edit_project_path(project) %>
+  <% @class = 'admin_edit no_reload replace_upon_update' %>
+<% end %>
 
-<%= link_to project_path(project.id), class:"project_link" do %>
+<%= link_to @link, class: @class, data: {projectid: project.id} do %>
   <div class="project_popup" data-projectid="<%= project.id %>" >
     <div class="project_card">
       <% if (Time.now - project.created_at).to_i/(24*60*60) <= 3 %>

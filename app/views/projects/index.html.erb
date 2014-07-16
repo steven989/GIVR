@@ -4,7 +4,7 @@
 <div class="background_div index">
   <%= render 'projects/default_side_bar' %>
   <div class="projects_show">
-    <%= render @projects %>
+    <%= render partial: 'projects/project', collection: @projects, locals: {loc: 'index'} %>
   </div>
   
 

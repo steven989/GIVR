@@ -25,6 +25,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   function admin_edit() {
     $('.admin_edit, .admin_create').off('click').on('click',function(){
+      event.preventDefault();
       _this = $(this)
       $.ajax({
         url: $(this).attr('href'),
@@ -42,6 +43,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
           endProjectShow();
           endView();
         });
+        adminDelete();
         $('.profile_form .submit').off('click').on('click',function(){
           event.preventDefault();
           $.ajax({
@@ -50,7 +52,10 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             dataType: 'json',
             data: $(this).parent().parent().serialize()
           }).done(function(data){
-            endProjectShow();
+            if(_this.hasClass('replace_upon_update')){
+              _this.html(data.replaceWith);
+            }
+            if (data.successFlag != 0) {endProjectShow()};
             var message = data.message;
             dimmedModalMessage(message);
             if (!_this.hasClass('no_reload')) {
@@ -75,11 +80,15 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         type: 'DELETE',
         dataType: 'json'
       }).done(function(data){
+        if (data.successFlag != 0) {endProjectShow()};
         var message = data.message;
         dimmedModalMessage(message);
         if (_this.hasClass('no_reload')) {
-        console.log(_this.parent().parent())
-        _this.parent().parent().remove();
+          if ((_this).hasClass('application')) {
+            _this.parent().parent().remove(); // this is for the removal of application card in the profile view once deleted
+          } else if ((_this).hasClass('project')) {
+            $('a.admin_edit').filter(function(){return $(this).data('projectid') == _this.data('projectid')}).remove(); // this is for the removal of project card in the profile view once deleted
+          }
         } else {
           $('.basic.modal .content .button').on('click',function(){
             location.reload();

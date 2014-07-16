@@ -326,7 +326,7 @@
         </div>
 
         <div class="profile_view_content" id='projects'>
-              <%= render partial: 'projects/project', collection: @projects %>
+              <%= render partial: 'projects/project', collection: @projects, locals: {loc: 'project'} %>
         </div>
 
         <div class="profile_view_content" id='applications'>
@@ -337,7 +337,7 @@
           <div class="profile_view_content" id='shortlist'>
               <div id="error_messages">
               </div>
-              <%= render partial: 'projects/project', collection: @shortlists %>
+              <%= render partial: 'projects/project', collection: @shortlists, locals: {loc: 'shortlist'} %>
           </div>
         <% end %>
         

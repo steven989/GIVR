@@ -82,6 +82,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
 
     if request.xhr?
+      @edit_project_flag = true
       render partial: 'form'
     end
   end
@@ -104,11 +105,22 @@ class ProjectsController < ApplicationController
     else
       @project.update_attribute(:user_id,current_user.id)
     end
-    message = "Project successfully updated."
+    
+    if @project.errors.any?
+      message = @project.errors.full_messages.join(" ")
+      successFlag = 0
+    else
+      message = "Project successfully updated."
+      successFlag = 1
+    end
 
     respond_to do |format|
-      format.json {
-        render json: {message: message}
+      format.json { self.formats = ['html']
+        render json: {
+          replaceWith: render_to_string(partial: 'projects/project', object: @project, locals: {loc: 'project'}),
+          successFlag: successFlag,
+          message: message
+        }
       }
     end
   end

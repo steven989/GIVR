@@ -1,6 +1,11 @@
 <div class='error_messages'>
 </div>
 <div class="ui form segment profile_form">
+  <% if @edit_project_flag %>
+    <div id="close_project">
+      <%= fa_icon 'times' %>
+    </div>  
+  <% end %>
   <%= form_for @project, :remote => true do |f| %>
     <div class="field">
       <p class='section_title'><%= f.label :title, 'Project name' %></p>
@@ -58,6 +63,9 @@
     
     <div class="actions">
       <%= f.submit class: 'submit mini ui givrgreen button' %>
+      <% if @edit_project_flag %>
+        <div class='mini ui red button admin_delete no_reload project' href="<%= project_path(@project) %>" data-projectid="<%= @project.id %>">Delete project</div>  
+      <% end %>
     </div>
   <% end %>
 </div>
