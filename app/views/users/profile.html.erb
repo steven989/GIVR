@@ -361,6 +361,14 @@
                   <p><%= f.text_field :contact_last_name, class: 'text_field' %></p>
                 </div>
                 <div class='field'>
+                  <p class='section_title'><%= f.label :org_name, "Company name" %></p>
+                  <p><%= f.text_field :org_name, class: 'text_field' %></p>
+                </div>
+                <div class='field' <%= if @user.org_name.blank?; "style=display:none" end %> id="user_emp_id_form_section_container">
+                  <p class='section_title'><%= f.label :employee_id, "Employee ID (if applicable)" %></p>
+                  <p><%= f.text_field :employee_id, class: 'text_field' %></p>
+                </div>
+                <div class='field'>
                   <p class='section_title'><%= f.label :email, "Email:" %></p>
                   <p><%= f.text_field :email, class: 'text_field' %></p>
                 </div>

@@ -170,9 +170,9 @@ class UsersController < ApplicationController
         @role = current_user.role
         if @role == 'npo'
             @projects = current_user.submitted_projects.order('created_at DESC')
-            @applicationss = current_user.applications.order('created_at DESC').where("applications.status not like 'shortlist'")
+            @applicationss = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status not like 'shortlist'")
         elsif @role == 'professional'
-            @applicationss = current_user.made_applications.order('created_at DESC').where("applications.status in ('apply','approve', 'decline', 'engage','complete','view')")
+            @applicationss = current_user.made_applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','approve', 'decline', 'engage','complete','view')")
             @shortlists = current_user.made_applications.order('created_at DESC').where("applications.status in ('shortlist')").map {|application| application.project}
             @completed_applications = current_user.made_applications.order('created_at DESC').where("applications.status in ('complete')")
             @number_completed_applications = @completed_applications.length
@@ -253,7 +253,7 @@ class UsersController < ApplicationController
     end
 
     def professional_params
-        params.require(:user).permit(:email,:contact_first_name,:contact_last_name,:phone,:years_of_experience,:website)
+        params.require(:user).permit(:email,:contact_first_name,:contact_last_name,:phone,:years_of_experience,:website, :org_name, :employee_id)
     end
 
     def npo_params

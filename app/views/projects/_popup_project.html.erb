@@ -76,7 +76,7 @@
           <% elsif @already_applied %>
             <div class="ui tiny disabled button">Shortlist</div>
           <% else %>
-            <div class="do_project ui tiny blue button" href="<%= project_applications_path(@project, todo: 'shortlist') %>" data-method="POST">Shortlist</div>
+            <div class="do_project application_submit ui tiny blue button" href="<%= project_applications_path(@project, todo: 'shortlist') %>" data-method="POST" id="application_shortlist">Shortlist</div>
           <% end %>
         <% end %>
       <% else %> 

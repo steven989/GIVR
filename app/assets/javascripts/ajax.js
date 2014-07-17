@@ -279,7 +279,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       console.log(e);
     }
 
-            $('#application_submit').off('click').on('click',function(){
+            $('#application_submit, #application_shortlist').off('click').on('click',function(){
               event.stopImmediatePropagation(); //not sure why preventDefault does not work here
               $(this).html("<i class='fa fa-circle-o-notch do_project spinner'></i>");
               _this = $(this);

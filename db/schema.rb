@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712220451) do
+ActiveRecord::Schema.define(version: 20140717232732) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140712220451) do
     t.integer  "rating_for_professional"
     t.string   "work_again"
     t.text     "comments_for_professional"
+    t.datetime "application_date"
   end
 
   create_table "authentications", force: true do |t|
@@ -152,6 +153,7 @@ ActiveRecord::Schema.define(version: 20140712220451) do
     t.integer  "organization_size"
     t.string   "resume_quick_look"
     t.text     "description"
+    t.string   "employee_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

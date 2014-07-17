@@ -25,7 +25,21 @@ $('document').ready(function() {
     landingPageScroll();
     landingPageScrollMouseover();
     showDataTable();
+    showHidePartForm();
 });
+
+// in the professional information edit, only show employee ID if the organization name is filled out
+
+function showHidePartForm() {
+    $('#user_org_name').off('input change').on('input change',function(){
+        console.log($(this))
+        if ($(this).val() == "") {
+            $('#user_emp_id_form_section_container').slideUp(135);
+        } else {
+            $('#user_emp_id_form_section_container').slideDown(135);
+        };
+    });
+}
 
 // show JQuery DataTable
 

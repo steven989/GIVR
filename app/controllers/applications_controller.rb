@@ -41,6 +41,7 @@ class ApplicationsController < ApplicationController
          @application.statuses= status
          if status == 'apply'
             @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just applied, we want the pop up to show up on npo's screen)
+            @application.update_attribute(:application_date, DateTime.now)
             UserMailer.applied_to_project(@project.user).deliver
          end
          format.json {render json: {
@@ -101,12 +102,14 @@ class ApplicationsController < ApplicationController
       elsif params[:todo] == 'apply'
           @application.cannot_apply_to_filled_projects  #call the custom validation
           @application.professional_cannot_apply_twice_to_same_project #call the custom validation
+          @application.message = params[:message]
           @application.must_include_message #call the custom validation
           unless @application.errors.any?
-            @application.update_attribute(:message, params[:message]) 
-            @application.statuses= params[:todo]
-            @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just applied, we want the pop up to show up on npo's screen)
+            @application.save
             unless @application.errors.any?
+              @application.statuses= params[:todo]
+              @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just applied, we want the pop up to show up on npo's screen)
+              @application.update_attribute(:application_date, DateTime.now)
               message = "Application successful!"
               successFlag = 1
               UserMailer.applied_to_project(@application.project.user).deliver
