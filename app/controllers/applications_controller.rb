@@ -206,7 +206,7 @@ class ApplicationsController < ApplicationController
     private
 
     def application_params
-      params.require(:application).permit(:project_id,:user_id,:status,:notification_view_flag,:message)
+      params.require(:application).permit(:project_id,:user_id,:status,:notification_view_flag,:message,:hours,:rating_for_professional,:work_again,:comments_for_professional)
     end
 
     def complete_application_params
