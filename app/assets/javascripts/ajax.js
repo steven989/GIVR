@@ -103,7 +103,11 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   function subscribeToMailchimp() {
     $('.subscribe').off('click').on('click',function(){
       _this = $(this);
-      event.preventDefault();
+      if(event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      };
       if ($(this).hasClass('disabled')) 
         {return false} else {
           $(this).html("<i class='fa fa-circle-o-notch spinner'></i>");
