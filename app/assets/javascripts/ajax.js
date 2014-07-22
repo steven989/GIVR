@@ -231,12 +231,15 @@ $(window).on('beforeunload',function(){     // navigating away from a page
     $('.user_action_button').off('click').on('click',function(){
     event.stopImmediatePropagation(); //not sure why preventDefault does not work here
     var _this = $(this);
+    var _this_value = $(this).html();
+    $(this).html("<i class='fa fa-circle-o-notch do_project spinner' style='font-size: 0.9rem;'></i>");
     $.ajax({
       url: $(this).attr('href'),
       type: 'PUT',
       dataType: 'json',
       data: {todo: $(this).data('todo')}
     }).done(function(data){
+      _this.html(_this_value);
       _this.parent().parent().parent().parent().replaceWith(data.replaceWith);
       $('#error_messages').html(data.alertMessage);
       triggerApproval();

@@ -40,8 +40,10 @@
             <% end %>
         </div>
         <% if ['complete'].include? application.status %>
-        <div class="admin_edit no_reload" href="<%= application_user_edit_path(application.project, application) %>"><%= fa_icon 'pencil-square-o' %></div>
-        <% end %>
+            <div class="modify">
+                <div class="admin_edit no_reload" href="<%= application_user_edit_path(application.project, application) %>"><%= fa_icon 'pencil-square-o' %></div>
+            </div>
+        <% end %>            
     </div>
 
 </div>
@@ -88,10 +90,13 @@
                 <div class='action_button ui tiny givrgreen button'><%= link_to 'Engage', applicant_update_path(application.project, application), method: 'PUT', data: {todo: 'engage'}, class: 'user_action_button' %></div>
             <% end %>
         </div>
-        <div class="admin_delete no_reload application" href="<%= project_application_path(application.project,application) %>"><%= fa_icon 'times' %></div>
-        <% if ['apply','view'].include? application.status %>
-        <div class="admin_edit no_reload" href="<%= application_user_edit_path(application.project, application) %>"><%= fa_icon 'pencil-square-o' %></div>
-        <% end %>
+        <div class="modify">
+            <div class="admin_delete no_reload application" href="<%= project_application_path(application.project,application) %>"><%= fa_icon 'times' %></div>
+            <% if ['apply','view'].include? application.status %>
+            <div class="admin_edit no_reload" href="<%= application_user_edit_path(application.project, application) %>"><%= fa_icon 'pencil-square-o' %></div>
+            <% end %>            
+        </div>
+
     </div>
 </div>
 

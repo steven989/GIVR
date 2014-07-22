@@ -1543,23 +1543,28 @@ body {
     }
 
     .user_action {
+      box-sizing:border-box;
+      -moz-box-sizing:border-box; /* Firefox */ 
+      margin-bottom: 0.5rem;
       height: 2rem;
       position: absolute;
       bottom: 0;
       width: 100%;
-      padding: 0.5rem;
+      padding: 0rem 0.5rem 0.5rem 0.5rem;
 
       .status_change {
         box-sizing:border-box;
         -moz-box-sizing:border-box; /* Firefox */     
         display: inline-block;
         height: 2rem;
-        min-width: 50%;
+        min-width: 100%;
         float: left;
 
         .action_button {
+          box-sizing:border-box;
+          -moz-box-sizing:border-box; /* Firefox */ 
           display: inline-block;
-          min-width: 45.5%;
+          min-width: 48.5%;
         }
 
         a {
@@ -1571,6 +1576,19 @@ body {
       .fa {
         font-size: 2rem;
       }
+
+      .modify {
+        box-sizing:border-box;
+        -moz-box-sizing:border-box; /* Firefox */     
+        display: inline-block;
+        height: 2rem;
+        min-width: 50%;
+        float: right;
+        right: 0%;
+        position: absolute;
+        padding-right: 0.5rem;
+      }
+
       .admin_edit {
         display: inline-block;
         width: 22%;
@@ -1578,7 +1596,7 @@ body {
         color: #4E97DB;
         position: relative;
         top :50%;
-        margin-top: -1rem;
+        margin: -1rem 1rem 0rem 0.5rem;
         cursor: pointer;
         -webkit-transition: color 150ms; /* For Safari 3.1 to 6.0 */
         transition: color 150ms;
@@ -1594,7 +1612,7 @@ body {
         color: #E54A4A;
         position: relative;
         top :50%;
-        margin-top: -1.1rem;
+        margin: -1.1rem 0.5rem 0rem 0.5rem;
         cursor: pointer;
         -webkit-transition: color 150ms; /* For Safari 3.1 to 6.0 */
         transition: color 150ms;
