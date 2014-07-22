@@ -172,12 +172,13 @@ class UsersController < ApplicationController
             @projects = current_user.submitted_projects.order('created_at DESC')
             @applicationss = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status not like 'shortlist'")
         elsif @role == 'professional'
-            @applicationss = current_user.made_applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','approve', 'decline', 'engage','complete','view')")
+            @applicationss = current_user.made_applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','approve', 'decline','view')")
             @shortlists = current_user.made_applications.order('created_at DESC').where("applications.status in ('shortlist')").map {|application| application.project}
-            @completed_applications = current_user.made_applications.order('created_at DESC').where("applications.status in ('complete')")
+            @completed_applications = current_user.made_applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('complete')")
             @number_completed_applications = @completed_applications.length
             @projects = @completed_applications.map {|application| application.project}
             @points = current_user.points
+            @in_progress_applications = current_user.made_applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('engage')")
         elsif @role == 'admin'
             @projects = Project.all.order('created_at DESC')
                 @project_count = Project.count

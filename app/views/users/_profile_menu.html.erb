@@ -2,14 +2,16 @@
     <div class="user_options_menu hidden">
         <div class="ui secondary vertical menu">
             <% unless @abridged_menu %>
-                <%= link_to 'Dashboard',  user_profile_path+'#summary', class: 'item' %>
+                <%= link_to 'My summary',  user_profile_path+'#summary', class: 'item' %>
+                <div class="ui fitted inverted divider"></div>
+                <%= link_to 'Shortlisted projects', user_profile_path+'#shortlist', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
                 <%= link_to user_profile_path+'#applications', class: 'item' do %>
                 My applications
                 <div class="notification_count ui small red label <%= "hidden" if @notification_count.nil? || @notification_count == 0 %>"><%= @notification_count %></div>
                 <% end %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'Shortlisted projects', user_profile_path+'#shortlist', class: 'item' %>
+                <%= link_to 'In-progress projects', user_profile_path+'#in_progress', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
                 <%= link_to 'Completed projects', user_profile_path+'#projects', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>

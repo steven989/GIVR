@@ -5,6 +5,9 @@
 <% elsif loc == 'project' %>
   <% @link = edit_project_path(project) %>
   <% @class = 'admin_edit no_reload replace_upon_update' %>
+<% elsif loc == 'shortlist' %>
+  <% @link = project_path(project) %>
+  <% @class = 'project_link shortlist' %>
 <% end %>
 
 <%= link_to @link, class: @class, data: {projectid: project.id} do %>

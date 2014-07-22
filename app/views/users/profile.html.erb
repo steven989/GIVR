@@ -290,25 +290,42 @@
                     </p>
                   </div>
                   <div class="ui fitted inverted divider"></div>
-                  <div class='profile_view_button link item' id='summary'>Dashboard</div>
+                  <div class='profile_view_button link item' id='summary'>My summary</div>
+                  <% if @user.role == 'professional' %>   
+                          <div class="ui fitted inverted divider"></div>             
+                          <div class='profile_view_button link item' id='shortlist'>Shortlisted projects</div>                  
+                  <% end %>
                   <div class="ui fitted inverted divider"></div>
-                  <div class='profile_view_button link item' id='applications' data-readapp = '<%= read_applications_path %>'>Applications
+                  <div class='profile_view_button link item' id='applications' data-readapp = '<%= read_applications_path %>'>
+                    <% if @user.is? 'professional' %>
+                      My applications
+                    <% elsif @user.is? 'npo' %>
+                      Project applications 
+                    <% end %>
                   <div class="notification_count ui small red label <%= "hidden" if @notification_count.nil? || @notification_count == 0 %>"><%= @notification_count %></div>
                   </div>
                   <div class="ui fitted inverted divider"></div>
-                  <div class='profile_view_button link item' id='projects'>Projects</div>              
-
-              <% if @user.role == 'professional' %>   
-                      <div class="ui fitted inverted divider"></div>             
-                      <div class='profile_view_button link item' id='shortlist'>Shortlisted projects</div>                  
-              <% end %>
-
+                  <div class='profile_view_button link item' id='in_progress'>
+                  <% if @user.is? 'professional' %>
+                    In-progress projects
+                  <% elsif @user.is? 'npo' %>
+                    Projects in progress
+                  <% end %>
+                  </div>    
+                  <div class="ui fitted inverted divider"></div>
+                  <div class='profile_view_button link item' id='projects'>
+                  <% if @user.is? 'professional' %>
+                    Completed projects
+                  <% elsif @user.is? 'npo' %>
+                    Projects
+                  <% end %>
+                  </div>              
               <% if @user.role == 'npo' %>
                     <div class="ui fitted inverted divider"></div>
                     <div class="profile_view_button link item" id="add-new">Add new project</div>
               <% end %>
                 <div class="ui fitted inverted divider"></div>
-                <div class='profile_view_button link item' id='settings'>Settings</div>
+                <div class='profile_view_button link item' id='settings'>Edit my info</div>
           </div>
         </div>
     </div>
@@ -326,7 +343,7 @@
         </div>
 
         <div class="profile_view_content" id='projects'>
-              <%= render partial: 'projects/project', collection: @projects, locals: {loc: 'project'} %>
+              <%= render partial: 'applications/application', collection: @completed_applications, locals: {role: @role} %>
         </div>
 
         <div class="profile_view_content" id='applications'>
@@ -339,6 +356,9 @@
               </div>
               <%= render partial: 'projects/project', collection: @shortlists, locals: {loc: 'shortlist'} %>
           </div>
+        <div class="profile_view_content" id='in_progress'>
+            <%= render partial: 'applications/application', collection: @in_progress_applications, locals: {role: @role} %>
+        </div>
         <% end %>
         
         <% if @user.role == 'npo' %>
@@ -499,3 +519,4 @@
 
 <div class="edit_info_popup"></div>
 <div class="projects_overlay"></div>
+<div class="projects_detail"></div>

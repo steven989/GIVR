@@ -451,10 +451,16 @@ function configureDropzone() {
 
 // This is used to animate the show project details div when we click on it on the marekt place
 
-function animateProjects() {
+function animateProjects(control) {
     $('.projects_overlay').fadeIn('fast');
-    $('.projects_detail').fadeIn('fast');
-    $('.edit_info_popup').fadeIn('fast');    
+    if (control == 1) {
+        $('.projects_detail').fadeIn('fast');
+        $('.edit_info_popup').fadeIn('fast'); 
+    } else if (control == 2) {
+        $('.projects_detail').fadeIn('fast');
+    } else if (control == 3) {
+        $('.edit_info_popup').fadeIn('fast'); 
+    };
 }
 
 

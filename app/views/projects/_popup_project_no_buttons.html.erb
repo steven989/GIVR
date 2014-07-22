@@ -1,0 +1,48 @@
+<div class="ui form segment profile_form">
+  <h2>Project details</h2>
+  <div class="ui divider"></div>
+  <div id="close_project">
+    <%= fa_icon 'times' %>
+  </div> 
+  <div class="field">
+    <p class='section_title'>Project name</p>
+    <p><%= @project.title %></p>
+    <div class="ui divider"></div>
+  </div>
+  <div class="field">
+    <p class='section_title'>Organization</p>
+    <p><%= @project.user.org_name %></p>
+    <div class="ui divider"></div>
+  </div>
+  <div class="field">
+    <p class='section_title'>Description</p>
+    <p><%= @project.description %></p>
+    <div class="ui divider"></div>
+  </div>
+  <div class="field">
+    <p class='section_title'>Why we need this project</p>
+    <p><%= @project.why_we_need_this %></p>
+    <div class="ui divider"></div>
+  </div>
+  <div class="field">
+    <p class='section_title'>Deliverable</p>
+    <p><%= @project.deliverable %></p>
+    <div class="ui divider"></div>
+  </div>
+  <div class="field">
+    <p class='section_title'>Day-to-day manager</p>
+    <p><%= @project.overseer %></p>
+    <div class="ui divider"></div>
+  </div>
+  <div class="field">
+    <p class='section_title'>Requirements</p>
+    <p><%= @project.requirements %></p>
+    <div class="ui divider"></div>
+  </div>
+  <% if @project.perks %>
+  <div class="field">
+    <p class='section_title'>Perks</p>
+    <p><%= @project.perks %></p>
+  </div>
+  <% end %>
+</div>

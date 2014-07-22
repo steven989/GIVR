@@ -65,7 +65,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             };         
           });
         });
-        animateProjects();
+        animateProjects(3);
       });
     });
   }
@@ -142,6 +142,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // view more application details
   function applicationDetails() {
     $('.view_application').off('click').on('click',function(){
+      event.preventDefault();
       $.ajax({
         url: $(this).attr('href'),
         type: 'GET',
@@ -153,7 +154,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
           endProjectShow();
           endView();
         });
-        animateProjects();
+        animateProjects(3);
       });      
     });
   }
@@ -194,7 +195,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             };            
           });
         });
-        animateProjects();
+        animateProjects(3);
       });
     return false  //not sure why preventDefault does not work here
     });
@@ -263,11 +264,11 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         type: 'GET',
         dataType: 'script',
         data: { view: $(this).data('view'), browser_info: browser_info}
-      }).always(function(){
+      }).done(function(){
         Dropzone.discover();
         buttonsInsideShowProject();
         toggleApplicationForm();
-        animateProjects.call(_this);
+        animateProjects(2);
         removeUpload();
       });        
     });

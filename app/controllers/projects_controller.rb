@@ -41,7 +41,9 @@ class ProjectsController < ApplicationController
     @view.save # this is to track the project views
 
     respond_to do |format|
-      format.html
+      format.html {
+        render partial: 'popup_project_no_buttons'
+      }
       format.js
     end
   end

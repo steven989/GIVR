@@ -1514,6 +1514,15 @@ body {
       padding: 0.5rem;
       background-color: $light-gray;
       color: #303030;
+
+      a {
+        text-decoration: none;
+        color: black;
+
+        &:hover {
+          color: $text-color;
+        }
+      }
     }
 
     .application_deets {
