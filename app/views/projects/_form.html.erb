@@ -62,7 +62,7 @@
     </div>
     
     <div class="actions">
-      <%= f.submit class: 'submit mini ui givrgreen button' %>
+      <%= f.submit class: "#{@edit_project_flag ? 'submit ' : 'create_project ' }mini ui givrgreen button" %>
       <% if @edit_project_flag %>
         <div class='mini ui red button admin_delete no_reload project' href="<%= project_path(@project) %>" data-projectid="<%= @project.id %>">Delete project</div>  
       <% end %>

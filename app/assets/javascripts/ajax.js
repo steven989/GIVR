@@ -15,11 +15,34 @@ $(function() {                  // document ready
   adminDelete();
   finishProjectPrompt();
   applicationDetails();
+  create_project();
 });
 
 $(window).on('beforeunload',function(){     // navigating away from a page
   endView();  // indicate the end of a particular project if user navigates away
 });
+
+  // create project
+
+  function create_project() {
+    $('.create_project').off('click').on('click',function(){
+      event.preventDefault();
+      $.ajax({
+        url: $(this).parent().parent().attr('action'),
+        type: 'POST',
+        dataType: 'json',
+        data: $(this).parent().parent().serialize()
+      }).done(function(data){
+        var message = data.message;
+        dimmedModalMessage(message);
+          if (data.successFlag == 1) {
+          $('.basic.modal .content .button').on('click',function(){
+          location.reload();
+          }); 
+        };
+      });
+    });
+  }
 
   // admin edit
 

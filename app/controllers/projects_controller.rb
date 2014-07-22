@@ -68,14 +68,12 @@ class ProjectsController < ApplicationController
         else
           @project.update_attribute(:user_id,current_user.id)
         end
-        format.js { render :js => 'alert("Your project was saved.")'}
-        format.html {redirect_to user_profile_path, notice: message}
-        format.json {render json: {message: message}}
+        format.html {redirect_to user_profile_path+'#add-new', notice: message}
+        format.json {render json: {message: message, successFlag: 1}}
       else
         message = @project.errors.full_messages.join(" ")
-        format.js { render :js => 'alert("Your project was saved!")'}
-        format.html {render :new}
-        format.json {render json: {message: message}}
+        format.html {redirect_to user_profile_path+'#add-new', notice: message}
+        format.json {render json: {message: message, successFlag: 0}}
       end
     end
   end
