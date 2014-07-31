@@ -108,7 +108,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         dimmedModalMessage(message);
         if (_this.hasClass('no_reload')) {
           if ((_this).hasClass('application')) {
-            _this.parent().parent().remove(); // this is for the removal of application card in the profile view once deleted
+            _this.parent().parent().parent().remove(); // this is for the removal of application card in the profile view once deleted
           } else if ((_this).hasClass('project')) {
             $('a.admin_edit').filter(function(){return $(this).data('projectid') == _this.data('projectid')}).remove(); // this is for the removal of project card in the profile view once deleted
           }
