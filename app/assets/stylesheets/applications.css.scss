@@ -1442,6 +1442,19 @@ body {
         background-color: $primary-color;
       }
     }
+
+    #summary {
+      .summary_status {
+        margin: 0.5rem 0rem 0.5rem 0rem;
+
+        span {
+          display: inline-block;
+          font-size: 3rem;
+          min-width: 6rem;
+          text-align: center;
+        }
+      }
+    }
   }
 
 

@@ -169,18 +169,25 @@ class UsersController < ApplicationController
         @user = current_user
         @role = current_user.role
         if @role == 'npo'
-            @projects = current_user.submitted_projects.order('created_at DESC')
+            @projects = current_user.submitted_projects.order('created_at DESC') #need to update
             @applicationss = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','view','approve','decline')")
             @in_progress_applications = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('engage')")
             @completed_applications = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('complete')")
+            @active_project_count = current_user.submitted_projects.where("projects.status like 'active'").length
+            @active_application_count = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','view','approve')").length
+            @in_progress_count = @in_progress_applications.length 
+            @completed_count = @completed_applications.length
+            @hours_given = current_user.applications.sum('hours')
         elsif @role == 'professional'
             @applicationss = current_user.made_applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','view','approve','decline')")
             @shortlists = current_user.made_applications.order('created_at DESC').where("applications.status in ('shortlist')").map {|application| application.project}
             @completed_applications = current_user.made_applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('complete')")
-            @number_completed_applications = @completed_applications.length
             @projects = @completed_applications.map {|application| application.project}
-            @points = current_user.points
             @in_progress_applications = current_user.made_applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('engage')")
+            @active_application_count = current_user.made_applications.where("applications.status in ('apply','view','approve')").length
+            @in_progress_count = @in_progress_applications.length
+            @number_completed_applications = @completed_applications.length
+            @hours_earned = @completed_applications.sum('hours')
         elsif @role == 'admin'
             @projects = Project.all.order('created_at DESC')
                 @project_count = Project.count

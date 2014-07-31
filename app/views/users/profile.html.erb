@@ -338,13 +338,46 @@
     <div class="profile_view">
         <div class="profile_view_content" id='summary'>
           <% if @user.role == 'professional' %>
-          <div class="points">
-            <p><%= "You have completed #{pluralize(@number_completed_applications, 'project')} to date and earned #{pluralize(@points, 'point')}." %></p>
+          <div class="summary_status">
+            You have
+          </div>
+          <div class="ui divider"></div>
+          <div class="summary_status">
+            <span><%= @active_application_count %></span> active applications
+          </div>
+          <div class="summary_status">
+            <span><%= @in_progress_count %></span> in-progress projects
+          </div>
+          <div class="summary_status">
+            <span><%= @number_completed_applications %></span> completed projects
+          </div>
+          <div class="summary_status">
+            <span><%= @hours_earned %></span> completed volunteer hours
           </div>
           <% elsif @user.role == 'npo' %>
-            <div class='project_view_container'>
-              <%= render 'project_view' %>
-            </div>
+          <div class="summary_status">
+            You have
+          </div>
+          <div class="ui divider"></div>
+          <div class="summary_status">
+            <span><%= @active_project_count %></span> active projects
+          </div>
+          
+          <div class="summary_status">
+            <span><%= @active_application_count %></span> project applications
+          </div>
+          
+          <div class="summary_status">
+            <span><%= @in_progress_count %></span> in-progress projects
+          </div>
+          
+          <div class="summary_status">
+            <span><%= @completed_count %></span> completed projects
+          </div>
+          
+          <div class="summary_status">
+            <span><%= @hours_given %></span> completed volunteer hours
+          </div>
           <% end %>
         </div>
 
