@@ -4,10 +4,22 @@
   </div>    
   <%= form_for [@application.project, @application], url: if current_user.is? 'professional'; applicant_update_path(@application.project,@application, todo: 'update_info') elsif current_user.is? 'npo'; creator_update_path(@application.project,@application, todo: 'update_info') end, :remote => true do |f| %>
     <% if current_user.is? 'professional' %>
-    <div class="field">
-      <p class='section_title'><%= f.label :message, 'Message to the non-profit organization' %></p>
-      <p><%= f.text_area :message, class:'text_area' %></p>
-    </div>
+        <div class="field">
+          <%= f.label 'est_completion_date', "Estimated completion date" %>
+          <%= f.text_field 'est_completion_date' %>
+        </div>
+        <div class="field">
+          <%= f.label 'message', "Add a message" %>
+          <%= f.text_area 'message'%>
+        </div>
+        <div class="field">
+          <%= f.label 'open_questions', "Additional questions for the not-for-profit organization" %>
+          <%= f.text_area 'open_questions' %>
+        </div>
+        <div class="field">
+          <%= f.label 'required_resources', "Resource required" %>
+          <%= f.text_area 'required_resources' %>
+        </div>
     <% elsif current_user.is? 'npo'%>
       <div class="field">
         <p class='section_title'><%= f.label :hours, "Hours volunteered by #{@application.user.display_name}" %></p>

@@ -92,11 +92,24 @@
       <div class="project_header">
           <h1><%= project.title %> for <span class='link_to_profile'><%= link_to project.user.org_name, organization_profile_path(project.user.id) %></span></h1>
       </div>
+      <div class="ui divider"></div>
       <div class="ui form">
-      <p class="section_title">Add a message</p>
       <%= form_tag do %>
         <div class="field">
-          <%= text_area_tag 'message', nil, placeholder: 'Put a blurb here on why you want to apply to the project.' %>
+          <%= label_tag 'est_completion_date', "Estimated completion date" %>
+          <%= text_field_tag 'est_completion_date' %>
+        </div>
+        <div class="field">
+          <%= label_tag 'message', "Add a message" %>
+          <%= text_area_tag 'message'%>
+        </div>
+        <div class="field">
+          <%= label_tag 'open_questions', "Additional questions for the not-for-profit organization" %>
+          <%= text_area_tag 'open_questions' %>
+        </div>
+        <div class="field">
+          <%= label_tag 'required_resources', "Resource required" %>
+          <%= text_area_tag 'required_resources' %>
         </div>
       <% end %>
       </div>

@@ -93,6 +93,9 @@ gem 'mailchimp-api'
 #15) New relic addon
 gem 'newrelic_rpm'
 
+#16) jQuery UI
+gem 'jquery-ui-rails'
+
 group :production do
   gem "rails_12factor"
 end

@@ -52,6 +52,6 @@
 
   <div class="org_projects">
       <h1>Our active projects</h1><br>
-      <%= render @projects %>
+      <%= render partial: 'projects/project', collection: @projects, locals: {loc: 'index'} %>
   </div>
 </div>

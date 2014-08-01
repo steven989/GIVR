@@ -39,8 +39,23 @@
     <div class="ui divider"></div>
   </div>
   <div class="field">
+    <p class='section_title'>Estimated completion date</p>
+    <p><%= @application.est_completion_date %></p>
+  </div>
+  <div class="ui divider"></div>
+  <div class="field">
     <p class='section_title'>Message from professional</p>
     <p><%= @application.message %></p>
+  </div>
+  <div class="ui divider"></div>
+  <div class="field">
+    <p class='section_title'>Open questions</p>
+    <p><%= @application.open_questions %></p>
+  </div>
+  <div class="ui divider"></div>
+  <div class="field">
+    <p class='section_title'>Resources required</p>
+    <p><%= @application.required_resources %></p>
   </div>
   <% if @application.status == 'complete' %>
     <div class="field">

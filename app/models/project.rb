@@ -22,6 +22,7 @@ class Project < ActiveRecord::Base
   validates :number_of_positions, numericality: { only_integer: true}
 
 
+
   def self.count(status=nil)
         if status.nil?
             Project.all.length
@@ -37,9 +38,16 @@ class Project < ActiveRecord::Base
     end
   end 
 
-  def attempt_close
-    self.statuses= 'filled' if self.applications.where("status in ('engage','complete')").length >= self.number_of_positions
+  def self.marketplace_status_update
+    take_count = Project.where("status not in ('under review', 'complete')").length - 100
+    Project.where("status not in ('under review', 'complete')").order('approval_date ASC').take(take_count).each do |project|
+      project.statuses= 'off market' if project.statuses != 'off market'
+    end
   end
+
+  # def attempt_close
+  #   self.statuses= 'filled' if self.applications.where("status in ('engage','complete')").length >= self.number_of_positions
+  # end
 
 
 end

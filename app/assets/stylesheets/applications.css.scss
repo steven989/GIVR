@@ -1134,7 +1134,7 @@ body {
   position:relative;
   top: 0;
 
-  .date_created, .num_pos, .cause, .location {
+  .date_created, .num_pos, .cause, .location, .status, .views {
     font-size: 1rem;
     display:block;
     width: 100%;
@@ -1243,6 +1243,8 @@ body {
     top: 2rem;
     left: 2.5%;
     width: 95%;
+    height: 25rem;
+    overflow: scroll;
 
   .project_header {
     height: 3rem;
@@ -1501,7 +1503,7 @@ body {
       border: 1px solid #C48D69;
     }
 
-    .complete {
+    .complete, .terminated {
       color: #6E81CA;
       background-color: white;
       border: 1px solid #6E81CA;

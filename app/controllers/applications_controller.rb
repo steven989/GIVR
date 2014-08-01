@@ -15,7 +15,8 @@ class ApplicationsController < ApplicationController
   def create
 
     @project = Project.find_by(id: params[:project_id])
-    @application = @project.applications.new(user_id: current_user.id, message: params[:message])
+    params[:user_id] = current_user.id
+    @application = @project.applications.new(application_creation_params)
     if params[:todo] == 'apply' 
       success_message = 'Application successful!'
       fail_message = "Application could not be completed."
@@ -96,8 +97,8 @@ class ApplicationsController < ApplicationController
       @application = Application.find_by(id: params[:id])
       if params[:todo] == 'engage'
           @application.statuses= params[:todo]
-          @application.project.attempt_close  # this will check to see if a project is filled and update a project's status accordingly if filled
           @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just accepted the project, we want the pop up to show up on npo's screen)
+          @application.project.statuses= 'in progress'
           successFlag = 1
       elsif params[:todo] == 'apply'
           @application.cannot_apply_to_filled_projects  #call the custom validation
@@ -116,7 +117,7 @@ class ApplicationsController < ApplicationController
             end
           end
       elsif params[:todo] == 'update_info'
-          @application.update_attribute(:message, params[:application][:message]) 
+          @application.update_attributes(application_update_params) 
           unless @application.errors.any?
             message = "Message updated."
             successFlag = 1
@@ -148,7 +149,13 @@ class ApplicationsController < ApplicationController
           @application.update_attribute(:notification_view_flag, 'professional')  # this sets up the pop up notification for the professional (because an npo just unapproved the application, we want the pop up to show up on the applicant's screen)
       elsif params[:todo] == 'complete'
           @application.update_attributes(complete_application_params)
-          @application.statuses= params[:todo]
+          @application.statuses= params[:completion_type]
+          if params[:completion_type] == 'terminated'
+            @application.project.statuses= 'on market'
+            Project.marketplace_status_update
+          else
+            @application.project.statuses= params[:completion_type]
+          end
           message = @application.errors.full_messages.join(" ")
           successFlag = 1 if message.blank?
           message = "Application completed!" if message.blank?
@@ -174,7 +181,7 @@ class ApplicationsController < ApplicationController
 
     def complete
       @application = Application.find_by(id: params[:id])
-
+      @completion_type = params[:completion_type]
       if request.xhr?
         render partial: 'complete_application'
       end
@@ -207,6 +214,14 @@ class ApplicationsController < ApplicationController
     end
 
     private
+
+    def application_creation_params
+      params.permit(:message, :est_completion_date, :open_questions, :required_resources, :user_id)
+    end
+
+    def application_update_params
+      params.require(:application).permit(:message, :est_completion_date, :open_questions, :required_resources)
+    end
 
     def application_params
       params.require(:application).permit(:project_id,:user_id,:status,:notification_view_flag,:message,:hours,:rating_for_professional,:work_again,:comments_for_professional)

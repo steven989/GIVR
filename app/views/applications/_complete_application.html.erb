@@ -1,3 +1,10 @@
+    <% if @completion_type == 'complete' %>
+      <% @lable_message = "Additional notes on #{@application.user.display_name}'s performance and general comments about the engagement (this is only visible to Givingly)" %>
+      <% @button_label = "Finish engagement" %>
+    <% elsif @completion_type == 'terminated' %>
+      <% @lable_message = "Why was this engagement terminated? (this is only visible to Givingly)" %>
+      <% @button_label = "Terminate engagement" %>
+    <% end %>
 <div class="ui form segment profile_form">
   <div id="close_project">
     <%= fa_icon 'times' %>
@@ -28,12 +35,13 @@
             </div>
         </div>
     </div>
+    <%= hidden_field_tag :completion_type, @completion_type %>
     <div class="field">
-      <p class='section_title'><%= f.label :comments_for_professional, "Feedback for #{@application.user.display_name} (This will not be visible to the professional if you chose not to work with him/her again." %></p>
+      <p class='section_title'><%= f.label :comments_for_professional, @lable_message %></p>
       <p><%= f.text_area :comments_for_professional, class:'text_area' %></p>
     </div>
     <div class="actions">
-      <%= f.submit 'Complete engagement', class: 'submit mini ui givrgreen button' %>
+      <%= f.submit @button_label, class: 'submit mini ui givrgreen button' %>
     </div>
   <% end %>
 </div>

@@ -160,7 +160,7 @@ class UsersController < ApplicationController
         @city = @npo.city
         @website = @npo.website
         @size = @npo.organization_size
-        @projects = @npo.submitted_projects.where("projects.status like 'active'").take(3)
+        @projects = @npo.submitted_projects.where("projects.status like 'on market'").order(approval_date: :desc).take(3)
     end
 
     def profile
@@ -170,10 +170,10 @@ class UsersController < ApplicationController
         @role = current_user.role
         if @role == 'npo'
             @projects = current_user.submitted_projects.order('created_at DESC') #need to update
-            @applicationss = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','view','approve','decline')")
+            @applicationss = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','view','approve')")
             @in_progress_applications = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('engage')")
             @completed_applications = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('complete')")
-            @active_project_count = current_user.submitted_projects.where("projects.status like 'active'").length
+            @active_project_count = current_user.submitted_projects.where("projects.status like 'on market'").length
             @active_application_count = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','view','approve')").length
             @in_progress_count = @in_progress_applications.length 
             @completed_count = @completed_applications.length
@@ -191,7 +191,7 @@ class UsersController < ApplicationController
         elsif @role == 'admin'
             @projects = Project.all.order('created_at DESC')
                 @project_count = Project.count
-                @project_count_active = Project.count('active')
+                @project_count_active = Project.count('on market')
                 @project_count_under_review = Project.count('under review')
             @applicationss = Application.all.order('created_at DESC')
                 @application_count = Application.count

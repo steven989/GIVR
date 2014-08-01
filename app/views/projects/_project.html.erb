@@ -41,11 +41,13 @@
             </h1>
       </div>
       <div class="project_deets">
+      <% unless loc == 'project' %>
         <div class="num_pos">
             Available positions: 
             <div class="ui <%= @available_positions > 1 ? '': 'red' %> label"><%= @available_positions %>
             </div> 
         </div>
+      <% end %>
         <div class="date_created">
           Posted on: 
           <div class="ui label">
@@ -60,6 +62,16 @@
             Location:
             <div class="ui label"><%= project.location.location %></div> 
         </div>
+        <% if loc == 'project' %>
+        <div class="status">
+            Status:
+            <div class="ui label"><%= project.status %></div> 
+        </div>
+        <div class="views">
+            Views:
+            <div class="ui label"><%= project.views.length %></div> 
+        </div>      
+        <% end %>
       </div>
     </div>
   </div>

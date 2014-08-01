@@ -67,6 +67,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
           endView();
         });
         adminDelete();
+        datePickers();
         $('.profile_form .submit').off('click').on('click',function(){
           event.preventDefault();
           $.ajax({
@@ -277,7 +278,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
     });
   }
 
-  // Show individual products inside a div on the page
+  // Show individual projects inside a div on the page
 
   function showProject() {
     $('.project_link').off('click').on('click', function() {
@@ -296,6 +297,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         toggleApplicationForm();
         animateProjects(2);
         removeUpload();
+        datePickers();
       });        
     });
   }
@@ -317,7 +319,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
               $.ajax({
                 url: $(this).attr('href'),
                 type: $(this).data('method'),
-                data: {'message': $('form textarea').val()},
+                data: $('.ui.form form').serialize(),
                 dataType: 'JSON'
               }).done(function(data){
                 if (data.successFlag == 1) {
