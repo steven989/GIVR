@@ -27,7 +27,17 @@ $('document').ready(function() {
     showDataTable();
     showHidePartForm();
     datePickers();
+    if (typeof(companyList) != "undefined") {autoComplete()};
 });
+
+// autocomplete
+
+function autoComplete() {
+        $('#user_org_name').select2({
+            tags: companyList,
+            maximumSelectionSize: 1
+        });
+}
 
 // datepickers
 
@@ -40,7 +50,6 @@ function datePickers() {
 
 function showHidePartForm() {
     $('#user_org_name').off('input change').on('input change',function(){
-        console.log($(this))
         if ($(this).val() == "") {
             $('#user_emp_id_form_section_container').slideUp(135);
         } else {

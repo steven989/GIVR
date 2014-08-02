@@ -57,7 +57,7 @@
     <p class='section_title'>Resources required</p>
     <p><%= @application.required_resources %></p>
   </div>
-  <% if @application.status == 'complete' %>
+  <% if @application.status == 'complete' && @user.is?('npo') %>
     <div class="field">
       <div class="ui divider"></div>
       <p class='section_title'>Hours volunteered</p>

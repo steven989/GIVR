@@ -1,6 +1,10 @@
 <%= render 'shared/alt_header' %>
 <%= render 'shared/alt_static' %>
-
+<% if @company_names %>
+<script>
+  var companyList = <%= @company_names.html_safe %>
+</script>
+<% end %>
 <%= stylesheet_link_tag '//cdn.datatables.net/1.10.0/css/jquery.dataTables.css', type: 'text/css' %>
 
 <div class="background_div index">

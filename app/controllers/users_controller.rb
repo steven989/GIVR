@@ -33,11 +33,11 @@ class UsersController < ApplicationController
         @user = current_user
         if @user.is? 'professional'
             if @user.update_attributes(professional_params)
+                Company.add(params[:user][:org_name])
                 message = 'Information successfully updated.'                
             else 
                 message = 'Information could not be updated.'+@user.errors.full_messages.join(" ")                
             end
-
             @user.categories.delete_all
             @user.locations.delete_all
             @user.causes.delete_all
@@ -179,6 +179,7 @@ class UsersController < ApplicationController
             @completed_count = @completed_applications.length
             @hours_given = current_user.applications.sum('hours')
         elsif @role == 'professional'
+            @company_names = Company.order("company_name ASC").map do |company| company.company_name end.to_json
             @applicationss = current_user.made_applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','view','approve','decline')")
             @shortlists = current_user.made_applications.order('created_at DESC').where("applications.status in ('shortlist')").map {|application| application.project}
             @completed_applications = current_user.made_applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('complete')")

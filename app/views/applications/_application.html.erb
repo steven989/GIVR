@@ -83,6 +83,9 @@
     <div class="application_deets">
         <div class='organization'>Organization: <%= application.project.user.org_name %></div>
         <div class='application_date'>Application date: <%= application.created_at %></div>
+        <% if application.status == 'complete' %>
+            <div class='hours'>Hours volunteered: <%= application.hours %></div>
+        <% end %>
         <div class='view_application' href="<%= project_application_path(application.project,application) %>">View application details</div>
     </div>
     <div class="user_action">

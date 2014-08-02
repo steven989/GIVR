@@ -6,6 +6,7 @@ class ApplicationsController < ApplicationController
   def show
     @application = Application.find_by(id: params[:id])
     @application.statuses = 'view' if (current_user.is? 'npo') && (@application.status == 'apply')
+    @user = current_user
 
     if request.xhr?
       render partial: 'show_application'
