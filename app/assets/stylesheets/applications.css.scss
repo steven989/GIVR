@@ -17,7 +17,8 @@ $box-shadow-color: #888888;
 $light-gray: #EEEEEE;
 $active-color: #A3E4CC;
 $very-light-gray: #FAFAFA;
-$background-color: white;
+$background-color: #E9E9E9;
+$nav-color: #2E2E2E;
 /*#01775B;*/
 /*#76D7B3 */
 
@@ -191,7 +192,7 @@ body {
   color: $text-color;
   position: fixed;
   top: 0;
-  background-color: $primary-color;
+  background-color: $nav-color;
   z-index: 1;
   height: 2.5rem;
   width: 100%;
@@ -1019,6 +1020,11 @@ body {
             margin-bottom: 0.5rem;
             font-size: 1rem;
             padding-right: 0.5rem;
+
+            .spinner {
+              position: absolute;
+              top: 0rem;
+            }
           }
 
         }
@@ -1050,21 +1056,18 @@ body {
   color: black;
   float: left;
   position: relative;
-  width: 31%;
+  width: 23%;
   margin-bottom: 1rem;
-  margin-left: 2%;
+  margin-left: 1.7%;
   height:22rem;
   background-color: white;
-  border: 1px solid #C9C9C9;
   
   .category_wrapper {
     position: relative;
     display: block;
     width: 100%;
     height: 1.5rem;
-    margin-top: 0.5rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    margin: 0.5rem;
     padding-right: 0.5rem;
 
     .category {
@@ -1078,40 +1081,6 @@ body {
     }
   }
 
-  .logo_name_wrapper {
-    width: 100%;
-    position: relative;
-    padding: 0.5rem;
-    box-sizing: border-box;
-    overflow: auto;
-    -moz-box-sizing: border-box;
-
-    .organization_logo {
-      display: inline-block;
-      float: left;
-      margin-right: 1rem;
-
-      .logo {
-       width: 3rem;
-     }
-   }
-   .organization_name {
-    float: left;
-    display: table;
-    table-layout: fixed;
-    height: 3rem;
-    width: 75%;
-    position: relative;
-    margin: auto 0;
-    font-size: 1rem;
-
-    p {
-      display: table-cell;
-      vertical-align: middle;
-    }
-  }
-}
-
 .project_header {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1122,25 +1091,31 @@ body {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   padding-bottom: 1rem;
-  margin-bottom: 1.5rem;
-  background-color: $light-gray;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: bold;
-  color: #303030;
+  color: #156D54;
 }
 
 .project_deets {
   position:relative;
   top: 0;
 
-  .date_created, .num_pos, .cause, .location, .status, .views {
-    font-size: 1rem;
+  .date_created, .num_pos, .cause, .location, .status, .views, .description {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-size: 0.8rem;
     display:block;
     width: 100%;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin: 0;
+    
+    .ui.label {
+      font-size: 0.8rem;
+      text-transform: none;
+    }
   }
 } 
 
@@ -1473,7 +1448,7 @@ body {
     margin-right: 1%;
     height:15rem;
     background-color: white;
-    border: 1px solid #C9C9C9;
+
 
     &.professional {
       cursor: auto;
@@ -1532,8 +1507,11 @@ body {
       -moz-box-sizing: border-box;
       width: 100%;
       padding: 0.5rem;
-      background-color: $light-gray;
       color: #303030;
+
+      h1 {
+        padding-bottom: 0.5rem;
+      }
 
       a {
         text-decoration: none;
@@ -1551,6 +1529,12 @@ body {
       padding: 0.5rem;
       width: 100%;
       color: black;
+      font-size: 0.9rem;
+
+      .user, .application_date, .view_application {
+        margin-top: 0.2rem;
+        margin-bottom: 0.2rem;
+      }
 
       .view_application {
         color: #1400FF;
@@ -1666,7 +1650,7 @@ body {
     color: $text-color;
 
     .profile_menu {
-      background-color: rgba(223, 223, 223, 0.9);
+      background-color: rgba(170, 170, 170, 1);
       padding: 0.5rem;
       padding-right: 0.2rem;
 
@@ -1915,8 +1899,7 @@ body {
         position: relative;
         margin: 0 auto;
         padding: 1rem;
-        border: 1px solid $light-gray;
-        border-radius: 3px;
+        background-color: white;
 
         .logo {
           position: absolute;
@@ -1968,6 +1951,12 @@ body {
 
   .mission, .description, .org_projects {
     margin: 2rem 0;
+    font-size: 0.9rem;
+
+    h1 {
+      font-size: 1rem;
+      color: #156D54;
+    }
   }
 
 }

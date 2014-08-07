@@ -26,10 +26,12 @@
             <% end %>
         </div>
     </div>
-    <div class='project'><h1><%= link_to application.project.title, project_path(application.project), class: 'view_application' %></h1></div>
+    <div class='project'><h1><%= link_to application.project.title, project_path(application.project), class: 'view_application' %></h1>
+    <div class="ui fitted divider"></div>
+    </div>
     <div class="application_deets">
-        <div class='user'>User: <%= application.user.display_name %></div>
-        <div class='application_date'>Application date: <%= application.created_at %></div>
+        <div class='user'>Applicant: <%= application.user.display_full_name %></div>
+        <div class='application_date'>Application date: <%= application.created_at.strftime('%Y-%m-%d') %></div>
         <div class='view_application' href="<%= project_application_path(application.project,application) %>">View application details</div>
     </div>
     <div class="user_action">

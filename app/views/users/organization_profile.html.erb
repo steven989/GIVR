@@ -1,57 +1,64 @@
 <%= render 'shared/alt_header' %>
 <%= render 'shared/alt_static' %>
 
-
-<div class="organization_info">
-  <div class="basic_info">
-      <div class="org_title">
-        <div class="logo_container">
-            <% if !@npo.logo.file.nil? %>
-              <% if @npo.logo.file.exists? %>
-                <%= image_tag @npo.logo_url(:thumb), class: 'logo' %>
+<div class="background_div index">
+  <div class="organization_info">
+    <div class="basic_info">
+        <div class="org_title">
+          <div class="logo_container">
+              <% if !@npo.logo.file.nil? %>
+                <% if @npo.logo.file.exists? %>
+                  <%= image_tag @npo.logo_url, class: 'logo' %>
+                <% end %>
               <% end %>
-            <% end %>
+          </div>
+          <br>
+          <div class="org_name">
+              <%= @npo.org_name %>
+          </div>
         </div>
-        <br>
-        <div class="org_name">
-            <%= @npo.org_name %>
-        </div>
+      <div class="cause">
+          <%= @cause %>
       </div>
-    <div class="cause">
-        <%= @cause %>
-    </div>
-    <div class="email">
-      Email:
-        <%= @email %>
-    </div>
+      <div class="email">
+        Email:
+          <%= @email %>
+      </div>
 
-    <div class="website">
-      Website:
-        <%= link_to @website, @npo.proper_website %>
+      <div class="website">
+        Website:
+          <%= link_to @website, @npo.proper_website, target: '_blank' %>
+      </div>
+      <div class="city">
+        City:
+          <%= @city %>
+      </div>
+      <div class="org_size">
+        Organization size:
+          <%= @size %>
+      </div>
     </div>
-    <div class="city">
-      City:
-        <%= @city %>
-    </div>
-    <div class="org_size">
-      Organization size:
-        <%= @size %>
-    </div>
-  </div>
-</div>
-
-<div class="org_details">
-  <div class="mission">
-      <h1>Our mission</h1><br>
-      <%= @mission %>
-  </div>
-  <div class="description">
-      <h1>Our activities</h1><br>
-      <%= @description %>
   </div>
 
-  <div class="org_projects">
-      <h1>Our active projects</h1><br>
-      <%= render partial: 'projects/project', collection: @projects, locals: {loc: 'index'} %>
+  <div class="org_details">
+    <div class="mission">
+        <h1>Our mission</h1><br>
+        <%= @mission %>
+    </div>
+    <div class="description">
+        <h1>Our activities</h1><br>
+        <%= @description %>
+    </div>
+
+    <div class="org_projects">
+        <h1>Our active projects</h1><br>
+        <%= render partial: 'projects/project', collection: @projects, locals: {loc: 'index'} %>
+    </div>
   </div>
+
+  <div class="projects_overlay"></div>
+  <div class="projects_overlay_transparent hidden"></div>
+  <div class="projects_detail"></div>
+
+
 </div>

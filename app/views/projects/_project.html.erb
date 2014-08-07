@@ -23,33 +23,15 @@
             <%= project.category.category %>
         </div>
       </div>
-      <div class="logo_name_wrapper">
-        <div class="organization_logo">
-          <% if !project.user.logo.file.nil? %>
-            <% if project.user.logo.file.exists? %>
-              <%= image_tag project.user.logo_url(:thumb), class: 'logo' %>
-            <% end %>
-          <% end %>
-        </div>
-        <div class="organization_name">
-            <p><%= project.user.org_name %></p>
-        </div>
-      </div>
       <div class="project_header">
             <h1>
-              <%= project.title %>
+              <%= project.title %> for <%= project.user.org_name %>
             </h1>
+      <div class="ui divider"></div>
       </div>
       <div class="project_deets">
-      <% unless loc == 'project' %>
-        <div class="num_pos">
-            Available positions: 
-            <div class="ui <%= @available_positions > 1 ? '': 'red' %> label"><%= @available_positions %>
-            </div> 
-        </div>
-      <% end %>
         <div class="date_created">
-          Posted on: 
+          Posted on:
           <div class="ui label">
             <%= project.created_at.strftime('%Y-%m-%d') %>
           </div>
@@ -70,7 +52,12 @@
         <div class="views">
             Views:
             <div class="ui label"><%= project.views.length %></div> 
-        </div>      
+        </div>   
+        <% elsif loc == 'index' %>   
+        <div class="description">
+          Description: <br><br>
+          <div class="ui label"><%= project.description.first(90)+"..." %></div> 
+        </div>
         <% end %>
       </div>
     </div>
