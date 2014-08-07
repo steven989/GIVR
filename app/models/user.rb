@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_many :submitted_projects, foreign_key: 'user_id', class_name: 'Project', dependent: :destroy
   has_many :made_applications, foreign_key: 'user_id', class_name: 'Application', dependent: :destroy
-  has_many :projects, through: :applications, dependent: :destroy
+  has_many :projects, through: :made_applications, dependent: :destroy
   has_many :applications, through: :submitted_projects, dependent: :destroy
   has_many :authentications, dependent: :destroy
   has_many :projectviews, foreign_key: 'user_id', class_name: 'ProjectView', dependent: :destroy

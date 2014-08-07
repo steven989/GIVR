@@ -9,9 +9,20 @@
     <span id='view_closed' data-viewpath='<%= j project_view_path(@view)%>' style="display:inline-block; width: 1px; height: 1px;"></span>
     <div class="project_card_in_popup" data-shown=1 data-loggedin="<%= current_user ? 1 : 0 %>" data-applied="<%= @already_applied %>" data-shortlisted="<%= @already_shortlisted %>">
       <div class="project_header">
-          <h1><%= project.title %> for <span class='link_to_profile'><%= link_to project.user.org_name, organization_profile_path(project.user.id) %></span></h1>
+          <h1><%= project.title %> for 
+            <% if project.hide_name == "1" %>
+              <% if ["a","e","i","o","u"].include? project.cause.cause[0].downcase %>
+                an
+              <% else %>
+                a
+              <% end %>
+              <%= project.cause.cause.downcase %> organization
+            <% else %>
+            <span class='link_to_profile'><%= link_to project.user.org_name, organization_profile_path(project.user.id) %></span>
+            <% end %>
+          </h1>
       </div>
-    
+
       <div class="ui divider"></div>
       <div class="project_details">
         <h3>Project details</h3>
@@ -90,7 +101,18 @@
     </div>
     <div class="proto_form">
       <div class="project_header">
-          <h1><%= project.title %> for <span class='link_to_profile'><%= link_to project.user.org_name, organization_profile_path(project.user.id) %></span></h1>
+          <h1><%= project.title %> for 
+            <% if project.hide_name == "1" %>
+              <% if ["a","e","i","o","u"].include? project.cause.cause[0].downcase %>
+                an
+              <% else %>
+                a
+              <% end %>
+              <%= project.cause.cause.downcase %> organization
+            <% else %>
+            <span class='link_to_profile'><%= link_to project.user.org_name, organization_profile_path(project.user.id) %></span>
+            <% end %>
+          </h1>
       </div>
       <div class="ui divider"></div>
       <div class="ui form">

@@ -25,7 +25,7 @@
       </div>
       <div class="project_header">
             <h1>
-              <%= project.title %> for <%= project.user.org_name %>
+              <%= project.title %>  for <%= if project.hide_name == "1"; "#{if ["a","e","i","o","u"].include? project.cause.cause[0].downcase; 'an' else 'a' end} #{project.cause.cause.downcase} organization" else project.user.org_name end %>
             </h1>
       <div class="ui divider"></div>
       </div>
@@ -53,7 +53,7 @@
             Views:
             <div class="ui label"><%= project.views.length %></div> 
         </div>   
-        <% elsif loc == 'index' %>   
+        <% elsif loc == 'index' || loc == 'shortlist' %>   
         <div class="description">
           Description: <br><br>
           <div class="ui label"><%= project.description.first(90)+"..." %></div> 

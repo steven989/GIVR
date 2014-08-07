@@ -46,6 +46,10 @@
       <p><%= f.text_area :requirements, class:'text_area' %></p>
     </div>
     <div class="field">
+      <p class='section_title'>Private posting (your organization's name will be hidden until application has been made)</p>
+      <p><%= f.check_box :hide_name %><%= f.label :hide_name, "Yes - make posting private" %></p>
+    </div>
+    <div class="field">
       <p class='section_title'><%= f.label :category, "Category" %></p>
       <%= options_from_collection_for_select(Category.all, :id, :category) %>
       <%= collection_select(:project, :category_id, Category.all, :id, :category, class: 'drop_down') %>

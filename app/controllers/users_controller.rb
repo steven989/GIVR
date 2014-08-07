@@ -160,7 +160,7 @@ class UsersController < ApplicationController
         @city = @npo.city
         @website = @npo.website
         @size = @npo.organization_size
-        @projects = @npo.submitted_projects.where("projects.status like 'on market'").order(approval_date: :desc).take(4)
+        @projects = @npo.submitted_projects.where("projects.status like 'on market' and (projects.hide_name not like '1' or projects.hide_name is null)").order(approval_date: :desc).take(4)
     end
 
     def profile
