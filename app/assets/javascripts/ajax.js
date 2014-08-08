@@ -118,7 +118,9 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             location.reload();
           }); 
         };        
-      })      
+      });
+      event.stopImmediatePropagation(); // this is to prevent project details from showing up when deleting shortlisted projects
+      event.preventDefault();   // this is to prevent project details from showing up when deleting shortlisted projects   
     });
   }
 

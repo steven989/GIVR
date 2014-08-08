@@ -61,7 +61,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        message = "Your project was saved."
+        message = "Your project has been submitted for review. You can see the status of your project under \"My Projects\" tab."
         @project.statuses= 'under review'
         if current_user.is? ('admin')
           @project.update_attribute(:user_id,params[:project][:user_id])

@@ -22,6 +22,11 @@
         <div class="category">
             <%= project.category.category %>
         </div>
+      <% if loc == 'shortlist' %>
+        <div >
+          <%= fa_icon 'times', class: "close_project admin_delete no_reload application", href: project_application_path(project,project.applications.where(user_id: current_user.id).take) %>
+        </div> 
+      <% end %>   
       </div>
       <div class="project_header">
             <h1>
@@ -56,7 +61,7 @@
         <% elsif loc == 'index' || loc == 'shortlist' %>   
         <div class="description">
           Description: <br><br>
-          <div class="ui label"><%= project.description.first(90)+"..." %></div> 
+          <div class="ui label"><%= project.description.first(100)+"..." %></div> 
         </div>
         <% end %>
       </div>

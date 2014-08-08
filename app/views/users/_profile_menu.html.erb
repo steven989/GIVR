@@ -4,7 +4,7 @@
             <% unless @abridged_menu %>
                 <%= link_to 'My summary',  user_profile_path+'#summary', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'Shortlisted projects', user_profile_path+'#shortlist', class: 'item' %>
+                <%= link_to 'Saved projects', user_profile_path+'#shortlist', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
                 <%= link_to user_profile_path+'#applications', class: 'item' do %>
                 My applications
@@ -38,7 +38,7 @@
                 <div class="ui fitted inverted divider"></div>
                 <%= link_to 'Completed projects', user_profile_path+'#projects', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'Add a new project', user_profile_path+'#add-new', class: 'item' %>
+                <%= link_to 'Submit a new project', user_profile_path+'#add-new', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
                 <%= link_to 'Edit my info', user_profile_path+'#settings', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>

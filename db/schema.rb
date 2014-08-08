@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807193604) do
+ActiveRecord::Schema.define(version: 20140808212901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,9 @@ ActiveRecord::Schema.define(version: 20140807193604) do
     t.date     "est_completion_date"
     t.text     "open_questions"
     t.text     "required_resources"
+    t.date     "unapproved_status_view_date"
+    t.date     "in_progress_date"
+    t.date     "complete_date"
   end
 
   create_table "authentications", force: true do |t|

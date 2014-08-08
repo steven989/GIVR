@@ -100,6 +100,8 @@ class ApplicationsController < ApplicationController
           @application.statuses= params[:todo]
           @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just accepted the project, we want the pop up to show up on npo's screen)
           @application.project.statuses= 'in progress'
+          @application.update_attribute(:in_progress_date, DateTime.now)
+          @application.project.applications.where("status like 'shortlist'").delete_all
           successFlag = 1
       elsif params[:todo] == 'apply'
           @application.cannot_apply_to_filled_projects  #call the custom validation
@@ -151,6 +153,7 @@ class ApplicationsController < ApplicationController
       elsif params[:todo] == 'complete'
           @application.update_attributes(complete_application_params)
           @application.statuses= params[:completion_type]
+          @application.update_attribute(:complete_date, DateTime.now)
           if params[:completion_type] == 'terminated'
             @application.project.statuses= 'on market'
             Project.marketplace_status_update
@@ -196,7 +199,10 @@ class ApplicationsController < ApplicationController
       elsif @role == 'professional'
           @applications = current_user.made_applications.order('created_at ASC').where("applications.status in ('apply','approve', 'decline', 'engage')")
       end 
-      @applications.where("notification_view_flag like ?", current_user.role).each {|application| application.update_attribute(:notification_view_flag, nil)}
+      @applications.where("notification_view_flag like ?", current_user.role).each {|application| 
+        application.update_attribute(:notification_view_flag, nil)
+        application.update_attribute(:unapproved_status_view_date,DateTime.now)
+      }
 
       respond_to do |format|
         format.json { render json: {message: 'All notifications are off.'}}

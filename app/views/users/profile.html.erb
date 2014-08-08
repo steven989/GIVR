@@ -17,7 +17,7 @@
             <%= f.radio_button :role, 'professional' %>
             <%= f.label :role_volunteer, 'Professional' %>
             <%= f.radio_button :role, 'npo' %>
-            <%= f.label :role_npo, 'Non-Profit Organization' %>
+            <%= f.label :role_npo, 'Not-for-Profit Organization' %>
         </p>
         <p>
             <%= f.submit 'Set my role' %>
@@ -289,7 +289,7 @@
                     <p><% if current_user.role == 'professional' %>
                         <%= "Professional" %>
                        <% elsif current_user.role == 'npo' %>
-                        <%= "Non-profit" %>
+                        <%= "Not-for-profit" %>
                        <% end %>
                     </p>
                   </div>
@@ -298,7 +298,7 @@
                   <div class="ui fitted inverted divider"></div>             
                   <% if @user.is? 'professional' %> 
                     <div class='profile_view_button link item' id='shortlist'>
-                      Shortlisted projects
+                      Saved projects
                     </div>                  
                   <% elsif @user.is? 'npo' %>
                     <div class='profile_view_button link item' id='my_projects'>
@@ -332,7 +332,7 @@
                   </div>              
               <% if @user.role == 'npo' %>
                     <div class="ui fitted inverted divider"></div>
-                    <div class="profile_view_button link item" id="add-new">Add new project</div>
+                    <div class="profile_view_button link item" id="add-new">Submit a new project</div>
               <% end %>
                 <div class="ui fitted inverted divider"></div>
                 <div class='profile_view_button link item' id='settings'>Edit my info</div>

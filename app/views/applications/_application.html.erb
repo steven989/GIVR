@@ -31,7 +31,14 @@
     </div>
     <div class="application_deets">
         <div class='user'>Applicant: <%= application.user.display_full_name %></div>
-        <div class='application_date'>Application date: <%= application.created_at.strftime('%Y-%m-%d') %></div>
+        <% if application.status == 'apply' || application.status == 'view' || application.status == 'approve' || application.status == 'decline' %>
+        <div class='application_date'>Application date: <%= application.application_date.strftime('%Y-%m-%d') %></div>
+        <% elsif application.status == 'engage' %>
+        <div class='application_date'>Project start date: <%= application.in_progress_date.strftime('%Y-%m-%d') if application.in_progress_date %></div>
+        <% elsif application.status == 'complete' || application.status == 'terminated'%>
+        <div class='application_date'>Project completion date: <%= application.complete_date.strftime('%Y-%m-%d') if application.complete_date %></div>
+        <% end %>
+
         <div class='view_application' href="<%= project_application_path(application.project,application) %>">View application details</div>
     </div>
     <div class="user_action">
@@ -85,8 +92,16 @@
     <div class="ui fitted divider"></div>
     </div>
     <div class="application_deets">
-        <div class='organization'>Organization: <%= application.project.user.org_name %></div>
-        <div class='application_date'>Application date: <%= application.created_at %></div>
+        <div class='organization'>Organization: <%= link_to application.project.user.org_name, organization_profile_path(application.project.user.id) %></div>
+        
+        <% if application.status == 'apply' || application.status == 'view' || application.status == 'approve' || application.status == 'decline' %>
+        <div class='application_date'>Application date: <%= application.application_date.strftime('%Y-%m-%d') %></div>
+        <% elsif application.status == 'engage' %>
+        <div class='application_date'>Project start date: <%= application.in_progress_date.strftime('%Y-%m-%d') if application.in_progress_date %></div>
+        <% elsif application.status == 'complete' || application.status == 'terminated'%>
+        <div class='application_date'>Project completion date: <%= application.complete_date.strftime('%Y-%m-%d') if application.complete_date %></div>
+        <% end %>
+
         <% if application.status == 'complete' %>
             <div class='hours'>Hours volunteered: <%= application.hours %></div>
         <% end %>
@@ -102,7 +117,9 @@
             <% end %>
         </div>
         <div class="modify">
+            <% if ['apply','view','approve','decline'].include? application.status %>
             <div class="admin_delete no_reload application" href="<%= project_application_path(application.project,application) %>"><%= fa_icon 'times' %></div>
+            <% end %>
             <% if ['apply','view'].include? application.status %>
             <div class="admin_edit no_reload" href="<%= application_user_edit_path(application.project, application) %>"><%= fa_icon 'pencil-square-o' %></div>
             <% end %>            
