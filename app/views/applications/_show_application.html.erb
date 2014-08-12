@@ -19,6 +19,27 @@
     <p><%= @application.user.email %></p>
     <div class="ui divider"></div>
   </div>
+  <% if !@application.user.website.blank? %>
+  <div class="field">
+    <p class='section_title'>Website</p>
+    <p><%= link_to @application.user.website, @application.user.proper_website, target: '_blank' %></p>
+    <div class="ui divider"></div>
+  </div>
+  <% end %>
+  <% if !@application.user.org_name.blank? %>
+  <div class="field">
+    <p class='section_title'>Company</p>
+    <p><%= @application.user.org_name %></p>
+    <div class="ui divider"></div>
+  </div>
+  <% end %>
+  <% if !@application.user.years_of_experience.blank? %>
+  <div class="field">
+    <p class='section_title'>Years of experience</p>
+    <p><%= @application.user.years_of_experience %></p>
+    <div class="ui divider"></div>
+  </div>
+  <% end %>
   <% if @application.user.phone %>
     <div class="field">
       <p class='section_title'>Phone number</p>
