@@ -199,7 +199,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   function finishProjectPrompt() {
     $('.user_action_button_complete_application').off('click').on('click',function(){
-      event.stopImmediatePropagation(); //not sure why preventDefault does not work here
+      event.stopImmediatePropagation(); //not sure why preventDefault does not work here    
       var _this = $(this);
       $.ajax({
         url: $(this).attr('href'),
@@ -214,6 +214,11 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         });
         $('.profile_form .submit').off('click').on('click',function(){
           event.preventDefault();
+          if ($(this).hasClass('check_required_fields')) {
+            if (generalFromValidationForPresence.call($(this)) == 'missing') {
+              return false
+            };
+          };
           $.ajax({
             url: $(this).parent().parent().attr('action'),
             type: 'PUT',

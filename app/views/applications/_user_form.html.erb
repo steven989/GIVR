@@ -31,9 +31,10 @@
           <%= f.text_area 'required_resources' %>
         </div>
     <% elsif current_user.is? 'npo'%>
+     <div class="required_asterisk_legend"><%= fa_icon 'asterisk' %> Indicates required fields</div>
       <div class="field">
-        <p class='section_title'><%= f.label :hours, "Hours volunteered by #{@application.user.display_name}" %></p>
-        <p><%= f.text_field :hours, class:'text_field' %></p>
+        <p class='section_title'><%= f.label :hours do %> Hours volunteered by <%= @application.user.display_name %> <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %></p>
+        <p><%= f.text_field :hours, class:'text_field required_field' %></p>
       </div>
       <div class="field">
         <p class='section_title'><%= f.label :rating_for_professional, "How would you rate the #{@application.user.display_name}'s performance? (5 is best performance)" %></p>
