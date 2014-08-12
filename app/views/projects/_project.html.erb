@@ -1,4 +1,3 @@
-<% @available_positions = [(project.number_of_positions - project.applications.where("status in ('engage','complete')").length),0].max %>
 <% if loc == 'index' %>
   <% @link = project_path(project) %>
   <% @class = 'project_link' %>

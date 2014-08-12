@@ -22,10 +22,41 @@ function landingPageForm() {
             } else {
                 $(this).parent().find('.category_input').addClass('hidden');
             }
-
         } else { 
             $('.subscribe').addClass('disabled')
         };  
-    });
- 
+    }); 
 }
+
+// General function to validate the presence of fields
+
+function generalFromValidationForPresence() {
+    var emptyArray = []
+    $(this).closest('form').find('.required_field').each(function(){
+        if ($(this).val() == "") {
+            $(this).css({
+                "background-color":"#F1D7D7"
+            });
+            emptyArray.push($(this));
+        } else {
+            $(this).css({
+                "background-color":"none"
+            });        
+        };
+    });
+    if (typeof(error_declaration_variable) == 'undefined') {
+        if (emptyArray.length > 0) {
+            $(this).closest('form').find('.missing_field_error').html('<p>Ensure all the required fields above are filled in.</p>');
+            $(this).closest('form').find('.missing_field_error').removeClass('hidden');
+            return 'missing'
+        } else {
+            $(this).closest('form').find('.missing_field_error').html('');
+            $(this).closest('form').find('.missing_field_error').addClass('hidden');
+            return 'okay'
+        }
+    } else {
+        return 'missing'
+    }
+}
+
+

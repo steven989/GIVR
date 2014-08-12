@@ -71,7 +71,7 @@ class ProjectsController < ApplicationController
         format.html {redirect_to user_profile_path+'#add-new', notice: message}
         format.json {render json: {message: message, successFlag: 1}}
       else
-        message = @project.errors.full_messages.join(" ")
+        message = "Project could not be submitted. One or more fields are missing."
         format.html {redirect_to user_profile_path+'#add-new', notice: message}
         format.json {render json: {message: message, successFlag: 0}}
       end
@@ -141,6 +141,6 @@ class ProjectsController < ApplicationController
 
   private
   def projects_params
-    params.require(:project).permit(:title,:description,:number_of_positions, :category_id, :cause_id,:location_id,:why_we_need_this,:deliverable,:overseer,:perks,:requirements, :hide_name)
+    params.require(:project).permit(:title,:description,:number_of_positions, :category_id, :cause_id,:location_id,:why_we_need_this,:deliverable,:overseer,:perks,:requirements, :hide_name, :how_output_will_be_used, :required_date)
   end
 end

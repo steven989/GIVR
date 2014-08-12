@@ -24,6 +24,13 @@ $nav-color: #2E2E2E;
 
 /* ----------------------- across the whole document ---------------------- */
 
+.required_asterisk {
+  font-size: 0.5rem;
+  position: relative;
+  bottom: 0.3rem;
+  color: #FF6B6B;
+}
+
 body {
   font-family: $font-stack;
   box-sizing:border-box;
@@ -1744,6 +1751,15 @@ body {
     background-color: white;
     border: 2px solid #C9C9C9;
     margin-bottom: 2rem;
+
+    .errors {
+      font-size: 1rem;
+      background-color: #F1D7D7;
+      color: #A95252;
+      border-radius: 5px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }  
 
     .section_title {
       font-weight: bold;

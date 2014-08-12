@@ -1,15 +1,26 @@
 <div class='error_messages'>
 </div>
 <div class="ui form segment profile_form">
+
   <% if @edit_project_flag %>
     <div id="close_project">
       <%= fa_icon 'times' %>
     </div>  
   <% end %>
   <%= form_for @project, :remote => true do |f| %>
+  <% if current_user.is? ('npo') and current_user.org_name.blank? %>  
+    <script>
+      var error_declaration_variable = 1
+    </script>
+    <div class="errors">
+        <p>
+            You must have an organization name to submit a project. You can add that under "Edit my info" tab.
+        </p>
+    </div>
+  <% end %>
     <div class="field">
-      <p class='section_title'><%= f.label :title, 'Project name' %></p>
-      <p><%= f.text_field :title, class:'text_field' %></p>
+      <p class='section_title'><%= f.label :title do %> Project name <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %></p>
+      <p><%= f.text_field :title, class:'text_field required_field', placeholder: '1 sentence - short and concise' %></p>
     </div>
     <% if current_user.is? "admin" %>
     <div class="field">
@@ -18,32 +29,36 @@
     </div>
     <% end %>
     <div class="field">
-      <p class='section_title'><%= f.label :description, 'Project description' %></p>
-      <p><%= f.text_area :description, class:'text_area' %></p>
+      <p class='section_title'><%= f.label :deliverable do %> What is the project deliverable? <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %></p>
+      <p><%= f.text_area :deliverable, class:'text_area required_field', placeholder: '1-2 sentences. E.g. A research report, A recommendation deck, etc.' %></p>
     </div>
     <div class="field">
-      <p class='section_title'><%= f.label :why_we_need_this, 'Why do you need this:' %></p>
-      <p><%= f.text_area :why_we_need_this, class:'text_area' %></p>
+      <p class='section_title'><%= f.label :required_date do %> When do you need the deliverable done by? <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %></p>
+      <p><%= f.text_field :required_date, class:'text_field required_field', placeholder: 'Estimated date' %></p>
     </div>
     <div class="field">
-      <p class='section_title'><%= f.label :deliverable, 'Project deliverables' %></p>
-      <p><%= f.text_area :deliverable, class:'text_area' %></p>
+      <p class='section_title'><%= f.label :description do %> Project description <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %></p>
+      <p><%= f.text_area :description, class:'text_area required_field', placeholder:'200 words or less; should include details including but not limited to: some guidelines and scope on the deliverable, resources/support provided to the volunteers, specific department/program the deliverable is used for, what will the deliverable help accomplish' %></p>
     </div>
     <div class="field">
-      <p class='section_title'><%= f.label :overseer, 'Name of the project manager' %></p>
-      <p><%= f.text_field :overseer, class:'text_field' %></p>
+      <p class='section_title'><%= f.label :why_we_need_this do %> Why do you need this? <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %></p>
+      <p><%= f.text_area :why_we_need_this, class:'text_area required_field', placeholder: '150 words or less; how will this help your organization and your programs?' %></p>
     </div>
     <div class="field">
-      <p class='section_title'><%= f.label :number_of_positions, 'Number of positions' %></p>
-      <p><%= f.text_field :number_of_positions, class:'text_field' %></p>
+      <p class='section_title'><%= f.label :how_output_will_be_used do %> How will the deliverable from the project be used? <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %></p>
+      <p><%= f.text_area :how_output_will_be_used, class:'text_area required_field', placeholder: '2-3 sentences; tactically how will the output be distributed, who will see it, what decision will be made based on it, etc.' %></p>
     </div>
     <div class="field">
-      <p class='section_title'><%= f.label :perks, 'Perks for volunteers' %></p>
-      <p><%= f.text_area :perks, class:'text_area' %></p>
+      <p class='section_title'><%= f.label :perks, 'Any perks for the volunteers' %></p>
+      <p><%= f.text_area :perks, class:'text_area', placeholder: 'Non-monetary, optional; e.g. admission to one of your events, coffee chats with one of your directors, etc.' %></p>
     </div>
     <div class="field">
-      <p class='section_title'><%= f.label :requirements, 'Volunteer requirements' %></p>
-      <p><%= f.text_area :requirements, class:'text_area' %></p>
+      <p class='section_title'><%= f.label :requirements, 'Requirements for volunteers' %></p>
+      <p><%= f.text_area :requirements, class:'text_area', placeholder: 'Optional; e.g. minimum 5 years of experience in graphics design' %></p>
+    </div>
+    <div class="field">
+      <p class='section_title'><%= f.label :overseer do %> Name of the project manager <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %></p>
+      <p><%= f.text_field :overseer, class:'text_field required_field', placeholder: 'Someone from your organization who will establish milestones, monitor progress, and output guidance' %></p>
     </div>
     <div class="field">
       <p class='section_title'>Private posting (your organization's name will be hidden until application has been made)</p>
@@ -66,10 +81,13 @@
     </div>
     
     <div class="actions">
-      <%= f.submit class: "#{@edit_project_flag ? 'submit ' : 'create_project ' }mini ui givrgreen button" %>
+      <%= f.submit "#{@edit_project_flag ? 'Update project ' : 'Submit project ' }", class: "#{@edit_project_flag ? 'submit ' : 'create_project ' }mini ui givrgreen button check_required_fields" %>
       <% if @edit_project_flag %>
         <div class='mini ui red button admin_delete no_reload project' href="<%= project_path(@project) %>" data-projectid="<%= @project.id %>">Delete project</div>  
       <% end %>
     </div>
+  <br><br>
+  <div class="errors missing_field_error hidden">
+  </div>
   <% end %>
 </div>
