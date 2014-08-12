@@ -477,7 +477,7 @@
                      </div>
                   <% end %>
                 </div>
-                <%= f.submit 'Update my information', class: 'submit mini ui givrgreen button' %>
+                <%= f.submit 'Update my information', class: 'mini ui givrgreen button' %>
               <% end %>
               <div class="upload_container">
                 <%= render partial: 'resume_upload', locals: {user: @user} %>
@@ -547,7 +547,7 @@
                     <p class='section_title'><%= f.label :fax, "Fax:" %></p>
                     <p><%= f.text_field :fax, class: 'text_field' %></p>
                   </div>
-                  <p><%= f.submit 'Update my information', class: 'submit mini ui givrgreen button' %></p>
+                  <p><%= f.submit 'Update my information', class: 'mini ui givrgreen button' %></p>
                 <% end %>
                 <div class="upload_container">
                   <%= render partial: 'logo_upload', locals: {user: @user} %>

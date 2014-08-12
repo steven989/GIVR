@@ -75,6 +75,11 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         datePickers();
         $('.profile_form .submit').off('click').on('click',function(){
           event.preventDefault();
+          if ($(this).hasClass('check_required_fields')) {
+            if (generalFromValidationForPresence.call($(this)) == 'missing') {
+              return false
+            };
+          };
           $.ajax({
             url: $(this).parent().parent().attr('action'),
             type: method,

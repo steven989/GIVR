@@ -80,7 +80,8 @@
       <%= options_from_collection_for_select(Location.all, :id, :location) %>
       <%= collection_select(:project, :location_id, Location.all, :id, :location, class: 'drop_down')%>
     </div>
-    
+    <div class="errors missing_field_error hidden">
+    </div>    
     <div class="actions">
       <%= f.submit "#{@edit_project_flag ? 'Update project ' : 'Submit project ' }", class: "#{@edit_project_flag ? 'submit ' : 'create_project ' }mini ui givrgreen button check_required_fields" %>
       <% if @edit_project_flag %>
@@ -88,7 +89,6 @@
       <% end %>
     </div>
   <br><br>
-  <div class="errors missing_field_error hidden">
-  </div>
+
   <% end %>
 </div>

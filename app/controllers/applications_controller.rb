@@ -121,8 +121,9 @@ class ApplicationsController < ApplicationController
           end
       elsif params[:todo] == 'update_info'
           @application.update_attributes(application_update_params) 
+          @application.must_include_message #call the custom validation
           unless @application.errors.any?
-            message = "Message updated."
+            message = "Application information updated."
             successFlag = 1
           end
       end 
