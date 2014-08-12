@@ -1,17 +1,18 @@
 <div class='error_messages'>
 </div>
 <div class="ui form segment profile_form">
-
   <% if @edit_project_flag %>
     <div id="close_project">
       <%= fa_icon 'times' %>
     </div>  
   <% end %>
   <%= form_for @project, :remote => true do |f| %>
+  <div class="required_asterisk_legend"><%= fa_icon 'asterisk' %> Indicates required fields</div>
   <% if current_user.is? ('npo') and current_user.org_name.blank? %>  
     <script>
       var error_declaration_variable = 1
     </script>
+    <br>
     <div class="errors">
         <p>
             You must have an organization name to submit a project. You can add that under "Edit my info" tab.

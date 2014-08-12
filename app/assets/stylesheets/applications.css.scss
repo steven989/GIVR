@@ -31,6 +31,18 @@ $nav-color: #2E2E2E;
   color: #FF6B6B;
 }
 
+.required_asterisk_legend {
+  position: relative;
+  text-align: right;
+
+   .fa {
+    font-size: 0.5rem;
+    position: relative;
+    bottom: 0.2rem;
+    color: #FF6B6B;    
+   }
+}
+
 body {
   font-family: $font-stack;
   box-sizing:border-box;
