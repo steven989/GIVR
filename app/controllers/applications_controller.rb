@@ -106,7 +106,7 @@ class ApplicationsController < ApplicationController
       elsif params[:todo] == 'apply'
           @application.cannot_apply_to_filled_projects  #call the custom validation
           @application.professional_cannot_apply_twice_to_same_project #call the custom validation
-          @application.message = params[:message]
+          @application.assign_attributes(application_creation_params)
           @application.must_include_message #call the custom validation
           unless @application.errors.any?
             @application.save

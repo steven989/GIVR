@@ -31,7 +31,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         if (generalFromValidationForPresence.call($(this)) == 'missing') {
           return false
         };
-      }
+      };
       $.ajax({
         url: $(this).parent().parent().attr('action'),
         type: 'POST',
@@ -321,6 +321,11 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
             $('#application_submit, #application_shortlist').off('click').on('click',function(){
               event.stopImmediatePropagation(); //not sure why preventDefault does not work here
+              if ($(this).hasClass('check_required_fields')) {
+                if (generalFromValidationForPresence.call($('.form_validation_source_button')) == 'missing') {
+                  return false
+                };
+              };
               $(this).html("<i class='fa fa-circle-o-notch do_project spinner'></i>");
               _this = $(this);
               $.ajax({

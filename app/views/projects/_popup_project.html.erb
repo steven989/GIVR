@@ -115,13 +115,14 @@
       <div class="ui divider"></div>
       <div class="ui form">
       <%= form_tag do %>
+      <div class="required_asterisk_legend"><%= fa_icon 'asterisk' %> Indicates required fields</div>
         <div class="field">
-          <%= label_tag 'est_completion_date', "Estimated completion date" %>
-          <%= text_field_tag 'est_completion_date' %>
+          <%= label_tag 'est_completion_date' do %> Estimated completion date <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
+          <%= text_field_tag 'est_completion_date', nil, class: 'required_field' %>
         </div>
         <div class="field">
-          <%= label_tag 'message', "Add a message" %>
-          <%= text_area_tag 'message'%>
+          <%= label_tag 'message' do %> Add a message <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
+          <%= text_area_tag 'message', nil, class: 'required_field'%>
         </div>
         <div class="field">
           <%= label_tag 'open_questions', "Additional questions for the not-for-profit organization" %>
@@ -131,6 +132,10 @@
           <%= label_tag 'required_resources', "Resource required" %>
           <%= text_area_tag 'required_resources' %>
         </div>
+        <span class="form_validation_source_button"></span>
+      <div class="errors missing_field_error hidden">
+      </div>
+      <br>
       <% end %>
       </div>
       <% if current_user %>
@@ -140,7 +145,7 @@
           </div>
         <% end %>
       <% end %>
-      <div class="<%= "do_project" unless @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %> ui <%= "disabled" if @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %> tiny givrgreen button" id="application_submit" href="<%= @already_shortlisted ? applicant_update_path(@already_shortlisted.project, @already_shortlisted, todo: 'apply') : project_applications_path(@project, todo: 'apply') %>" data-method="<%= @already_shortlisted ? "PUT" : "POST" %>">Submit</div>
+      <div class="<%= "do_project check_required_fields" unless @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %> ui <%= "disabled" if @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %> tiny givrgreen button" id="application_submit" href="<%= @already_shortlisted ? applicant_update_path(@already_shortlisted.project, @already_shortlisted, todo: 'apply') : project_applications_path(@project, todo: 'apply') %>" data-method="<%= @already_shortlisted ? "PUT" : "POST" %>">Submit</div>
       <div class="load_application ui tiny black button">
         <%= fa_icon 'arrow-left' %> Back
       </div>
