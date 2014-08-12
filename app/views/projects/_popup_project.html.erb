@@ -115,7 +115,16 @@
       <div class="ui divider"></div>
       <div class="ui form">
       <%= form_tag do %>
-      <div class="required_asterisk_legend"><%= fa_icon 'asterisk' %> Indicates required fields</div>
+        <div class="required_asterisk_legend"><%= fa_icon 'asterisk' %> Indicates required fields</div>
+        <% if current_user.contact_first_name.blank? || current_user.contact_last_name.blank? %>  
+          <script>
+            var error_declaration_variable = 1
+          </script>
+          <br>
+          <div class="errors">
+                  You must fill in your first and last name before you can apply to projects. You can add that under <%= link_to "Edit my info", user_profile_path+'#settings'%> tab in your profile dashboard.
+          </div>
+        <% end %>
         <div class="field">
           <%= label_tag 'est_completion_date' do %> Estimated completion date <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
           <%= text_field_tag 'est_completion_date', nil, class: 'required_field' %>
