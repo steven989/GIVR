@@ -19,12 +19,12 @@ class ApplicationsController < ApplicationController
     params[:user_id] = current_user.id
     @application = @project.applications.new(application_creation_params)
     if params[:todo] == 'apply' 
-      success_message = 'Application successful!'
+      success_message = 'Application successful.'
       fail_message = "Application could not be completed."
       status = params[:todo]
     elsif params[:todo] == 'shortlist'
-      success_message = 'Project successfully shortlisted!'
-      fail_message = 'Project could not be shortlisted.'
+      success_message = 'Project successfully saved.'
+      fail_message = 'Project could not be saved.'
       status = params[:todo]
     else
       redirect_to projects_path, notice: 'Uh oh, something went wrong.'
