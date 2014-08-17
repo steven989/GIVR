@@ -331,6 +331,14 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       console.log(e);
     }
 
+            $('.open_login_box').off('click').on('click',function(){
+              highlightButton.call($('.nav_sign_in'));
+              hideShowThings.call($('.login_box'));  
+              hideShowThings.call($('.projects_overlay_transparent'));
+              $('.projects_detail').fadeOut('fast');
+              $('.projects_overlay').fadeOut('fast');
+            });
+
             $('#application_submit, #application_shortlist').off('click').on('click',function(){
               event.stopImmediatePropagation(); //not sure why preventDefault does not work here
               if ($(this).hasClass('check_required_fields')) {

@@ -80,7 +80,7 @@
           <div class="<%= "load_application" unless @already_applied %> ui <%= "disabled" if @already_applied %> tiny givrgreen button"><%= if @already_applied; "Applied" else "Apply" end %></div>
         <% end %> 
       <% else %>
-        <div class="ui tiny disabled button">Log in to apply</div>
+        <div class="ui tiny givrgreen button open_login_box" href="<%= projects_path+'#showLogin/login' %>">Log in to apply</div>
       <% end %>
       <% if current_user %> 
         <% if current_user.role == 'professional' %>
@@ -93,7 +93,7 @@
           <% end %>
         <% end %>
       <% else %> 
-        <div class="ui tiny disabled button">Log in to save project</div>
+        
       <% end %>
       <div id="close_project">
         <%= fa_icon 'times' %>
