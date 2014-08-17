@@ -119,22 +119,24 @@
         <div class="ui form">
         <%= form_tag do %>
           <div class="required_asterisk_legend"><%= fa_icon 'asterisk' %> Indicates required fields</div>
-          <% if current_user.contact_first_name.blank? || current_user.contact_last_name.blank? || !current_user.resume_exists? %>  
-            <script>
-              var error_declaration_variable = 1
-            </script>
-            <br>
-            <div class="errors">
-                <% if current_user.contact_first_name.blank? || current_user.contact_last_name.blank? %>
-                    You must fill in your first and last name before you can apply to projects. You can add that under <%= link_to "Edit my info", user_profile_path+'#settings'%> tab in your profile dashboard.
-                <% end %>
-                <% if !current_user.resume_exists? %>
+          <% if current_user %>
+            <% if current_user.contact_first_name.blank? || current_user.contact_last_name.blank? || !current_user.resume_exists? %>  
+              <script>
+                var error_declaration_variable = 1
+              </script>
+              <br>
+              <div class="errors">
                   <% if current_user.contact_first_name.blank? || current_user.contact_last_name.blank? %>
-                  <br><br>
+                      You must fill in your first and last name before you can apply to projects. You can add that under <%= link_to "Edit my info", user_profile_path+'#settings'%> tab in your profile dashboard.
                   <% end %>
-                    You must upload a resume to apply. You can do that under <%= link_to "Edit my info", user_profile_path+'#settings'%> tab in your profile dashboard.
-                <% end %>
-            </div>
+                  <% if !current_user.resume_exists? %>
+                    <% if current_user.contact_first_name.blank? || current_user.contact_last_name.blank? %>
+                    <br><br>
+                    <% end %>
+                      You must upload a resume to apply. You can do that under <%= link_to "Edit my info", user_profile_path+'#settings'%> tab in your profile dashboard.
+                  <% end %>
+              </div>
+            <% end %>
           <% end %>
           <div class="field">
             <%= label_tag 'est_completion_date' do %> Estimated completion date <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
