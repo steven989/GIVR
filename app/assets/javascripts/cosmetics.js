@@ -309,7 +309,6 @@ function searchBarClickListener() {
 function profile_toggle() {
     $('.profile_view_button').on('click',function(){
         execute_profile_toggle.call($(this));
-        window.scrollTo(0,0);
         if ($(this).attr('id') == 'applications') {
             projectApplicationRead.call($(this));
             hideNotification();
@@ -317,27 +316,28 @@ function profile_toggle() {
     });
 }
 
-    // this function is extracted out of the function above because we need to call this function elsewhere (when we first load the page, we need to call this function to highlight the correct nav button using url fragment)
+// this function is extracted out of the function above because we need to call this function elsewhere (when we first load the page, we need to call this function to highlight the correct nav button using url fragment)
 
-    function execute_profile_toggle(){                          
-            var _this = $(this)
-            window.location.hash=$(this).attr('id')
-            $('.profile_view_content').each(function(){
-                if (_this.attr('id') === $(this).attr('id')) {
-                    $(this).show()
-                } else { 
-                    $(this).hide()          
-                };
-            });
-        }
+function execute_profile_toggle(){                          
+        var _this = $(this);
+        window.location.hash="_"+$(this).attr('id');
+        $('.profile_view_content').each(function(){
+            if (_this.attr('id') === $(this).attr('id')) {
+                $(this).show();
+            } else { 
+                $(this).hide();      
+            };
+        });
+        window.scrollTo(0,0);
+    }
 
 // this code is to jump to the correct section when we first land on the profile page
 
 function jumpToTheRightProfileSection(raw_hash){
     var arrayOfExistingButtonIds = $.map($('.profile_view_nav .profile_view_button'),function(element,index){return element.id});   // this converts an array of the buttons into an array of the IDs of the buttons; used to check of the fragment in the url actually matches one of the buttons
     var section_id;
-    if (arrayOfExistingButtonIds.indexOf(raw_hash) >= 0) {
-        section_id = raw_hash
+    if (arrayOfExistingButtonIds.indexOf(raw_hash.replace("_","")) >= 0) {
+        section_id = raw_hash.replace("_","")
     } else {
         section_id = 'summary'
     }
