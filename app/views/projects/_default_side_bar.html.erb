@@ -4,6 +4,13 @@
     <div class="header item">
       Filter for projects
       <%= fa_icon 'search', class: 'icon_right' %>
+      <% if !logged_in? %>
+        <%= link_to user_profile_path+"#_add-new" do %><span class="marketplace_link_to_post_project"><%= fa_icon 'plus' %> Submit a project </span><% end %>
+      <% else %>
+        <% if current_user.is? 'npo' %>
+          <%= link_to user_profile_path+"#_add-new" do %><span class="marketplace_link_to_post_project"><%= fa_icon 'plus' %> Submit a project </span><% end %>
+        <% end %>
+      <% end %>
     </div>
     <div class='li item active'>
         <div class="clickable" id="category_search">
