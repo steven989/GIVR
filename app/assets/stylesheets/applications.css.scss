@@ -1453,11 +1453,13 @@ body {
     .profile_view_content {
       width: 100%;
       /*min-height is set by cosmetics.js setMinHeightToElements function*/
+      display: none;
 
       .unread {
         background-color: $primary-color;
       }
     }
+
 
     #summary {
       .summary_status {
