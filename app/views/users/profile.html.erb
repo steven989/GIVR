@@ -11,16 +11,26 @@
   <% if @user.role.nil? %>
 
   <div class="without_role">
-    <div class="user_form">
+    <div class="user_form ui form">
+      <h1>Please select your role</h1><br><br>
       <%= form_for @user, url: update_role_path do |f| %>
-        <p>I am a:
-            <%= f.radio_button :role, 'professional' %>
-            <%= f.label :role_volunteer, 'Professional' %>
-            <%= f.radio_button :role, 'npo' %>
-            <%= f.label :role_npo, 'Not-for-Profit Organization' %>
-        </p>
+        <div class="grouped inline fields">
+        I am a:
+          <div class="field">
+            <div class="ui radio checkbox">
+              <%= f.radio_button :role, 'professional' %>
+              <%= f.label :role_professional, 'Professional' %>
+            </div>
+          </div>
+          <div class="field">
+            <div class="ui radio checkbox">
+              <%= f.radio_button :role, 'npo' %>
+              <%= f.label :role_npo, 'Not-For-Profit Organization' %>
+            </div>
+          </div>
+        </div>
         <p>
-            <%= f.submit 'Set my role' %>
+            <%= f.submit 'Set my role', class: 'mini ui givrgreen button' %>
         </p>
       <% end %>
     </div>

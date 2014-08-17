@@ -82,7 +82,7 @@ class UsersController < ApplicationController
         else
         flash[:notice] = 'Please set a role'
         end
-        redirect_to user_profile_path
+        redirect_to user_profile_path+"#_summary"
     end
 
     def upload_resume

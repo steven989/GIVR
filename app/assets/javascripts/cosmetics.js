@@ -149,7 +149,7 @@ function landingPageScroll() {
 
 function setMinHeightToElements() {
     $('.background_div').css({
-        'min-height': $(window).height() 
+        'min-height': $(window).height() - $('.alt_header').height() 
     });
 
     $('.profile_view_content').css({
@@ -322,9 +322,11 @@ function highlightButton() {
 }
 
 function highlightButtonUI() {          // add "active" class for Semantic UI integration
-    var notClicked = $(this).attr('class').indexOf('active') < 0
-    if (notClicked) {$(this).addClass('active')} 
-        else {$(this).removeClass('active')}
+    if ($(this).attr('class') != undefined) {
+        var notClicked = $(this).attr('class').indexOf('active') < 0
+        if (notClicked) {$(this).addClass('active')} 
+            else {$(this).removeClass('active')}
+    }
 }
 
 // this code is to activate a filter group
