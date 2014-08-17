@@ -130,16 +130,16 @@
           <%= text_field_tag 'est_completion_date', nil, class: 'required_field' %>
         </div>
         <div class="field">
-          <%= label_tag 'message' do %> Add a message <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
-          <%= text_area_tag 'message', nil, class: 'required_field'%>
+          <%= label_tag 'message' do %> Message for the not-for-profit organization <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
+          <%= text_area_tag 'message', nil, class: 'required_field', placeholder: 'What is your high-level approach to deliver this project? What related background do you have?' %>
         </div>
         <div class="field">
-          <%= label_tag 'open_questions', "Additional questions for the not-for-profit organization" %>
-          <%= text_area_tag 'open_questions' %>
+          <%= label_tag 'open_questions', "Open questions for the not-for-profit organization" %>
+          <%= text_area_tag 'open_questions', nil, placeholder: 'Do you have any questions that the not-for-profit organization did not address in the project description that you would like to know?' %>
         </div>
         <div class="field">
-          <%= label_tag 'required_resources', "Resource required" %>
-          <%= text_area_tag 'required_resources' %>
+          <%= label_tag 'required_resources', "Additional resources required" %>
+          <%= text_area_tag 'required_resources', nil, placeholder: 'What resources would you like the not-for-profit organization to ideally provide to help you complete the project?' %>
         </div>
         <span class="form_validation_source_button"></span>
       <div class="errors missing_field_error hidden">
