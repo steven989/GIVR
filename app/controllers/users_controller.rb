@@ -178,6 +178,7 @@ class UsersController < ApplicationController
             @in_progress_count = @in_progress_applications.length
             @completed_count = @completed_applications.length
             @hours_given = current_user.applications.sum('hours')
+            
         elsif @role == 'professional'
             @company_names = Company.order("company_name ASC").map do |company| company.company_name end.to_json
             @applicationss = current_user.made_applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','view','approve') or (applications.status like 'decline' and applications.unapproved_status_view_date >= ?::date)", 3.days.ago)

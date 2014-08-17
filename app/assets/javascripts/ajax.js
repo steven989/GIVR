@@ -54,7 +54,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   function admin_edit() {
     $('.admin_edit, .admin_create').off('click').on('click',function(){
       event.preventDefault();
-      _this = $(this)
+      _this = $(this);
       $.ajax({
         url: $(this).attr('href'),
         type: 'GET',
@@ -66,6 +66,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
           var method = 'POST'
         }
         $('.edit_info_popup').html(data);
+        slimScroll();
         $('#close_project').off('click').on('click', function() {
           event.preventDefault();
           endProjectShow();
@@ -185,6 +186,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         dataType: 'html'
       }).done(function(data){
         $('.edit_info_popup').html(data);
+        slimScroll();
         $('#close_project').off('click').on('click', function() {
           event.preventDefault();
           endProjectShow();
@@ -309,12 +311,12 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         dataType: 'script',
         data: { view: $(this).data('view'), browser_info: browser_info}
       }).done(function(){
-        Dropzone.discover();
         buttonsInsideShowProject();
         toggleApplicationForm();
         animateProjects(2);
         removeUpload();
         datePickers();
+        slimScroll();
       });        
     });
   }
@@ -348,7 +350,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
                       $('.projects_detail').fadeOut('fast');
                       $('.projects_overlay').fadeOut('fast');
                 };
-                _this.html("Submit")
+                _this.html("Submit");
                 var message = data.message+" "+data.alertMessage;
                 dimmedModalMessage(message);
               });

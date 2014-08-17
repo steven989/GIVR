@@ -1,6 +1,7 @@
 <div class='error_messages'>
 </div>
-<div class="ui form segment profile_form">
+
+<div class="ui form segment profile_form" <%= if @popup; "id=slimScroll_edit_project" end %> >
   <% if @edit_project_flag %>
     <div id="close_project">
       <%= fa_icon 'times' %>

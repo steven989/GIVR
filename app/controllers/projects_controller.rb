@@ -83,6 +83,7 @@ class ProjectsController < ApplicationController
 
     if request.xhr?
       @edit_project_flag = true
+      @popup = true
       render partial: 'form'
     end
   end

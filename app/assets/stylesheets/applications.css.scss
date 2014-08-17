@@ -1221,11 +1221,17 @@ body {
     color: black;
     z-index: 2;
 
-    .project_details {
-      color: black;
-      overflow-y: scroll;
+
+    .project_details_container {
       width: 100%;
       height: 18rem;
+
+      .project_details {
+        color: black;
+        overflow-y: scroll;
+        width: 100%;
+        
+      }
     }
 
     .fb-like {
@@ -1241,56 +1247,58 @@ body {
 
   }  
   
-  .proto_form {
+  .proto_form_container {
     position: relative;
+    height: 25rem;
     top: 2rem;
     left: 2.5%;
     width: 95%;
-    height: 25rem;
-    overflow: scroll;  
 
-  .project_header {
-    height: 3rem;
-    font-size: 1.3rem;
+    .proto_form {
+      width: 100%;
 
-    .link_to_profile {
-      a {
-        text-decoration: underline;
-        color: black;
-        font-weight: bold;
-        
-        &:hover {
-          color: $active-color;
+    .project_header {
+      height: 3rem;
+      font-size: 1.3rem;
+
+      .link_to_profile {
+        a {
+          text-decoration: underline;
+          color: black;
+          font-weight: bold;
+          
+          &:hover {
+            color: $active-color;
+          }
         }
-      }
-    }  
-  }
-
-    .form textarea {
-      height: 2rem;
+      }  
     }
 
-    .upload {
-      padding-top: 0;
+      .form textarea {
+        height: 2rem;
+      }
 
-      form {
+      .upload {
+        padding-top: 0;
+
+        form {
+          margin-bottom: 1rem;
+        }
+
+      }
+
+      .errors {
+        font-size: 1rem;
+        background-color: #F1D7D7;
+        color: #A95252;
+        border-radius: 5px;
+        padding: 1rem;
         margin-bottom: 1rem;
-      }
-
+      } 
     }
-
-    .errors {
-      font-size: 1rem;
-      background-color: #F1D7D7;
-      color: #A95252;
-      border-radius: 5px;
-      padding: 1rem;
-      margin-bottom: 1rem;
-    } 
   }
-
   .load_application, .do_project, #application_submit {
-    width: 7rem;
+    min-width: 7rem;
 
     .spinner {
       width: auto;

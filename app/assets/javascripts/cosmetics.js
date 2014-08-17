@@ -28,7 +28,36 @@ $('document').ready(function() {
     showHidePartForm();
     datePickers();
     if (typeof(companyList) != "undefined") {autoComplete()};
+    slimScroll();
 });
+
+// scroll divs without affecting other divs (slimscroll)
+
+function slimScroll() {
+    $('#slimScroll_show').slimScroll({
+        height: 'auto'
+    });
+
+    $('#slimScroll_apply').slimScroll({
+        height: 'auto'
+    });
+
+    $('#slimScroll_edit').slimScroll({
+        height: 'auto'
+    });
+
+    $('#slimScroll_view_project_no_buttons').slimScroll({
+        height: 'auto'
+    });
+    
+    $('#slimScroll_edit_project').slimScroll({
+        height: 'auto'
+    });
+
+    $('#slimScroll_edit_application').slimScroll({
+        height: 'auto'
+    });
+}
 
 // autocomplete
 
@@ -525,11 +554,11 @@ function toggleApplicationForm() {
     $('.load_application').off('click').on('click', function(){
         if ($('.project_card_in_popup').data('shown') == 1){
                 $('.project_card_in_popup').animate({top: '-=30rem'}, 300);
-                $('.proto_form').animate({top: '-=30rem'}, 300);
+                $('.proto_form_container').animate({top: '-=30rem'}, 300);
                 $('.project_card_in_popup').data('shown',0);
         } else {
                 $('.project_card_in_popup').animate({top: '+=30rem'}, 300);
-                $('.proto_form').animate({top: '+=30rem'}, 300);
+                $('.proto_form_container').animate({top: '+=30rem'}, 300);
                 $('.project_card_in_popup').data('shown',1);
         };
     });

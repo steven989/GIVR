@@ -24,54 +24,56 @@
       </div>
 
       <div class="ui divider"></div>
-      <div class="project_details">
-        <h3>Project details</h3>
-        <p>
-          <%= project.description %>
-        </p>
-        <br>
-        <h3>Why We Need This</h3>
-        <p>
-          <%= project.why_we_need_this %>
-        </p> 
-        <br>       
-        <h3>Deliverables</h3>
-        <p>
-          <%= project.deliverable %>
-        </p>
-        <br>
-        <h3>Requirements</h3>
-        <p>
-          <%= project.requirements %>
-        </p>
-        <br>
-        <% if !project.perks.blank? %>
-        <h3>Perks</h3>
-        <p>
-          <%= project.perks %>
-        </p>
-        <br>        
-        <% end %>
+      <div class="project_details_container">
+        <div class="project_details" id="slimScroll_show">
+          <h3>Project details</h3>
+          <p>
+            <%= project.description %>
+          </p>
+          <br>
+          <h3>Why We Need This</h3>
+          <p>
+            <%= project.why_we_need_this %>
+          </p> 
+          <br>       
+          <h3>Deliverables</h3>
+          <p>
+            <%= project.deliverable %>
+          </p>
+          <br>
+          <h3>Requirements</h3>
+          <p>
+            <%= project.requirements %>
+          </p>
+          <br>
+          <% if !project.perks.blank? %>
+          <h3>Perks</h3>
+          <p>
+            <%= project.perks %>
+          </p>
+          <br>        
+          <% end %>
 
-        <h3>Number of positions</h3>
-        <p>
-          <%= project.number_of_positions %> (<%= @available_positions %> still available)
-        </p>
-        <br>
-        <h3>Skill category</h3>
-        <p>
-          <%= project.category.category %>
-        </p>
-        <br>
-        <h3>Cause</h3>
-        <p>
-          <%= project.cause.cause %>
-        </p>
-        <br>
-        <h3>Location</h3>
-        <p>
-          Location: <%= project.location.location %>
-        </p>
+          <h3>Number of positions</h3>
+          <p>
+            <%= project.number_of_positions %> (<%= @available_positions %> still available)
+          </p>
+          <br>
+          <h3>Skill category</h3>
+          <p>
+            <%= project.category.category %>
+          </p>
+          <br>
+          <h3>Cause</h3>
+          <p>
+            <%= project.cause.cause %>
+          </p>
+          <br>
+          <h3>Location</h3>
+          <p>
+            Location: <%= project.location.location %>
+          </p>
+        </div>
       </div>
       <% if current_user %> 
         <% if current_user.role == 'professional' %>
@@ -83,80 +85,83 @@
       <% if current_user %> 
         <% if current_user.role == 'professional' %>
           <% if @already_shortlisted %>
-            <div class="ui tiny disabled button">Shortlisted</div>
+            <div class="ui tiny disabled button">Project saved</div>
           <% elsif @already_applied %>
-            <div class="ui tiny disabled button">Shortlist</div>
+            <div class="ui tiny disabled button">Save project</div>
           <% else %>
-            <div class="do_project application_submit ui tiny blue button" href="<%= project_applications_path(@project, todo: 'shortlist') %>" data-method="POST" id="application_shortlist">Shortlist</div>
+            <div class="do_project application_submit ui tiny blue button" href="<%= project_applications_path(@project, todo: 'shortlist') %>" data-method="POST" id="application_shortlist">Save project</div>
           <% end %>
         <% end %>
       <% else %> 
-        <div class="ui tiny disabled button">Log in to shortlist</div>
+        <div class="ui tiny disabled button">Log in to save project</div>
       <% end %>
       <div id="close_project">
         <%= fa_icon 'times' %>
       </div>      
     </div>
-    <div class="proto_form">
-      <div class="project_header">
-          <h1><%= project.title %> for 
-            <% if project.hide_name == "1" %>
-              <% if ["a","e","i","o","u"].include? project.cause.cause[0].downcase %>
-                an
+    <div class="proto_form_container">
+      <div class="proto_form" id="slimScroll_apply">
+        <div class="project_header">
+            <h1><%= project.title %> for 
+              <% if project.hide_name == "1" %>
+                <% if ["a","e","i","o","u"].include? project.cause.cause[0].downcase %>
+                  an
+                <% else %>
+                  a
+                <% end %>
+                <%= project.cause.cause.downcase %> organization
               <% else %>
-                a
+              <span class='link_to_profile'><%= link_to project.user.org_name, organization_profile_path(project.user.id) %></span>
               <% end %>
-              <%= project.cause.cause.downcase %> organization
-            <% else %>
-            <span class='link_to_profile'><%= link_to project.user.org_name, organization_profile_path(project.user.id) %></span>
-            <% end %>
-          </h1>
-      </div>
-      <div class="ui divider"></div>
-      <div class="ui form">
-      <%= form_tag do %>
-        <div class="required_asterisk_legend"><%= fa_icon 'asterisk' %> Indicates required fields</div>
-        <% if current_user.contact_first_name.blank? || current_user.contact_last_name.blank? %>  
-          <script>
-            var error_declaration_variable = 1
-          </script>
-          <br>
-          <div class="errors">
-                  You must fill in your first and last name before you can apply to projects. You can add that under <%= link_to "Edit my info", user_profile_path+'#settings'%> tab in your profile dashboard.
+            </h1>
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui form">
+        <%= form_tag do %>
+          <div class="required_asterisk_legend"><%= fa_icon 'asterisk' %> Indicates required fields</div>
+          <% if current_user.contact_first_name.blank? || current_user.contact_last_name.blank? || !current_user.resume_exists? %>  
+            <script>
+              var error_declaration_variable = 1
+            </script>
+            <br>
+            <div class="errors">
+                <% if current_user.contact_first_name.blank? || current_user.contact_last_name.blank? %>
+                    You must fill in your first and last name before you can apply to projects. You can add that under <%= link_to "Edit my info", user_profile_path+'#settings'%> tab in your profile dashboard.
+                <% end %>
+                <% if !current_user.resume_exists? %>
+                  <% if current_user.contact_first_name.blank? || current_user.contact_last_name.blank? %>
+                  <br><br>
+                  <% end %>
+                    You must upload a resume to apply. You can do that under <%= link_to "Edit my info", user_profile_path+'#settings'%> tab in your profile dashboard.
+                <% end %>
+            </div>
+          <% end %>
+          <div class="field">
+            <%= label_tag 'est_completion_date' do %> Estimated completion date <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
+            <%= text_field_tag 'est_completion_date', nil, class: 'required_field' %>
           </div>
-        <% end %>
-        <div class="field">
-          <%= label_tag 'est_completion_date' do %> Estimated completion date <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
-          <%= text_field_tag 'est_completion_date', nil, class: 'required_field' %>
-        </div>
-        <div class="field">
-          <%= label_tag 'message' do %> Message for the not-for-profit organization <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
-          <%= text_area_tag 'message', nil, class: 'required_field', placeholder: 'What is your high-level approach to deliver this project? What related background do you have?' %>
-        </div>
-        <div class="field">
-          <%= label_tag 'open_questions', "Open questions for the not-for-profit organization" %>
-          <%= text_area_tag 'open_questions', nil, placeholder: 'Do you have any questions that the not-for-profit organization did not address in the project description that you would like to know?' %>
-        </div>
-        <div class="field">
-          <%= label_tag 'required_resources', "Additional resources required" %>
-          <%= text_area_tag 'required_resources', nil, placeholder: 'What resources would you like the not-for-profit organization to ideally provide to help you complete the project?' %>
-        </div>
-        <span class="form_validation_source_button"></span>
-      <div class="errors missing_field_error hidden">
-      </div>
-      <br>
-      <% end %>
-      </div>
-      <% if current_user %>
-        <% if current_user.resume_quick_look.nil? %>
-          <div class="upload_container">
-            <%= render partial: 'users/resume_upload', locals: {user: @user=current_user} %>
+          <div class="field">
+            <%= label_tag 'message' do %> Message for the not-for-profit organization <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
+            <%= text_area_tag 'message', nil, class: 'required_field', placeholder: 'What is your high-level approach to deliver this project? What related background do you have?' %>
           </div>
+          <div class="field">
+            <%= label_tag 'open_questions', "Open questions for the not-for-profit organization" %>
+            <%= text_area_tag 'open_questions', nil, placeholder: 'Do you have any questions that the not-for-profit organization did not address in the project description that you would like to know?' %>
+          </div>
+          <div class="field">
+            <%= label_tag 'required_resources', "Additional resources required" %>
+            <%= text_area_tag 'required_resources', nil, placeholder: 'What resources, help, support would you like the not-for-profit organization to ideally provide to help you complete the project?' %>
+          </div>
+          <span class="form_validation_source_button"></span>
+        <div class="errors missing_field_error hidden">
+        </div>
+        <br>
         <% end %>
-      <% end %>
-      <div class="<%= "do_project check_required_fields" unless @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %> ui <%= "disabled" if @already_applied || (if current_user; current_user.resume_quick_look.nil? end) %> tiny givrgreen button" id="application_submit" href="<%= @already_shortlisted ? applicant_update_path(@already_shortlisted.project, @already_shortlisted, todo: 'apply') : project_applications_path(@project, todo: 'apply') %>" data-method="<%= @already_shortlisted ? "PUT" : "POST" %>">Submit</div>
-      <div class="load_application ui tiny black button">
-        <%= fa_icon 'arrow-left' %> Back
+        </div>
+        <div class="<%= "do_project check_required_fields" unless @already_applied %> ui <%= "disabled" if @already_applied %> tiny givrgreen button" id="application_submit" href="<%= @already_shortlisted ? applicant_update_path(@already_shortlisted.project, @already_shortlisted, todo: 'apply') : project_applications_path(@project, todo: 'apply') %>" data-method="<%= @already_shortlisted ? "PUT" : "POST" %>">Submit</div>
+        <div class="load_application ui tiny black button">
+          <%= fa_icon 'arrow-left' %> Back
+        </div>
       </div>
     </div>
   </div>
