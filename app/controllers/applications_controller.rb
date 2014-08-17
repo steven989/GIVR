@@ -98,7 +98,7 @@ class ApplicationsController < ApplicationController
       @application = Application.find_by(id: params[:id])
       if params[:todo] == 'engage'
           @application.statuses= params[:todo]
-          @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just accepted the project, we want the pop up to show up on npo's screen)
+          # @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just accepted the project, we want the pop up to show up on npo's screen)
           @application.project.statuses= 'in progress'
           @application.update_attribute(:in_progress_date, DateTime.now)
           @application.project.applications.where("status like 'shortlist'").delete_all

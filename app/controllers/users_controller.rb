@@ -175,7 +175,7 @@ class UsersController < ApplicationController
             @completed_applications = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('complete')")
             @active_project_count = current_user.submitted_projects.where("projects.status like 'on market'").length
             @active_application_count = current_user.applications.order('COALESCE(applications.application_date, applications.created_at ) DESC').where("applications.status in ('apply','view','approve')").length
-            @in_progress_count = @in_progress_applications.length 
+            @in_progress_count = @in_progress_applications.length
             @completed_count = @completed_applications.length
             @hours_given = current_user.applications.sum('hours')
         elsif @role == 'professional'

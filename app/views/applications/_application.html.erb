@@ -113,7 +113,7 @@
                 <div class='action_button ui tiny givrgreen button'><%= link_to 'Apply', applicant_update_path(application.project, application), class: 'user_action_button', data: {todo: 'apply'}, method: 'PUT' %>
                 </div>
             <% elsif application.status == 'approve' %>
-                <div class='action_button ui tiny givrgreen button'><%= link_to 'Engage', applicant_update_path(application.project, application), method: 'PUT', data: {todo: 'engage'}, class: 'user_action_button' %></div>
+                <div class='action_button ui tiny givrgreen button'><%= link_to 'Start', applicant_update_path(application.project, application), method: 'PUT', data: {todo: 'engage'}, class: 'user_action_button' %></div>
             <% end %>
         </div>
         <div class="modify">
