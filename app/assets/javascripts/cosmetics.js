@@ -73,7 +73,7 @@ function autoComplete() {
 function datePickers() {
     $('#est_completion_date').datepicker({ dateFormat: "yy-mm-dd" });
     $('#application_est_completion_date').datepicker({ dateFormat: "yy-mm-dd" });
-    $('#project_required_date').datepicker({ dateFormat: "yy-mm-dd" });
+    $('.project_required_date_sel').datepicker({ dateFormat: "yy-mm-dd" });
 }
 
 // in the professional information edit, only show employee ID if the organization name is filled out
