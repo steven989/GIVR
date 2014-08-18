@@ -956,7 +956,7 @@ body {
   height: 85%;
   width: 16%;
   z-index: 1;
-  overflow: scroll;
+  overflow: auto;
   color: $text-color;
 
   .search_bar {
@@ -1894,7 +1894,7 @@ body {
       margin: 0rem auto 3rem auto;
       border: 2px solid $light-gray;
       width: 100%;
-      overflow: scroll;
+      overflow: auto;
 
       .high_level_stats {
         margin: 1rem auto;
@@ -1945,7 +1945,7 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
-    overflow: scroll;
+    overflow: auto;
 
     .profile_form {
       width: 100%;
@@ -1984,7 +1984,7 @@ body {
     height: 85%;
     width: 16%;
     z-index: 1;
-    overflow: scroll;
+    overflow: auto;
     color: $text-color;
 
 
