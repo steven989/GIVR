@@ -48,7 +48,7 @@
                 <p class='action_button ui tiny red button'><%= link_to 'Decline', creator_update_path(application.project, application), method: 'PUT', data: {todo: 'decline'}, class: 'user_action_button' %></p>       
             <% elsif application.status == 'engage' %>
                 <p class='action_button ui tiny givrgreen button'><%= link_to 'Finish', complete_application_path(application.project, application, completion_type: 'complete'), method: 'GET', class: 'user_action_button_complete_application' %></p>   
-                <p class='action_button ui tiny red button'><%= link_to 'Back out', complete_application_path(application.project, application, completion_type: 'terminated'), method: 'GET', class: 'user_action_button_complete_application' %></p>        
+                <p class='action_button ui tiny red button'><%= link_to 'Abort', complete_application_path(application.project, application, completion_type: 'terminated'), method: 'GET', class: 'user_action_button_complete_application' %></p>        
             <% end %>
         </div>
         <% if ['complete'].include? application.status %>

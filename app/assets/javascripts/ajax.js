@@ -237,6 +237,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         dataType: 'html'
       }).done(function(data){
         $('.edit_info_popup').html(data);
+        slimScroll();
         $('#close_project').off('click').on('click', function(event) {
           if(event.preventDefault) {
             event.preventDefault();
