@@ -24,6 +24,8 @@ $nav-color: #2E2E2E;
 
 /* ----------------------- across the whole document ---------------------- */
 
+
+
 .required_asterisk {
   font-size: 0.5rem;
   position: relative;
@@ -43,10 +45,21 @@ $nav-color: #2E2E2E;
   }
 }
 
+html {
+  ::selection {
+    background: $active-color;
+  }
+
+  ::-moz-selection {
+    background: $active-color;
+  }
+}
+
 body {
   font-family: $font-stack;
   box-sizing:border-box;
   -moz-box-sizing:border-box; /* Firefox */
+
 }
 
 .hidden {
