@@ -972,8 +972,9 @@ body {
         color: white !important;
 
         .marketplace_link_to_post_project {
-          display: inline-block;
+          display: block;
           padding: 0.4rem;
+          width: 8rem;
           margin-top: 0.5rem;
           font-size: 0.8rem;
           cursor: pointer;
