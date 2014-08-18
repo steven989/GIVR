@@ -87,7 +87,6 @@
               <td><%= project.cause.cause if project.cause %></td>
               <td><%= project.location.location if project.location %></td>
               <td><%= project.status %></td>
-              <td><%= project.number_of_positions %></td>
               <td><%= project.applications.where("applications.status like 'shortlist'").length %></td>
               <td><%= project.applications.where("applications.status like 'apply'").length %></td>
               <td><%= project.applications.where("applications.status like 'approve'").length %></td>

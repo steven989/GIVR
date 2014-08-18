@@ -3,7 +3,6 @@
   <% @already_shortlisted = Application.where("status like 'shortlist' AND project_id = ? and user_id = ?",project.id,current_user.id).take %>
 <% end %>
 
-<% @available_positions = [(project.number_of_positions - project.applications.where("status in ('engage','complete')").length),0].max %>
 
 <div class="project_popup" data-projectid="<%= project.id %>">
     <span id='view_closed' data-viewpath='<%= j project_view_path(@view)%>' style="display:inline-block; width: 1px; height: 1px;"></span>
@@ -54,10 +53,6 @@
           <br>        
           <% end %>
 
-          <h3>Number of positions</h3>
-          <p>
-            <%= project.number_of_positions %> (<%= @available_positions %> still available)
-          </p>
           <br>
           <h3>Skill category</h3>
           <p>
