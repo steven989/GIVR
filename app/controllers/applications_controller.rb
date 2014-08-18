@@ -19,7 +19,7 @@ class ApplicationsController < ApplicationController
     params[:user_id] = current_user.id
     @application = @project.applications.new(application_creation_params)
     if params[:todo] == 'apply' 
-      success_message = 'Application successful.'
+      success_message = 'Application successful. You can monitor the status of your application in your dashboard.'
       fail_message = "Application could not be completed."
       status = params[:todo]
     elsif params[:todo] == 'shortlist'
@@ -114,7 +114,7 @@ class ApplicationsController < ApplicationController
               @application.statuses= params[:todo]
               @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just applied, we want the pop up to show up on npo's screen)
               @application.update_attribute(:application_date, DateTime.now)
-              message = "Application successful!"
+              message = "Application successful. You can monitor the status of your application in your dashboard."
               successFlag = 1
               UserMailer.applied_to_project(@application.project.user).deliver
             end

@@ -569,12 +569,12 @@ function signin_toggle() {
 function toggleApplicationForm() {
     $('.load_application').off('click').on('click', function(){
         if ($('.project_card_in_popup').data('shown') == 1){
-                $('.project_card_in_popup').animate({top: '-=30rem'}, 300);
-                $('.proto_form_container').animate({top: '-=30rem'}, 300);
+                $('.project_card_in_popup').animate({top: '-=40rem'}, 300);
+                $('.proto_form_container').animate({top: '-=40rem'}, 300);
                 $('.project_card_in_popup').data('shown',0);
         } else {
-                $('.project_card_in_popup').animate({top: '+=30rem'}, 300);
-                $('.proto_form_container').animate({top: '+=30rem'}, 300);
+                $('.project_card_in_popup').animate({top: '+=40rem'}, 300);
+                $('.proto_form_container').animate({top: '+=40rem'}, 300);
                 $('.project_card_in_popup').data('shown',1);
         };
     });

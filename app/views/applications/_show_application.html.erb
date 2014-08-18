@@ -6,98 +6,89 @@
   </div> 
   <div class="field">
     <p class='section_title'>Project</p>
-    <p><%= @application.project.title %></p>
-    <div class="ui divider"></div>
+    <div class="ui label"><%= @application.project.title %></div>
   </div>
   <div class="field">
     <p class='section_title'>Professional's name</p>
-    <p><%= @application.user.display_full_name %></p>
-    <div class="ui divider"></div>
+    <div class="ui label"><%= @application.user.display_full_name %></div>
   </div>
   <div class="field">
     <p class='section_title'>Email</p>
-    <p><%= @application.user.email %></p>
-    <div class="ui divider"></div>
+    <div class="ui label"><%= @application.user.email %></div>
   </div>
   <% if !@application.user.website.blank? %>
   <div class="field">
     <p class='section_title'>Website</p>
-    <p><%= link_to @application.user.website, @application.user.proper_website, target: '_blank' %></p>
-    <div class="ui divider"></div>
+    <div class="ui label"><%= link_to @application.user.website, @application.user.proper_website, target: '_blank' %></div>
   </div>
   <% end %>
   <% if !@application.user.org_name.blank? %>
   <div class="field">
     <p class='section_title'>Company</p>
-    <p><%= @application.user.org_name %></p>
-    <div class="ui divider"></div>
+    <div class="ui label"><%= @application.user.org_name %></div>
   </div>
   <% end %>
   <% if !@application.user.years_of_experience.blank? %>
   <div class="field">
     <p class='section_title'>Years of experience</p>
-    <p><%= @application.user.years_of_experience %></p>
-    <div class="ui divider"></div>
+    <div class="ui label"><%= @application.user.years_of_experience %></div>
   </div>
   <% end %>
   <% if @application.user.phone %>
     <div class="field">
       <p class='section_title'>Phone number</p>
-      <p><%= @application.user.phone + if @application.user.extension; "ext. "+@application.user.extension.to_s else "" end %></p>
-      <div class="ui divider"></div>
+      <div class="ui label"><%= @application.user.phone + if @application.user.extension; "ext. "+@application.user.extension.to_s else "" end %></div>
     </div>    
   <% end %>
   <div class="field">
     <p class='section_title'>Resume</p>
     <% if @application.user.resume_exists? %>
-    <div class="uploaded_stuff_action"><%= link_to @application.user.resume_url(:query => {"response-content-disposition" => "attachment"}) do %>
-        <%= fa_icon 'download', class: 'icon_left' %>Download resume
-      <% end %>
+    <div class="ui label">
+      <div class="uploaded_stuff_action"><%= link_to @application.user.resume_url(:query => {"response-content-disposition" => "attachment"}) do %>
+          <%= fa_icon 'download', class: 'icon_left' %>Download resume
+        <% end %>
+      </div>
     </div>
     <% else %>
-      <p>No resume provided</p>
+      <div class="ui label">No resume provided</div>
     <% end %>
-    <div class="ui divider"></div>
   </div>
   <div class="field">
     <p class='section_title'>Estimated completion date</p>
-    <p><%= @application.est_completion_date %></p>
+    <div class="ui label"><%= @application.est_completion_date.strftime('%Y-%m-%d') if @application.est_completion_date %></div>
   </div>
-  <div class="ui divider"></div>
   <div class="field">
     <p class='section_title'>Message from professional</p>
-    <p><%= @application.message %></p>
+    <div class="ui label"><%= @application.message %></div>
   </div>
-  <div class="ui divider"></div>
+  <% if !@application.open_questions.blank? %>
   <div class="field">
     <p class='section_title'>Open questions</p>
-    <p><%= @application.open_questions %></p>
+    <div class="ui label"><%= @application.open_questions %></div>
   </div>
-  <div class="ui divider"></div>
+  <% end %>
+  <% if !@application.required_resources.blank? %>
   <div class="field">
     <p class='section_title'>Resources required</p>
-    <p><%= @application.required_resources %></p>
+    <div class="ui label"><%= @application.required_resources %></div>
   </div>
+  <% end %>
   <% if @application.status == 'complete' && @user.is?('npo') %>
     <div class="field">
-      <div class="ui divider"></div>
       <p class='section_title'>Hours volunteered</p>
-      <p><%= @application.hours %></p>
+      <div class="ui label"><%= @application.hours %></div>
     </div>
     <div class="field">
-      <div class="ui divider"></div>
       <p class='section_title'>Rating for <%= @application.user.display_name %></p>
-      <p><%= @application.rating_for_professional %></p>
+      <div class="ui label"><%= @application.rating_for_professional %></div>
     </div>
     <div class="field">
-      <div class="ui divider"></div>
       <p class='section_title'>Would work with <%= @application.user.display_name %> again</p>
-      <p><%= @application.work_again %></p>
+      <div class="ui label"><%= @application.work_again %></div>
     </div>
     <div class="field">
-      <div class="ui divider"></div>
       <p class='section_title'>Feedback for <%= @application.user.display_name %></p>
-      <p><%= @application.comments_for_professional %></p>
+      <div class="ui label"><%= @application.comments_for_professional %></div>
     </div>
   <% end %>
 </div>
