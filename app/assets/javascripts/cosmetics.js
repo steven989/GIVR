@@ -182,7 +182,11 @@ function toggleUserProfileMenu() {
 
 function signinVisibilityToggle(){
     $('.nav_sign_in').on('click',function(){
-    event.preventDefault();
+      if(event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      };
     highlightButton.call($(this));
     hideShowThings.call($('.login_box'));  
     hideShowThings.call($('.projects_overlay_transparent'));
