@@ -40,7 +40,7 @@ class Project < ActiveRecord::Base
   end 
 
   def self.marketplace_status_update
-    take_count = Project.where("status not in ('under review', 'complete')").length - 100
+    take_count = [Project.where("status not in ('under review', 'complete')").length - 100,0].max
     Project.where("status not in ('under review', 'complete')").order('approval_date ASC').take(take_count).each do |project|
       project.statuses= 'off market' if project.statuses != 'off market'
     end
