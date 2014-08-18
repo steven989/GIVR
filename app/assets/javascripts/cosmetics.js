@@ -181,7 +181,7 @@ function toggleUserProfileMenu() {
 // toggle between showing the sign in form and not showing the sign in form
 
 function signinVisibilityToggle(){
-    $('.nav_sign_in').on('click',function(){
+    $('.nav_sign_in').on('click',function(event){
       if(event.preventDefault) {
         event.preventDefault();
       } else {

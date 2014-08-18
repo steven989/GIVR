@@ -138,7 +138,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // Subscribe to mailing list hosted on Mailchimp
 
   function subscribeToMailchimp() {
-    $('.subscribe').off('click').on('click',function(){
+    $('.subscribe').off('click').on('click',function(event){
       _this = $(this);
       if(event.preventDefault) {
         event.preventDefault();
