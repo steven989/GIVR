@@ -413,8 +413,12 @@ function configureDropzone() {
         var submitButton = $("#resume_upload")
             myDropzone = this; // closure
         submitButton.hide(); 
-        submitButton.off("click").on("click", function() {
-          event.preventDefault();
+        submitButton.off("click").on("click", function(event) {
+          if(event.preventDefault) {
+            event.preventDefault();
+          } else {
+            event.returnValue = false;
+          };
           myDropzone.processQueue(); // Tell Dropzone to process all queued files.
         });
         // // show the submit button only when files are dropped here:
@@ -471,8 +475,12 @@ function configureDropzone() {
         var submitButton = $("#logo_upload")
             myDropzone = this; // closure
         submitButton.hide(); 
-        submitButton.off("click").on("click", function() {
-          event.preventDefault();
+        submitButton.off("click").on("click", function(event) {
+          if(event.preventDefault) {
+            event.preventDefault();
+          } else {
+            event.returnValue = false;
+          };
           myDropzone.processQueue(); // Tell Dropzone to process all queued files.
         });
         // this is the hover effect

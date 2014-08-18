@@ -25,8 +25,12 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // create project
 
   function create_project() {
-    $('.create_project').off('click').on('click',function(){
-      event.preventDefault();
+    $('.create_project').off('click').on('click',function(event){
+      if(event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      };
       if ($(this).hasClass('check_required_fields')) {
         if (generalFromValidationForPresence.call($(this)) == 'missing') {
           return false
@@ -52,8 +56,12 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // admin edit
 
   function admin_edit() {
-    $('.admin_edit, .admin_create').off('click').on('click',function(){
-      event.preventDefault();
+    $('.admin_edit, .admin_create').off('click').on('click',function(event){
+      if(event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      };
       _this = $(this);
       $.ajax({
         url: $(this).attr('href'),
@@ -67,15 +75,23 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         }
         $('.edit_info_popup').html(data);
         slimScroll();
-        $('#close_project').off('click').on('click', function() {
-          event.preventDefault();
+        $('#close_project').off('click').on('click', function(event) {
+          if(event.preventDefault) {
+            event.preventDefault();
+          } else {
+            event.returnValue = false;
+          };
           endProjectShow();
           endView();
         });
         adminDelete();
         datePickers();
-        $('.profile_form .submit').off('click').on('click',function(){
-          event.preventDefault();
+        $('.profile_form .submit').off('click').on('click',function(event){
+            if(event.preventDefault) {
+              event.preventDefault();
+            } else {
+              event.returnValue = false;
+            };
           if ($(this).hasClass('check_required_fields')) {
             if (generalFromValidationForPresence.call($(this)) == 'missing') {
               return false
@@ -108,7 +124,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // admin delete
 
   function adminDelete() {
-    $('.admin_delete').off('click').on('click',function(){
+    $('.admin_delete').off('click').on('click',function(event){
       var _this = $(this);
       $.ajax({
         url: $(this).attr('href'),
@@ -131,7 +147,11 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         };        
       });
       event.stopImmediatePropagation(); // this is to prevent project details from showing up when deleting shortlisted projects
-      event.preventDefault();   // this is to prevent project details from showing up when deleting shortlisted projects   
+      if(event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      };   // this is to prevent project details from showing up when deleting shortlisted projects   
     });
   }
 
@@ -178,8 +198,12 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   // view more application details
   function applicationDetails() {
-    $('.view_application').off('click').on('click',function(){
-      event.preventDefault();
+    $('.view_application').off('click').on('click',function(event){
+      if(event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      };
       $.ajax({
         url: $(this).attr('href'),
         type: 'GET',
@@ -187,8 +211,12 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       }).done(function(data){
         $('.edit_info_popup').html(data);
         slimScroll();
-        $('#close_project').off('click').on('click', function() {
-          event.preventDefault();
+        $('#close_project').off('click').on('click', function(event) {
+          if(event.preventDefault) {
+            event.preventDefault();
+          } else {
+            event.returnValue = false;
+          };
           endProjectShow();
           endView();
         });
@@ -200,7 +228,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // complete an application at the end of an engagement
 
   function finishProjectPrompt() {
-    $('.user_action_button_complete_application').off('click').on('click',function(){
+    $('.user_action_button_complete_application').off('click').on('click',function(event){
       event.stopImmediatePropagation(); //not sure why preventDefault does not work here    
       var _this = $(this);
       $.ajax({
@@ -209,13 +237,21 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         dataType: 'html'
       }).done(function(data){
         $('.edit_info_popup').html(data);
-        $('#close_project').off('click').on('click', function() {
-          event.preventDefault();
+        $('#close_project').off('click').on('click', function(event) {
+          if(event.preventDefault) {
+            event.preventDefault();
+          } else {
+            event.returnValue = false;
+          };
           endProjectShow();
           endView();
         });
-        $('.profile_form .submit').off('click').on('click',function(){
-          event.preventDefault();
+        $('.profile_form .submit').off('click').on('click',function(event){
+          if(event.preventDefault) {
+            event.preventDefault();
+          } else {
+            event.returnValue = false;
+          };
           if ($(this).hasClass('check_required_fields')) {
             if (generalFromValidationForPresence.call($(this)) == 'missing') {
               return false
@@ -248,7 +284,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // approve projects from the user profile. 
 
   function triggerApproval() {
-    $('.user_action_button').off('click').on('click',function(){
+    $('.user_action_button').off('click').on('click',function(event){
     event.stopImmediatePropagation(); //not sure why preventDefault does not work here
     var _this = $(this);
     var _this_value = $(this).html();
@@ -300,10 +336,14 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // Show individual projects inside a div on the page
 
   function showProject() {
-    $('.project_link').off('click').on('click', function() {
+    $('.project_link').off('click').on('click', function(event) {
       
       _this = $(this)
-      event.preventDefault();
+        if(event.preventDefault) {
+          event.preventDefault();
+        } else {
+          event.returnValue = false;
+        };
       
       $.ajax({
         url: $(this).attr('href'),
@@ -339,7 +379,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
               $('.projects_overlay').fadeOut('fast');
             });
 
-            $('#application_submit, #application_shortlist').off('click').on('click',function(){
+            $('#application_submit, #application_shortlist').off('click').on('click',function(event){
               event.stopImmediatePropagation(); //not sure why preventDefault does not work here
               if ($(this).hasClass('check_required_fields')) {
                 if (generalFromValidationForPresence.call($('.form_validation_source_button')) == 'missing') {
@@ -370,8 +410,12 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             endView();
           });
 
-          $('#close_project').off('click').on('click', function() {
-            event.preventDefault();
+          $('#close_project').off('click').on('click', function(event) {
+            if(event.preventDefault) {
+              event.preventDefault();
+            } else {
+              event.returnValue = false;
+            };
             endProjectShow();
             endView();
           });
@@ -388,7 +432,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   function removeUpload() {
 
-    $('.remove_upload').off('click').on('click',function(){
+    $('.remove_upload').off('click').on('click',function(event){
       event.stopImmediatePropagation(); //not sure why preventDefault does not work here
       $.ajax({
         url: $(this).attr('href'),
