@@ -68,17 +68,14 @@
     </div>
     <div class="field">
       <p class='section_title'><%= f.label :category, "Category" %></p>
-      <%= options_from_collection_for_select(Category.all, :id, :category) %>
       <%= collection_select(:project, :category_id, Category.all, :id, :category, class: 'drop_down') %>
     </div>
     <div class="field">
       <p class='section_title'><%= f.label :cause, "Cause" %></p>
-      <%= options_from_collection_for_select(Cause.all, :id, :cause) %>
       <%= collection_select(:project, :cause_id, Cause.all, :id, :cause, { selected: current_user.cause_id}, class: 'drop_down' )%>
     </div>
     <div class="field">
       <p class='section_title'><%= f.label :location, "Location" %></p>
-      <%= options_from_collection_for_select(Location.all, :id, :location) %>
       <%= collection_select(:project, :location_id, Location.all, :id, :location, class: 'drop_down')%>
     </div>
     <div class="errors missing_field_error hidden">
