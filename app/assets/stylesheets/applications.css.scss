@@ -1742,7 +1742,7 @@ body {
     height: 85%;
     width: 16%;
     z-index: 1;
-    overflow: scroll;
+    overflow: auto;
     color: $text-color;
 
     .profile_menu {
