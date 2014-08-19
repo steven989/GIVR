@@ -44,7 +44,7 @@ class ApplicationsController < ApplicationController
          if status == 'apply'
             @application.update_attribute(:notification_view_flag, 'npo')  # this sets up the pop up notification for npo (because a user just applied, we want the pop up to show up on npo's screen)
             @application.update_attribute(:application_date, DateTime.now)
-            UserMailer.applied_to_project(@project.user).deliver
+            UserMailer.applied_to_project(@project.user, @application.user ,@project).deliver
          end
          format.json {render json: {
             message: success_message,
@@ -116,7 +116,7 @@ class ApplicationsController < ApplicationController
               @application.update_attribute(:application_date, DateTime.now)
               message = "Application successful. You can monitor the status of your application in your dashboard."
               successFlag = 1
-              UserMailer.applied_to_project(@application.project.user).deliver
+              UserMailer.applied_to_project(@application.project.user, @application.user ,@application.project).deliver
             end
           end
       elsif params[:todo] == 'update_info'
@@ -147,7 +147,7 @@ class ApplicationsController < ApplicationController
       if params[:todo] == 'approve'
           @application.statuses= params[:todo]
           @application.update_attribute(:notification_view_flag, 'professional')  # this sets up the pop up notification for the professional (because an npo just approved the application, we want the pop up to show up on the applicant's screen)
-          UserMailer.project_approved(@application.user).deliver
+          UserMailer.project_approved(@application.user, @application).deliver
       elsif params[:todo] == 'decline'
           @application.statuses= 'decline'
           @application.update_attribute(:notification_view_flag, 'professional')  # this sets up the pop up notification for the professional (because an npo just unapproved the application, we want the pop up to show up on the applicant's screen)

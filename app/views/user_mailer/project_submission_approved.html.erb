@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<1!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>Someone applied to your project on Givingly</title>
@@ -1012,8 +1012,8 @@ table.divider {
                                 <table class="contents">
                                   <tr>
                                     <td class="padded">
-                                      <h1>Your application has been approved</h1>
-                                        <p>Congratulations <%= @applicant.display_name %>,<br> The application you made to project <b><%= @application.project.title %></b> has been approved by <%= @application.project.user.org_name %>. Feel free to get started right away and make a difference in your community! First, update your application status to "Start", so we can help keep track of your hours.</p><div class="btn"><%= link_to "Start the project", @givingly_web_address_applications %></div><p>If you have any questions, comments or suggestions, feel free to email us at <%= mail_to @givingly_contact_email %></p><br>
+                                      <h1>Your project has been approved</h1>
+                                        <p>Congratulations <%= @project.user.display_name %>,<br> Your project submission <b><%= @project.title %></b> has been reviewed and approved by the Givingly team. Your project will now appear on the public marketplace and professionals can now apply to it. You can always edit the project details from your dashboard.</p><div class="btn"><%= link_to "See marketplace", @givingly_web_address_index %></div><p>If you have any questions, comments or suggestions, feel free to email us at <%= mail_to @givingly_contact_email %></p></p><br>
                                         <p>-The Givingly Team</p>
                                     </td>
                                   </tr>

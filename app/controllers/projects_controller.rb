@@ -94,6 +94,7 @@ class ProjectsController < ApplicationController
       @project.statuses = 'on market'
       @project.update_attribute(:approval_date, DateTime.now)
       Project.marketplace_status_update
+      UserMailer.project_submission_approved(@project).deliver
     else
       @project.statuses = 'under review'
     end

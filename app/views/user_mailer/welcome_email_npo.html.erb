@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Someone applied to your project on Givingly</title>
+    <title>Welcome to Givingly!</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <style type="text/css">
 body {
@@ -1012,8 +1012,8 @@ table.divider {
                                 <table class="contents">
                                   <tr>
                                     <td class="padded">
-                                      <h1>Your application has been approved</h1>
-                                        <p>Congratulations <%= @applicant.display_name %>,<br> The application you made to project <b><%= @application.project.title %></b> has been approved by <%= @application.project.user.org_name %>. Feel free to get started right away and make a difference in your community! First, update your application status to "Start", so we can help keep track of your hours.</p><div class="btn"><%= link_to "Start the project", @givingly_web_address_applications %></div><p>If you have any questions, comments or suggestions, feel free to email us at <%= mail_to @givingly_contact_email %></p><br>
+                                      <h1>The community of skill-based volunteers</h1>
+                                        <p>Thanks for signing up to Givingly - we're excited to have you on board! Log in to account now to post your first project: </p><div class="btn"><%= link_to 'Post a project', @givingly_web_address_post_project %></div><p>If you have any questions, comments or suggestions, feel free to email us at <%= mail_to @givingly_contact_email %></p><br>
                                         <p>-The Givingly Team</p>
                                     </td>
                                   </tr>

@@ -17,7 +17,7 @@ $box-shadow-color: #888888;
 $light-gray: #EEEEEE;
 $active-color: #A3E4CC;
 $very-light-gray: #FAFAFA;
-$background-color: #E9E9E9;
+$background-color: #F1F1F1;
 $nav-color: #2E2E2E;
 /*#01775B;*/
 /*#76D7B3 */
@@ -999,7 +999,7 @@ body {
           border-radius: 3px;
 
           &:hover {
-            background-color: $box-shadow-color;
+            background-color: $accent-color;
           }
         }
       }
@@ -1021,6 +1021,7 @@ body {
       &:hover {
         cursor: pointer;
         background-color: $very-light-gray;
+        -moz-box-shadow: 0.2em 0em 0em $primary-color inset;
         -webkit-box-shadow: 0.2em 0em 0em $primary-color inset;
         box-shadow: 0.2em 0em 0em $primary-color inset;
       }
@@ -1043,6 +1044,7 @@ body {
         &:hover {
           cursor: pointer;
           background-color: $very-light-gray;
+          -moz-box-shadow: 0.2rem 0em 0em $primary-color inset;
           -webkit-box-shadow: 0.2rem 0em 0em $primary-color inset;
           box-shadow: 0.2rem 0em 0em $primary-color inset;
         }
@@ -1121,6 +1123,15 @@ body {
   height:22rem;
   background-color: white;
   border-radius: 5px;
+  -moz-transition: box-shadow 200ms;
+  -moz-transition: -webkit-box-shadow 200ms;
+  -moz-transition: -moz-box-shadow 200ms; 
+  -webkit-transition: box-shadow 200ms; /* For Safari 3.1 to 6.0 */
+  -webkit-transition: -webkit-box-shadow 200ms; /* For Safari 3.1 to 6.0 */
+  -webkit-transition: -moz-box-shadow 200ms; /* For Safari 3.1 to 6.0 */
+  transition: box-shadow 200ms;
+  transition: -webkit-box-shadow 200ms;
+  transition: -moz-box-shadow 200ms;
   
   .category_wrapper {
     position: relative;
@@ -1189,6 +1200,7 @@ body {
   } 
 
   &:hover {
+    -moz-box-shadow: 0em 0em 0.3rem 0.3rem $active-color;
     -webkit-box-shadow: 0em 0em 0.3rem 0.3rem $active-color;
     box-shadow: 0em 0em 0.3rem 0.3rem $active-color;
   }
@@ -1359,7 +1371,7 @@ body {
     }
   }
   .load_application, .do_project, #application_submit {
-    min-width: 7rem;
+    width: 9rem;
 
     .spinner {
       width: auto;
@@ -1579,7 +1591,15 @@ body {
     height:15rem;
     background-color: white;
     border-radius: 5px;
-
+    -moz-transition: box-shadow 200ms;
+    -moz-transition: -webkit-box-shadow 200ms;
+    -moz-transition: -moz-box-shadow 200ms; 
+    -webkit-transition: box-shadow 200ms; /* For Safari 3.1 to 6.0 */
+    -webkit-transition: -webkit-box-shadow 200ms; /* For Safari 3.1 to 6.0 */
+    -webkit-transition: -moz-box-shadow 200ms; /* For Safari 3.1 to 6.0 */
+    transition: box-shadow 200ms;
+    transition: -webkit-box-shadow 200ms;
+    transition: -moz-box-shadow 200ms;
 
     &.professional {
       cursor: auto;
@@ -1762,6 +1782,7 @@ body {
     }
 
     &:hover {
+      -moz-box-shadow: 0em 0em 0.3rem 0.3rem $active-color;
       -webkit-box-shadow: 0em 0em 0.3rem 0.3rem $active-color;
       box-shadow: 0em 0em 0.3rem 0.3rem $active-color;
     }
@@ -1864,8 +1885,8 @@ body {
     width: 80%;
     clear: both;
     background-color: white;
-    border: 2px solid #C9C9C9;
     margin-bottom: 2rem;
+    border-radius: 10px;
 
     .errors {
       font-size: 1rem;
@@ -1982,7 +2003,7 @@ body {
     bottom: 0;
     margin: auto;
     overflow: auto;
-    border-radius: 10px;
+    border-radius: 5px;
 
     .profile_form {
       width: 100%;
@@ -2119,4 +2140,29 @@ body {
       }
     }
 
+  }
+
+
+/*----------------------------- password reset ------------------------- */
+
+  .middle_box {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    position: absolute;
+    margin: auto;
+    top: 0rem;
+    right: 0rem;
+    bottom: 0rem;
+    left: 0rem;
+    width: 30rem;
+    height: 25rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding-top: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-bottom: 1rem;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 13px 0px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow:    0px 0px 13px 0px rgba(50, 50, 50, 0.5);
+    box-shadow:         0px 0px 13px 0px rgba(50, 50, 50, 0.5);
   }
