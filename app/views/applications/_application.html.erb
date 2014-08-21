@@ -72,6 +72,8 @@
         <div class='application_status pro <%= application.status %>'>
             <% if application.status == 'apply' %>
                 <%= "Pending approval" %>
+            <% elsif application.status == 'save' %>
+                <%= "Draft application" %>
             <% elsif application.status == 'view' %>
                 <%= "Pdng approval (viewed)" %>
             <% elsif application.status == 'approve' %>
@@ -117,10 +119,10 @@
             <% end %>
         </div>
         <div class="modify">
-            <% if ['apply','view','approve','decline'].include? application.status %>
+            <% if ['apply','view','approve','decline','save'].include? application.status %>
             <div class="admin_delete no_reload application" href="<%= project_application_path(application.project,application) %>"><%= fa_icon 'times' %></div>
             <% end %>
-            <% if ['apply','view'].include? application.status %>
+            <% if ['apply','view','save'].include? application.status %>
             <div class="admin_edit no_reload" href="<%= application_user_edit_path(application.project, application) %>"><%= fa_icon 'pencil-square-o' %></div>
             <% end %>            
         </div>

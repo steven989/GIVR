@@ -81,9 +81,20 @@
     <div class="errors missing_field_error hidden">
     </div>    
     <div class="actions">
-      <%= f.submit "#{@edit_project_flag ? 'Update project ' : 'Submit project ' }", class: "#{@edit_project_flag ? 'submit ' : 'create_project ' }mini ui givrgreen button check_required_fields" %>
+      <% unless @project.status == 'saved' %>
+        <%= f.submit "#{@edit_project_flag ? 'Update project ' : 'Submit project ' }", class: "#{@edit_project_flag ? 'submit ' : 'create_project ' }mini ui givrgreen button check_required_fields" %>
+      <% end %>
+      <% if @project.status == 'saved' %>
+        <% if @edit_project_flag %>
+          <div class='mini ui givrgreen button save_progress edit check_required_fields' href="<%= project_path(@project,todo: 'submit') %>">Submit project</div>
+        <% end %>
+      <div class='mini ui givrgreen button save_progress <%= @edit_project_flag ? 'edit' : 'create' %> no_reload' href="<%= project_path(@project,todo: 'save_progress') %>">Save project form</div>
+      <% end %>
+      <% unless @edit_project_flag %>
+        <div class='mini ui givrgreen button save_progress <%= @edit_project_flag ? 'edit' : 'create' %>' href="<%= projects_path(todo: 'save_progress') %>">Save project form</div>        
+      <% end %>
       <% if @edit_project_flag %>
-        <div class='mini ui red button admin_delete no_reload project' href="<%= project_path(@project) %>" data-projectid="<%= @project.id %>">Delete project</div>  
+        <div class='mini ui red button admin_delete no_reload project' href="<%= project_path(@project) %>" data-projectid="<%= @project.id %>">Delete project</div>          
       <% end %>
     </div>
   <br><br>

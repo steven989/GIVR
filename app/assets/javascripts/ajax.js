@@ -16,11 +16,56 @@ $(function() {                  // document ready
   finishProjectPrompt();
   applicationDetails();
   create_project();
+  saveProgress();
 });
 
 $(window).on('beforeunload',function(){     // navigating away from a page
   endView();  // indicate the end of a particular project if user navigates away
 });
+
+
+  // save progress
+
+  function saveProgress() {
+    $('.save_progress').off('click').on('click',function(event){
+       var _this = $(this);
+
+       if(event.preventDefault) {
+        event.preventDefault();
+      } else {
+        event.returnValue = false;
+      };
+
+      if ($(this).hasClass('check_required_fields')) {
+        if (generalFromValidationForPresence.call($(this)) == 'missing') {
+          return false
+        };
+      };
+      var method
+      if ($(this).hasClass('edit')) {
+        method = 'PATCH';
+      } else if ($(this).hasClass('create')) {
+        method = 'POST';
+      }
+
+      $.ajax({
+        url:$(this).attr('href'),
+        type: method,
+        dataType: 'json',
+        data: $(this).parent().parent().serialize()
+      }).done(function(data){
+        var message = data.message;
+        dimmedModalMessage(message);
+        if (!_this.hasClass('no_reload')) {
+          if (data.successFlag == 1) {
+            $('.basic.modal .content .button').on('click',function(){
+              location.reload();
+            }); 
+          }
+        };  
+      });
+    });
+  }
 
   // create project
 
@@ -62,7 +107,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       } else {
         event.returnValue = false;
       };
-      _this = $(this);
+      var _this = $(this);
       $.ajax({
         url: $(this).attr('href'),
         type: 'GET',
@@ -75,6 +120,8 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         }
         $('.edit_info_popup').html(data);
         slimScroll();
+        saveProgress();
+        buttonsInsideShowProject();
         $('#close_project').off('click').on('click', function(event) {
           if(event.preventDefault) {
             event.preventDefault();
@@ -132,8 +179,8 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         dataType: 'json'
       }).done(function(data){
         if (data.successFlag != 0) {endProjectShow()};
-        var message = data.message;
-        dimmedModalMessage(message);
+        // var message = data.message;
+        // dimmedModalMessage(message);
         if (_this.hasClass('no_reload')) {
           if ((_this).hasClass('application')) {
             _this.parent().parent().parent().remove(); // this is for the removal of application card in the profile view once deleted
@@ -159,7 +206,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
 
   function subscribeToMailchimp() {
     $('.subscribe').off('click').on('click',function(event){
-      _this = $(this);
+      var _this = $(this);
       if(event.preventDefault) {
         event.preventDefault();
       } else {
@@ -339,7 +386,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   function showProject() {
     $('.project_link').off('click').on('click', function(event) {
       
-      _this = $(this)
+      var _this = $(this)
         if(event.preventDefault) {
           event.preventDefault();
         } else {
@@ -380,15 +427,16 @@ $(window).on('beforeunload',function(){     // navigating away from a page
               $('.projects_overlay').fadeOut('fast');
             });
 
-            $('#application_submit, #application_shortlist').off('click').on('click',function(event){
+            $('.application_submit, #application_shortlist').off('click').on('click',function(event){
               event.stopImmediatePropagation(); //not sure why preventDefault does not work here
               if ($(this).hasClass('check_required_fields')) {
                 if (generalFromValidationForPresence.call($('.form_validation_source_button')) == 'missing') {
                   return false
                 };
               };
+              var original_text = $(this).html();
               $(this).html("<i class='fa fa-circle-o-notch do_project spinner'></i>");
-              _this = $(this);
+              var _this = $(this);
               $.ajax({
                 url: $(this).attr('href'),
                 type: $(this).data('method'),
@@ -397,9 +445,10 @@ $(window).on('beforeunload',function(){     // navigating away from a page
               }).done(function(data){
                 if (data.successFlag == 1) {
                       $('.projects_detail').fadeOut('fast');
+                      $('.edit_info_popup').fadeOut('fast');
                       $('.projects_overlay').fadeOut('fast');
                 };
-                _this.html("Submit");
+                _this.html(original_text);
                 var message = data.message+" "+data.alertMessage;
                 dimmedModalMessage(message);
               });

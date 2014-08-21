@@ -39,6 +39,13 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @view = @project.views.new(user_id: user_id, view_start_time: Time.now, browser: params[:browser_info], ip_address: request.remote_ip)
     @view.save # this is to track the project views
+    
+    if logged_in?
+      @application = @project.applications.where("applications.user_id = ?",current_user.id).take # try to find existing application
+      @application ||= @project.applications.new #if no currenta application exist, create a new one
+    else
+      @application = @project.applications.new
+    end
 
     respond_to do |format|
       format.html {
@@ -60,20 +67,29 @@ class ProjectsController < ApplicationController
     @project = Project.new(projects_params)
 
     respond_to do |format|
-      if @project.save
-        message = "Your project has been submitted for review. You can see the status of your project under \"My Projects\" tab."
-        @project.statuses= 'under review'
-        if current_user.is? ('admin')
-          @project.update_attribute(:user_id,params[:project][:user_id])
-        else
-          @project.update_attribute(:user_id,current_user.id)
-        end
+      if params[:todo] == 'save_progress'
+        @project.save(validate:false)
+        @project.statuses= 'saved'
+        @project.update_attribute(:user_id,current_user.id)
+        message = "Your work-in-progress has been saved - you can come back at any time to complete the form. You can find your saved projects under \"My projects\" tab."
         format.html {redirect_to user_profile_path+'#add-new', notice: message}
         format.json {render json: {message: message, successFlag: 1}}
       else
-        message = "Project could not be submitted. One or more fields are missing."
-        format.html {redirect_to user_profile_path+'#add-new', notice: message}
-        format.json {render json: {message: message, successFlag: 0}}
+        if @project.save
+          message = "Your project has been submitted for review. You can see the status of your project under \"My Projects\" tab."
+          @project.statuses= 'under review'
+          if current_user.is? ('admin')
+            @project.update_attribute(:user_id,params[:project][:user_id])
+          else
+            @project.update_attribute(:user_id,current_user.id)
+          end
+          format.html {redirect_to user_profile_path+'#add-new', notice: message}
+          format.json {render json: {message: message, successFlag: 1}}
+        else
+          message = "Project could not be submitted. One or more fields are missing."
+          format.html {redirect_to user_profile_path+'#add-new', notice: message}
+          format.json {render json: {message: message, successFlag: 0}}
+        end
       end
     end
   end
@@ -102,8 +118,16 @@ class ProjectsController < ApplicationController
   end
 
   def update
+
     @project = Project.find(params[:id])
-    @project.update_attributes(projects_params)
+
+    if params[:todo] == 'save_progress'
+      @project.assign_attributes(projects_params)
+      @project.save(validate:false)
+    else
+      @project.update_attributes(projects_params)
+    end
+
     if current_user.is? ('admin')
       @project.update_attribute(:user_id,params[:project][:user_id])
     else
@@ -114,7 +138,14 @@ class ProjectsController < ApplicationController
       message = @project.errors.full_messages.join(" ")
       successFlag = 0
     else
-      message = "Project successfully updated."
+      if params[:todo] == 'save_progress'
+        message = "Project saved. It has not yet been submitted for review."
+      elsif params[:todo] == 'submit'
+        @project.statuses= 'under review'
+        message = "Project submitted for review. Please check this page to monitor the status."
+      else
+        message = "Project successfully updated."
+      end
       successFlag = 1
     end
 

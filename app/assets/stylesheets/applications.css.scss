@@ -1368,7 +1368,7 @@ body {
       } 
     }
   }
-  .load_application, .do_project, #application_submit {
+  .load_application, .do_project, .application_submit {
     width: 9rem;
 
     .spinner {
@@ -1602,6 +1602,13 @@ body {
     &.professional {
       cursor: auto;
     }
+
+    .save {
+      color: #AAAAAA;
+      background-color: white;
+      border: 1px solid #AAAAAA;
+    }
+
 
     .apply, .view {
       color: #F19F68;
@@ -2011,6 +2018,10 @@ body {
       left: 0rem;
       border: none;
       font-size: 1rem;
+
+      .application_submit {
+        width: 7rem;
+      }
 
       h2 {
         font-size: 1.3rem;

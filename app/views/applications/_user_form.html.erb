@@ -63,7 +63,13 @@
     <div class="errors missing_field_error hidden">
     </div>
     <div class="actions">
-      <%= f.submit class: 'submit mini ui givrgreen button check_required_fields' %>
+      <% if @application.status == 'save' %>
+        <div class="ui mini givrgreen button check_required_fields application_submit" href="<%= applicant_update_path(@application.project,@application,todo: 'apply') %>" data-method="PUT">Submit</div>
+        <div class="ui mini givrgreen button application_submit" href="<%= applicant_update_path(@application.project,@application,todo: 'save') %>" data-method="PUT">Save</div>
+      <% else %>
+        <%= f.submit class: 'submit mini ui givrgreen button check_required_fields' %>
+      <% end %>
     </div>
+    <span class="form_validation_source_button"></span>
   <% end %>
 </div>
