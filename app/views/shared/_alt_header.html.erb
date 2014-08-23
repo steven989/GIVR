@@ -12,7 +12,7 @@
 <!-- this is the actual view -->
 <div class="alt_header" id="visible_white">
     <div class="logo">
-        <%= link_to image_tag("givingly_notext_white.png"), root_path %>
+        <%= link_to image_tag("givingly_notext_white.png"), main_app.root_path %>
     </div>
 
     <div class="nav">
@@ -28,6 +28,9 @@
         <% end %>
         <%= link_to projects_path, class: 'li'  do %>
             <li><p>Projects</p></li>
+        <% end %>
+        <%= link_to monologue_path, class: 'li'  do %>
+            <li><p>Blog</p></li>
         <% end %>
         <% if current_user %>
             <div class='li profile_dropdown' href="<%= user_profile_path %>">

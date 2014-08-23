@@ -299,7 +299,12 @@ function navigationUnderline() {
     if ($(location).attr('pathname') != '/') {
         $('.alt_header').css({"display": "block"})
     }
-    var linksToHighlightWhiteHeader = $('.alt_header .nav').find('.li').filter(function(){return $(this).attr('href') == $(location).attr('pathname')});
+
+    var linksToHighlightWhiteHeader = $('.alt_header .nav').find('.li').filter(function(){ 
+
+             return   $(this).attr('href').split("/")[1] == $(location).attr('pathname').split("/")[1]
+
+    });
     linksToHighlightWhiteHeader.css({"background-color": "rgba(175,175,175,0.5)"});
 }
 

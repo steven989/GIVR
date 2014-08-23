@@ -1,0 +1,95 @@
+
+body {
+    background-color: #F1F1F1;
+    font-family: "Open Sans", sans-serif;
+}
+
+
+/*------------------------------ Index page of blog ------------------------------------- */
+
+
+#pagination {
+    border: none;
+    margin-bottom: 5rem;
+}
+
+#pagination a {
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+#pagination a:hover {
+    color: #a0a0a0;
+}
+
+.container {
+    top: 6.5rem;
+}
+
+.content section, .content article {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    padding: 2rem;
+}
+
+.content section .post-header, .content article .post-header  {
+    border-top: none;
+    border-bottom: 3px solid #A3E4CC;
+    font-family:  "Open Sans", sans-serif;
+    text-align: left;
+}
+
+.content section .post-header a, .content article .post-header a {
+    font-family:  "Open Sans", sans-serif;
+    text-decoration: none;
+    -webkit-transition: color 150ms; /* For Safari 3.1 to 6.0 */
+    transition: color 150ms;
+
+}
+
+.content section .post-header a:hover, .content article .post-header a:hover {
+    color: #3D9977;    
+}
+
+.sidebar {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    background-color: white;
+    border-radius: 10px;
+    padding: 0.5rem;    
+}
+
+.sidebar header {
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid #a0a0a0;
+    border-radius: 0px;
+    height: 1.7rem;
+}
+
+.sidebar ul {
+    margin-left: 1.1rem;
+}
+
+.sidebar li {
+    list-style-type: none;
+    margin-bottom: 0.5rem;
+}
+
+.sidebar a {
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    color: #3D9977;    
+}
+
+.sidebar header h1 {
+    font-family: "Open Sans", sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+}
+

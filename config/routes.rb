@@ -31,7 +31,7 @@ Givr::Application.routes.draw do
   resources :categories, only: [:new, :create, :edit, :update, :destroy]
   resources :causes, only: [:new, :create, :edit, :update, :destroy]
   resources :locations, only: [:new, :create, :edit, :update, :destroy]
-
+  mount Monologue::Engine, at: '/blog' # or whatever path, be it "/blog" or "/monologue"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

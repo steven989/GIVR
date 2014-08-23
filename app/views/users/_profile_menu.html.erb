@@ -2,67 +2,67 @@
     <div class="user_options_menu hidden">
         <div class="ui secondary vertical menu">
             <% unless @abridged_menu %>
-                <%= link_to 'My summary',  user_profile_path+'#_summary', class: 'item' %>
+                <%= link_to 'My summary',  main_app.user_profile_path+'#_summary', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'Saved projects', user_profile_path+'#_shortlist', class: 'item' %>
+                <%= link_to 'Saved projects', main_app.user_profile_path+'#_shortlist', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to user_profile_path+'#_applications', class: 'item' do %>
+                <%= link_to main_app.user_profile_path+'#_applications', class: 'item' do %>
                 My applications
                 <div class="notification_count ui small red label <%= "hidden" if @notification_count.nil? || @notification_count == 0 %>"><%= @notification_count %></div>
                 <% end %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'In-progress projects', user_profile_path+'#_in_progress', class: 'item' %>
+                <%= link_to 'In-progress projects', main_app.user_profile_path+'#_in_progress', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'Completed projects', user_profile_path+'#_projects', class: 'item' %>
+                <%= link_to 'Completed projects', main_app.user_profile_path+'#_projects', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'Edit my info', user_profile_path+'#_settings', class: 'item' %>
+                <%= link_to 'Edit my info', main_app.user_profile_path+'#_settings', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
             <% end %>
-            <%= link_to 'Log out', session_path('current'), method: 'delete', class: 'item' %>
+            <%= link_to 'Log out', main_app.session_path('current'), method: 'delete', class: 'item' %>
         </div>
     </div>
 <% elsif current_user.role == 'npo' %>
     <div class="user_options_menu hidden">
         <div class="ui secondary vertical menu">
             <% unless @abridged_menu %>
-                <%= link_to 'My summary',  user_profile_path+'#_summary', class: 'item' %>
+                <%= link_to 'My summary',  main_app.user_profile_path+'#_summary', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'My projects',  user_profile_path+'#_my_projects', class: 'item' %>
+                <%= link_to 'My projects',  main_app.user_profile_path+'#_my_projects', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to user_profile_path+'#_applications', class: 'item' do %>
+                <%= link_to main_app.user_profile_path+'#_applications', class: 'item' do %>
                 Project applications
                 <div class="notification_count ui small red label <%= "hidden" if @notification_count.nil? || @notification_count == 0 %>"><%= @notification_count %></div>
                 <% end %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'In-progress projects', user_profile_path+'#_in_progress', class: 'item' %>
+                <%= link_to 'In-progress projects', main_app.user_profile_path+'#_in_progress', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'Completed projects', user_profile_path+'#_projects', class: 'item' %>
+                <%= link_to 'Completed projects', main_app.user_profile_path+'#_projects', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'Submit a new project', user_profile_path+'#_add-new', class: 'item' %>
+                <%= link_to 'Submit a new project', main_app.user_profile_path+'#_add-new', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'Edit my info', user_profile_path+'#_settings', class: 'item' %>
+                <%= link_to 'Edit my info', main_app.user_profile_path+'#_settings', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
             <% end %>
-            <%= link_to 'Log out', session_path('current'), method: 'delete', class: 'item' %>
+            <%= link_to 'Log out', main_app.session_path('current'), method: 'delete', class: 'item' %>
         </div>
     </div>
 <% elsif current_user.role == 'admin' %>
     <div class="user_options_menu hidden">
         <div class="ui secondary vertical menu">
             <% unless @abridged_menu %>
-                <%= link_to 'Admin dashboard',  user_profile_path+'', class: 'item' %>
+                <%= link_to 'Admin dashboard',  main_app.user_profile_path+'', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
             <% end %>
-            <%= link_to 'Log out', session_path('current'), method: 'delete', class: 'item' %>
+            <%= link_to 'Log out', main_app.session_path('current'), method: 'delete', class: 'item' %>
         </div>
     </div>
 <% else %>
     <div class="user_options_menu hidden">
         <div class="ui secondary vertical menu">
             <% unless @abridged_menu %>
-                <%= link_to 'My summary',  user_profile_path+'#_summary', class: 'item' %>
+                <%= link_to 'My summary',  main_app.user_profile_path+'#_summary', class: 'item' %>
             <% end %>
-            <%= link_to 'Log out', session_path('current'), method: 'delete', class: 'item' %>
+            <%= link_to 'Log out', main_app.session_path('current'), method: 'delete', class: 'item' %>
         </div>
     </div>
 <% end %>

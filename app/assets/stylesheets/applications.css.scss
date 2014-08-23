@@ -218,7 +218,6 @@ body {
 }
 
 .alt_header {
-  display: none;
   color: $text-color;
   position: fixed;
   top: 0;
@@ -277,6 +276,9 @@ body {
       color: white;
       text-decoration: none;
       cursor: pointer;
+      list-style-type: none;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
 
       &:hover {
         background-color: rgba(175,175,175,0.5);
@@ -286,9 +288,21 @@ body {
         background-color: rgba(130,130,130,0.5);
       }  
 
-      p {
-        margin-top: 0.85rem;
+      li {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      margin: 0;
+      height: 2.5rem;
+      padding-top: 0.85rem;
+
+        p {
+          margin-top: 0rem;
+          line-height: 12px;
+          font-weight: bold;
+        }
       }
+
+
 
       &.profile_dropdown {
         padding-right: 2.5rem;

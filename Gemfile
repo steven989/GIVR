@@ -96,6 +96,9 @@ gem 'newrelic_rpm'
 #16) jQuery UI
 gem 'jquery-ui-rails'
 
+#17) Blogging plugin
+gem 'monologue', github: 'jipiboily/monologue'
+
 group :production do
   gem "rails_12factor"
 end
