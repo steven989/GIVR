@@ -46,6 +46,18 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def secure_title
+    if self.hide_name == "1"
+      if ["a","e","i","o","u"].include? self.cause.cause[0].downcase
+        "an #{self.cause.cause.downcase} organization"
+      else
+        "a #{self.cause.cause.downcase} organization"
+      end
+    else
+      self.user.org_name
+    end
+  end
+
   # def attempt_close
   #   self.statuses= 'filled' if self.applications.where("status in ('engage','complete')").length >= self.number_of_positions
   # end

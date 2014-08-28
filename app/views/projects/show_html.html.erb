@@ -1,3 +1,11 @@
+<head>
+    <meta property="og:title" content="<%= "Volunteers wanted: #{@project.title.titleize} for #{@project.secure_title.titleize}" %>" />
+    <meta property="og:site_name" content="Givingly: skill-based volunteer in Toronto" />
+    <meta property="og:url" content="<%= show_html_project_url(@project) %>" />
+    <meta property="og:description" content="<%= @project.description %>" />
+    <meta property="og:image" content="<%= if @project.user.logo_exists? && @project.hide_name != "1"; @project.user.logo_url else "https://s3.amazonaws.com/givr-app/assets/givingly_nosplash_reduced.png" end %>" />
+    <meta property="og:app_id" content="<%= ENV['FACEBOOK_APP_ID'] %>" />
+</head>
 <%= render 'shared/alt_header' %>
 <%= render 'shared/alt_static' %>
 

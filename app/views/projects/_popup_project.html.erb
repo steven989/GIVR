@@ -25,6 +25,7 @@
               <span class='link_to_profile ui label'><%= link_to project.user.org_name, organization_profile_path(project.user.id) %></span>
               <% end %> 
             </h1>
+            <div class="fb-like" data-href="<%= show_html_project_url(@project) %>" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
         </div>
 
         <div class="ui divider"></div>
