@@ -122,7 +122,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
         slimScroll();
         saveProgress();
         buttonsInsideShowProject();
-        $('#close_project').off('click').on('click', function(event) {
+        $('#close_project, #close_project_2').off('click').on('click', function(event) {
           if(event.preventDefault) {
             event.preventDefault();
           } else {
@@ -258,7 +258,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       }).done(function(data){
         $('.edit_info_popup').html(data);
         slimScroll();
-        $('#close_project').off('click').on('click', function(event) {
+        $('#close_project, #close_project_2').off('click').on('click', function(event) {
           if(event.preventDefault) {
             event.preventDefault();
           } else {
@@ -285,7 +285,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       }).done(function(data){
         $('.edit_info_popup').html(data);
         slimScroll();
-        $('#close_project').off('click').on('click', function(event) {
+        $('#close_project, #close_project_2').off('click').on('click', function(event) {
           if(event.preventDefault) {
             event.preventDefault();
           } else {
@@ -384,8 +384,14 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // Show individual projects inside a div on the page
 
   function showProject() {
-    $('.project_link').off('click').on('click', function(event) {
+    $('.project_link, .pop_application').off('click').on('click', function(event) {
       
+      if ($(this).hasClass('project_link')) {
+        var dataType = 'script'
+      } else if ($(this).hasClass('pop_application')) {
+        var dataType = 'html'
+      }
+
       var _this = $(this)
         if(event.preventDefault) {
           event.preventDefault();
@@ -396,9 +402,12 @@ $(window).on('beforeunload',function(){     // navigating away from a page
       $.ajax({
         url: $(this).attr('href'),
         type: 'GET',
-        dataType: 'script',
+        dataType: dataType,
         data: { view: $(this).data('view'), browser_info: browser_info}
-      }).done(function(){
+      }).done(function(data){
+        if (dataType == 'html') {
+          $('.projects_detail').html(data);
+        }
         buttonsInsideShowProject();
         toggleApplicationForm();
         animateProjects(2);
@@ -460,7 +469,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
             endView();
           });
 
-          $('#close_project').off('click').on('click', function(event) {
+          $('#close_project, #close_project_2').off('click').on('click', function(event) {
             if(event.preventDefault) {
               event.preventDefault();
             } else {
@@ -511,7 +520,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
   // assign listeners to the close button to send close view request
 
   function closeButtonListenerToAssignViewClose() {
-    $('#close_project').on('click',endView);
+    $('#close_project, #close_project_2').on('click',endView);
   }
 
   // send a message to the server to turn all the application into "read"

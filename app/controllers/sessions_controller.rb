@@ -1,11 +1,20 @@
 class SessionsController < ApplicationController
 
     def create
+        redirect=params[:redirect]
         if login(params[:email], params[:password])
-            redirect_back_or_to projects_path, notice: 'Login successful'
+            if redirect == ""
+                redirect_back_or_to projects_path, notice: 'Login successful'
+            else
+                redirect_to redirect, notice: 'Login successful'
+            end
         else 
             flash[:login_error] = 'Your email or password is incorrect.'
-            redirect_back_or_to projects_path+'#showLogin/login'
+            if redirect == ""
+                redirect_back_or_to projects_path+'#showLogin/login', notice: 'Login successful'
+            else
+                redirect_to redirect+'#showLogin/login', notice: 'Login successful'
+            end
         end 
     end 
 

@@ -1,0 +1,12 @@
+<%= render 'shared/alt_header' %>
+<%= render 'shared/alt_static' %>
+
+
+<div class="center_content_container">
+    <SPAN class="see_all_projects"><%= link_to projects_path do %> <%= fa_icon 'arrow-left' %> See all projects <% end %></SPAN>
+    <%= render :partial => '/projects/popup_project', :locals => {:project => @project} %>
+</div>
+
+  <div class="projects_overlay"></div>
+  <div class="projects_overlay_transparent hidden"></div>
+  <div class="projects_detail"></div>

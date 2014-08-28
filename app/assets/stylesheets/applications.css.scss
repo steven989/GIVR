@@ -136,6 +136,16 @@ body {
   }
 }
 
+.center_content_container {
+  background-color: white;
+  border-radius: 10px;
+  width: 60rem;
+  padding: 2rem;
+  position: relative;
+  margin: 4rem auto;
+}
+
+
 /* -------------------------- header and footer ------------------------- */
 
 .header {
@@ -1249,6 +1259,7 @@ body {
   overflow: hidden;
   border-radius: 10px;
 
+
   .project_header {
     height: 3rem;
     font-size: 1.3rem;
@@ -1283,6 +1294,19 @@ body {
 
   }
 
+  #close_project_2 {
+    position: absolute;
+    right: -0.5rem;
+    top: -1.5rem;
+    cursor: pointer;
+    color: gray;
+
+    &:hover {
+      color: red;
+    }
+
+  }
+
   .project_card_in_popup {
     position: relative;
     width: 95%;
@@ -1290,6 +1314,17 @@ body {
     background-color: white;
     color: black;
     z-index: 2;
+
+    .work_in_progress {
+      position: absolute;
+      top: -2rem;
+      width: 24.5rem;
+      color: white;
+      background-color: $medium-primary-color;
+      padding: 0.25rem;
+      border-radius: 5px;
+    }
+
 
 
     .project_details_container {
@@ -2165,7 +2200,6 @@ body {
 
   }
 
-
 /*----------------------------- password reset ------------------------- */
 
   .middle_box {
@@ -2189,3 +2223,68 @@ body {
     -moz-box-shadow:    0px 0px 13px 0px rgba(50, 50, 50, 0.5);
     box-shadow:         0px 0px 13px 0px rgba(50, 50, 50, 0.5);
   }
+
+
+/*----------------------------- individual show project page ------------------------- */
+
+.center_content_container {
+  .ui.label {
+    text-transform: none;
+  }
+
+  .pop_application, .do_project, .application_submit {
+    width: 9rem;
+
+    .spinner {
+      width: auto;
+    }
+  }
+
+  .project_details_container {
+    width: 100%;
+    /*height: 28rem;*/
+
+    .project_details {
+      color: black;
+      width: 100%;
+      font-size: 0.9rem;
+      
+      .field {
+        margin-bottom: 1rem;
+
+        .ui.label {
+          text-transform: none;
+          width: 95%;
+          min-height: 2rem;
+          background-color: $very-light-gray;
+        }
+      }
+    }
+  }
+
+  .project_header {
+  font-size: 1.5rem;
+
+    .link_to_profile a {
+      font-size: 1.25rem;
+      text-decoration: none;
+        
+        &:hover {
+          color: $accent-color;
+        }
+    }
+  }
+}
+
+.see_all_projects a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  position: absolute;
+  top: -2rem;
+  left: 0rem;
+
+  &:hover {
+    color: $accent-color;
+  }
+}

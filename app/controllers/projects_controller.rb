@@ -5,6 +5,7 @@ class ProjectsController < ApplicationController
 
   def index
     @user = User.new #this is because we are pulling the login form in this view as well
+    @redirect_path = projects_path
     if params[:_json] #this is for the filtering
       filter_conditions = Hash.new { |this_hash, nonexistent_key| this_hash[nonexistent_key] = [] }  #this is the code to actually allow us to use << to assign into the arrays that are default value of the non-existent hash key
       params[:_json].each do |filter|        
@@ -54,6 +55,34 @@ class ProjectsController < ApplicationController
       format.js
     end
   end
+
+  def show_html
+    @user = User.new #this is because we are pulling the login form in this view as well
+    user_id = current_user ? current_user.id : nil
+    @project = Project.find(params[:id])
+    @view = @project.views.new(user_id: user_id, view_start_time: Time.now, browser: params[:browser_info], ip_address: request.remote_ip)
+    @view.save # this is to track the project views
+    @just_project = true #this is so that when loading the project details only loading the top portion (the bottom portion is the application form)
+    @redirect_path = show_html_project_path(@project)
+  end
+
+  def load_application
+    @project = Project.find(params[:id])
+    @just_app_form = true #this is so that when loading the project details only loading the bottom portion (the bottom portion is the application form)
+    
+    if logged_in?
+      @application = @project.applications.where("applications.user_id = ?",current_user.id).take # try to find existing application
+      @application ||= @project.applications.new #if no currenta application exist, create a new one
+    else
+      @application = @project.applications.new
+    end    
+    
+    if request.xhr?
+      render partial: "load_application"
+    end
+  end
+
+
 
   def new
     @project = Project.new

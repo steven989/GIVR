@@ -16,6 +16,9 @@ class ApplicationsController < ApplicationController
   def create
 
     @project = Project.find_by(id: params[:project_id])
+    if params[:application].nil?
+      params[:application] = {}
+    end
     params[:application][:user_id] = current_user.id
     @application = @project.applications.new(application_update_params)
     if params[:todo] == 'apply' 

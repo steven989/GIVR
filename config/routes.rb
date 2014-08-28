@@ -8,6 +8,8 @@ Givr::Application.routes.draw do
   resources :projects do
     resources :applications, only: [:show,:create, :edit, :update, :destroy]
   end 
+  get 'projects/:id/show' => 'projects#show_html', as: 'show_html_project'
+  get 'projects/:id/load_app' => 'projects#load_application', as: 'load_application'
   post 'projects/filter' => 'projects#index', as: 'filter_projects'
   put 'projects/:project_id/applications/:id/creator' => 'applications#project_creator_update', as: 'creator_update'
   put 'projects/:project_id/applications/:id/applicant' => 'applications#applicant_update', as: 'applicant_update'

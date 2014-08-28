@@ -9,14 +9,23 @@ class UsersController < ApplicationController
 
     def create
         @user = User.new(users_params)
+        redirect=params[:redirect]
         if @user.save
             # Tell the UserMailer to send a welcome email after save.
             UserMailer.welcome_email(@user).deliver
             auto_login(@user)
-            redirect_to projects_path
+            if redirect == ""
+                redirect_back_or_to projects_path, notice: 'Login successful'
+            else
+                redirect_to redirect, notice: 'Login successful'
+            end
         else 
             flash[:signup_error] = "Sign up could not be completd. #{@user.errors.full_messages.join(". ")}"
-            redirect_to projects_path+'#showLogin/signup'
+            if redirect == ""
+                redirect_back_or_to projects_path+'#showLogin/signup', notice: 'Login successful'
+            else
+                redirect_to redirect+'#showLogin/signup', notice: 'Login successful'
+            end
         end 
     end 
 

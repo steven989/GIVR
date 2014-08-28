@@ -11,7 +11,7 @@
             </p>
         </div>
         <% end %>
-        <%= form_tag '/sessions' do %>
+        <%= form_tag "/sessions?redirect=#{@redirect_path}" do %>
         <div class='field'>
             <%= label_tag 'email', 'Email' %>
             <%= text_field_tag 'email', nil,placeholder: 'example@gmail.com', class: 'ui input' %>
@@ -43,7 +43,7 @@
             </p>
         </div>
         <% end %>
-        <%= form_for @user, url: main_app.users_path do |f| %>
+        <%= form_for @user, url: main_app.users_path+"?redirect=#{@redirect_path}" do |f| %>
         <div class='error_messages'>
             <%= @user.errors.full_messages.first if @user.errors.any? %>
         </div>
