@@ -119,7 +119,7 @@
             <% end %>
         </div>
         <div class="modify">
-            <% if ['apply','view','approve','decline','save'].include? application.status %>
+            <% if ['apply','view','approve','save'].include? application.status %>
             <div class="admin_delete no_reload application" href="<%= project_application_path(application.project,application) %>"><%= fa_icon 'times' %></div>
             <% end %>
             <% if ['apply','view','save'].include? application.status %>
