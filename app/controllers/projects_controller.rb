@@ -30,8 +30,8 @@ class ProjectsController < ApplicationController
     @locations = Location.order(location: :asc).select {|location| location.projects.where("projects.status like 'on market'").length > 0 }
 
     respond_to do |format|
-      format.js
       format.html
+      format.js
     end
   end
 
