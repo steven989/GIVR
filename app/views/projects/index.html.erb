@@ -1,3 +1,7 @@
+<% content_for :og_url, projects_url %>
+<% content_for :og_image, "https://s3.amazonaws.com/givr-app/assets/givingly_nosplash_reduced.png" %>
+<% content_for :og_appid, ENV['FACEBOOK_APP_ID'] %>
+
 <%= render 'shared/alt_header' %>
 <%= render 'shared/alt_static' %>
 

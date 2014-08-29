@@ -994,7 +994,19 @@ body {
   overflow: auto;
   color: $text-color;
 
+  .fb-like.project {
+    position: absolute;
+    left: 3rem;    
+  }
+
+  .li-share.project {
+    position: absolute;
+    display: inline-block;
+    right: 0;
+  }
+
   .search_bar {
+    top: 1rem;
     font-size: 1rem;  
     font-weight: bold;
     display: block;
@@ -1259,6 +1271,20 @@ body {
   overflow: hidden;
   border-radius: 10px;
 
+
+  .fb-like.project {
+    position: absolute;
+    right: 10rem;
+    top:1rem;
+    z-index: 10;
+  }
+
+  .li-share.project {
+    position: absolute;
+    right: 4rem;
+    top:1rem;
+    z-index: 10;  
+  }
 
   .project_header {
     height: 3rem;
@@ -2230,6 +2256,20 @@ body {
 .center_content_container {
   .ui.label {
     text-transform: none;
+  }
+
+  .fb-like.project {
+    position: absolute;
+    right: 10rem;
+    top:1rem;
+    z-index: 10;
+  }
+
+  .li-share.project {
+    position: absolute;
+    right: 4rem;
+    top:1rem;
+    z-index: 10;  
   }
 
   .pop_application, .do_project, .application_submit {

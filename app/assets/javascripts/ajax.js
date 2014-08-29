@@ -424,6 +424,7 @@ $(window).on('beforeunload',function(){     // navigating away from a page
     // this is to make sure that the error we get from Facebook API doesn't disable other scripts
     try {
       FB.XFBML.parse();
+      IN.parse();
     } catch (e) {
       console.log(e);
     }
