@@ -33,13 +33,13 @@ class LogoUploader < CarrierWave::Uploader::Base
 
   # resize the width to be no more than 200px
 
-    process :resize_to_limit => [200, 200]
+    process :resize_to_limit => [400, 400]
 
 
   # create a thumbnail version
 
   version :thumb do 
-    process :resize_to_fit => [75, 75]
+    process :resize_to_fit => [100, 100]
   end
 
   # Create different versions of your uploaded files:
