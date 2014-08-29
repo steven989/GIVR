@@ -991,12 +991,14 @@ body {
   height: 85%;
   width: 13rem;
   z-index: 1;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: visible;
   color: $text-color;
 
   .fb-like.project {
     position: absolute;
-    left: 3rem;    
+    left: 3rem;  
+    z-index: 40;  
   }
 
   .li-share.project {
