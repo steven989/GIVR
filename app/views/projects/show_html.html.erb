@@ -1,14 +1,13 @@
-<head>
-    <meta property="og:title" content="<%= "Volunteers wanted: #{@project.title.titleize} for #{@project.secure_title.titleize}" %>" />
-    <meta property="og:site_name" content="Givingly: skill-based volunteer in Toronto" />
-    <meta property="og:url" content="<%= show_html_project_url(@project) %>" />
-    <meta property="og:description" content="<%= @project.description %>" />
-    <meta property="og:image" content="<%= if @project.user.logo_exists? && @project.hide_name != "1"; @project.user.logo_url else "https://s3.amazonaws.com/givr-app/assets/givingly_nosplash_reduced.png" end %>" />
-    <meta property="og:app_id" content="<%= ENV['FACEBOOK_APP_ID'] %>" />
-</head>
 <%= render 'shared/alt_header' %>
 <%= render 'shared/alt_static' %>
 
+
+  <% content_for :og_title, "Volunteers wanted: #{@project.title.titleize} for #{@project.secure_title.titleize}" %>
+  <% content_for :og_sitename, "Givingly: skill-based volunteer in Toronto" %>
+  <% content_for :og_url, show_html_project_url(@project) %>
+  <% content_for :og_description, @project.description %>
+  <% content_for :og_image, if @project.user.logo_exists? && @project.hide_name != "1"; @project.user.logo_url else "https://s3.amazonaws.com/givr-app/assets/givingly_nosplash_reduced.png" end %>
+  <% content_for :og_appid, ENV['FACEBOOK_APP_ID'] %>
 
 <div class="center_content_container">
     <SPAN class="see_all_projects"><%= link_to projects_path do %> <%= fa_icon 'arrow-left' %> See all projects <% end %></SPAN>

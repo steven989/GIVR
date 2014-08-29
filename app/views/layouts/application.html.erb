@@ -6,6 +6,13 @@
 
   <meta name='keywords' content="volunteer, volunteer toronto, volunteer opportunities, volunteer consulting, consulting for a cause, consulting for not-for-profit, not-for-profit, pro bono, pro bono toronto, pro bono opportunities, nonprofit, volunteer for non profit, fundraising, volunteer consulting services, not-for-profit marketing" >
 
+  <meta property="og:title" content="<%= yield(:og_title) %>" />
+  <meta property="og:site_name" content="<%= yield(:og_sitename) %>" />
+  <meta property="og:url" content="<%= yield(:og_url) %>" />
+  <meta property="og:description" content="<%= yield(:og_description) %>" />
+  <meta property="og:image" content="<%= yield(:og_image) %>" />
+  <meta property="og:app_id" content="<%= yield(:og_appid) %>" />
+
   <%= stylesheet_link_tag    "reset", media: "all", "data-turbolinks-track" => true %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <!-- javascript_include_tag "//www.google.com/jsapi", "chartkick" -->
