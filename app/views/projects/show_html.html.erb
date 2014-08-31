@@ -6,7 +6,7 @@
   <% content_for :og_sitename, "Givingly: skill-based volunteer in Toronto" %>
   <% content_for :og_url, show_html_project_url(@project) %>
   <% content_for :og_description, @project.description %>
-  <% content_for :og_image, if @project.user.logo_exists? && @project.hide_name != "1"; @project.user.logo_url else "https://s3.amazonaws.com/givr-app/assets/givingly_nosplash_reduced.png" end %>
+  <% content_for :og_image, if @project.user.logo_exists? && @project.hide_name != "1"; @project.user.logo_url else "https://s3.amazonaws.com/givr-app/assets/Givingly_social_media.png" end %>
   <% content_for :og_appid, ENV['FACEBOOK_APP_ID'] %>
 
 <div class="center_content_container">
