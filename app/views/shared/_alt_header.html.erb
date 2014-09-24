@@ -29,9 +29,6 @@
         <%= link_to projects_path, class: 'li'  do %>
             <li><p>Projects</p></li>
         <% end %>
-        <%= link_to monologue_path, class: 'li'  do %>
-            <li><p>Blog</p></li>
-        <% end %>
         <% if current_user %>
             <div class='li profile_dropdown' href="<%= user_profile_path %>">
                 <li>

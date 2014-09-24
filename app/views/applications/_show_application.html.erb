@@ -1,6 +1,16 @@
 <div class="ui form segment profile_form" id="slimScroll_edit">
   <h2>Application details</h2>
   <div class="ui divider"></div>
+  <% if current_user.is? 'npo' %>
+  <div class="field explanation">
+    Please review the information on the professional below. Once you review the application, please email the professional to set up a time to chat. <br><br>
+
+    The chat is an opportunity for the professional to ask you any additional project information, and for you to assess if the professional is a good fit.<br><br>
+
+    When you are happy with the professional's timeline and approach, you can approve the project from your dashboard.
+  </div>
+  <% end %>
+
   <div id="close_project">
     <%= fa_icon 'times' %>
   </div> 
@@ -53,10 +63,10 @@
       <div class="ui label">No resume provided</div>
     <% end %>
   </div>
-  <div class="field">
+<!--   <div class="field">
     <p class='section_title'>Estimated completion date</p>
-    <div class="ui label"><%= @application.est_completion_date.strftime('%Y-%m-%d') if @application.est_completion_date %></div>
-  </div>
+    <div class="ui label"> @application.est_completion_date.strftime('%Y-%m-%d') if @application.est_completion_date %></div>
+  </div> -->
   <div class="field">
     <p class='section_title'>Message from professional</p>
     <div class="ui label"><%= @application.message %></div>

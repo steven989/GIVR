@@ -303,12 +303,13 @@
                   </div>
                   <div class="ui fitted inverted divider"></div>
                   <div class='profile_view_button link item' id='summary'>My summary</div>  
-                  <div class="ui fitted inverted divider"></div>             
+                  <!-- <div class="ui fitted inverted divider"></div>              -->
                   <% if @user.is? 'professional' %> 
-                    <div class='profile_view_button link item' id='shortlist'>
+<!--                     <div class='profile_view_button link item' id='shortlist'>
                       Saved projects
-                    </div>                  
+                    </div>  -->                 
                   <% elsif @user.is? 'npo' %>
+                  <div class="ui fitted inverted divider"></div>
                     <div class='profile_view_button link item' id='my_projects'>
                       My projects
                     </div>
@@ -394,17 +395,57 @@
         </div>
 
         <div class="profile_view_content" id='projects'>
+          <% if current_user.is? 'professional' %>
+          <div class="field explanation">
+            This section shows all the projects you've completed to date. You can see the hours you've volunteered on each project.
+          </div>
+          <% elsif current_user.is? 'npo' %>
+          <div class="field explanation">
+            This section shows all your completed projects. You can edit your feedback to the professionals.
+          </div>
+          <% end %>
               <%= render partial: 'applications/application', collection: @completed_applications, locals: {role: @role} %>
         </div>
         <% if @user.is? 'npo' %>
           <div class="profile_view_content" id='my_projects'>
+            <div class="field explanation">
+              This section shows all the projects you have submitted. Project status of "under review" indicates that it is currently being reviewed by the Givingly team. Project status of "on market" indicates that it is visible to professionals.<br><br>
+
+              Projects with status of "saved" are in draft mode and have not been submitted to Givingly for review.<br><br>
+
+              You can edit these project by clicking on them.
+            </div>
             <%= render partial: 'projects/project', collection: @projects, locals: {loc: 'project'} %>
           </div>
         <% end %>
         <div class="profile_view_content" id='applications'>
+          <% if current_user.is? 'professional' %>
+          <div class="field explanation">
+            This section shows all the projects you've applied to. When your application status becomes "Approved" after you chat with the not-for-profit organization, you need to click "Start" in order to accrue volunteer hours.
+          </div>
+          <% elsif current_user.is? 'npo' %>
+          <div class="field explanation">
+            This section shows all the applications you've received. Please review all applications with status "Pending Approval", and reach out to the professionals via email to set up chats as soon as you can.<br><br>
+            
+            When you are happy with a professional, you can go ahead and click "Approve".
+
+          </div>
+          <% end %>
             <%= render partial: 'applications/application', collection: @applicationss, locals: {role: @role} %>
         </div>
         <div class="profile_view_content" id='in_progress'>
+          <% if current_user.is? 'professional' %>
+          <div class="field explanation">
+            Here are the projects you are working on. When you complete the project, the not-for-profit organization will close it out and enter the hours you volunteered.
+          </div>
+          <% elsif current_user.is? 'npo' %>
+          <div class="field explanation">
+            Here are the projects you have going on. When a project is complete, click "Finish" to close it out and enter the hours the professional has volunteered.<br><br>
+            
+            If a project is ending without being completed, click "Abort"
+
+          </div>
+          <% end %>
             <%= render partial: 'applications/application', collection: @in_progress_applications, locals: {role: @role} %>
         </div>        
         <% if @user.role == 'professional' %>

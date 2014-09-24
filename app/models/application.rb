@@ -38,7 +38,7 @@
 
     def must_include_message
         self.errors.add(:message, "cannot be blank.") if self.message.blank? || self.message.nil? || self.message.scan(/\S/).length == 0
-        self.errors.add(:est_completion_date, "cannot be blank.") if self.est_completion_date.blank? 
+        # self.errors.add(:est_completion_date, "cannot be blank.") if self.est_completion_date.blank? 
     end
 
 end

@@ -4,8 +4,8 @@
             <% unless @abridged_menu %>
                 <%= link_to 'My summary',  main_app.user_profile_path+'#_summary', class: 'item' %>
                 <div class="ui fitted inverted divider"></div>
-                <%= link_to 'Saved projects', main_app.user_profile_path+'#_shortlist', class: 'item' %>
-                <div class="ui fitted inverted divider"></div>
+                <!-- link_to 'Saved projects', main_app.user_profile_path+'#_shortlist', class: 'item' %> -->
+                <!-- <div class="ui fitted inverted divider"></div> -->
                 <%= link_to main_app.user_profile_path+'#_applications', class: 'item' do %>
                 My applications
                 <div class="notification_count ui small red label <%= "hidden" if @notification_count.nil? || @notification_count == 0 %>"><%= @notification_count %></div>

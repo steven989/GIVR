@@ -14,21 +14,28 @@
                   You must fill in your first and last name before you can apply to projects. You can add that under <%= link_to "Edit my info", user_profile_path+'#settings'%> tab in your profile dashboard.
           </div>
         <% end %>
-        <div class="field">
-          <%= f.label 'est_completion_date' do %> Estimated completion date <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
-          <%= f.text_field 'est_completion_date', class: 'required_field' %>
-        </div>
+        <% if @application.status == 'save' %>
+          <div class="field explanation">
+            <!-- f.label 'est_completion_date' do %> Estimated completion date  fa_icon 'asterisk', class: 'required_asterisk' %> end %> -->
+            <!-- f.text_field 'est_completion_date', class: 'required_field' %> -->
+                The next step is to get in touch with the not-for-profit organization to find out more about what they are looking for, and how you can help. Feel free to propose to the not-for-profit your schedule and how you'd like to volunteer. <br><br>
+
+                Fill out as much of this form as possible, and click "Submit". The not-for-profit organization will set up a time with you to chat.<br><br>
+
+                You are not committing to do the project. Not-for-profit organization would love to chat with you even just to get some guidance on how to proceed.
+          </div>
+        <% end %>
         <div class="field">
           <%= f.label 'message' do %> Add a message <%= fa_icon 'asterisk', class: 'required_asterisk' %> <% end %>
-          <%= f.text_area 'message', class: 'required_field'%>
+          <%= f.text_area 'message', class: 'required_field', placeholder: 'What are your thoughts on this project? What suggestions do you have? What related background do you have?' %>
         </div>
         <div class="field">
           <%= f.label 'open_questions', "Additional questions for the not-for-profit organization" %>
-          <%= f.text_area 'open_questions' %>
+          <%= f.text_area 'open_questions', placeholder: 'Do you have any questions that the not-for-profit organization did not address in the project description that you would like to know?' %>
         </div>
         <div class="field">
           <%= f.label 'required_resources', "Resource required" %>
-          <%= f.text_area 'required_resources' %>
+          <%= f.text_area 'required_resources', placeholder: 'What resources, help, support should the not-for-profit organization provide to help complete the project?' %>
         </div>
     <% elsif current_user.is? 'npo'%>
      <div class="required_asterisk_legend"><%= fa_icon 'asterisk' %> Indicates required fields</div>

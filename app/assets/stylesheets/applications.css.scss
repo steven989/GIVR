@@ -1407,6 +1407,15 @@ body {
     .proto_form {
       width: 100%;
 
+      .field.explanation {
+        background-color: $light-gray;
+        border-radius: 10px;
+        padding: 1rem;
+        font-weight: bold;
+        font-size: 0.85rem;
+        color: $box-shadow-color;
+      }
+
       .project_header {
         height: 3rem;
         font-size: 1.3rem;
@@ -1640,6 +1649,16 @@ body {
       .unread {
         background-color: $primary-color;
       }
+
+      .field.explanation {
+        border-radius: 10px;
+        padding: 0.5rem;
+        font-weight: bold;
+        font-size: 0.85rem;
+        color: $box-shadow-color;
+        margin-bottom: 1rem;
+      }
+
     }
 
 
@@ -1975,6 +1994,16 @@ body {
     background-color: white;
     margin-bottom: 2rem;
     border-radius: 10px;
+
+      .field.explanation {
+        background-color: $light-gray;
+        border-radius: 10px;
+        padding: 1rem;
+        font-weight: bold;
+        font-size: 0.85rem;
+        color: $box-shadow-color;
+      }
+
 
     .errors {
       font-size: 1rem;
