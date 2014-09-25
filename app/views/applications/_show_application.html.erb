@@ -1,7 +1,7 @@
 <div class="ui form segment profile_form" id="slimScroll_edit">
   <h2>Application details</h2>
   <div class="ui divider"></div>
-  <% if current_user.is? 'npo' %>
+  <% if current_user.is? 'npo' && (@application.status == 'apply' || @application.status == 'view') %>
   <div class="field explanation">
     Please review the information on the professional below. Once you review the application, please email the professional to set up a time to chat. <br><br>
 

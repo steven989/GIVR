@@ -25,11 +25,11 @@
       <p><%= f.text_field :hours, class:'text_field' %></p>
     </div>
     <div class="field">
-      <p class='section_title'><%= f.label :rating_for_professional, "How would you rate the #{@application.user.display_name}'s performance? (5 is best performance)" %></p>
+      <p class='section_title'><%= f.label :rating_for_professional, "How would you rate the #{@application.user.display_name}'s performance? (5 is best performance); your individual response will not be visible to the professional" %></p>
       <%= f.select :rating_for_professional, [5,4,3,2,1] %>
     </div>
     <div class="i_am_a grouped inline fields">
-    Would you work with <%= @application.user.display_name %> again in the future?
+    <b>Would you work with <%= @application.user.display_name %> again in the future? Your individual response will not be visible to the professional</b>
         <div class="field">
             <div class="ui radio checkbox">
                 <%= f.radio_button :work_again, 'yes' %>
