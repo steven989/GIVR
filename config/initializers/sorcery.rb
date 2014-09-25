@@ -86,7 +86,7 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.linkedin.key = ENV['LINKEDIN_APP_ID']
   config.linkedin.secret = ENV['LINKEDIN_SECRET_KEY']
-  config.linkedin.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=linkedin"
+  config.linkedin.callback_url = "http://www.givingly.me/oauth/callback?provider=linkedin"
   config.linkedin.user_info_fields = ['email-address', 'id'] #['first-name', 'last-name']
   config.linkedin.user_info_mapping =  {email: 'emailAddress'} #{first_name: "firstName", last_name: "lastName"}
   config.linkedin.access_permissions = ['r_basicprofile', 'r_emailAddress']
@@ -111,7 +111,7 @@ Rails.application.config.sorcery.configure do |config|
   #
   config.facebook.key = ENV['FACEBOOK_APP_ID']
   config.facebook.secret = ENV['FACEBOOK_APP_SECRET']
-  config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
+  config.facebook.callback_url = "http://www.givingly.me/oauth/callback?provider=facebook"
   config.facebook.user_info_mapping = {:email => "email"}
   config.facebook.access_permissions = ["email"]
   #
