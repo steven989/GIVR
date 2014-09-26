@@ -1378,7 +1378,10 @@ body {
             text-transform: none;
             width: 95%;
             min-height: 2rem;
+            font-size: 0.93rem;
             background-color: $very-light-gray;
+            line-height: 1.2rem;
+            font-weight: bold;
           }
         }
       }
@@ -2170,7 +2173,7 @@ body {
     }
   }
 
-  .link_to_profile a {
+  .link_to_profile_user_profile a {
     color: #1400FF;
     cursor: pointer;
     text-decoration: none;

@@ -597,7 +597,7 @@
                   </div>
                   <p><%= f.submit 'Update my information', class: 'mini ui givrgreen button' %></p>
                 <% end %>
-                <span class='link_to_profile'><%= link_to "View my public profile", organization_profile_path(@user) %></span>
+                <span class='link_to_profile_user_profile'><%= link_to "View my public profile", organization_profile_path(@user) %></span>
                 <div class="upload_container">
                   <%= render partial: 'logo_upload', locals: {user: @user} %>
                 </div>   
