@@ -1677,6 +1677,7 @@ body {
   }
 
 
+
   .show_application {  /* this is the card that shows the application */
 
     box-sizing: border-box;
@@ -2166,6 +2167,18 @@ body {
           color: red;
         }
       }
+    }
+  }
+
+  .link_to_profile a {
+    color: #1400FF;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    top: 0.5rem;
+
+    &:hover {
+      color: #3868FF;
     }
   }
 

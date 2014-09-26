@@ -20,7 +20,7 @@ class Project < ActiveRecord::Base
   validates :required_date, presence: true
   validates :description, presence: true
   validates :why_we_need_this, presence: true
-  validates :how_output_will_be_used, presence: true
+  # validates :how_output_will_be_used, presence: true
   validates :overseer, presence: true
 
 

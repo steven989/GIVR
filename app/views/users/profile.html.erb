@@ -427,8 +427,7 @@
           <div class="field explanation">
             This section shows all the applications you've received. Please review all applications with status "Pending Approval", and reach out to the professionals via email to set up chats as soon as you can.<br><br>
             
-            When you are happy with a professional, you can go ahead and click "Approve".
-
+            When you are happy with the professional, you can go ahead and click "Approve".
           </div>
           <% end %>
             <%= render partial: 'applications/application', collection: @applicationss, locals: {role: @role} %>
@@ -502,7 +501,7 @@
                 <p class='section_title'>Your skills categories</p>
                 <div class="ui divider"></div>
                 <div class="preference_check">
-                  <%= collection_check_boxes(:user, :category_ids, Category.all, :id, :category) do |c| %>
+                  <%= collection_check_boxes(:user, :category_ids, Category.all.order(category: :asc), :id, :category) do |c| %>
                      <div class = "individual_checkbox ui checkbox" >
                      <%= c.check_box + c.label %> 
                      </div>
@@ -511,7 +510,7 @@
                 <p class='section_title'>Your causes</p>
                 <div class="ui divider"></div>
                 <div class="preference_check">
-                  <%= collection_check_boxes(:user, :cause_ids, Cause.all, :id, :cause) do |c| %>
+                  <%= collection_check_boxes(:user, :cause_ids, Cause.all.order(cause: :asc), :id, :cause) do |c| %>
                      <div class = "individual_checkbox ui checkbox" >
                      <%= c.check_box + c.label %> 
                      </div>
@@ -520,7 +519,7 @@
                 <p class='section_title'>Your preferred locations</p>
                 <div class="ui divider"></div>
                 <div class="preference_check">
-                  <%= collection_check_boxes(:user, :location_ids, Location.all, :id, :location) do |c| %>
+                  <%= collection_check_boxes(:user, :location_ids, Location.all.order(location: :asc), :id, :location) do |c| %>
                      <div class = "individual_checkbox ui checkbox" >
                      <%= c.check_box + c.label %> 
                      </div>
@@ -545,8 +544,8 @@
                   </div>
                   <div class='field'>
                     <p class='section_title'><%= f.label :cause_id, "Cause:" %></p>
-                    <%= options_from_collection_for_select(Cause.all, :id, :cause) %>
-                    <p><%= collection_select(:user, :cause_id, Cause.all, :id, :cause, class: 'drop_down') %></p>
+                    <%= options_from_collection_for_select(Cause.all.order(cause: :asc), :id, :cause) %>
+                    <p><%= collection_select(:user, :cause_id, Cause.all.order(cause: :asc), :id, :cause, class: 'drop_down') %></p>
                   </div>        
                   <div class='field'>
                     <p class='section_title'><%= f.label :mission, "Mission:" %></p>
@@ -598,6 +597,7 @@
                   </div>
                   <p><%= f.submit 'Update my information', class: 'mini ui givrgreen button' %></p>
                 <% end %>
+                <span class='link_to_profile'><%= link_to "View my public profile", organization_profile_path(@user) %></span>
                 <div class="upload_container">
                   <%= render partial: 'logo_upload', locals: {user: @user} %>
                 </div>   
