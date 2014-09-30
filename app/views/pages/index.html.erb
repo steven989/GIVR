@@ -1,8 +1,8 @@
 
 <!-- <script type="text/javascript" src="scroll.js"></script> -->
 
-<!-- render 'shared/header' -->
-<!-- render 'shared/alt_header' -->
+<%= render 'shared/header' %>
+<%= render 'shared/alt_header' %>
 
 <div class="landing_section_nav">
     <div class="section_nav_button clicked_alt" data-scrollto = "#who_are_we"><p>Introduction</p></div>
@@ -10,7 +10,6 @@
     <div class="section_nav_button" data-scrollto = "#nonprofits"><p class='hidden'>How it works: Non-profits</p></div>
     <div class="section_nav_button" data-scrollto = "#categories"><p class='hidden'>Sample Project Categories</p></div>
     <div class="section_nav_button" data-scrollto = "#faq"><p class='hidden'>FAQ</p></div>
-    <div class="section_nav_button" data-scrollto = ".join"><p class='hidden'>Get started</p></div>
 </div>
 <div class="logo">
     <%= image_tag 'logo_white.png' %>
@@ -25,7 +24,7 @@
         <p class='tag'>Currently serving the Greater Toronto Area</p>
     </div>
     <div class="button_container_invite">
-        <div class="get_invite" data-scrollto = ".join">Get started</div>
+        <%= link_to projects_path, class: "get_started" do %>Get started<% end %>
     </div>
     
     <div class="divider_container">
@@ -36,7 +35,10 @@
         <div class="npo_summ_button" data-scrollto = "#nonprofits">Not-for-profits</div>
         <div class="faq_button" data-scrollto = "#faq">FAQ</div>
     </div>
-
+    <div class="social_media">
+        <%= link_to "https://www.facebook.com/pages/Givingly/1447240075552228", target: '_blank'  do %> <%= fa_icon 'facebook-square' %> <% end %>
+        <%= link_to "https://www.linkedin.com/company/3810409", target: '_blank' do %> <%= fa_icon 'linkedin-square' %> <% end %>
+    </div>
 
 </div>
 <div class="front_page_background"></div>
@@ -72,7 +74,7 @@
                 </div>
             </div>
         <div class="button_container">
-            <div class="get_invite" data-scrollto = ".join">Get started</div>
+            <%= link_to projects_path, class: "get_started" do %><div>Get started</div><% end %>
         </div>
     </div>
     <div class="ui divider"></div>
@@ -178,7 +180,7 @@
             </div>
         </div>
         <div class="button_container">
-            <div class="get_invite" data-scrollto = ".join">Get started</div>
+            <%= link_to projects_path, class: "get_started" do %><div>Get started</div><% end %>
         </div>
     </div>
     <div class="ui divider"></div>
@@ -214,8 +216,11 @@
             <p class="question">How do I get involved?</p>
             <p class="answer">Givingy is currently in beta - meaning that we are testing our platform with a small group of users to ensure that the it is easy to use. If you are interested in joining, please leave your email in the form below, and we will send you an invite as soon as we can!</p>
         </div>
+        <div class="button_container">
+            <%= link_to projects_path, class: "get_started" do %><div>Get started</div><% end %>
+        </div>
     </div>
-    <div class="ui divider"></div>
+<!--     <div class="ui divider"></div>
     <div class="join">
         <h2>Can't wait to get started?</h2>
         <p>Givingly is currently in private beta. Leave your email and we'll send you an invite soon! We promise we won't share your info with anyone or spam your inbox.</p>
@@ -316,11 +321,15 @@
             <p class="form_text hidden">You can also contact us at <a href="mailto:info@givingly.me?Subject=Inquiry%20from%20givingly.me" target="_top">info@givingly.me</a></p>
             <% end %>
         </div> 
-    </div>
+    </div> -->
 </div>
 <div class="footer">
     <div class="copyright">
         ©2014 givingly.me All Rights Reserved
-    </div>    
+    </div>  
+    <div class="social_media">
+        <%= link_to "https://www.facebook.com/pages/Givingly/1447240075552228", target: '_blank'  do %> <%= fa_icon 'facebook-square' %> <% end %>
+        <%= link_to "https://www.linkedin.com/company/3810409", target: '_blank' do %> <%= fa_icon 'linkedin-square' %> <% end %>
+    </div>  
 </div>
 <div class="projects_overlay_transparent hidden"></div>

@@ -3,6 +3,7 @@ $('document').ready(function() {
     configureDropzone();
     window.scrollTo(0,0);
     $(document).on('scroll', scrollCheck);
+    scrollCheck();
     window.headerHeight = $('#visible_blue').outerHeight(false);    // taking a snapshot of the height of the header as an anchor
     $('.search_bar .clickable').each(function(){    // search bar 
         $(this).on('click',function () {
@@ -239,6 +240,7 @@ function buttonHighlightToggle(buttons) {   // this takes a jquery array of clic
             });
         });
 }
+
 // this is to set the header transition from blue to white
 // the approach is to use javascript to set the height of the blue div so that upon every scroll action the height is decreased a little 
 
